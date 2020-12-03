@@ -19,6 +19,7 @@ class RegisterTravellerPage extends Page {
     public function __construct() {
         parent::__construct('Traveller Login', 'Traveller Login');
         $this->message = '';
+        $this->password = '';
         // $this->travellerDao = new TravellerDao();
         // $this->locationDao = new LocationDao();
     }
@@ -87,13 +88,6 @@ class RegisterTravellerPage extends Page {
             // }
         }
        }
-
-    //    function readTravellerLocation(int $id): ?Location {
-
-    //     if ($this->readOneTraveller == null) {
-    //         $sql = 'SELECT * FROM `' . $this->tableName . '` WHERE `idTraveller`=:id';
-    //         $this->readOneStatement = $this->connection->prepare($sql);
-    //     }
 
 }
 

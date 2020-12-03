@@ -32,7 +32,6 @@ abstract class Page {
     private function initSession(): void {
         
         $this->message = '';
-        $this->password = '';
         $this->email = $_SESSION['email'] ?? '';
         $this->loggedIn = $this->email != '';
         
