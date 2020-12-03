@@ -32,42 +32,26 @@ class RegisterTravellerPage extends Page {
 
     protected function viewContent(): void {
 
-        //  if ($this->loggedIn == true){
-        //     echo 'test';
-        // $travellerId = $this->travellerDao->getId();
-        //  }
-        // $travellerDao->getCreateArray();
-        // $id = intVal($_GET['id'] ?? 0);
-        // $this->travellerDao = new TravellerDao();
-        // $this->traveller = $this->travellerDao->readOne($id);
-        $this->traveller = new Traveller();
+
+        // $this->traveller = new Traveller();
 
         // printData($_SESSION);
-        // printData(unserialize($_SESSION['id']));
         $tr = unserialize($_SESSION['traveller']);
-        // printData($this->traveller->getId());
-        // $currentId = $tr['id'];
+      
         // printData($tr);
         // printData($tr->getId());
 
-        // $idLogin = $this->id;
-        // printData($idLogin);
-
-        // $logId = $tr['id'];
-        // printData($logId);
-        
-
         $idValue = $tr->getId();
         $foreignId = "idTraveller";
-        // intVal($_GET['id']);
         $this->locationDao = new LocationDao();
         $this->locations = $this->locationDao->readForeignTable($idValue, $foreignId);
-        printData($this->locations);
+        // printData($this->locations);
 
         $selectedLoc = $this->locations;
+        // printData($selectedLoc);
         // printData($this->locations->getId());
         // printData(serialize($this->dtos));
-        include 'html/location.html.php';
+        // include 'html/location.html.php';
         // $loc = unserialize($this->locations);
         // printData($loc);
 
@@ -83,20 +67,25 @@ class RegisterTravellerPage extends Page {
 
         // printData($this->location->getId());
 
-        $idValue = 2;
-        // $tr->getId();
-        $foreignId = "idLocation";
-        // intVal($_GET['id']);
-        $this->pointOfInterestDao = new PointOfInterestDao();
-        $this->pointOfInterest = $this->pointOfInterestDao->readForeignTable($idValue, $foreignId);
-        printData($this->pointOfInterest);
-        
+        foreach ($this->locations as $location) {
+            $idValue = $location->getId();
+            // $tr->getId();
+            $foreignId = "idLocation";
+            // intVal($_GET['id']);
+            $this->pointOfInterestDao = new PointOfInterestDao();
+            include 'html/location.html.php';
+            $this->pointOfInterest = $this->pointOfInterestDao->readForeignTable($idValue, $foreignId);
+            // printData($this->pointOfInterest);
 
-
-
-
-
-    //    $password = ''; 
+            $selectedPoi = $this->pointOfInterest;
+            // printData($selectedPoi);
+            // printData($this->locations->getId());
+            // printData(serialize($this->dtos));
+            // include 'html/location.html.php';
+            // if($idValue === $selectedPoi->idLocation()){
+            include 'html/pointOfInterest.html.php';
+            // }
+        }
        }
 
     //    function readTravellerLocation(int $id): ?Location {

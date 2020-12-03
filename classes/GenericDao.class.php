@@ -82,6 +82,7 @@ abstract class GenericDao {
         }
 
         return $dtos;
+        return $dtos[0]->getId();
     }
 
 

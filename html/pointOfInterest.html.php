@@ -13,7 +13,7 @@
         <th>Map</th>
         <th>notes</th>
         </tr>
-        <?php foreach ($pointOfInterest as $poi) : ?>
+        <?php foreach ($selectedPoi as $poi) : ?>
             <tr>
                 <td>
                     <button name="old" value="<?= $poi->getId() ?>" >update</button>

@@ -14,7 +14,9 @@
         <th>TravelLink</th>
         <th>Notes</th>
         </tr>
-        <?php foreach ($selectedLoc as $location) : ?>
+        <?php 
+        foreach ($selectedLoc as $location) :
+        ?>
             <tr>
                 <td>
                     <button name="old2" value="<?= $location->getId() ?>" >update</button>

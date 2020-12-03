@@ -35,7 +35,7 @@ class Location {
     }
     function setIdTraveller(int $idTraveller): void {
         $this->idTraveller = $idTraveller;
-    
+    }
     function getlocation(): string {
         return $this->location;
     }
@@ -95,4 +95,4 @@ class Location {
     }
     
 }
-}
+
