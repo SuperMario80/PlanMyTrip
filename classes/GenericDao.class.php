@@ -61,11 +61,7 @@ abstract class GenericDao {
 
 
 
-    function readForeignTable(int $idValue, string $foreignId): array {
-
-
-        // $idValue='';
-
+    function readForeign(int $idValue, string $foreignId): array {
         if ($this->readForeignStatement == null) {
             $sql = 'SELECT * FROM `' . $this->tableName . '` WHERE `' . $foreignId . '`=:idValue';
             $this->readForeignStatement = $this->connection->prepare($sql);

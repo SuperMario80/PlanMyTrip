@@ -29,7 +29,7 @@ class dbPoiPage extends Page {
         $pointOfInterestDao = new PointOfInterestDao();
         $pointOfInterest = $pointOfInterestDao->readAll();
         printData($pointOfInterest);
-        include 'html/pointOfInterest.html.php';
+        // include 'html/pointOfInterest.html.php';
 
     }
 

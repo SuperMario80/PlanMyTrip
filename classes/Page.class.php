@@ -83,7 +83,7 @@ abstract class Page {
 //    }
     
     private function viewLogin() {
-            
+        $password = "";   
         $email = $this->email;
         if ($this->loggedIn) {
             include 'html/navigation.html.php';
@@ -92,7 +92,7 @@ abstract class Page {
 
         } else {
             $message = $this->message;
-            include 'html/login.html.php';
+            require_once 'html/login.html.php';
         }
     }
     

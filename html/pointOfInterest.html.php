@@ -1,8 +1,12 @@
 <form method="post">
+<br>
+    <button name="new" value="0" >add new PointOfInterest</button>
+    
    
     <table border="1">
-       <h1>PlanMyTrip <button name="new" value="0" >   add new PointOfInterest</button></h1>
+      
         <tr>
+        <th></th>
         <th></th>
         <th>Id</th>
         <th>idLocation</th>
@@ -13,11 +17,14 @@
         <th>Map</th>
         <th>notes</th>
         </tr>
+        
         <?php foreach ($selectedPoi as $poi) : ?>
             <tr>
+            <td> Placeholder                            
                 <td>
                     <button name="old" value="<?= $poi->getId() ?>" >update</button>
                 </td>
+                   
                 <td><?= $poi->getId() ?></td>
                 <td><?= $poi->getIdLocation() ?></td>
                 <td><?= htmlSpecialChars($poi->getPoiName()) ?></td>
@@ -27,7 +34,9 @@
                 <td><?= htmlSpecialChars($poi->getNotes()) ?></td>
             </tr>
         <?php endforeach; ?>
+        
     </table>
+    
        
-   
+    <br>
 </form>

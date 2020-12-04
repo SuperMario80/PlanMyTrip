@@ -17,8 +17,8 @@ class showPoiPage extends Page {
     protected function init() : void {
         
         if (isSet($_POST['back']) or !isSet($_GET['id'])) {
-            header('Location: dbPoi.php');
-            exit;
+            // header('Location: TESTdbPoi.php');
+            // exit;
         }
     }
     

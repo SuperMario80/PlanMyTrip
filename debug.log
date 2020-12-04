@@ -416,3 +416,18 @@
 [1201/083801.077:ERROR:directory_reader_win.cc(43)] FindFirstFile: Das System kann den angegebenen Pfad nicht finden. (0x3)
 [1201/200628.956:ERROR:directory_reader_win.cc(43)] FindFirstFile: Das System kann den angegebenen Pfad nicht finden. (0x3)
 [1202/081925.321:ERROR:directory_reader_win.cc(43)] FindFirstFile: Das System kann den angegebenen Pfad nicht finden. (0x3)
+[1203/115921.291:ERROR:directory_reader_win.cc(43)] FindFirstFile: Das System kann den angegebenen Pfad nicht finden. (0x3)
+[1203/140421.304:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1203/141921.305:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1203/143421.305:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1203/144921.307:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1203/150421.308:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1203/151921.310:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1203/153421.310:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1203/154921.311:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1203/160421.312:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1204/084156.336:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1204/085156.337:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1204/085156.338:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\mario\AppData\Local\Temp\.profile\Crashpad\reports\af011195-b9e3-407a-9924-c9e79b82a017.dmp: Das System kann die angegebene Datei nicht finden. (0x2)
+[1204/085156.339:ERROR:directory_reader_win.cc(43)] FindFirstFile: Das System kann den angegebenen Pfad nicht finden. (0x3)
+[1204/091822.458:ERROR:directory_reader_win.cc(43)] FindFirstFile: Das System kann den angegebenen Pfad nicht finden. (0x3)

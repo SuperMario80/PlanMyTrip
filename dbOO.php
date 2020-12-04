@@ -16,10 +16,10 @@ class dbOOPage extends Page {
         //     exit;
         // }
         
-        // if (isSet($_POST['old2'])) {
-        //     header('Location: showLocation.php?id=' . $_POST['old2']);
-        //     exit;
-        // }
+        if (isSet($_POST['old2'])) {
+            header('Location: showLocation.php?id=' . $_POST['old2']);
+            exit;
+        }
         
     }
 
