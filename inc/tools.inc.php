@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // Hier kommen zentrale Inhalte rein, die für alle PHP-Seiten gleichermassen 
 // relevant sind.

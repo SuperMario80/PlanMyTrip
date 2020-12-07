@@ -20,7 +20,7 @@
         
         <?php foreach ($selectedPoi as $poi) : ?>
             <tr>
-            <td> Placeholder                            
+            <td> Placeholder      </td>                      
                 <td>
                     <button name="old" value="<?= $poi->getId() ?>" >update</button>
                 </td>
@@ -31,6 +31,7 @@
                 <td><?= htmlSpecialChars($poi->getAttraction()) ?></td>
                 <td><?= htmlSpecialChars($poi->getIntro()) ?></td>
                 <td><?= htmlSpecialChars($poi->getInfoLink()) ?></td>
+                <td><?= htmlSpecialChars($poi->getPoiMap()) ?></td>
                 <td><?= htmlSpecialChars($poi->getNotes()) ?></td>
             </tr>
         <?php endforeach; ?>

@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 abstract class Page {
@@ -30,7 +29,8 @@ abstract class Page {
     }
     
     private function initSession(): void {
-        
+        echo 'SESSION';
+        printData($_SESSION);
         $this->message = '';
         $this->email = $_SESSION['email'] ?? '';
         $this->loggedIn = $this->email != '';

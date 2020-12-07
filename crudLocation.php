@@ -3,11 +3,11 @@
 declare(strict_types=1);
 require_once 'inc/tools.inc.php';
 
-class showLocationPage extends Page {
+class crudLocationPage extends Page {
     
-    private string $message;
-    private LocationDao $locationDao;
-    private ?Location $location;
+    // private string $message;
+    // private LocationDao $locationDao;
+    // private ?Location $location;
 
     public function __construct() {
         parent::__construct('PlanMyTrip', 'Location');
@@ -15,16 +15,28 @@ class showLocationPage extends Page {
     }
 
     protected function init() : void {
+
+        // if (isSet($_POST['logout'])){
+        //      header('Location: travellerLogin.php');
+        //      exit;
+        //  }
+
         
-        if (isSet($_POST['back']) or !isSet($_GET['id'])) {
-            header('Location: dbOO.php');
+        if (isSet($_POST['back']) or !isSet($_GET['id'])) { 
+            // $travId = $this->location->getTravellerId();
+        // $this->showTravLoc();
+        // $this->showLocPois();
+        printData($tr);
+            header('Location: travellerLoggedIn.php');
             exit;
         }
     }
     
     protected function viewContent(): void {
+        // $travId = $this->location->getTravellerId();
+
         
-        $id = intVal($_GET['id']);
+        $id = intVal($_GET['id'] ?? 0);
         $this->locationDao = new LocationDao();
         $this->location = $this->locationDao->readOne($id);
         if ($this->location == null) {
@@ -43,7 +55,7 @@ class showLocationPage extends Page {
         
         $message = $this->message;
         $location = $this->location;
-        include 'html/location.html.php';
+        include 'html/loc.html.php';
     }
     
     private function saveLocation() {
@@ -51,12 +63,12 @@ class showLocationPage extends Page {
         
         if ($this->location->getId() == 0) {
             $this->message = $this->locationDao->create($this->location)
-                    ? 'New Point Of Interest created'
-                    : 'Point Of Interest already exists';
+                    ? 'New Location created'
+                    : 'Location already exists';
         } else {
             $this->message = $this->locationDao->update($this->location)
-                    ? 'Point Of Interest Updated'
-                    : 'Point Of Interest NOT Updated';
+                    ? 'Location Updated'
+                    : 'Location NOT Updated';
         }
         
     }
@@ -73,7 +85,7 @@ class showLocationPage extends Page {
     }
     
     private function readFormData() {
-        $this->location->setIdTraveller($_POST['idTraveller']);
+        $this->location->setIdTraveller(intval($_POST['idTraveller']));
         $this->location->setLocation($_POST['location']);
         $this->location->setClassification($_POST['classification']);
         $this->location->setCountry($_POST['country']);
@@ -85,6 +97,6 @@ class showLocationPage extends Page {
 
 }
 
-$page = new showLocationPage();
+$page = new crudLocationPage();
 $page->view();
 

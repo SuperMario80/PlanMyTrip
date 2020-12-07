@@ -43,6 +43,7 @@ class LocationDao extends GenericDao {
             ':region' => $location->getRegion(),
             ':intro' => $location->getIntro(),
             ':travelLink' => $location->getTravelLink(),
+            ':notes' => $location->getNotes(),
             ':id' => $location->getId(),
         ];
     }

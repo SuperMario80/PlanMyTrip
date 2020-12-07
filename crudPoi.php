@@ -17,14 +17,14 @@ class showPoiPage extends Page {
     protected function init() : void {
         
         if (isSet($_POST['back']) or !isSet($_GET['id'])) {
-            // header('Location: TESTdbPoi.php');
-            // exit;
+            header('Location: travellerLoggedIn.php');
+            exit;
         }
     }
     
     protected function viewContent(): void {
         
-        $id = intVal($_GET['id']);
+        $id = intVal($_GET['id'] ?? 0);
         $this->pointOfInterestDao = new PointOfInterestDao();
         $this->poi = $this->pointOfInterestDao->readOne($id);
         if ($this->poi == null) {
@@ -73,7 +73,7 @@ class showPoiPage extends Page {
     }
     
     private function readFormData() {
-        // $this->poi->setIdLocation($_POST['idLocation']);
+        $this->poi->setIdLocation(intval($_POST['idLocation']));
         $this->poi->setPoiName($_POST['poiName']);
         $this->poi->setAttraction($_POST['attraction']);
         $this->poi->setIntro($_POST['intro']);

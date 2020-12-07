@@ -1,6 +1,5 @@
 <?php
 declare(strict_types=1);
-session_start();
 require_once 'inc/tools.inc.php';
 
 class RegisterTravellerPage extends Page {
@@ -20,6 +19,7 @@ class RegisterTravellerPage extends Page {
     public function __construct() {
         parent::__construct('Traveller Login', 'Traveller Login');
         $this->message = '';
+        // $tr = '';
         // $this->password = '';
         // $this->travellerDao = new TravellerDao();
         // $this->locationDao = new LocationDao();
@@ -31,15 +31,17 @@ class RegisterTravellerPage extends Page {
              exit;
          }
         
-         if (isSet($_POST['login'])) {
-            $tr = unserialize($_SESSION['traveller']);
-            header('Location: travellerLoggedIn.php?id=' . $_POST['login']);
-            exit;
-        }
+        //  if (isSet($_POST['login'])) {
+        //     $tr = unserialize($_SESSION['traveller']);
+        //     header('Location: travellerLoggedIn.php?id=' . $_POST['login']);
+        //     exit;
+        // }
         }
     
 
     protected function viewContent(): void {
+
+        //  include 'html/triposo.html.php';
 
         
 }

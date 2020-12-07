@@ -1,6 +1,5 @@
 <?php
 declare(strict_types=1);
-session_start();
 require_once 'inc/tools.inc.php';
 
 class TravellerLoggedInPage extends Page {
@@ -21,21 +20,46 @@ class TravellerLoggedInPage extends Page {
         parent::__construct('Traveller Area', 'Traveller Area');
         $this->message = '';
         $this->password = '';
-        // $this->travellerDao = new TravellerDao();
-        // $this->locationDao = new LocationDao();
+       
     }
 
     protected function init(): void {
-         if (isSet($_POST['logout'])){
-             header('Location: travellerLogin.php');
-             exit;
-         }
+        // $this->showTravLoc();
+        // $this->showLocPois();
+        //  if (isSet($_POST['logout'])){
+        //      header('Location: travellerLogin.php');
+        //      exit;
+        //  }
+
+        if (isSet($_POST['old2'])) {
+                    
+            header('Location: crudLocation.php?id=' . $_POST['old2']);
+            exit;
+        }
+
+         if (isSet($_POST['new2'])) {
+            header('Location: crudLocation.php?id=0');
+            exit;
+        }
+
+           if (isSet($_POST['new'])) {
+            header('Location: crudPoi.php?id=0');
+            exit;
+        }
+        
+        if (isSet($_POST['old'])) {
+            header('Location: crudPoi.php?id=' . $_POST['old']);
+            exit;
+        }
+        
+         
     }
 
     protected function viewContent(): void {
 
         $this->showTravLoc();
         $this->showLocPois();
+        // include 'html/triposo.html.php';
      
 }
 
@@ -43,7 +67,7 @@ class TravellerLoggedInPage extends Page {
         private function showTravLoc() {
             // printData($_SESSION);
             $tr = unserialize($_SESSION['traveller']);
-            // printData($tr);
+            printData($tr);
             // printData($tr->getId());
             $idValue = $tr->getId();
             $foreignId = "idTraveller";

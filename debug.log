@@ -431,3 +431,7 @@
 [1204/085156.338:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\mario\AppData\Local\Temp\.profile\Crashpad\reports\af011195-b9e3-407a-9924-c9e79b82a017.dmp: Das System kann die angegebene Datei nicht finden. (0x2)
 [1204/085156.339:ERROR:directory_reader_win.cc(43)] FindFirstFile: Das System kann den angegebenen Pfad nicht finden. (0x3)
 [1204/091822.458:ERROR:directory_reader_win.cc(43)] FindFirstFile: Das System kann den angegebenen Pfad nicht finden. (0x3)
+[1206/202233.889:ERROR:directory_reader_win.cc(43)] FindFirstFile: Das System kann den angegebenen Pfad nicht finden. (0x3)
+[1207/082427.768:ERROR:directory_reader_win.cc(43)] FindFirstFile: Das System kann den angegebenen Pfad nicht finden. (0x3)
+[1207/092503.598:ERROR:directory_reader_win.cc(43)] FindFirstFile: Das System kann den angegebenen Pfad nicht finden. (0x3)
+[1207/153327.016:ERROR:directory_reader_win.cc(43)] FindFirstFile: Das System kann den angegebenen Pfad nicht finden. (0x3)

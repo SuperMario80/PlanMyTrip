@@ -1,6 +1,6 @@
 <form method="post" >
     <button name="back" value="0">Back</button><br>
-    <input type="text" name="id" placeholder="id" value="<?= htmlSpecialChars($location->getId())?>" readonly><br>
+    <input type="text" name="id" placeholder="id" value="<?= htmlSpecialChars($location->getId()) ?>" readonly><br>
     <input type="text" name="idTraveller" placeholder="idTraveller" value="<?= htmlSpecialChars($location->getIdTraveller())?>" ><br>
     <input type="text" name="location" placeholder="location" value="<?= htmlSpecialChars($location->getLocation())?>" ><br>
     <input type="text" name="classification" placeholder="classification" value="<?= htmlSpecialChars($location->getClassification())?>" ><br>
