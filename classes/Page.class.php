@@ -37,10 +37,12 @@ abstract class Page {
         
         if (isSet($_POST['login'])) {
             $this->doLogin();
+             header('Location: travellerLoggedIn.php');
         }
         
         if (isSet($_POST['logout'])) {
             $this->doLogout();
+            header('Location: travellerLogIn.php');
         }
     }
     

@@ -32,8 +32,8 @@ class RegisterTravellerPage extends Page {
          }
         
         //  if (isSet($_POST['login'])) {
-        //     $tr = unserialize($_SESSION['traveller']);
-        //     header('Location: travellerLoggedIn.php?id=' . $_POST['login']);
+        //     // $tr = unserialize($_SESSION['traveller']);
+        //     header('Location: travellerLoggedIn.php');
         //     exit;
         // }
         }
@@ -41,7 +41,7 @@ class RegisterTravellerPage extends Page {
 
     protected function viewContent(): void {
 
-        //  include 'html/triposo.html.php';
+         include 'html/triposo.html.php';
 
         
 }
