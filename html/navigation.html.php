@@ -1,8 +1,9 @@
 <nav>
     <ul>
         <li>Home</li>
-        <li><a href="/PlanMyTrip/Triposo/index.html">Triposo Search</a></li>
-        <li>MySavedTrips</li>
+        <li><a href="travellerLogin.php">SearchMyTrip</a></li>
+        <li><a href="travellerLoggedIn.php">MySavedTrip</a></li>
+        <li>Placeholder</li>
         <li>Impressum</li>
     </ul>
 </nav>

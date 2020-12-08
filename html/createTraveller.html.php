@@ -1,6 +1,6 @@
 <form method="post" >
     <button name="back" value="0">Back</button><br>
-     <input type="text" name="id" placeholder="Id" value="<?= htmlSpecialChars($traveller->getId()) ?>" readonly><br>
+    
     <input type="text" name="firstName" placeholder="first name" value="<?= htmlSpecialChars($traveller->getFirstName())?>" ><br>
     <input type="text" name="lastName" placeholder="last name" value="<?= htmlSpecialChars($traveller->getLastName())?>" ><br>
     <input type="text" name="email" placeholder="e-mail" value="<?= htmlSpecialChars($traveller->getEmail())?>" ><br>
@@ -11,3 +11,6 @@
 <p>
     <?=htmlSpecialChars($message)?>
 </p>
+
+
+ <!-- <input type="text" name="id" placeholder="Id" value="<htmlSpecialChars$traveller->getId" readonly><br> -->

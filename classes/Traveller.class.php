@@ -40,8 +40,12 @@ class Traveller {
     function getEmail(): string {
         return $this->email;
     }
+
+    
     function setEmail(string $email): void {
+        //CHECKS IF EMAIL IS VALID
         if (filter_var($email, FILTER_VALIDATE_EMAIL)){
+            printData("$email is a valid email address");
             $this->email = $email;
         }
         

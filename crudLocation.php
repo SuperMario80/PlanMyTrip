@@ -5,37 +5,26 @@ require_once 'inc/tools.inc.php';
 
 class crudLocationPage extends Page {
     
-    // private string $message;
-    // private LocationDao $locationDao;
-    // private ?Location $location;
-
     public function __construct() {
         parent::__construct('PlanMyTrip', 'Location');
         $this->message = '';
     }
 
+
     protected function init() : void {
 
-        // if (isSet($_POST['logout'])){
-        //      header('Location: travellerLogin.php');
-        //      exit;
-        //  }
-
-        
         if (isSet($_POST['back']) or !isSet($_GET['id'])) { 
             // $travId = $this->location->getTravellerId();
-        // $this->showTravLoc();
-        // $this->showLocPois();
         printData($tr);
             header('Location: travellerLoggedIn.php');
             exit;
         }
     }
     
-    protected function viewContent(): void {
-        // $travId = $this->location->getTravellerId();
 
-        
+    protected function viewContent(): void {
+       
+        // OPENS CREATE/UPDATE LOCATION FORM
         $id = intVal($_GET['id'] ?? 0);
         $this->locationDao = new LocationDao();
         $this->location = $this->locationDao->readOne($id);
@@ -55,7 +44,7 @@ class crudLocationPage extends Page {
         
         $message = $this->message;
         $location = $this->location;
-        include 'html/loc.html.php';
+        include 'html/createLocation.html.php';
     }
     
     private function saveLocation() {

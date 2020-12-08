@@ -43,7 +43,7 @@ class showPoiPage extends Page {
         
         $message = $this->message;
         $poi = $this->poi;
-        include 'html/poi.html.php';
+        include 'html/createPoi.html.php';
     }
     
     private function savePoi() {

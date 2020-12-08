@@ -1,11 +1,8 @@
 <!--
-    Eingangs-Schnittstelle
-        $username - den Namen des anzumeldenden Benutzers als Text 
-        $message  - Feddback des Programm, ob erfolgreich angemeldet
-    Ausgangs-Schnittstelle
-        username
-        password
-        login
+    INPUT INTERFACE FOR USER LOGIN WITH 
+        EMAIL
+        PASSWORD
+      
 -->
 <form method="post">
     <input type="text" name="email" placeholder="Username / Email" value="<?=$email?>" ><br>

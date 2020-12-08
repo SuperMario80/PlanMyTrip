@@ -1,8 +1,6 @@
 <?php
-//    Eingangs-Schnittstelle
-//        $username - den Namen des angemeldeted Benutzers als Text 
-//    Ausgangs-Schnittstelle
-//        logout
+//    INPUT INTERFACE
+//        $email - EMAIL OF LOGGED IN USER
 ?>
 <h2>Hello <?=$email?></h2>
 </div>

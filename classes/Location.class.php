@@ -42,12 +42,7 @@ class Location {
     function setlocation(string $location): void {
         $this->location = $location;
     }
-    // function getPlace(): int {
-    //     return $this->idTraveller;
-    // }
-    // function setPlace(int $idTraveller): void {
-    //     $this->idTraveller = $idTraveller;
-    // }
+  
     function getClassification(): string {
         return $this->classification;
     }

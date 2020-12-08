@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-// allgemeingültiges Super-Dao
-// Basis-Klasse aller tabellenspezifischen daos
+// GENERAL SUPER_DAO
+// BASIC CLASS FOR ALL DATABSE TABLES
 abstract class GenericDao {
 
     private PDO $connection;
@@ -24,43 +24,43 @@ abstract class GenericDao {
         $this->className = $className;
     }
 
+    //READS ALL STATEMENTS IN TABLE 
     function readAll(): array {
 
         if ($this->readAllStatement == null) {
             $sql = 'SELECT * FROM `' . $this->tableName . '`';
             $this->readAllStatement = $this->connection->prepare($sql);
         }
-
         $this->readAllStatement->execute();
-
-    // data transfer objects  der Tabelle anzeigen als Array 
+        
+        // DISPAYS DATA TRANSFER OBJERCTS OF TABLE AS ARRAY 
         $dtos = [];
         while ($dto = $this->readAllStatement->fetchObject($this->className)) {
             $dtos[] = $dto;
         }
-
         return $dtos;
     }
 
+    //READS ONE STATEMENT/ROW IN TABLE CHECKING ID(PRIMARY KEY)
     function readOne(int $id): ?object {
 
         if ($this->readOneStatement == null) {
             $sql = 'SELECT * FROM `' . $this->tableName . '` WHERE `id`=:id';
+            //PREPARES SQL  STATEMENT
             $this->readOneStatement = $this->connection->prepare($sql);
         }
 
         $array = [
             ':id' => $id
         ];
+        //EXECUTES STATEMENT WITH PASSED IN PARAMETER
         $this->readOneStatement->execute($array);
 
         $dto = $this->readOneStatement->fetchObject($this->className);
         return $dto ? $dto : null;
     }
 
-
-
-
+    // READS ALL STATEMENTS/ROWS IN TABLE WITH PASSED IN FOREIGN KEY VALUE($idValue) AND INDIVIDUAL COLUMN NAME($foreignId)
     function readForeign(int $idValue, string $foreignId): array {
         if ($this->readForeignStatement == null) {
             $sql = 'SELECT * FROM `' . $this->tableName . '` WHERE `' . $foreignId . '`=:idValue';
@@ -83,7 +83,7 @@ abstract class GenericDao {
 
 
 
-
+    //SENDS CREATED ARRAY(getCreateArray()) TO DATABASE AS OBJECT
     function create(object $dto): bool {
 
         if ($this->createStatement == null) {
@@ -101,6 +101,8 @@ abstract class GenericDao {
 
     protected abstract function getCreateArray(object $dto): array;
 
+
+    //UPDATES AN EXISTING ENTITY/ROW IN DATABASE
     function update(object $dto): bool {
 
         if ($dto->getId() == 0) {
@@ -119,6 +121,8 @@ abstract class GenericDao {
 
     protected abstract function getUpdateArray(object $dto): array;
 
+
+    //DELETES AN EXISTING ENTITY AND REMOVES IT FROMDATABASE
     function delete(object $dto): bool {
 
         if ($dto->getId() == 0) {
@@ -134,9 +138,7 @@ abstract class GenericDao {
         return $this->deleteStatement->rowCount() == 1;
     }
 
-//    abstract function checkLogin();
 
-    // -------------------------------------------------------------------------
 
     function getConnection(): PDO {
         return $this->connection;

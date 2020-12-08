@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 class DbConnection {
     
-    // Die Klasse DbConnection soll Singleton werden
+    //USING SINGLETON PATTERN
     private static $instance;   // : DbConnection
     
     public static function getInstance(): DbConnection {
@@ -13,7 +13,7 @@ class DbConnection {
         }
         return self::$instance;
     }
-    // hier endet die Singelton-Deklaration
+    // ENDO OF SINGLETON DECLARATION
     
     
 
@@ -22,14 +22,14 @@ class DbConnection {
 
     private function __construct() {
         //
-        // Verbindungsparamter
+        // CONNECTION PARAMETERS
         $host = 'localhost';       
         $user = 'PlanMyTrip';
         $pass = 'planmytrip';             
         $db = 'planmytrip';
 
-        // 
-        // Data Set Name - Db-System-Spezifisch
+        // DATA SET NAME - DB SPECIFIC
+        // //CONNECTION TO MariaDB DATABASE  USING PDO
         $dsn = "mysql:host=$host;dbname=$db";
         $options = [
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',

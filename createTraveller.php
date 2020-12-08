@@ -53,17 +53,23 @@ class CreateTravellerPage extends Page {
         $this->readFormData();
         
         if ($this->traveller->getId() == 0) {
-//              if ($this->message = $this->customerDao->create($this->customer)){
-//                  echo  "Customer created";
-//                
-//            } else {
-//                
-//                    echo "Customer already exists! No Customer created";
-//            }
-            $this->message = $this->travellerDao->create($this->traveller)
-                    ? "New Account created"
+             if ($this->travellerDao->create($this->traveller)){
+                $this->message =   "New Account created";
+               
+        //    } elseif($this->traveller->setEmail($_POST['email']) == false) {
+        //        printData('hello');
+               
+        //         $this->message = "Please enter a valid email";
+           }else {
+                $this->message = "Account already exists! No Traveller created";
+           }
+           
+                
+           
+            // $this->message = $this->travellerDao->create($this->traveller)
+            //         ? "New Account created"
                     
-                    : "Account already exists! No Traveller created";
+            //         : "Account already exists! No Traveller created";
             
         } 
 //        else {

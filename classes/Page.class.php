@@ -27,7 +27,7 @@ abstract class Page {
         $this->viewContent();
         $this->viewFoot();
     }
-    
+    //  INIT SESSION AFTER LOGIN CHECK
     private function initSession(): void {
         echo 'SESSION';
         printData($_SESSION);
@@ -35,22 +35,24 @@ abstract class Page {
         $this->email = $_SESSION['email'] ?? '';
         $this->loggedIn = $this->email != '';
         
+        // LOGIN AND REDIRECT 
         if (isSet($_POST['login'])) {
             $this->doLogin();
              header('Location: travellerLoggedIn.php');
         }
-        
+        // LOGOUT AND REDIRECT
         if (isSet($_POST['logout'])) {
             $this->doLogout();
             header('Location: travellerLogIn.php');
         }
     }
-    
+    // LOGIN HANDLER (VALIDATION)
     private function doLogin(): void {
         $this->email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
         
         $this->travellerDao = new TravellerDao();
+        //VALIDATION OF THE DATA
         if ($tr = $this->travellerDao->checkLogin($this->email, $password)) {
             $this->loggedIn = true;
             $_SESSION['email'] = $this->email;
@@ -62,7 +64,7 @@ abstract class Page {
             $this->message = 'Login failed!';
         }
     }
-    
+    // DESTROYS SESSION AFTER LOGOUT
     private function doLogout(): void {
         session_destroy();
         $_SESSION = [];
@@ -83,13 +85,13 @@ abstract class Page {
 //    private function viewNavigation() : void {
 //        include 'html/navigation.html.php';
 //    }
-    
+
+    // PROVIDES HTML FORMS
     private function viewLogin() {
         $password = "";   
         $email = $this->email;
         if ($this->loggedIn) {
             include 'html/navigation.html.php';
-        //    include 'html/pointOfInterest.html.php';
             include 'html/logout.html.php';
 
         } else {
