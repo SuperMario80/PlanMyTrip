@@ -30,27 +30,29 @@ class TravellerLoggedInPage extends Page {
         //      header('Location: travellerLogin.php');
         //      exit;
         //  }
-
-        if (isSet($_POST['old2'])) {
+        // $tr = unserialize($_SESSION['traveller']);
+        // $travId = $tr->getId();
+        if (isSet($_POST['updateLocation'])) {
                     
-            header('Location: crudLocation.php?id=' . $_POST['old2']);
+            header('Location: crudLocation.php?id=' . $_POST['updateLocation']);
             exit;
         }
 
-         if (isSet($_POST['new2'])) {
-            header('Location: crudLocation.php?id=0');
+         if (isSet($_POST['newLocation'])) {
+            header('Location: crudLocation.php?id=' . $_POST['newLocation']);
             exit;
         }
 
-           if (isSet($_POST['new'])) {
-            header('Location: crudPoi.php?id=0');
+           if (isSet($_POST['newPoi'])) {
+            header('Location: crudPoi.php?id=0&idLoc=' . $_POST['newPoi']);
             exit;
         }
         
-        if (isSet($_POST['old'])) {
-            header('Location: crudPoi.php?id=' . $_POST['old']);
+        if (isSet($_POST['updatePoi'])) {
+            header('Location: crudPoi.php?id=' . $_POST['updatePoi']);
             exit;
         }
+        
         
          
     }
@@ -59,6 +61,8 @@ class TravellerLoggedInPage extends Page {
 
         $this->showTravLoc();
         $this->showLocPois();
+
+
         // include 'html/triposo.html.php';
      
 }
@@ -67,7 +71,7 @@ class TravellerLoggedInPage extends Page {
         private function showTravLoc() {
             // printData($_SESSION);
             $tr = unserialize($_SESSION['traveller']);
-            printData($tr);
+            // printData($tr->getId());
             // printData($tr->getId());
             $idValue = $tr->getId();
             $foreignId = "idTraveller";
@@ -97,10 +101,9 @@ class TravellerLoggedInPage extends Page {
                 // printData(serialize($this->dtos));
                 // include 'html/location.html.php';
                 // if($idValue === $selectedPoi->idLocation()){
-            
+                if($selectedPoi != NULL){
                 include 'html/pointOfInterest.html.php';
-            
-                // }
+                }
             }
         
         }

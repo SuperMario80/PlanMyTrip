@@ -29,14 +29,15 @@ class showPoiPage extends Page {
         $this->poi = $this->pointOfInterestDao->readOne($id);
         if ($this->poi == null) {
             $this->poi = new PointOfInterest();
+            $this->poi->setIdLocation(intVal($_GET['idLoc']));
         }
         
-        if (isSet($_POST['save'])) {
+        if (isSet($_POST['savePoi'])) {
             // Save-Button gedrückt
             $this->savePoi();
         }
         
-        if (isSet($_POST['delete'])) {
+        if (isSet($_POST['deletePoi'])) {
             // Delete-Button gedrückt
             $this->deletePoi();
         }

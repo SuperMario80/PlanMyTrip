@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"launch": {
+			"configurations": [
+				{
+					"type": "chrome",
+					"request": "launch",
+					"name": "Launch Chrome against localhost",
+					"url": "http://localhost/php/projects/",
+					"webRoot": "${workspaceFolder}"
+				}
+			],
+			"compounds": [],
+			"version": "0.2.0"
+		}
+	}
+}

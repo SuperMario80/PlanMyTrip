@@ -8,6 +8,7 @@ abstract class Page {
     //
     private TravellerDao $travellerDao;
     private bool $loggedIn;
+    private Traveller $traveller;
     private string $email;
     private string $message;
     
@@ -29,12 +30,14 @@ abstract class Page {
     }
     //  INIT SESSION AFTER LOGIN CHECK
     private function initSession(): void {
-        echo 'SESSION';
-        printData($_SESSION);
+        // echo 'SESSION';
+        // printData($_SESSION);
         $this->message = '';
         $this->email = $_SESSION['email'] ?? '';
         $this->loggedIn = $this->email != '';
-        
+        if($this->loggedIn){
+            $this->traveller = unserialize($_SESSION['traveller']);
+        }
         // LOGIN AND REDIRECT 
         if (isSet($_POST['login'])) {
             $this->doLogin();
@@ -105,4 +108,10 @@ abstract class Page {
     private function viewFoot() : void {
         include 'html/foot.html.php';
     }
+
+    public function getTraveller() :?Traveller{
+        return $this->traveller;
+    }
 }
+
+

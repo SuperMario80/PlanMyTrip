@@ -1,12 +1,11 @@
 <form method="post">
-<br>
-    <button name="new" value="0" >add new PointOfInterest</button>
+    
     
    
     <table border="1">
       
         <tr>
-        <th></th>
+        <th><b><i>PointOfInterest</i></b></th>
         <th></th>
         <th>Id</th>
         <th>idLocation</th>
@@ -20,9 +19,9 @@
         
         <?php foreach ($selectedPoi as $poi) : ?>
             <tr>
-            <td> Placeholder      </td>                      
+            <td></td>                      
                 <td>
-                    <button name="old" value="<?= $poi->getId() ?>" >update</button>
+                    <button name="updatePoi" value="<?= $poi->getId() ?>" >update</button>
                 </td>
                    
                 <td><?= $poi->getId() ?></td>
@@ -37,7 +36,10 @@
         <?php endforeach; ?>
         
     </table>
-    
+     <button name="newPoi" value="<?= $location->getId() ?>" >new PointOfInterest</button>
+     <button name="delete" value="2" >Delete Poi</button>
        
+    <div>-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
+    <br>
     <br>
 </form>

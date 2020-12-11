@@ -3,7 +3,7 @@
     <table border="1">
        
         <tr>
-        <th></th>
+        <th><b><i>LOCATION</i></b></th>
         <th>Id</th>
         <th>idTraveller</th>
         <th>Location</th>
@@ -13,12 +13,10 @@
         <th>Intro</th>
         <th>TravelLink</th>
         <th>Notes</th>
-        <th></th>
+        
         </tr>
-            <tr>
-                <td>
-                    <button name="old2" value="<?= $location->getId()?>" >update</button>
-                </td>
+            <tr>      
+                <td></td>
                 <td><?= $location->getId() ?></td>
                 <td><?= $location->getIdTraveller() ?></td>
                 <td><?= htmlSpecialChars($location->getLocation()) ?></td>
@@ -27,10 +25,14 @@
                 <td><?= htmlSpecialChars($location->getRegion()) ?></td>
                 <td><?= htmlSpecialChars($location->getIntro()) ?></td>
                 <td><?= htmlSpecialChars($location->getTravelLink()) ?></td>
-                <td><?= htmlSpecialChars($location->getNotes()) ?></td>
-                <td><button name="new2" value="0" >add new Location</button></td>
+                <td><?= htmlSpecialChars($location->getNotes()) ?></td> 
+             
             </tr>
+         
     </table>
+    <button name="newLocation" >new Location</button>
+    <button name="updateLocation" value="<?= $location->getId()?>" >update Location</button>
+    <button name="newPoi" value="<?= $location->getId() ?>" >new PointOfInterest</button>
        
    
 </form>
