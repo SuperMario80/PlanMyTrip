@@ -16,7 +16,7 @@ class crudLocationPage extends Page {
         if (isSet($_POST['back']) or !isSet($_GET['id'])) { 
             // $travId = $this->location->getTravellerId();
         // printData($tr);
-            header('Location: travellerLoggedIn.php');
+            header('Location: loggedIn.php');
             exit;
         }
     }
@@ -61,20 +61,30 @@ class crudLocationPage extends Page {
             // //TODO Unterteilung 'Please fill out Name  of location' hinzufügen
             //         ? 'New Location created'
             //         : 'Location already exists';
-            if ($this->locationDao->create($this->location)) {
+            if($this->locationDao->create($this->location)){
 
-               if($this->location->getLocation() != NULL){
-                printData($this->location->getLocation());
-                $this->message = 'New Location created';
+            printData($this->location->getClassification());
+            if($this->location->getLocation() != NULL  && $this->location->getClassification() != NULL){
+                    printData($this->location->getLocation());
+                    printData($this->location->getClassification());
+                    $this->message = 'New Location created';
 
-               
-            }elseif($this->location->getLocation() == NULL){
-                     $this->message = 'Please fill out Location and Category'; 
-            }    
-            else{
-                    $this->message = 'Location already exists';
+
+                     
+                }elseif ($this->location->getLocation() == ""  || $this->location->getClassification() == "") {
+
+                    $this->message = 'Please fill out Location and Category'; 
+                    printData($this->location->getLocation());
+                    printData($this->location->getClassification());
+                
                 }
+            
             }
+            else{
+                $this->message = 'Location already exists';
+            }  
+            
+            
                
            
         

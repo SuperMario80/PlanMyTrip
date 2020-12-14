@@ -17,7 +17,7 @@ class showPoiPage extends Page {
     protected function init() : void {
         
         if (isSet($_POST['back']) or !isSet($_GET['id'])) {
-            header('Location: travellerLoggedIn.php');
+            header('Location: loggedIn.php');
             exit;
         }
     }

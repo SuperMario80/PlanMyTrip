@@ -2,7 +2,7 @@
 declare(strict_types=1);
 require_once 'inc/tools.inc.php';
 
-class TravellerLoggedInPage extends Page {
+class loggedInPage extends Page {
 
 //    private string $message;
 //    private string $email;
@@ -112,7 +112,7 @@ class TravellerLoggedInPage extends Page {
 
 }
 
-$page = new TravellerLoggedInPage();
+$page = new loggedInPage();
 $page->view();
 
 

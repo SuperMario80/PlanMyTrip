@@ -2,7 +2,7 @@
 declare(strict_types=1);
 require_once 'inc/tools.inc.php';
 
-class RegisterTravellerPage extends Page {
+class IndexPage extends Page {
 
 //    private string $message;
 //    private string $email;
@@ -17,7 +17,7 @@ class RegisterTravellerPage extends Page {
     
 
     public function __construct() {
-        parent::__construct('Traveller Login', 'Traveller Login');
+        parent::__construct('PlanMyTrip Search Engine', 'Welcome to PlanMyTrip');
         $this->message = '';
         // $tr = '';
         // $this->password = '';
@@ -52,7 +52,7 @@ class RegisterTravellerPage extends Page {
        
 
 
-$page = new RegisterTravellerPage();
+$page = new IndexPage();
 $page->view();
 
 

@@ -53,7 +53,7 @@ abstract class GenericDao {
         $array = [
             ':id' => $id
         ];
-        //EXECUTES STATEMENT WITH PASSED IN PARAMETER
+        //EXECUTES STATEMENT WITH PASSED-IN PARAMETER
         $this->readOneStatement->execute($array);
 
         $dto = $this->readOneStatement->fetchObject($this->className);

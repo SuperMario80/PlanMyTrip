@@ -23,7 +23,7 @@ abstract class Page {
         $this->init();
         
         $this->viewHead();
-//        $this->viewNavigation();
+        $this->viewNavigation();
         $this->viewLogin();
         $this->viewContent();
         $this->viewFoot();
@@ -41,12 +41,13 @@ abstract class Page {
         // LOGIN AND REDIRECT 
         if (isSet($_POST['login'])) {
             $this->doLogin();
-             header('Location: travellerLoggedIn.php');
+            //  header('Location: travellerLoggedIn.php');
+            // include 'html/navigation.html.php';
         }
         // LOGOUT AND REDIRECT
         if (isSet($_POST['logout'])) {
             $this->doLogout();
-            header('Location: travellerLogIn.php');
+            header('Location: index.php');
         }
     }
     // LOGIN HANDLER (VALIDATION)
@@ -85,16 +86,22 @@ abstract class Page {
         include 'html/head.html.php';
     }
     
-//    private function viewNavigation() : void {
-//        include 'html/navigation.html.php';
-//    }
+   private function viewNavigation() : void {
+       if($this->loggedIn == true){
+           include 'html/navigation.html.php';
+       }
+       else {
+           printData('Doesnt work!');
+       }
+       
+   }
 
     // PROVIDES HTML FORMS
     private function viewLogin() {
         $password = "";   
         $email = $this->email;
         if ($this->loggedIn) {
-            include 'html/navigation.html.php';
+            // include 'html/navigation.html.php';
             include 'html/logout.html.php';
 
         } else {

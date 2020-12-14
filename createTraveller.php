@@ -19,7 +19,7 @@ class CreateTravellerPage extends Page {
         
         
         if (isSet($_POST['back']) or !isSet($_GET['id'])) {
-            header('Location: travellerLogin.php');
+            header('Location: index.php');
             exit;
         }
     }
