@@ -19,6 +19,7 @@ class UI {
              <th>Country </th>
              <th>Region</th>
              <th></th>
+             
            </tr>
            </thead>
            <form>
@@ -28,8 +29,7 @@ class UI {
                 <td>${input.results[placeCount].type}</td>
                 <td>${input.results[placeCount].country_id}</td>
                 <td>${input.results[placeCount].part_of}</td>
-                
-                <td><input type="submit" id="search${placeCount}" value="submit" class="inline-block"></td>
+                <td>${input.results[placeCount].index}</td
               </tbody>
               </form>
         </table>
@@ -37,6 +37,11 @@ class UI {
         
       
     `;
+//  <td><input type="submit" id="search${placeCount}" value="submit" class="inline-block"></td>
+//                 <td><input type="submit2" id="phpSubmit" value="phpSubmit" class="block"></td>
+
+
+
     // <div id="pois"></div>
     // if (input.results[placeCount].type !='city'){
       //   input.results[placeCount].attribution[0].source_id = "Openstreetmap";

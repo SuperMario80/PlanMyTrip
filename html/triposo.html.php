@@ -15,6 +15,7 @@
       <p class="lead">Find your Destination</p>
       <form id="place-form">
         <div>
+      <input type="submit" id="phpSubmit" value="phpSubmit" class="block"></>
       <input type="text" id="searchPlace" class="form-control" placeholder="...enter Location">
       <!-- <select name="category" id="category" class="form-control">
         <option value="">--Category--</option>
@@ -24,7 +25,7 @@
       </select> -->
       <!-- <input type="text" id="type" class="form-control" placeholder="...enter Category"> -->
     
-    <input type="submit" id="look" value="Submit" class="btn-block mt-3">
+    <!-- <input type="submit" id="look" value="Submit" class="btn-block mt-3"> -->
     <!-- <button id="search" type="submit" class="btn btn-secondary" >submit</button> -->
     <!-- <button id="w-change-btn" type="button" class="btn btn-primary">Save changes</button> -->
   </div>
