@@ -7,7 +7,7 @@ console.log(ui);
 // Search input
 const searchPlace = document.getElementById("searchPlace");
 
-searchPlace.addEventListener("click", (e) => {
+const placeResult = searchPlace.addEventListener("click", (e) => {
   // Get input text
   // const searchText = e.target.value;
   let searchText = e.target.value;
@@ -70,18 +70,19 @@ searchPois.addEventListener('click', (e) => {
 // var category = [];
 // var country = [];
 // var region = [];
+// var intro = [];
 
 
 // savePHP.addEventListener('click', () => {
-//       // console.log(ui.showPlace(data.place))
+        
 
-//         if (ui.showPlace(data.place) != NULL) {
+//         if (placeResult != NULL) {
 
 //             // //NAMING THE PLAYLIST
 //             // var popup = prompt("Please enter the name of your playlist");
 
 //             //SEND PLAYLIST DATA TO PHP
-//                 fetch('http://localhost/php/projects/PlanMyTrip/crudLocation.php', {
+//               let localHost = fetch('http://localhost/php/projects/PlanMyTrip/crudLocation.php', {
 //                     method: 'POST',
 //                     headers: {
 //                         'Content-Type': 'application/json'
@@ -98,11 +99,11 @@ searchPois.addEventListener('click', (e) => {
 //                 })
 //                     .then(res => res.text())
 //                     .then(data => console.log(data))
-//                     // .catch(error => console.log(error.message))
+//                     console.log(localHost);// .catch(error => console.log(error.message))
             
 //         }
-        // else {
-        //     saveErrorMsg.innerHTML = 'There is no playlist to save';
-        // }
-    // })
+//         else {
+//             saveErrorMsg.innerHTML = 'There is no playlist to save';
+//         }
+//     })
 // }

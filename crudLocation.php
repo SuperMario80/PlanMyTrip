@@ -57,38 +57,21 @@ class crudLocationPage extends Page {
         $this->readFormData();
         
         if ($this->location->getId() == 0) {
-            // $this->message = $this->locationDao->create($this->location)
-            // //TODO Unterteilung 'Please fill out Name  of location' hinzufügen
-            //         ? 'New Location created'
-            //         : 'Location already exists';
-            if($this->locationDao->create($this->location)){
+            if($this->location->getLocation() == NULL  || $this->location->getClassification() == NULL){
+            // if(empty($this->location->getLocation()) || empty($this->location->getClassification())){
+                $this->message = 'Please fill out Location and Category'; 
+    
+            }else{
+                if($this->locationDao->create($this->location)){
+                printData($this->location->getLocation());
+                printData($this->location->getClassification());
+                $this->message = 'New Location created';
 
-            // printData($this->location->getClassification());
-            // if($this->location->getLocation() != NULL  && $this->location->getClassification() != NULL){
-            if(!empty($this->location->getLocation()) && !empty($this->location->getClassification())){
-                    printData($this->location->getLocation());
-                    printData($this->location->getClassification());
-                    $this->message = 'New Location created';
-
-
-                     
-                }elseif ($this->location->getLocation() == "" || $this->location->getClassification() == "") {
-
-                    $this->message = 'Please fill out Location and Category'; 
-                    printData($this->location->getLocation());
-                    printData($this->location->getClassification());
-                
+                }else{
+                    $this->message = 'Location already exists';
+                    }
                 }
-            
-            }
-            else{
-                $this->message = 'Location already exists';
-            }  
-            
-            
-               
-           
-        
+
 
         } else {
             $this->message = $this->locationDao->update($this->location)
@@ -97,35 +80,35 @@ class crudLocationPage extends Page {
         }
         
     }
- private function saveLocationFromJSON() {
-     $this->readFormData();
+//  private function saveLocationFromJSON() {
+//      $this->readFormData();
     
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $this->locationDao->create($this->JSONdata);
+//     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//         $this->locationDao->create($this->JSONdata);
         
-        //RECEIVE THE RAW POST DATA FROM main.js
-        $content = file_get_contents("php://input");
+//         //RECEIVE THE RAW POST DATA FROM main.js
+//         $content = file_get_contents("php://input");
     
-        //Decode the incoming RAW post data from JSON
-        $JSONdata = json_decode($content, true);
+//         //Decode the incoming RAW post data from JSON
+//         $JSONdata = json_decode($content, true);
 
-       //SAVING POST DATA IN VARIABLES
-        $location = $JSONdata['name'];
-        $classification = $JSONdata['type'];
-        $country = $JSONdata['country_id'];
-        $region = $JSONdata['part_of'];
-        $userLoggedIn = $JSONdata['intro'];
+//        //SAVING POST DATA IN VARIABLES
+//         $location = $JSONdata['name'];
+//         $classification = $JSONdata['type'];
+//         $country = $JSONdata['country_id'];
+//         $region = $JSONdata['part_of'];
+//         $userLoggedIn = $JSONdata['intro'];
   
-        //SAVING POST DATA IN RESPECTIVE DATABASE TABLES (USING THE DATABASE CLASS)
+//         //SAVING POST DATA IN RESPECTIVE DATABASE TABLES (USING THE DATABASE CLASS)
                             
                 
-            }
-            else{
-                        throw new Exception( "no json data received");
+//             }
+//             else{
+//                         throw new Exception( "no json data received");
                 
-            }
- }
+//             }
+//  }
       
 
 

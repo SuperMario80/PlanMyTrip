@@ -35,6 +35,7 @@ class showPoiPage extends Page {
         if (isSet($_POST['savePoi'])) {
             // Save-Button gedrückt
             $this->savePoi();
+            
         }
         
         if (isSet($_POST['deletePoi'])) {
@@ -49,11 +50,43 @@ class showPoiPage extends Page {
     
     private function savePoi() {
         $this->readFormData();
+
+         if ($this->poi->getId() == 0) {
+            if($this->poi->getPoiName() == NULL  || $this->poi->getAttraction() == NULL){
+            // if(empty($this->location->getLocation()) || empty($this->location->getClassification())){
+                $this->message = 'Please fill out poiName and attraction'; 
+    
+            }else{
+                if($this->pointOfInterestDao->create($this->poi)){
+                printData($this->poi->getPoiName());
+                printData($this->poi->getAttraction());
+                $this->message = 'New Point Of Interest created';
+
+                }else{
+                    $this->message = 'Point Of Interest already exists';
+                    }
+                }
+
+
+
+
+
+
         
-        if ($this->poi->getId() == 0) {
-            $this->message = $this->pointOfInterestDao->create($this->poi)
-                    ? 'New Point Of Interest created'
-                    : 'Point Of Interest already exists';
+        // if ($this->poi->getId() == 0) {
+        //     $this->message = $this->pointOfInterestDao->create($this->poi)
+        //             ? 'New Point Of Interest created'
+        //             : 'Point Of Interest already exists';
+
+
+
+
+
+
+
+
+
+
         } else {
             $this->message = $this->pointOfInterestDao->update($this->poi)
                     ? 'Point Of Interest Updated'
