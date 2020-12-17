@@ -35,12 +35,12 @@ class Triposo {
       // repos
     }
   }
-    async getPois(location) {
+    async getPois(loc) {
 
       // let tagName;
       //  = "&tag_labels=sightseeing&"
    
-    const poisResponse = await fetch(`https://www.triposo.com/api/20201111/poi.json?location_id=${location}&fields=all&tag_labels=sightseeing&count=20&order_by=-score&account=${this.account_id}&token=${this.api_token}`);
+    const poisResponse = await fetch(`https://www.triposo.com/api/20201111/poi.json?location_id=${loc}&fields=all&tag_labels=sightseeing&count=20&order_by=-score&account=${this.account_id}&token=${this.api_token}`);
 
     const pois = await poisResponse.json();
 

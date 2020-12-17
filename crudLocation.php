@@ -94,11 +94,11 @@ class crudLocationPage extends Page {
 //         $JSONdata = json_decode($content, true);
 
 //        //SAVING POST DATA IN VARIABLES
-//         $location = $JSONdata['name'];
+//         $location = $JSONdata['name']; $_POST(['name])
 //         $classification = $JSONdata['type'];
 //         $country = $JSONdata['country_id'];
 //         $region = $JSONdata['part_of'];
-//         $userLoggedIn = $JSONdata['intro'];
+//         $intro = $JSONdata['intro'];
   
 //         //SAVING POST DATA IN RESPECTIVE DATABASE TABLES (USING THE DATABASE CLASS)
                             

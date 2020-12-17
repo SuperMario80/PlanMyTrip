@@ -25,12 +25,13 @@ class UI {
            </thead>
            <form>
              <tbody>
-                <td><a href="${input.results[placeCount].attribution[1].url}" target="_blank">${input.results[placeCount].name}</a></td>
+                <td ><a class="loc" href="${input.results[placeCount].attribution[1].url}" target="_blank">${input.results[placeCount].name}</a></td>
                 <td type="hidden" id="location">${input.results[placeCount].id}</td>
-                <td>${input.results[placeCount].type}</td>
-                <td>${input.results[placeCount].country_id}</td>
-                <td>${input.results[placeCount].part_of}</td>
-                <td>${input.results[placeCount].intro}</td>
+                <td class="classification">${input.results[placeCount].type}</td>
+                <td class="country">${input.results[placeCount].country_id}</td>
+                <td class="region">${input.results[placeCount].part_of}</td>
+                <td class="intro">${input.results[placeCount].intro}</td>
+                <td class="travelLink">${input.results[placeCount].attribution[1].url}</td>
                 
                 <td><input type="submit" id="phpSubmit" value="phpSubmit" class="block"></td>
               </tbody>
