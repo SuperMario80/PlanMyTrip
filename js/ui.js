@@ -44,6 +44,18 @@ class UI {
 //  <td><input type="submit" id="search${placeCount}" value="submit" class="inline-block"></td>
 //                 <td><input type="submit2" id="phpSubmit" value="phpSubmit" class="block"></td>
 
+  // <tbody>
+  //               <td class="loc">${input.results.name}</td>
+  //               <td type="hidden" id="location">${input.results.id}</td>
+  //               <td class="classification">${input.results.type}</td>
+  //               <td class="country">${input.results.country_id}</td>
+  //               <td class="region">${input.results.part_of}</td>
+  //               <td class="intro">${input.results.intro}</td>
+            
+                
+  //               <td><input type="submit" id="phpSubmit" value="phpSubmit" class="block"></td>
+  //             </tbody>
+
 
 
     // <div id="pois"></div>

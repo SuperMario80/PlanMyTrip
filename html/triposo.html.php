@@ -15,7 +15,7 @@
       <p class="lead">Find your Destination</p>
       <form id="place-form">
         <div>
-      <input type="submit" id="phpSubmit" value="phpSubmit" class="block"></>
+      <input type="submit" id="phpSubmit" value="phpSubmit" class="block">
       <input type="text" id="searchPlace" class="form-control" placeholder="...enter Location">
       <!-- <select name="category" id="category" class="form-control">
         <option value="">--Category--</option>

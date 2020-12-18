@@ -81,26 +81,27 @@ class crudLocationPage extends Page {
         
     }
 //  private function saveLocationFromJSON() {
-//      $this->readFormData();
+//     //  $this->readFormData();
     
 
 //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//         $this->locationDao->create($this->JSONdata);
         
 //         //RECEIVE THE RAW POST DATA FROM main.js
 //         $content = file_get_contents("php://input");
-    
+        
 //         //Decode the incoming RAW post data from JSON
-//         $JSONdata = json_decode($content, true);
-
+//         $array = json_decode($content, true);
+        
+//         $this->locationDao->create($this->JSONdata);
 //        //SAVING POST DATA IN VARIABLES
-//         $location = $JSONdata['name']; $_POST(['name])
-//         $classification = $JSONdata['type'];
-//         $country = $JSONdata['country_id'];
-//         $region = $JSONdata['part_of'];
-//         $intro = $JSONdata['intro'];
-  
-//         //SAVING POST DATA IN RESPECTIVE DATABASE TABLES (USING THE DATABASE CLASS)
+//         $location = $JSONdata['name'];
+//         $classification = $array['type'];
+//         $country = $array['country_id'];
+//         $region = $array['part_of'];
+//         $intro = $array['intro'];
+        
+//         // $_POST(['name']);
+//         // SAVING POST DATA IN RESPECTIVE DATABASE TABLES (USING THE DATABASE CLASS)
                             
                 
 //             }
@@ -123,7 +124,7 @@ class crudLocationPage extends Page {
             $this->message = 'Location NOT Removed';
         }
     }
-    
+    // READS FORM DATA VALUES FROM "html/createLocation.html.php" FILE VIA $_POST['arrayName']  IS SAME NAME LIKE IN  <input name ="arrayName"...>
     private function readFormData() {
         $this->location->setIdTraveller(intval($_POST['idTraveller']));
         $this->location->setLocation($_POST['location']);
@@ -134,7 +135,6 @@ class crudLocationPage extends Page {
         $this->location->setTravelLink($_POST['travelLink']);
         $this->location->setNotes($_POST['notes']);
     }
-
 }
 
 $page = new crudLocationPage();
