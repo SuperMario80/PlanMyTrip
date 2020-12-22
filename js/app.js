@@ -1,67 +1,127 @@
-// Init classes
-const triposo = new Triposo();
-console.log(triposo);
-const ui = new UI();
-console.log(ui);
-
-// Search input
-const searchPlace = document.getElementById("searchPlace");
-
-searchPlace.addEventListener("click", (e) => {
-  // Get input text
-  // const searchText = e.target.value;
-      let searchText = e.target.value;
-
-      if (searchText !== "") {
-        // if(results[placeCount].attribution[0].source_id)
-        // Make http call
-          triposo.getPlace(searchText).then((data) => {
-          ui.showPlace(data.place);
-        });
-          searchText ="";
-        // ui.clearProfile();
-      }
-      // triposo.getPois(searchText)
-      // .then(res =>{
-      //   ui.showPois(res.pois)
-      // })
-      else {
-        searchText ="";
+createAutoComplete({
+  
+  root: document.querySelector('.autocomplete'),
+  renderOption(location) {
+    // const imgSrc = movie.Poster === 'N/A' ? '' : movie.Poster;
+    // return `
+    //   <div>${location.results.name} (${location.results.id}) ${location.results.country_id} ${location.results.type}</div>
+      
+    // `;
+    return `
+    <img src="" />${location.name} | ${location.id} | (${location.country_id}, ${location.type})
+    `;
     
-      //  ui.clearResults();
-      //   // Clear profile
-      //   ui.clearProfile();
-      //   searchPlace.value = '';
-      }
-});
+  },
+  onOptionSelect(location) {
+    onLocationSelect(location);
+  },
+  inputValue(location) {
+    return location.id;
+    
+  },
+  //  onOptionSelectPoi(poi) {
+  //   onPoiSelect(poi);
+  // },
+  
+  async fetchData(searchTerm) {
+    this.api_token = '9j6492j7wd3qjvppyb8hj2og788veo72';
+    this.account_id = 'BSOO2T1I';
+    const placeResponse = await fetch(`https://www.triposo.com/api/20201111/location.json?annotate=trigram:${searchTerm}&trigram=>=0.3&order_by=-trigram
+    &account=${this.account_id}&token=${this.api_token}`);
 
-// searchPlace.value = '';
-
-// const valuePois = document.getElementById('location').innerHTML;
-const searchPois = document.getElementById('search');
-
-searchPois.addEventListener('click', (e) => {
-  console.log(searchPois);
-  // Get input text
-  const valuePois = document.getElementById('location').innerHTML;
-  //  const valuePois = e.target.value;
-   console.log(document.getElementById('location').innerHTML);
-
-  if(valuePois !== ''){
-    // Make http call
-    triposo.getPois(valuePois)
-     .then(data => {
-       ui.showPois(data.pois);
-       console.log(triposo);
-     })
-    //  .then()
-   } 
-});
+    const place = await placeResponse.json();
 
 
-// var newPlaylist = document.querySelector('.new-playlist');
+      return place.results;
+      
+      
+    }
+  });
 
-let savePHP = document.querySelector('#phpSubmit');
+const onLocationSelect = async location => {
+
+  const response = await fetch(`https://www.triposo.com/api/20201111/location.json?id=${location.id}&fields=all&account=${this.account_id}&token=${this.api_token}`);
+  
+  const res = await response.json();
+
+  document.querySelector('#summary').innerHTML = locationTemplate(res.results[0]);
+  
+  const poiResponse = await fetch(`https://www.triposo.com/api/20201111/poi.json?location_id=${location.id}&fields=all&tag_labels=sightseeing&count=20&order_by=-score&account=${this.account_id}&token=${this.api_token}`);
+  
+  const poiRes = await poiResponse.json();
+  for(let poiCount =0; poiCount<20; poiCount++){ 
+        document.querySelector('#summary').innerHTML += poiTemplate(poiRes.results[poiCount]);
+        // if(poiCount<19){
+        //   console.log('only + ${poiCount} + PointsOfInterest available');
+        // }
+        
+       }
+       
+       return res;
+      };
+
+const locationTemplate = input => {
+  // <pre>${JSON.stringify(input,null,2)}</pre>
+  // ${input.id} 
+  return `
+ 
+      
+      <div class="content media-content">
+        <div class="content">
+          <h4><a href="${input.attribution[1].url}" target="_blank">Location:  ${input.name} | ${input.country_id} | ${input.type}</a></h4>
+        </div>
+      </div>
+      <div class="notification is-primary">
+          <p class="small">INTRO</p>
+          <p class="small">${input.intro}</p>
+      </div>
+      `;
+    };
+    // <div><input type="submit" id="phpSubmit" value="phpSubmit" class="button block right"></div>
+      // <input type="submit" id="search" value="submit" class="inline-block"></input>
+
+
+// const onPointOfInterestSelect = async poi => {
+
+//   const poiResponse = await fetch(`https://www.triposo.com/api/20201111/poi.json?location_id=${poi.id}&fields=all&tag_labels=sightseeing&count=20&order_by=-score&account=${this.account_id}&token=${this.api_token}`);
+  
+//   const poiRes = await poiResponse.json();
+
+
+//       for(let poiCount =0; poiCount<19; poiCount++){ 
+//         resultPoi = document.querySelector('#summaryPoi').innerHTML += poiTemplate(poiRes.results[poiCount]);
+//         return resultPoi;
+//       }
+//   };
+
+const poiTemplate = value => {
+  // <pre>${JSON.stringify(value,null,2)}</pre>
+  // ${input.id} 
+  return `
+        
+        <div class="content media-content notification is-secondary">
+        
+            <div class="content">
+              <a href="${value.attribution[1].url}" target="_blank">PointOfInterest     </a>:     
+              <a href="${value.attribution[0].url}" target="_blank">    ${value.name}</a>  
+              |  ${value.location_ids[0]} |  ${value.location_ids[2]}</div>
+            <div class="content">INTRO:  ${value.snippet}</div>
+          </div>
+          
+       
+       `;
+    };
+
+    //  <div class="content">
+    //           <span class="notification">Country:   ${value.location_ids[2]}</span>
+    //           <span class="notification">    |      City:  ${value.location_ids[0]}</span>
+    //         </div>
+
+
+    // PHP Submit Form
+
+const savePHP = document.querySelector('#phpSubmit');
+console.log(savePHP);
 // // saveErrorMsg = document.querySelector('.save-error');
 
 
@@ -95,106 +155,69 @@ let savePHP = document.querySelector('#phpSubmit');
 
 
 savePHP.addEventListener('click',{
-
-
-
-
-    async postPlace(){
-           let locationValue = {
-              name: ui.searchPlace.name,
-              type: ui.searchPlace.type,
-              country_id: ui.searchPlace.country_id,
-              part_of: ui.searchPlace.part_of,
-              intro: ui.searchPlace.intro,
-              // url: searchPlace.attribution[1].url,
-          
-          };
-          let locationData = new FormData();
-          locationData.append( "json", JSON.stringify(locationValue));
-          
-          const sendPlace = await fetch(`http://localhost/php/projects/PlanMyTrip/crudLocation.php?`,
-            {
-                  method: 'post',
-                  body: JSON.stringify(locationData),
-                  headers: { 'Content-type': 'application/json' }
-              })
-
-
-              const sendPl = await sendPlace.json();
-
-        return {
-          sendPl
-          }
-                  
-              
-        }
+  
+  
+  
+  
+  async postPlace(){
+    console.log(savePHP);
+    let locationValue = {
+      
+      name: input.name,
+      type: input.type,
+      country_id: input.country_id,
+      part_of: input.part_of,
+      intro: input.intro,
+      url: input.attribution[1].url,
+      
+    };
+    if (onLocationSelect != '') {
+    let locationData = new FormData();
+    locationData.append( "json", JSON.stringify(locationValue));
+        const sendPlace = await fetch(`http://localhost/php/projects/PlanMyTrip/crudLocation.php`,
+        {
+          method: 'post',
+          body: JSON.stringify(locationData),
+          headers: { 'Content-type': 'application/json' }
+        })
         
+        
+        const sendPl = await sendPlace.json();
+        
+        console.log(sendPl);
+        return sendPl;
+        
+        
+        
+      }
+    }
+  
+  
+  
+});
+      console.log(savePHP.sendPlace);
 
-        });
-        console.log(savePHP.sendPl);
 
-                  // .then(text => console.log(text))
-                  // console.log(locationData.text())
+    //  let locationData = new FormData();
+    //       locationData.append( "json", JSON.stringify(locationValue));
+          
+    //       fetch(`http://localhost/php/projects/PlanMyTrip/crudLocation.php?`,
+    //         {
+    //               method: 'post',
+    //               body: JSON.stringify(locationData),
+    //               headers: { 'Content-type': 'application/json' }
+    //           })
+    //               .then(function(res){ return res.json(); })
+    //                console.log(res)
+    //               .then(function(data){ alert( JSON.stringify( data ) )
+    //               })
+    //               .then(text => console.log(text))
+    //               console.log(locationData.text())
 
-            // }
+    //         // }
             
-          
-    // //   },
-    // //   body: 
-    // //   'name=${loc}&type=${category}&country_id=${country}&part_of={region}&intro=${intro}&url=${travelLink}'
-    // //   // 'name=Germany&type=country&country_id=Germany'
-      
-      
-    // //   JSON.stringify(
-    // //     {
-    // //       name: loc,
-    // //       type: classification,
-    // //       country_id: country,
-    // //       part_of: region,
-    // //       intro: intro,
-    // //       url: travelLink,
-    // //       name: name,
-    // //       type: type,
-    // //       country_id: country_id,
-    // //       part_of: part_of,
-    // //       intro: intro,
-    // //       url: url,
-    // //     })
-    // //   })
-    // //   .then(res => res.text())
-    // //   .then(data => console.log(data))
-    // //   console.log(localHost);// 
-    // //   .catch(error => console.log(error.message))
-      
-      // }
-      // else {
-        //     saveErrorMsg.innerHTML = 'There is no data to save';
-        // }
-        
-//NEUER VERSUCH
+    //         e.preventDefault();
+    //             }
+    //        });
 
-
-        
-        
-          
-          // let locationData = new FormData();
-          // locationData.append( "json", JSON.stringify(locationValue));
-          
-          // fetch(`http://localhost/php/projects/PlanMyTrip/crudLocation.php?`,
-          //   {
-          //         method: 'post',
-          //         body: JSON.stringify(locationData),
-          //         headers: { 'Content-type': 'application/json' }
-          //     })
-          //         .then(function(res){ return res.json(); })
-          //          console.log(res)
-          //         .then(function(data){ alert( JSON.stringify( data ) )
-          //         })
-          //         // .then(text => console.log(text))
-          //         // console.log(locationData.text())
-
-          //   // }
-            
-          //   e.preventDefault();
-          //  })
-          
+console.log();

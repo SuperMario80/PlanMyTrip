@@ -80,36 +80,36 @@ class crudLocationPage extends Page {
         }
         
     }
-//  private function saveLocationFromJSON() {
-//     //  $this->readFormData();
+ private function saveLocationFromJSON() {
+    //  $this->readFormData();
     
 
-//     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
-//         //RECEIVE THE RAW POST DATA FROM main.js
-//         $content = file_get_contents("php://input");
+        //RECEIVE THE RAW POST DATA FROM main.js
+        $content = file_get_contents("php://input");
         
-//         //Decode the incoming RAW post data from JSON
-//         $array = json_decode($content, true);
+        //Decode the incoming RAW post data from JSON
+        $array = json_decode($content, true);
         
-//         $this->locationDao->create($this->JSONdata);
-//        //SAVING POST DATA IN VARIABLES
-//         $location = $JSONdata['name'];
-//         $classification = $array['type'];
-//         $country = $array['country_id'];
-//         $region = $array['part_of'];
-//         $intro = $array['intro'];
+        $this->locationDao->create($this->array);
+       //SAVING POST DATA IN VARIABLES
+        $location = $array['name'];
+        $classification = $array['type'];
+        $country = $array['country_id'];
+        $region = $array['part_of'];
+        $intro = $array['intro'];
         
-//         // $_POST(['name']);
-//         // SAVING POST DATA IN RESPECTIVE DATABASE TABLES (USING THE DATABASE CLASS)
+        // $_POST(['name']);
+        // SAVING POST DATA IN RESPECTIVE DATABASE TABLES (USING THE DATABASE CLASS)
                             
                 
-//             }
-//             else{
-//                         throw new Exception( "no json data received");
+            }
+            // else{
+            //             throw new Exception( "no json data received");
                 
-//             }
-//  }
+            // }
+ }
       
 
 

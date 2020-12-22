@@ -8,10 +8,10 @@
 
    <script src="js/utils.js"></script>
    <script src="js/autocomplete.js"></script>
-   <script src="js/index.js"></script>
-<!-- 
-  <script src="js/triposo.js"></script>
-  <script src="js/ui.js"></script>
-  <script src="js/app.js"></script> -->
+   <script src="js/app.js"></script>
+
+  <!-- <script src="js/triposotest.js"></script>
+  <script src="js/uitest2.js"></script>
+  <script src="js/apptest.js"></script> -->
   </body>
 </html>

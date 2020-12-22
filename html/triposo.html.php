@@ -26,11 +26,7 @@
       <div id="summary"></div>
       <!-- <div id="summaryPoi"></div> -->
     </div>
-    <script src="utils.js"></script>
-    <script src="autocomplete.js"></script>
-    <script src="index.js"></script>
-  </body>
-</html>
+
 
 
 
