@@ -20,8 +20,10 @@
     </section>
     <div class="container">
       <div class="autocomplete"></div>
+      <form>
+        <div><button type="submit" id="phpSubmit" value="phpSubmit" class="button block right">Submit</button></div>
+        </form>
       <div id="summary"></div>
-        <div><input type="submit" id="phpSubmit" value="phpSubmit" class="button block right"></div>
       <!-- <div id="summaryPoi"></div> -->
     </div>
     <script src="utils.js"></script>
@@ -77,4 +79,4 @@
     <br>
     <div id="article"></div>
     <td><input type="submit" id="search" value="submit" class="inline-block"></td>
-  </div> --> -->
+  </div> --> 

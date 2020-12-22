@@ -121,6 +121,7 @@ const poiTemplate = value => {
     // PHP Submit Form
 
 let savePHP = document.querySelector('#phpSubmit');
+console.log(savePHP);
 // // saveErrorMsg = document.querySelector('.save-error');
 
 
@@ -154,42 +155,45 @@ let savePHP = document.querySelector('#phpSubmit');
 
 
 savePHP.addEventListener('click',{
-
-
-
-
-    async postPlace(){
-           let locationValue = {
-              name: location.name,
-              type: location.type,
-              country_id: location.country_id,
-              part_of: location.part_of,
-              intro: location.intro,
-              url: location.attribution[1].url,
-          
-          };
-          let locationData = new FormData();
-          locationData.append( "json", JSON.stringify(locationValue));
-          
-          const sendPlace = await fetch(`http://localhost/php/projects/PlanMyTrip/crudLocation.php?`,
-            {
-                  method: 'post',
-                  body: JSON.stringify(locationData),
-                  headers: { 'Content-type': 'application/json' }
-              })
+  
+  
+  
+  
+  async postPlace(){
+    console.log(savePHP.postPlace);
+    let locationValue = {
+      
+      name: results[0].name,
+      type: results[0].type,
+      country_id: results[0].country_id,
+      part_of: results[0].part_of,
+      intro: results[0].intro,
+      url: results[0].attribution[1].url,
+      
+    };
+    let locationData = new FormData();
+    locationData.append( "json", JSON.stringify(locationValue));
+    
+    const sendPlace = await fetch(`http://localhost/php/projects/PlanMyTrip/crudLocation.php`,
+    {
+      method: 'post',
+      body: JSON.stringify(locationData),
+      headers: { 'Content-type': 'application/json' }
+    })
+    console.log('hello');
 
 
               const sendPl = await sendPlace.json();
-
-        return {
-          sendPl
-          }
-                  
               
-        }
+              return sendPl;
+  
+              
+              
+            }
         
-
-        });
-        console.log(savePHP.sendPl);
+        
+        
+      });
+      console.log(savePHP.sendPl);
 
 
