@@ -21,7 +21,7 @@
     <div class="container">
       <div class="autocomplete"></div>
       <form>
-        <div><button type="submit" id="phpSubmit" value="phpSubmit" class="button block right">Submit</button></div>
+        <div><button type="button" id="phpSubmit" value="phpSubmit" class="button block right">Submit</button></div>
         </form>
       <div id="summary"></div>
       <!-- <div id="summaryPoi"></div> -->

@@ -19,15 +19,15 @@ class crudLocationPage extends Page {
             header('Location: loggedIn.php');
             exit;
         }
+        // $this->saveLocationFromJSON();
+        // printData($this->saveLocationFromJSON());
+       
     }
     
 
     protected function viewContent(): void {
         // $tr = unserialize($_SESSION['traveller']);
         // $travId = $tr->getId();
-        // printData($travId);
-          
-       
         // OPENS CREATE/UPDATE LOCATION FORM
         $id = intVal($_GET['id'] ?? 0);
         $this->locationDao = new LocationDao();
@@ -82,8 +82,6 @@ class crudLocationPage extends Page {
     }
  private function saveLocationFromJSON() {
     //  $this->readFormData();
-    
-
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         //RECEIVE THE RAW POST DATA FROM main.js

@@ -1,3 +1,8 @@
+var currentLocation;
+
+
+
+
 createAutoComplete({
   
   root: document.querySelector('.autocomplete'),
@@ -36,36 +41,34 @@ createAutoComplete({
       
       
     }
+
   });
 
 const onLocationSelect = async location => {
 
-  const response = await fetch(`https://www.triposo.com/api/20201111/location.json?id=${location.id}&fields=all&account=${this.account_id}&token=${this.api_token}`);
-  
-  const res = await response.json();
-
-  document.querySelector('#summary').innerHTML = locationTemplate(res.results[0]);
-  
-  const poiResponse = await fetch(`https://www.triposo.com/api/20201111/poi.json?location_id=${location.id}&fields=all&tag_labels=sightseeing&count=20&order_by=-score&account=${this.account_id}&token=${this.api_token}`);
-  
-  const poiRes = await poiResponse.json();
-  for(let poiCount =0; poiCount<20; poiCount++){ 
-        document.querySelector('#summary').innerHTML += poiTemplate(poiRes.results[poiCount]);
-        // if(poiCount<19){
-        //   console.log('only + ${poiCount} + PointsOfInterest available');
-        // }
-        
-       }
-       
-       return res;
-      };
+    const response = await fetch(`https://www.triposo.com/api/20201111/location.json?id=${location.id}&fields=all&account=${this.account_id}&token=${this.api_token}`);
+    
+    const res = await response.json();
+    currentLocation = res.results[0];
+    document.querySelector('#summary').innerHTML = locationTemplate(currentLocation);
+    
+    const poiResponse = await fetch(`https://www.triposo.com/api/20201111/poi.json?location_id=${location.id}&fields=all&tag_labels=sightseeing&count=20&order_by=-score&account=${this.account_id}&token=${this.api_token}`);
+    
+    const poiRes = await poiResponse.json();
+    for(let poiCount =0; poiCount<20; poiCount++){ 
+          document.querySelector('#summary').innerHTML += poiTemplate(poiRes.results[poiCount]);
+          // if(poiCount<19){
+          //   console.log('only' + poiCount + 'PointsOfInterest available');
+          // }
+        }
+      //  return res;
+  };
 
 const locationTemplate = input => {
   // <pre>${JSON.stringify(input,null,2)}</pre>
   // ${input.id} 
   return `
  
-      
       <div class="content media-content">
         <div class="content">
           <h4><a href="${input.attribution[1].url}" target="_blank">Location:  ${input.name} | ${input.country_id} | ${input.type}</a></h4>
@@ -87,7 +90,6 @@ const locationTemplate = input => {
   
 //   const poiRes = await poiResponse.json();
 
-
 //       for(let poiCount =0; poiCount<19; poiCount++){ 
 //         resultPoi = document.querySelector('#summaryPoi').innerHTML += poiTemplate(poiRes.results[poiCount]);
 //         return resultPoi;
@@ -98,7 +100,6 @@ const poiTemplate = value => {
   // <pre>${JSON.stringify(value,null,2)}</pre>
   // ${input.id} 
   return `
-        
         <div class="content media-content notification is-secondary">
         
             <div class="content">
@@ -107,97 +108,66 @@ const poiTemplate = value => {
               |  ${value.location_ids[0]} |  ${value.location_ids[2]}</div>
             <div class="content">INTRO:  ${value.snippet}</div>
           </div>
-          
-       
        `;
     };
 
-    //  <div class="content">
-    //           <span class="notification">Country:   ${value.location_ids[2]}</span>
-    //           <span class="notification">    |      City:  ${value.location_ids[0]}</span>
-    //         </div>
 
 
-    // PHP Submit Form
-
-const savePHP = document.querySelector('#phpSubmit');
-console.log(savePHP);
-// // saveErrorMsg = document.querySelector('.save-error');
+const savePhp = document.querySelector('#phpSubmit');
+console.log(savePhp);
 
 
-// GLOBAL VARIABLES
-// let loc = ui.showPlace(searchPlace).querySelector('.loc').textContent;
-// let classification = ui.showPlace().querySelector('.classification').textContent;
-// let country = ui.showPlace().querySelector('.country').textContent;
-// let region = ui.showPlace().querySelector('.region').textContent;
-// let intro = ui.showPlace().querySelector('.intro').textContent;
-// let travelLink = ui.showPlace().querySelector('.travelLink').textContent;
-// let locationVal = [];
-// let category = [];
-// let country = [];
-// let region = [];
-// let intro = [];
-// let travelLink = [];
-// console.log(category);
-// console.log(country);
-// console.log(region);
-// console.log(intro);
-// console.log(travelLink);
-// let locationValue = {
-//           name: ui.searchPlace.name,
-//           type: ui.searchPlace.type,
-//           country_id: ui.searchPlace.country_id,
-//           part_of: ui.searchPlace.part_of,
-//           intro: ui.searchPlace.intro,
-//           // url: searchPlace.attribution[1].url,
-          
-//           };
+savePhp.addEventListener('click',async (e)=>{
 
-
-savePHP.addEventListener('click',{
-  
-  
-  
-  
-  async postPlace(){
-    console.log(savePHP);
-    let locationValue = {
-      
-      name: input.name,
-      type: input.type,
-      country_id: input.country_id,
-      part_of: input.part_of,
-      intro: input.intro,
-      url: input.attribution[1].url,
-      
-    };
-    if (onLocationSelect != '') {
-    let locationData = new FormData();
-    locationData.append( "json", JSON.stringify(locationValue));
-        const sendPlace = await fetch(`http://localhost/php/projects/PlanMyTrip/crudLocation.php`,
-        {
-          method: 'post',
-          body: JSON.stringify(locationData),
-          headers: { 'Content-type': 'application/json' }
-        })
+    // async postPlace(){
+      let locationValue = {
         
+        name: currentLocation.name,
+        type: currentLocation.type,
+        country_id: currentLocation.country_id,
+        part_of: currentLocation.part_of,
+        intro: currentLocation.intro,
+        url: currentLocation.attribution[1].url,
+      };
+      // if (onLocationSelect.res != '') {
+      // let locationData = new FormData();
+
+      // locationData.append( "json", JSON.stringify(locationValue));
+      const data =  {
+        method: 'POST',
+        // mode: 'no-cors',
+        body: JSON.stringify(locationValue),
+        headers: { 'Content-Type': 'application/json' }
+      };
+
+      const sendPlace = await fetch(`http://localhost/php/projects/PlanMyTrip/locationApiRequest.php`, data);
+      // const sendPlace = fetch(`https://ptsv2.com/t/arto5-1608728634/post`, data);
         
-        const sendPl = await sendPlace.json();
+        // const sendPl = await sendPlace.json();
         
-        console.log(sendPl);
-        return sendPl;
-        
-        
-        
-      }
-    }
+        // console.log(sendPl);
+        // return sendPl;
+        // }
+      // }
+      e.preventDefault();
+  });
+
   
   
   
-});
-      console.log(savePHP.sendPlace);
+  
+  //  <div class="content">
+  //           <span class="notification">Country:   ${value.location_ids[2]}</span>
+  //           <span class="notification">    |      City:  ${value.location_ids[0]}</span>
+  //         </div>
 
 
+  // PHP Submit Form
+
+  // // saveErrorMsg = document.querySelector('.save-error');
+  
+
+  
     //  let locationData = new FormData();
     //       locationData.append( "json", JSON.stringify(locationValue));
           
@@ -213,11 +183,9 @@ savePHP.addEventListener('click',{
     //               })
     //               .then(text => console.log(text))
     //               console.log(locationData.text())
-
     //         // }
             
     //         e.preventDefault();
     //             }
     //        });
 
-console.log();

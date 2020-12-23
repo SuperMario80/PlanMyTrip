@@ -173,10 +173,6 @@ savePHP.addEventListener('click',{
         
 //NEUER VERSUCH
 
-
-        
-        
-          
           // let locationData = new FormData();
           // locationData.append( "json", JSON.stringify(locationValue));
           
