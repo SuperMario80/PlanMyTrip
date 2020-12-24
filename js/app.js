@@ -7,7 +7,7 @@ createAutoComplete({
   
   root: document.querySelector('.autocomplete'),
   renderOption(location) {
-    // const imgSrc = movie.Poster === 'N/A' ? '' : movie.Poster;
+    //  const imgSrc = location.images[0].source_url === 'N/A' ? '' : location.images[0].source_url;
     // return `
     //   <div>${location.results.name} (${location.results.id}) ${location.results.country_id} ${location.results.type}</div>
       
@@ -70,6 +70,9 @@ const locationTemplate = input => {
   return `
  
       <div class="content media-content">
+       <form>
+        <div><button type="button" id="phpSubmit" value="phpSubmit" class="button block right">Submit</button></div>
+        </form>
         <div class="content">
           <h4><a href="${input.attribution[1].url}" target="_blank">Location:  ${input.name} | ${input.country_id} | ${input.type}</a></h4>
         </div>
@@ -113,22 +116,26 @@ const poiTemplate = value => {
 
 
 
-const savePhp = document.querySelector('#phpSubmit');
+const savePhp = document.querySelector('#summary');
 console.log(savePhp);
 
 
 savePhp.addEventListener('click',async (e)=>{
-
-    // async postPlace(){
-      let locationValue = {
-        
-        name: currentLocation.name,
-        type: currentLocation.type,
-        country_id: currentLocation.country_id,
-        part_of: currentLocation.part_of,
-        intro: currentLocation.intro,
-        url: currentLocation.attribution[1].url,
-      };
+      
+    if(e.target.id == 'phpSubmit') {
+      
+      
+      // async postPlace(){
+        let locationValue = {
+          
+          name: currentLocation.name,
+          type: currentLocation.type,
+          country_id: currentLocation.country_id,
+          part_of: currentLocation.part_of,
+          intro: currentLocation.intro,
+          url: currentLocation.attribution[1].url,
+        };
+        console.log(locationValue);
       // if (onLocationSelect.res != '') {
       // let locationData = new FormData();
 
@@ -149,7 +156,8 @@ savePhp.addEventListener('click',async (e)=>{
         // return sendPl;
         // }
       // }
-      e.preventDefault();
+      // e.preventDefault();
+      }
   });
 
   

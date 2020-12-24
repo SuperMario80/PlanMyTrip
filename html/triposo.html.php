@@ -20,9 +20,9 @@
     </section>
     <div class="container">
       <div class="autocomplete"></div>
-      <form>
+      <!-- <form>
         <div><button type="button" id="phpSubmit" value="phpSubmit" class="button block right">Submit</button></div>
-        </form>
+        </form> -->
       <div id="summary"></div>
       <!-- <div id="summaryPoi"></div> -->
     </div>
