@@ -24,6 +24,7 @@
         <div><button type="button" id="phpSubmit" value="phpSubmit" class="button block right">Submit</button></div>
         </form> -->
       <div id="summary"></div>
+      <div id="summary2"></div>
       <!-- <div id="summaryPoi"></div> -->
     </div>
 
