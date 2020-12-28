@@ -3,7 +3,7 @@
 declare(strict_types=1);
 require_once 'inc/tools.inc.php';
 
-class locationApiRequestPage extends Page {
+class locRequestPage extends Page {
     
     public function __construct() {
         parent::__construct('PlanMyTrip', 'API Location');
@@ -12,6 +12,10 @@ class locationApiRequestPage extends Page {
 
 
     protected function init() : void {
+        if (isSet($_POST['save'])) {
+            // Save-Button gedrückt
+            $this->saveRequestedLoc();
+        }
 
       
         // $this->saveLocationFromJSON();
@@ -33,10 +37,10 @@ class locationApiRequestPage extends Page {
             $this->location->setIdTraveller($this->getTraveller()->getId());
         }
         
-        if (isSet($_POST['save'])) {
-            // Save-Button gedrückt
-            $this->saveLocationApi();
-        }
+        // if (isSet($_POST['save'])) {
+        //     // Save-Button gedrückt
+        //     $this->saveRequestedLoc();
+        // }
         
         // if (isSet($_POST['delete'])) {
         //     // Delete-Button gedrückt
@@ -116,18 +120,55 @@ class locationApiRequestPage extends Page {
 //         $this->location->setNotes($_POST['notes']);
 //     }
     
-private function saveLocationApi() {
+private function saveRequestedLoc() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+     
     
     //RECEIVE THE RAW POST DATA FROM main.js
     $content = file_get_contents("php://input");
+    printData($content);
     
     //Decode the incoming RAW post data from JSON
     $array = json_decode($content, true);
     printData($array);
+    //SAVING POST DATA IN VARIABLES
+    // $getLocation = $array['location'];
+    // $getClassification = $array['classification'];
+    // $getCountry = $array['country'];
+    // $getRegion = $array['region'];
+    // $getIntro = $array['intro'];
+    // $getTravelLink = $array['travelLink'];
+    //  $this->location->setIdTraveller(intval($_POST['idTraveller']));
+    //  $this->location->setClassification($array['location']);
+    //  $this->location->setCountry($array['classification']);
+    //  $this->location->setLocation($array['country']);
+    //     $this->location->setRegion($array['region']);
+    //     $this->location->setIntro($array['intro']);
+    //     $this->location->setTravelLink($array['travelLink']);
+    //     $this->location->setNotes($_POST['notes']);
+    $this->array->setIdTraveller(intval($_POST['idTraveller']));
+        $this->array->setLocation($_POST['location']);
+        $this->array->setClassification($_POST['classification']);
+        $this->array->setCountry($_POST['country']);
+        $this->array->setRegion($_POST['region']);
+        $this->array->setIntro($_POST['intro']);
+        $this->array->setTravelLink($_POST['travelLink']);
+        $this->array->setNotes($_POST['notes']);
+    // $this->locationDao->create($this->array);
  }
 }
-    
+
+
+    // private function readFormData() {
+    //     $this->location->setIdTraveller(intval($_POST['idTraveller']));
+    //     $this->location->setLocation($_POST['location']);
+    //     $this->location->setClassification($_POST['classification']);
+    //     $this->location->setCountry($_POST['country']);
+    //     $this->location->setRegion($_POST['region']);
+    //     $this->location->setIntro($_POST['intro']);
+    //     $this->location->setTravelLink($_POST['travelLink']);
+    //     $this->location->setNotes($_POST['notes']);
+    // }
     
 }
 //  private function saveLocationFromJSON() {
@@ -138,14 +179,6 @@ private function saveLocationApi() {
     
 //     //Decode the incoming RAW post data from JSON
 //     $array = json_decode($content, true);
-    
-//     $this->locationDao->create($this->array);
-//    //SAVING POST DATA IN VARIABLES
-//     $location = $array['name'];
-//     $classification = $array['type'];
-//     $country = $array['country_id'];
-//     $region = $array['part_of'];
-//     $intro = $array['intro'];
     
 //     // $_POST(['name']);
 //     // SAVING POST DATA IN RESPECTIVE DATABASE TABLES (USING THE DATABASE CLASS)
@@ -158,6 +191,6 @@ private function saveLocationApi() {
 //         // }
 // }
 
-$page = new locationApiRequestPage();
+$page = new locRequestPage();
 $page->view();
 

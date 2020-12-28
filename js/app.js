@@ -46,25 +46,28 @@ createAutoComplete({
 
   });
 
-const onLocationSelect = async location => {
+let onLocationSelect = async location => {
 
-    const response = await fetch(`https://www.triposo.com/api/20201111/location.json?id=${location.id}&fields=all&account=${this.account_id}&token=${this.api_token}`);
+    let response = await fetch(`https://www.triposo.com/api/20201111/location.json?id=${location.id}&fields=all&account=${this.account_id}&token=${this.api_token}`);
     
-    const res = await response.json();
+    let res = await response.json();
     currentLocation = res.results[0];
     document.querySelector('#summary').innerHTML = locationTemplate(currentLocation);
     
-    const poiResponse = await fetch(`https://www.triposo.com/api/20201111/poi.json?location_id=${location.id}&fields=all&tag_labels=sightseeing&count=20&order_by=-score&account=${this.account_id}&token=${this.api_token}`);
+    let poiResponse = await fetch(`https://www.triposo.com/api/20201111/poi.json?location_id=${location.id}&fields=all&tag_labels=sightseeing&count=20&order_by=-score&account=${this.account_id}&token=${this.api_token}`);
     
-    const poiRes = await poiResponse.json();
+    let poiRes = await poiResponse.json();
     
     for(poiCount =0; poiCount<20; poiCount++){ 
-      currentPointofInterest = poiRes.results[poiCount];
-          document.querySelector('#summary2').innerHTML += poiTemplate(currentPointofInterest);
+         currentPointofInterest = poiRes.results[poiCount];
+          document.querySelector('#summary').innerHTML += poiTemplate(currentPointofInterest);
+
+
           // if(poiCount<19){
-          //   console.log('only' + poiCount + 'PointsOfInterest available');
-          // }
-        }
+            //   console.log('only' + poiCount + 'PointsOfInterest available');
+            // }
+          }
+          // currentPointofInterest = currentPoi[poiCount];
 
         
       //  return res;
@@ -138,12 +141,12 @@ savePhp.addEventListener('click',async (e)=>{
       // async postPlace(){
         let locationValue = {
           
-          name: currentLocation.name,
-          type: currentLocation.type,
-          country_id: currentLocation.country_id,
-          part_of: currentLocation.part_of,
+          location: currentLocation.name,
+          classification: currentLocation.type,
+          country: currentLocation.country_id,
+          region: currentLocation.part_of,
           intro: currentLocation.intro,
-          url: currentLocation.attribution[1].url,
+          travelLink: currentLocation.attribution[1].url,
         };
         console.log(locationValue);
       // if (onLocationSelect.res != '') {
@@ -157,7 +160,7 @@ savePhp.addEventListener('click',async (e)=>{
         headers: { 'Content-Type': 'application/json' }
       };
 
-      const sendPlace = await fetch(`http://localhost/php/projects/PlanMyTrip/locationApiRequest.php`, data);
+      const sendPlace = await fetch(`http://localhost/php/projects/PlanMyTrip/crudLocation.php`, data);
       // const sendPlace = fetch(`https://ptsv2.com/t/arto5-1608728634/post`, data);
         
         // const sendPl = await sendPlace.json();
@@ -169,51 +172,52 @@ savePhp.addEventListener('click',async (e)=>{
       // e.preventDefault();
       }
   });
-const savePoi = document.querySelector('#summary2');
+const savePoi = document.querySelector('#summary');
 
 //  let poiSub = document.getElementById('poiSubmit'.poiCount);
 //  console.log(poiSub);
 
 savePoi.addEventListener('click',async (e)=>{
       
-    // if(e.target.id === `poiSubmit${poiCount}`) {
-    if(e.target.id === `poiSubmit0`) {
-      console.log(e.target.id);
+  if(e.target.id === `poiSubmit${poiCount.value}`) {
+    // if(e.target.id === `poiSubmit0`) {
+     
       
       // async postPlace(){
         let poiValue = {
           
           name: currentPointofInterest.name,
-          url: currentPointofInterest.attribution[1].url,
-          url: currentPointofInterest.attribution[1].url,
-          location_ids: currentPointofInterest.location_ids[0],
-          location_ids: currentPointofInterest.location_ids[2],
+          url1: currentPointofInterest.attribution[0].url,
+          url2: currentPointofInterest.attribution[1].url,
+          location_ids1: currentPointofInterest.location_ids[0],
+          location_ids2: currentPointofInterest.location_ids[2],
           snippet: currentPointofInterest.snippet,
         };
         // console.log(poiValue);
-      // if (onLocationSelect.res != '') {
-      // let locationData = new FormData();
-
-      // locationData.append( "json", JSON.stringify(locationValue));
-      const data =  {
-        method: 'POST',
-        // mode: 'no-cors',
-        body: JSON.stringify(poiValue),
-        headers: { 'Content-Type': 'application/json' }
-      };
-
-      const sendPoi = await fetch(`http://localhost/php/projects/PlanMyTrip/locationApiRequest.php`, data);
-      // const sendPlace = fetch(`https://ptsv2.com/t/arto5-1608728634/post`, data);
-        
-        // const sendPl = await sendPlace.json();
-        
-        // console.log(sendPl);
-        // return sendPl;
-        // }
-      // }
-      // e.preventDefault();
-      }
-  });
+        // if (onLocationSelect.res != '') {
+          // let locationData = new FormData();
+          
+          // locationData.append( "json", JSON.stringify(locationValue));
+          const data =  {
+            method: 'POST',
+            // mode: 'no-cors',
+            body: JSON.stringify(poiValue),
+            headers: { 'Content-Type': 'application/json' }
+          };
+          
+          const sendPoi = await fetch(`http://localhost/php/projects/PlanMyTrip/crudLocation.php`, data);
+          // const sendPlace = fetch(`https://ptsv2.com/t/arto5-1608728634/post`, data);
+          
+          // const sendPl = await sendPlace.json();
+          
+          // console.log(sendPl);
+          // return sendPl;
+          // }
+          // }
+          // e.preventDefault();
+          console.log(e.target.id);
+        }
+      });
 
   
   
