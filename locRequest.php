@@ -120,43 +120,43 @@ class locRequestPage extends Page {
 //         $this->location->setNotes($_POST['notes']);
 //     }
     
-private function saveRequestedLoc() {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+// private function saveRequestedLoc() {
+//     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      
     
-    //RECEIVE THE RAW POST DATA FROM main.js
-    $content = file_get_contents("php://input");
-    printData($content);
+//     //RECEIVE THE RAW POST DATA FROM main.js
+//     $content = file_get_contents("php://input");
+//     printData($content);
     
-    //Decode the incoming RAW post data from JSON
-    $array = json_decode($content, true);
-    printData($array);
-    //SAVING POST DATA IN VARIABLES
-    // $getLocation = $array['location'];
-    // $getClassification = $array['classification'];
-    // $getCountry = $array['country'];
-    // $getRegion = $array['region'];
-    // $getIntro = $array['intro'];
-    // $getTravelLink = $array['travelLink'];
-    //  $this->location->setIdTraveller(intval($_POST['idTraveller']));
-    //  $this->location->setClassification($array['location']);
-    //  $this->location->setCountry($array['classification']);
-    //  $this->location->setLocation($array['country']);
-    //     $this->location->setRegion($array['region']);
-    //     $this->location->setIntro($array['intro']);
-    //     $this->location->setTravelLink($array['travelLink']);
-    //     $this->location->setNotes($_POST['notes']);
-    $this->array->setIdTraveller(intval($_POST['idTraveller']));
-        $this->array->setLocation($_POST['location']);
-        $this->array->setClassification($_POST['classification']);
-        $this->array->setCountry($_POST['country']);
-        $this->array->setRegion($_POST['region']);
-        $this->array->setIntro($_POST['intro']);
-        $this->array->setTravelLink($_POST['travelLink']);
-        $this->array->setNotes($_POST['notes']);
-    // $this->locationDao->create($this->array);
- }
-}
+//     //Decode the incoming RAW post data from JSON
+//     $array = json_decode($content, true);
+//     printData($array);
+//     //SAVING POST DATA IN VARIABLES
+//     // $getLocation = $array['location'];
+//     // $getClassification = $array['classification'];
+//     // $getCountry = $array['country'];
+//     // $getRegion = $array['region'];
+//     // $getIntro = $array['intro'];
+//     // $getTravelLink = $array['travelLink'];
+//     //  $this->location->setIdTraveller(intval($_POST['idTraveller']));
+//     //  $this->location->setClassification($array['location']);
+//     //  $this->location->setCountry($array['classification']);
+//     //  $this->location->setLocation($array['country']);
+//     //     $this->location->setRegion($array['region']);
+//     //     $this->location->setIntro($array['intro']);
+//     //     $this->location->setTravelLink($array['travelLink']);
+//     //     $this->location->setNotes($_POST['notes']);
+//     $this->array->setIdTraveller(intval($_POST['idTraveller']));
+//         $this->array->setLocation($_POST['location']);
+//         $this->array->setClassification($_POST['classification']);
+//         $this->array->setCountry($_POST['country']);
+//         $this->array->setRegion($_POST['region']);
+//         $this->array->setIntro($_POST['intro']);
+//         $this->array->setTravelLink($_POST['travelLink']);
+//         $this->array->setNotes($_POST['notes']);
+//     // $this->locationDao->create($this->array);
+//  }
+// }
 
 
     // private function readFormData() {
