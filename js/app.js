@@ -160,7 +160,7 @@ savePhp.addEventListener('click',async (e)=>{
         headers: { 'Content-Type': 'application/json' }
       };
 
-      const sendPlace = await fetch(`http://localhost/php/projects/PlanMyTrip/loggedIn.php`, data);
+      const sendPlace = await fetch(`http://localhost/php/projects/PlanMyTrip/locRequested.php`, data);
       // const sendPlace = fetch(`https://ptsv2.com/t/arto5-1608728634/post`, data);
         
         // const sendPl = await sendPlace.json();
@@ -205,7 +205,7 @@ savePoi.addEventListener('click',async (e)=>{
             headers: { 'Content-Type': 'application/json' }
           };
           
-          const sendPoi = await fetch(`http://localhost/php/projects/PlanMyTrip/crudLocation.php`, data);
+          const sendPoi = await fetch(`http://localhost/php/projects/PlanMyTrip/index.php`, data);
           // const sendPlace = fetch(`https://ptsv2.com/t/arto5-1608728634/post`, data);
           
           // const sendPl = await sendPlace.json();

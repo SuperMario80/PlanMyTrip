@@ -30,13 +30,22 @@ class IndexPage extends Page {
              header('Location: createTraveller.php?id=0');
              exit;
          }
-        
+
+      
         //  if (isSet($_POST['login'])) {
         //     // $tr = unserialize($_SESSION['traveller']);
         //     header('Location: travellerLoggedIn.php');
         //     exit;
         // }
+        // if(isSet($_POST['login'])){
+        //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        //         $this->saveRequestedLoc();
+        //         // header('Location: crudLocation.php?id=' . $_POST['newLocation']);
+        //         // exit;
+        //     }
+        // }
         }
+        
     
 
     protected function viewContent(): void {
@@ -44,10 +53,12 @@ class IndexPage extends Page {
          include 'html/triposo.html.php';
 
         
+    }
+
+ 
+
+
 }
-
-
-        }
 
        
 

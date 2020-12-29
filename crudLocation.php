@@ -19,8 +19,8 @@ class crudLocationPage extends Page {
             header('Location: loggedIn.php');
             exit;
         }
-        $this->saveRequestedLoc();
-        printData($this->saveRequestedLoc());
+        // $this->saveRequestedLoc();
+        // printData($this->saveRequestedLoc());
        
     }
     
@@ -80,37 +80,6 @@ class crudLocationPage extends Page {
         }
         
     }
-//  private function saveRequestedLoc() {
-//     //  $this->readFormData();
-//     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        
-//         //RECEIVE THE RAW POST DATA FROM main.js
-//         $content = file_get_contents("php://input");
-        
-//         //Decode the incoming RAW post data from JSON
-//         $array = json_decode($content, true);
-        
-//         $this->locationDao->create($this->array);
-//        //SAVING POST DATA IN VARIABLES
-//         $getLocation = $array['location'];
-//         $getClassification = $array['classification'];
-//         $getCountry = $array['country'];
-//         $getRegion = $array['region'];
-//         $getIntro = $array['intro'];
-//         $getTravelLink = $array['travelLink'];
-        
-//         // $_POST(['name']);
-//         // SAVING POST DATA IN RESPECTIVE DATABASE TABLES (USING THE DATABASE CLASS)
-                            
-                
-//             }
-//             // else{
-//             //             throw new Exception( "no json data received");
-                
-//             // }
- }
-      
-
 
 
     private function deleteLocation() {

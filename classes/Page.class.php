@@ -120,5 +120,3 @@ abstract class Page {
         return $this->traveller;
     }
 }
-
-
