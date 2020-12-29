@@ -71,7 +71,8 @@ let onLocationSelect = async location => {
 
         
       //  return res;
-      console.log(currentPointofInterest);
+      console.log(currentLocation);
+      console.log(poiRes);
   };
 
 const locationTemplate = input => {
@@ -155,12 +156,12 @@ savePhp.addEventListener('click',async (e)=>{
       // locationData.append( "json", JSON.stringify(locationValue));
       const data =  {
         method: 'POST',
-        // mode: 'no-cors',
+        mode: 'no-cors',
         body: JSON.stringify(locationValue),
         headers: { 'Content-Type': 'application/json' }
       };
 
-      const sendPlace = await fetch(`http://localhost/php/projects/PlanMyTrip/locRequested.php`, data);
+      const sendPlace = await fetch(`http://localhost/php/projects/PlanMyTrip/locRequest.php`, data);
       // const sendPlace = fetch(`https://ptsv2.com/t/arto5-1608728634/post`, data);
         
         // const sendPl = await sendPlace.json();
@@ -170,6 +171,7 @@ savePhp.addEventListener('click',async (e)=>{
         // }
       // }
       // e.preventDefault();
+      console.log(sendPlace);
       }
   });
 const savePoi = document.querySelector('#summary');
