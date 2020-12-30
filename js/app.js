@@ -71,7 +71,7 @@ let onLocationSelect = async location => {
 
         
       //  return res;
-      console.log(currentLocation);
+      // console.log(currentLocation);
       console.log(poiRes);
   };
 
@@ -181,33 +181,33 @@ const savePoi = document.querySelector('#summary');
 
 savePoi.addEventListener('click',async (e)=>{
       
-  if(e.target.id === `poiSubmit${poiCount.value}`) {
-    // if(e.target.id === `poiSubmit0`) {
+  // if(e.target.id === `poiSubmit${poiCount.value}`) {
+    if(e.target.id === `poiSubmit0`) {
      
       
       // async postPlace(){
         let poiValue = {
           
-          name: currentPointofInterest.name,
-          url1: currentPointofInterest.attribution[0].url,
-          url2: currentPointofInterest.attribution[1].url,
-          location_ids1: currentPointofInterest.location_ids[0],
-          location_ids2: currentPointofInterest.location_ids[2],
-          snippet: currentPointofInterest.snippet,
+          poiName: currentPointofInterest.name,
+          attraction: currentPointofInterest.tag_labels[0],
+          intro: currentPointofInterest.snippet,
+          infoLink: currentPointofInterest.attribution[1].url,
+          poiMap: currentPointofInterest.attribution[0].url,
+          // location_ids2: currentPointofInterest.location_ids[2],
         };
-        // console.log(poiValue);
+        console.log(poiValue);
         // if (onLocationSelect.res != '') {
           // let locationData = new FormData();
           
           // locationData.append( "json", JSON.stringify(locationValue));
           const data =  {
             method: 'POST',
-            // mode: 'no-cors',
+            mode: 'no-cors',
             body: JSON.stringify(poiValue),
             headers: { 'Content-Type': 'application/json' }
           };
           
-          const sendPoi = await fetch(`http://localhost/php/projects/PlanMyTrip/index.php`, data);
+          const sendPoi = await fetch(`http://localhost/php/projects/PlanMyTrip/poiRequest.php`, data);
           // const sendPlace = fetch(`https://ptsv2.com/t/arto5-1608728634/post`, data);
           
           // const sendPl = await sendPlace.json();
@@ -218,6 +218,7 @@ savePoi.addEventListener('click',async (e)=>{
           // }
           // e.preventDefault();
           console.log(e.target.id);
+              console.log(sendPoi);
         }
       });
 

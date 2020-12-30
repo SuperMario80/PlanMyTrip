@@ -55,26 +55,42 @@ class Location {
         return $this->country;
     }
     function setCountry(string $country): void {
-        $this->country = $country;
+        if (empty($country)){
+            $this->country = 'Unknown';
+        }else{
+            $this->country = $country;
+        }
     }
       function getRegion(): string {
         return $this->region;
     }
     function setRegion(string $region): void {
-        $this->region = $region;
+        if (empty($region)){
+            $this->region = 'Undefined';
+        }else{
+            $this->region = $region;
+        }
     }
 
       function getIntro(): string {
         return $this->intro;
     }
     function setIntro(string $intro): void {
-        $this->intro = $intro;
+         if (empty($intro)){
+            $this->intro = 'No Info available';
+        }else{
+            $this->intro = $intro;
+        }
     }
       function getTravelLink(): string {
         return $this->travelLink;
     }
     function setTravelLink(string $travelLink): void {
-        $this->travelLink = $travelLink;
+        if (empty($travelLink)){
+            $this->travelLink = '';
+        }else{
+            $this->travelLink = $travelLink;
+        }
     }
       function getNotes(): string {
         return $this->notes;

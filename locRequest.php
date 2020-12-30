@@ -6,9 +6,11 @@ require_once 'inc/tools.inc.php';
 class locRequestPage extends Page {
 
    private LocationDao $locationDao;
-    private array $locations;
+    // private array $locations;
     private Location $location;
-    private ?Traveller $traveller;
+
+
+    // private ?Traveller $traveller;
     
     public function __construct() {
         parent::__construct('PlanMyTrip', 'API Location');
@@ -31,9 +33,9 @@ class locRequestPage extends Page {
     
 
     protected function viewContent(): void {
-         printData($_REQUEST);
-        printData($_POST);
-        printData(file_get_contents('php://input'));
+        //  printData($_REQUEST);
+        // printData($_POST);
+        // printData(file_get_contents('php://input'));
         // $tr = unserialize($_SESSION['traveller']);
         // $travId = $tr->getId();
         // OPENS CREATE/UPDATE LOCATION FORM
@@ -46,38 +48,46 @@ class locRequestPage extends Page {
         // }
         $this->saveRequestedLoc();
                 
-                $message = $this->message;
-                $location = $this->location;
-                include 'html/createLocation.html.php';
+                // $message = $this->message;
+                // $location = $this->location;
+                // include 'html/createLocation.html.php';
             }
             
             
-     function saveRequestedLoc() {
-        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
-            //RECEIVE THE RAW POST DATA FROM app.js
-            $content = file_get_contents('php://input');
-            
-            printData($content);
-            //Decode the incoming RAW post data from JSON
-            $locData = json_decode($content, true);
-            //SAVING POST DATA IN VARIABLES
-            $this->location = new Location();
-               $this->location->setIdTraveller($this->getTraveller()->getId());
-            // $this->location->setIdTraveller(1);
-            $this->location->setLocation($locData['location']);
-            $this->location->setClassification($locData['classification']);
-            $this->location->setCountry($locData['country']);
-            // $this->location->setRegion(empty($locData['region']));
-            $this->location->setIntro($locData['intro']);
-            $this->location->setTravelLink($locData['travelLink']);
-        
-            printData($this->locationDao->create($this->location));
+     private function saveRequestedLoc() {
 
-            // SAVING POST DATA IN RESPECTIVE DATABASE TABLES (USING THE DATABASE CLASS)
-            printData($locData);
+        try{
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                
+                //RECEIVE THE RAW POST DATA FROM app.js
+                $content = file_get_contents('php://input');
+                
+                printData($content);
+                //Decode the incoming RAW post data from JSON
+                $locData = json_decode($content, true);
+                //SAVING POST DATA IN VARIABLES
+                $this->location = new Location();
+                $this->location->setIdTraveller($this->getTraveller()->getId());
+                $this->location->setLocation($locData['location']);
+                $this->location->setClassification($locData['classification']);
+                $this->location->setCountry($locData['country']);
+                $this->location->setIntro($locData['intro']);
+                $this->location->setTravelLink($locData['travelLink']);
             
-        // }
+                printData($this->locationDao->create($this->location));
+    
+                // SAVING POST DATA IN RESPECTIVE DATABASE TABLES (USING THE DATABASE CLASS)
+                printData($locData);
+    
+                }
+                  else{
+            throw new Exception( "no json data received");
+        }
+        }catch (Exception $e){
+            printData($e->getMessage());
+        }
+            
     }
 }
 
