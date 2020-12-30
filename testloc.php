@@ -131,9 +131,9 @@ require_once 'inc/tools.inc.php';
     //     $this->location->setNotes($_POST['notes']);
     // }
     
-}
+// }
 
 
-$page = new locRequestPage();
-$page->saveRequestedLoc();
+// $page = new locRequestPage();
+// $page->saveRequestedLoc();
 

@@ -1,6 +1,7 @@
 var currentLocation;
 var currentPointofInterest;
 var poiCount;
+// var count;
 
 
 
@@ -117,14 +118,19 @@ const poiTemplate = value => {
         <div class="content media-content notification is-secondary">
         
             <div class="content">
-              <a href="${value.attribution[1].url}" target="_blank">PointOfInterest     </a>:     
-              <a href="${value.attribution[0].url}" target="_blank">    ${value.name}</a>  
-              |  ${value.location_ids[0]} |  ${value.location_ids[2]}</div>
+              <a href="${value.attribution[1].url}" target="_blank">PointOfInterest     
+              </a> :    
+              <a href="${value.attribution[0].url}" target="_blank">    ${value.name} 
+              </a> |  ${value.location_ids[0]} |  ${value.location_ids[2]}
+            </div>
             <div class="content">INTRO:  ${value.snippet}</div>
-            <form>
-        <div><button type="button" id="poiSubmit${poiCount}" value="poiSubmit" class="button block right">Submit</button></div>
-        </form>
-          </div>
+              <form>
+                <div>
+                  <button type="button" id="poiSubmit${poiCount}" value="poiSubmit${[poiCount]}" class="button block right">Submit
+                  </button>
+                </div>
+              </form>
+            </div>
        `;
     };
 
@@ -179,9 +185,11 @@ const savePoi = document.querySelector('#summary');
 //  let poiSub = document.getElementById('poiSubmit'.poiCount);
 //  console.log(poiSub);
 
-savePoi.addEventListener('click',async (e)=>{
+savePoi.addEventListener('click',(e)=>{
+
+  // count = poiCount;
       
-  // if(e.target.id === `poiSubmit${poiCount.value}`) {
+  // if(e.target && e.target.id === `poiSubmit${poiCount}`) {
     if(e.target.id === `poiSubmit0`) {
      
       
@@ -207,7 +215,7 @@ savePoi.addEventListener('click',async (e)=>{
             headers: { 'Content-Type': 'application/json' }
           };
           
-          const sendPoi = await fetch(`http://localhost/php/projects/PlanMyTrip/poiRequest.php`, data);
+          const sendPoi = fetch(`http://localhost/php/projects/PlanMyTrip/poiRequest.php`, data);
           // const sendPlace = fetch(`https://ptsv2.com/t/arto5-1608728634/post`, data);
           
           // const sendPl = await sendPlace.json();

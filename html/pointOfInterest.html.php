@@ -1,4 +1,4 @@
-<form method="post">
+<!-- <form method="post">
     
     
    
@@ -42,4 +42,26 @@
     <div>-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
     <br>
     <br>
+</form> -->
+
+<div class="content notification is-secondary">
+<h3 class="content media-content ">Points Of Interest</h3>
+<form method="post">
+    
+      <?php foreach ($selectedPoi as $poi) : ?>  
+<div class="notification is-primary">
+            <div class="">#<?= $poi->getId() ?> |  Location #<?= $poi->getIdLocation() ?> | 
+                <a href="<?= htmlSpecialChars($poi->getPoiMap()) ?>" target="_blank"> <?= htmlSpecialChars($poi->getPoiName()) ?> |  </a>
+                <a href="<?= htmlSpecialChars($poi->getInfoLink()) ?>" target="_blank">Map</a>    
+              |  <?= htmlSpecialChars($poi->getAttraction()) ?>     
+                <button name="updatePoi" value="<?= $poi->getId() ?>" >update</button>
+              </div>
+            <div class="">INTRO:  <?= htmlSpecialChars($poi->getIntro()) ?></div>
+            <div class="content">Notes:  <?= htmlSpecialChars($poi->getNotes()) ?></div>
+          </div>
+          <?php endforeach; ?>
+
+      <button name="newPoi" value="<?= $location->getId() ?>" >new PointOfInterest</button>
+     <button name="delete" value="2" >Delete Poi</button>
 </form>
+</div>
