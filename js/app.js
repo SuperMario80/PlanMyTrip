@@ -6,6 +6,7 @@ let currentLocation;
 let currentPointofInterest;
 // const poiCounts = [];
 let poiCount;
+let poiRes;
 // var count;
 
 
@@ -62,7 +63,7 @@ let onLocationSelect = async location => {
     
     let poiResponse = await fetch(`https://www.triposo.com/api/20201111/poi.json?location_id=${location.id}&fields=all&tag_labels=sightseeing&count=20&order_by=-score&account=${account_id}&token=${api_token}`);
     
-    let poiRes = await poiResponse.json();
+    poiRes = await poiResponse.json();
     
     for(poiCount =0; poiCount<20; poiCount++){ 
     // for(poiCount =0; poiRes.results.length; poiCount++){ 
@@ -131,7 +132,7 @@ const poiTemplate = value => {
             <div class="content">INTRO:  ${value.snippet}</div>
               <form>
                 <div>
-                  <button type="button" id="poiSubmit${poiCount}" value="poiSubmit${[poiCount]}" class="button block right">Submit
+                  <button type="button" id="poiSubmit${poiCount}" data-count="${poiCount}" value="poiSubmit${poiCount}" class="button block right">Submit
                   </button>
                 </div>
               </form>
@@ -192,13 +193,13 @@ let savePoi = document.querySelector('#summary');
 
 savePoi.addEventListener('click',(e)=>{
 
-  let poiVal = 0;
-      
-  if(e.target.id === `${poiCount}`) {
-    console.log(poiCount);
-    // if(e.target.id === `poiSubmit${poiVal}`) {
+  let poiVal = e.target.getAttribute('data-count');
+  
+  // if(e.target.id === `poiSubmit${poiVal}`) {
+  if(e.target.hasAttribute('data-count')){
+    // console.log(poiCount);
      
-      
+    currentPointofInterest = poiRes.results[poiVal];  
       // async postPlace(){
         let poiValue = {
           

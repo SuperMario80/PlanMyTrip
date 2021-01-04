@@ -28,13 +28,13 @@ class poiRequestPage extends Page {
 
     protected function viewContent(): void {
 
-        $id = intVal($_GET['id'] ?? 0);
-        $this->pointOfInterestDao = new PointOfInterestDao();
-        $this->poi = $this->pointOfInterestDao->readOne($id);
-        if ($this->poi == null) {
-            $this->poi = new PointOfInterest();
-            $this->poi->setIdLocation(intVal($_GET['idLoc']));
-        }
+        // $id = intVal($_GET['id'] ?? 0);
+        // $this->pointOfInterestDao = new PointOfInterestDao();
+        // $this->poi = $this->pointOfInterestDao->readOne($id);
+        // if ($this->poi == null) {
+        //     $this->poi = new PointOfInterest();
+        //     $this->poi->setIdLocation(intVal($_GET['idLoc']));
+        // }
   
         // }
         $this->saveRequestedPoi();
@@ -56,7 +56,7 @@ class poiRequestPage extends Page {
                 $this->poi = new PointOfInterest();
                 // $this->poi->setIdLocation((intVal($this->getIdLocation())));
                 // $this->poi->setIdLocation($this->getLocation()->getId());
-                $this->poi->setIdLocation(1);
+                $this->poi->setIdLocation($_SESSION['locationId']);
                 $this->poi->setPoiName($poiData['poiName']);
                 $this->poi->setAttraction($poiData['attraction']);
                 $this->poi->setIntro($poiData['intro']);

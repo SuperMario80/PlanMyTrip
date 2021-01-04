@@ -4,8 +4,8 @@
 ?>
 
 
-<div class="container">
-    <section class="hero is-primary is-bold">
+<div class="container py-3">
+    <div class="hero is-primary is-bold">
       <div class="hero-body">
         <!-- <div class="">
           <h1 class="title">
@@ -16,7 +16,7 @@
           </h1>
         </div> -->
       </div>
-    </section>
+    </div>
     <!-- <div class="container"> -->
       <div class="autocomplete"></div>
       <!-- <form>

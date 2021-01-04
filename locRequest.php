@@ -76,7 +76,7 @@ class locRequestPage extends Page {
                 $this->location->setTravelLink($locData['travelLink']);
             
                 printData($this->locationDao->create($this->location));
-    
+                $_SESSION['locationId'] = $this->location->getId();
                 // SAVING POST DATA IN RESPECTIVE DATABASE TABLES (USING THE DATABASE CLASS)
                 printData($locData);
     

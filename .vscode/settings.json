@@ -3,5 +3,6 @@
     
         "configurations": [],
         "compounds": []
-    }
+    },
+    "git.autofetch": true
 }
