@@ -1,3 +1,4 @@
+<div class="container">
 <form method="post">
    
     <table border="1">
@@ -30,9 +31,9 @@
             </tr>
          
     </table>
-    <button name="newLocation" >new Location</button>
-    <button name="updateLocation" value="<?= $location->getId()?>" >update Location</button>
-    <button name="newPoi" value="<?= $location->getId() ?>" >new PointOfInterest</button>
+    <button class="btn btn-dark" name="newLocation" >new Location</button>
+    <button class="btn btn-dark" name="updateLocation" value="<?= $location->getId()?>" >update Location</button>
+    <button class="btn btn-dark" name="newPoi" value="<?= $location->getId() ?>" >new PointOfInterest</button>
        
    
 </form>

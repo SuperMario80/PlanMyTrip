@@ -10,12 +10,19 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
     />
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css"
-    />
+    /> -->
     <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
-        <h1><?=$headline?></h1>
-        <hr>
+        <div id="navbar">
+        <div>
+           <h1 class=""><a href="index.php">PlanMyTrip</a>
+            <span class="icon">
+              <i class="fas fa-plane"></i>
+            </span>
+          </h1>
+          <!-- <h1><?=$headline?></h1> -->
+        </div>

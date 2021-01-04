@@ -54,14 +54,14 @@
                 <a href="<?= htmlSpecialChars($poi->getPoiMap()) ?>" target="_blank"> <?= htmlSpecialChars($poi->getPoiName()) ?> |  </a>
                 <a href="<?= htmlSpecialChars($poi->getInfoLink()) ?>" target="_blank">Map</a>    
               |  <?= htmlSpecialChars($poi->getAttraction()) ?>     
-                <button name="updatePoi" value="<?= $poi->getId() ?>" >update</button>
+                <button class="btn btn-dark" name="updatePoi" value="<?= $poi->getId() ?>" >update</button>
               </div>
             <div class="">INTRO:  <?= htmlSpecialChars($poi->getIntro()) ?></div>
             <div class="content">Notes:  <?= htmlSpecialChars($poi->getNotes()) ?></div>
           </div>
           <?php endforeach; ?>
 
-      <button name="newPoi" value="<?= $location->getId() ?>" >new PointOfInterest</button>
-     <button name="delete" value="2" >Delete Poi</button>
+      <button class="btn btn-dark" name="newPoi" value="<?= $location->getId() ?>" >new PointOfInterest</button>
+     <button class="btn btn-dark" name="delete" value="2" >Delete Poi</button>
 </form>
 </div>

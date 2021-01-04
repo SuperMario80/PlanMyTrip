@@ -1,5 +1,5 @@
 <form method="post" >
-    <button name="back" value="0">Back</button><br>
+    <button class="btn-dark" name="back" value="0">Back</button><br>
     <input type="hidden" name="id" placeholder="id" value="<?= htmlSpecialChars($location->getId()) ?>" readonly>
     <input type="hidden" name="idTraveller" placeholder="idTraveller" value="<?= htmlSpecialChars($location->getIdTraveller())?>" readonly>
     <input type="text" name="location" placeholder="location" value="<?= htmlSpecialChars($location->getLocation())?>" ><br>
@@ -9,8 +9,8 @@
     <input type="text" name="intro" placeholder="intro" value="<?=htmlSpecialChars($location->getIntro())?>" ><br>
     <input type="text" name="travelLink" placeholder="travelLink" value="<?=htmlSpecialChars($location->getTravelLink())?>" ><br>
     <input type="text" name="notes" placeholder="notes" value="<?=htmlSpecialChars($location->getNotes())?>" ><br>
-    <button name="save" value="1" >Save</button>
-    <button name="delete" value="2" >Delete Location</button>
+    <button class="btn-dark" name="save" value="1" >Save</button>
+    <button class="btn-dark" name="delete" value="2" >Delete Location</button>
 </form>
 <p>
     <?=htmlSpecialChars($message)?>

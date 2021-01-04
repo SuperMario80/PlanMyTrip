@@ -1,6 +1,11 @@
-var currentLocation;
-var currentPointofInterest;
-var poiCount;
+let api_token = '9j6492j7wd3qjvppyb8hj2og788veo72';
+let account_id = 'BSOO2T1I';
+
+
+let currentLocation;
+let currentPointofInterest;
+// const poiCounts = [];
+let poiCount;
 // var count;
 
 
@@ -32,10 +37,10 @@ createAutoComplete({
   // },
   
   async fetchData(searchTerm) {
-    this.api_token = '9j6492j7wd3qjvppyb8hj2og788veo72';
-    this.account_id = 'BSOO2T1I';
+    // this.api_token = '9j6492j7wd3qjvppyb8hj2og788veo72';
+    // this.account_id = 'BSOO2T1I';
     const placeResponse = await fetch(`https://www.triposo.com/api/20201111/location.json?annotate=trigram:${searchTerm}&trigram=>=0.3&order_by=-trigram
-    &account=${this.account_id}&token=${this.api_token}`);
+    &account=${account_id}&token=${api_token}`);
 
     const place = await placeResponse.json();
 
@@ -49,31 +54,31 @@ createAutoComplete({
 
 let onLocationSelect = async location => {
 
-    let response = await fetch(`https://www.triposo.com/api/20201111/location.json?id=${location.id}&fields=all&account=${this.account_id}&token=${this.api_token}`);
+    let response = await fetch(`https://www.triposo.com/api/20201111/location.json?id=${location.id}&fields=all&account=${account_id}&token=${api_token}`);
     
     let res = await response.json();
     currentLocation = res.results[0];
     document.querySelector('#summary').innerHTML = locationTemplate(currentLocation);
     
-    let poiResponse = await fetch(`https://www.triposo.com/api/20201111/poi.json?location_id=${location.id}&fields=all&tag_labels=sightseeing&count=20&order_by=-score&account=${this.account_id}&token=${this.api_token}`);
+    let poiResponse = await fetch(`https://www.triposo.com/api/20201111/poi.json?location_id=${location.id}&fields=all&tag_labels=sightseeing&count=20&order_by=-score&account=${account_id}&token=${api_token}`);
     
     let poiRes = await poiResponse.json();
     
     for(poiCount =0; poiCount<20; poiCount++){ 
-         currentPointofInterest = poiRes.results[poiCount];
+    // for(poiCount =0; poiRes.results.length; poiCount++){ 
+      currentPointofInterest = poiRes.results[poiCount];
           document.querySelector('#summary').innerHTML += poiTemplate(currentPointofInterest);
-
-
+          
+          
           // if(poiCount<19){
             //   console.log('only' + poiCount + 'PointsOfInterest available');
             // }
+            console.log(currentPointofInterest);
+            // currentPointofInterest = currentPoi[poiCount];
+  
+          
+        //  return res;
           }
-          // currentPointofInterest = currentPoi[poiCount];
-
-        
-      //  return res;
-      // console.log(currentLocation);
-      console.log(poiRes);
   };
 
 const locationTemplate = input => {
@@ -137,7 +142,7 @@ const poiTemplate = value => {
 
 
 const savePhp = document.querySelector('#summary');
-console.log(savePhp);
+// console.log(savePhp);
 
 
 savePhp.addEventListener('click',async (e)=>{
@@ -180,17 +185,18 @@ savePhp.addEventListener('click',async (e)=>{
       console.log(sendPlace);
       }
   });
-const savePoi = document.querySelector('#summary');
+let savePoi = document.querySelector('#summary');
 
 //  let poiSub = document.getElementById('poiSubmit'.poiCount);
 //  console.log(poiSub);
 
 savePoi.addEventListener('click',(e)=>{
 
-  // count = poiCount;
+  let poiVal = 0;
       
-  // if(e.target && e.target.id === `poiSubmit${poiCount}`) {
-    if(e.target.id === `poiSubmit0`) {
+  if(e.target.id === `${poiCount}`) {
+    console.log(poiCount);
+    // if(e.target.id === `poiSubmit${poiVal}`) {
      
       
       // async postPlace(){
