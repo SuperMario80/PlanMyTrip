@@ -92,7 +92,7 @@ const locationTemplate = input => {
         <div><button type="button" id="phpSubmit" value="phpSubmit" class="button block right">Submit</button></div>
         </form>
         <div class="content">
-          <h4><a href="${input.attribution[1].url}" target="_blank">Location:  ${input.name} | ${input.country_id} | ${input.type}</a></h4>
+          <h4><a href="${input.attribution[1].url}" target="_blank">Location:  ${input.name}  | ${input.id}| ${input.country_id} | ${input.type}</a></h4>
         </div>
       </div>
       <div class="notification is-primary">
@@ -155,6 +155,7 @@ savePhp.addEventListener('click',async (e)=>{
         let locationValue = {
           
           location: currentLocation.name,
+          locationKey: currentLocation.id,
           classification: currentLocation.type,
           country: currentLocation.country_id,
           region: currentLocation.part_of,
@@ -204,6 +205,8 @@ savePoi.addEventListener('click',(e)=>{
         let poiValue = {
           
           poiName: currentPointofInterest.name,
+          city: currentPointofInterest.location_ids[0],
+          locationKey: currentPointofInterest.location_ids[2],
           attraction: currentPointofInterest.tag_labels[0],
           intro: currentPointofInterest.snippet,
           infoLink: currentPointofInterest.attribution[1].url,

@@ -6,8 +6,8 @@ require_once 'inc/tools.inc.php';
 class CreateTravellerPage extends Page {
     
     private string $message;
-    private TravellerDao $travellerDao;
-    private ?Traveller $traveller;
+    // private TravellerDao $travellerDao;
+    // private ?Traveller $traveller;
 
     public function __construct() {
         parent::__construct('Database', 'Create Traveller');

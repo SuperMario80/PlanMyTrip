@@ -58,6 +58,8 @@ class poiRequestPage extends Page {
                 // $this->poi->setIdLocation($this->getLocation()->getId());
                 $this->poi->setIdLocation($_SESSION['locationId']);
                 $this->poi->setPoiName($poiData['poiName']);
+                $this->poi->setCity($poiData['city']);
+                $this->poi->setlocationKey($poiData['locationKey']);
                 $this->poi->setAttraction($poiData['attraction']);
                 $this->poi->setIntro($poiData['intro']);
                 $this->poi->setInfoLink($poiData['infoLink']);

@@ -109,6 +109,8 @@ class showPoiPage extends Page {
     private function readFormData() {
         $this->poi->setIdLocation(intval($_POST['idLocation']));
         $this->poi->setPoiName($_POST['poiName']);
+        $this->poi->setCity($_POST['city']);
+        $this->poi->setLocationKey($_POST['locationKey']);
         $this->poi->setAttraction($_POST['attraction']);
         $this->poi->setIntro($_POST['intro']);
         $this->poi->setInfoLink($_POST['infoLink']);

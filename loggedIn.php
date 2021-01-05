@@ -11,7 +11,7 @@ class loggedInPage extends Page {
     private LocationDao $locationDao;
     // private TravellerDao $travellerDao;
     private PointOfInterestDao $pointOfInterestDao;
-    private ?Traveller $traveller;
+    // private ?Traveller $traveller;
     private array $locations;
     private array $pointOfInterest;
     

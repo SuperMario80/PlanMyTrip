@@ -8,6 +8,7 @@
         <th>Id</th>
         <th>idTraveller</th>
         <th>Location</th>
+        <th>LocationKey</th>
         <th>Classification</th>
         <th>Country</th>
         <th>Region</th>
@@ -21,6 +22,7 @@
                 <td><?= $location->getId() ?></td>
                 <td><?= $location->getIdTraveller() ?></td>
                 <td><?= htmlSpecialChars($location->getLocation()) ?></td>
+                <td><?= htmlSpecialChars($location->getLocationKey()) ?></td>
                 <td><?= htmlSpecialChars($location->getClassification()) ?></td>
                 <td><?= htmlSpecialChars($location->getCountry()) ?></td>
                 <td><?= htmlSpecialChars($location->getRegion()) ?></td>

@@ -53,9 +53,10 @@
             <div class="">#<?= $poi->getId() ?> |  Location #<?= $poi->getIdLocation() ?> | 
                 <a href="<?= htmlSpecialChars($poi->getPoiMap()) ?>" target="_blank"> <?= htmlSpecialChars($poi->getPoiName()) ?> |  </a>
                 <a href="<?= htmlSpecialChars($poi->getInfoLink()) ?>" target="_blank">Map</a>    
-              |  <?= htmlSpecialChars($poi->getAttraction()) ?>     
+              |  <?= htmlSpecialChars($poi->getCity()) ?>  |  <?= htmlSpecialChars($poi->getLocationKey()) ?>   |  <?= htmlSpecialChars($poi->getAttraction()) ?> 
                 <button class="btn btn-dark" name="updatePoi" value="<?= $poi->getId() ?>" >update</button>
               </div>
+            
             <div class="">INTRO:  <?= htmlSpecialChars($poi->getIntro()) ?></div>
             <div class="content">Notes:  <?= htmlSpecialChars($poi->getNotes()) ?></div>
           </div>

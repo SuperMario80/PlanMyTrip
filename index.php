@@ -4,15 +4,15 @@ require_once 'inc/tools.inc.php';
 
 class IndexPage extends Page {
 
-//    private string $message;
+   private string $message;
 //    private string $email;
 //    private string $password;
 
-    // private LocationDao $locationDao;
+    private LocationDao $locationDao;
     // private TravellerDao $travellerDao;
     // private PointOfInterestDao $pointOfInterestDao;
     // private ?Traveller $traveller;
-    // private array $locations;
+    private Location $location;
     // private array $pointOfInterest;
     
 
@@ -37,6 +37,9 @@ class IndexPage extends Page {
         //     header('Location: travellerLoggedIn.php');
         //     exit;
         // }
+        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        //     include 'locRequest.php';
+        // }
         // if(isSet($_POST['login'])){
         //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //         $this->saveRequestedLoc();
@@ -44,12 +47,14 @@ class IndexPage extends Page {
         //         // exit;
         //     }
         // }
-        }
-        
+    }
+     
     
-
+    
     protected function viewContent(): void {
-
+       
+        
+        
          include 'html/triposo.html.php';
 
         

@@ -96,6 +96,7 @@ class crudLocationPage extends Page {
     private function readFormData() {
         $this->location->setIdTraveller(intval($_POST['idTraveller']));
         $this->location->setLocation($_POST['location']);
+        $this->location->setLocationKey($_POST['locationKey']);
         $this->location->setClassification($_POST['classification']);
         $this->location->setCountry($_POST['country']);
         $this->location->setRegion($_POST['region']);

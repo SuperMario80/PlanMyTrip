@@ -3,6 +3,7 @@
     <input type="hidden" name="id" placeholder="id" value="<?= htmlSpecialChars($location->getId()) ?>" readonly>
     <input type="hidden" name="idTraveller" placeholder="idTraveller" value="<?= htmlSpecialChars($location->getIdTraveller())?>" readonly>
     <input type="text" name="location" placeholder="location" value="<?= htmlSpecialChars($location->getLocation())?>" ><br>
+    <input type="text" name="locationKey" placeholder="locationKey" value="<?= htmlSpecialChars($location->getLocationKey())?>" ><br>
     <input type="text" name="classification" placeholder="classification" value="<?= htmlSpecialChars($location->getClassification())?>" ><br>
     <input type="text" name="country" placeholder="country" value="<?=htmlSpecialChars($location->getCountry())?>" ><br>
     <input type="text" name="region" placeholder="region" value="<?=htmlSpecialChars($location->getRegion())?>" ><br>

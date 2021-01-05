@@ -11,14 +11,15 @@ class LocationDao extends GenericDao {
     }
 
     protected function getCreateSql(): string {
-        return 'INSERT INTO `' . $this->getTableName() . '` (`idTraveller`, `location`, `classification`, `country`, `region`, `intro`, `travelLink`,`notes`) '
-                . 'VALUES (:idTraveller, :location, :classification, :country, :region, :intro, :travelLink, :notes)';
+        return 'INSERT INTO `' . $this->getTableName() . '` (`idTraveller`, `location`, `locationKey`, `classification`, `country`, `region`, `intro`, `travelLink`,`notes`) '
+                . 'VALUES (:idTraveller, :location, :locationKey, :classification, :country, :region, :intro, :travelLink, :notes)';
     }
 
     protected function getCreateArray(object $location): array {
         return [
             ':idTraveller' => $location->getIdTraveller(),
             ':location' => $location->getLocation(),
+            ':locationKey' => $location->getLocationKey(),
             ':classification' => $location->getClassification(),
             ':country' => $location->getCountry(),
             ':region' => $location->getRegion(),
@@ -30,7 +31,7 @@ class LocationDao extends GenericDao {
 
     protected function getUpdateSql(): string {
         return 'UPDATE `' . $this->getTableName() . '` SET `idTraveller`=:idTraveller, '
-        . '`location`=:location, `classification`=:classification, `country`=:country, `region`=:region, '
+        . '`location`=:location, `locationKey`=:locationKey,`classification`=:classification, `country`=:country, `region`=:region, '
         . '`intro`=:intro, `travelLink`=:travelLink, `notes`=:notes WHERE `id`=:id';
     }
 
@@ -38,6 +39,7 @@ class LocationDao extends GenericDao {
         return [
             ':idTraveller' => $location->getIdTraveller(),
             ':location' => $location->getLocation(),
+            ':locationKey' => $location->getLocationKey(),
             ':classification' => $location->getClassification(),
             ':country' => $location->getCountry(),
             ':region' => $location->getRegion(),

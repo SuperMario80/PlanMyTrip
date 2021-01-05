@@ -6,6 +6,7 @@ class Location {
     private int $id;
     private int $idTraveller;
     private string $location;
+    private string $locationKey;
     private string $classification;
     private string $country;
     private string $region;
@@ -14,13 +15,14 @@ class Location {
     private string $notes;
     
     
-    function __construct(string $location='', string $classification='', string $country='',string $region='',string $intro='', string $travelLink='', string $notes='',int $id=0, int $idTraveller=0) {
+    function __construct(string $location='', string $locationKey='',string $classification='', string $country='',string $region='',string $intro='', string $travelLink='', string $notes='',int $id=0, int $idTraveller=0) {
          if (isSet($this->id)) {
             return;
         }
         $this->id = $id;
         $this->idTraveller = $idTraveller;
         $this->location = $location;
+        $this->locationKey = $locationKey;
         $this->classification = $classification;
         $this->country = $country;
         $this->region = $region;
@@ -41,6 +43,12 @@ class Location {
     }
     function setlocation(string $location): void {
         $this->location = $location;
+    }
+    function getlocationKey(): string {
+        return $this->locationKey;
+    }
+    function setlocationKey(string $locationKey): void {
+        $this->locationKey = $locationKey;
     }
   
     function getClassification(): string {

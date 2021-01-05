@@ -3,10 +3,10 @@
 //        $email - EMAIL OF LOGGED IN USER
 ?>
 <header id="showcase">
-    <section class="showcase-content">
-        <h2>Hello <?=$email?></h2>
+    <div class="showcase-content">
+        <h4>Hello <?=$email?></h4>
         <form method="post">
             <input class="btn" type="submit" name="logout" value="Logout" >
         </form>
-    </section>
+    </div>
 </header>

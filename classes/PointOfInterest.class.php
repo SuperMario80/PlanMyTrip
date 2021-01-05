@@ -6,6 +6,8 @@ class PointOfInterest {
     private int $id;
     private int $idLocation;
     private string $poiName;
+    private string $city;
+    private string $locationKey;
     private string $attraction;
     private string $intro;
     private string $infoLink;
@@ -13,13 +15,15 @@ class PointOfInterest {
     private string $notes;
     
     
-    function __construct(string $poiName ='', string $attraction ='', string $intro ='', string $infoLink ='', string $poiMap ='', string $notes ='', int $id = 0, int $idLocation =0) {
+    function __construct(string $poiName ='',string $city ='', string $locationKey ='', string $attraction ='', string $intro ='', string $infoLink ='', string $poiMap ='', string $notes ='', int $id = 0, int $idLocation =0) {
          if (isSet($this->id)) {
             return;
         }
         $this->id = $id;
         $this->idLocation = $idLocation;
         $this->poiName = $poiName;
+        $this->city = $city;
+        $this->locationKey = $locationKey;
         $this->attraction = $attraction;
         $this->intro = $intro;
         $this->infoLink = $infoLink;
@@ -43,6 +47,20 @@ class PointOfInterest {
     }
     function setPoiName(string $poiName): void {
         $this->poiName = $poiName;
+    }
+
+    function getCity(): string {
+        return $this->city;
+    }
+    function setCity(string $city): void {
+        $this->city = $city;
+    }
+    
+    function getLocationKey(): string {
+        return $this->locationKey;
+    }
+    function setLocationKey(string $locationKey): void {
+        $this->locationKey = $locationKey;
     }
 
 

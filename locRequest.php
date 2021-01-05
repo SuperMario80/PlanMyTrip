@@ -70,6 +70,7 @@ class locRequestPage extends Page {
                 $this->location = new Location();
                 $this->location->setIdTraveller($this->getTraveller()->getId());
                 $this->location->setLocation($locData['location']);
+                $this->location->setLocationKey($locData['locationKey']);
                 $this->location->setClassification($locData['classification']);
                 $this->location->setCountry($locData['country']);
                 $this->location->setIntro($locData['intro']);
