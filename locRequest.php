@@ -5,9 +5,9 @@ require_once 'inc/tools.inc.php';
 
 class locRequestPage extends Page {
 
-   private LocationDao $locationDao;
+//    private LocationDao $locationDao;
     // private array $locations;
-    private Location $location;
+    // private Location $location;
 
 
     // private ?Traveller $traveller;
@@ -75,10 +75,16 @@ class locRequestPage extends Page {
                 $this->location->setCountry($locData['country']);
                 $this->location->setIntro($locData['intro']);
                 $this->location->setTravelLink($locData['travelLink']);
-            
-                printData($this->locationDao->create($this->location));
-                $_SESSION['locationId'] = $this->location->getId();
-                // SAVING POST DATA IN RESPECTIVE DATABASE TABLES (USING THE DATABASE CLASS)
+
+                $l = $this->locationDao->findLocation($this->location->getLocationKey());
+
+                if($l == NULL){
+                    printData($this->locationDao->create($this->location));
+                }else{
+                    $this->location = $l;
+                }
+                    $_SESSION['locationId'] = $this->location->getId();
+                    
                 printData($locData);
     
                 }

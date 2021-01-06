@@ -5,9 +5,9 @@ require_once 'inc/tools.inc.php';
 
 class showPoiPage extends Page {
     
-    private string $message;
-    private PointOfInterestDao $pointOfInterestDao;
-    private ?PointOfInterest $poi;
+    // private string $message;
+    // // private PointOfInterestDao $pointOfInterestDao;
+    // private ?PointOfInterest $poi;
 
     public function __construct() {
         parent::__construct('PlanMyTrip', 'PointOfInterest');

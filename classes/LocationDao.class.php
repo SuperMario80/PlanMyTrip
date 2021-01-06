@@ -6,6 +6,8 @@ declare(strict_types=1);
 
 class LocationDao extends GenericDao {
 
+    private $findLocationStatement;
+
     function __construct() {
         parent::__construct('location', 'Location');
     }
@@ -48,6 +50,27 @@ class LocationDao extends GenericDao {
             ':notes' => $location->getNotes(),
             ':id' => $location->getId(),
         ];
+    }
+
+    public function findLocation(string $locationKey): ?object {
+        
+
+        if ($this->findLocationStatement == null) {
+            $sql = 'SELECT * FROM `' . $this->getTableName() . '` WHERE `locationKey`=:locationKey';
+            //PREPARES SQL  STATEMENT
+            $this->findLocationStatement = $this->getConnection()->prepare($sql);
+        }
+
+        $array = [
+            ':locationKey' => $locationKey
+        ];
+        //EXECUTES STATEMENT WITH PASSED-IN PARAMETER
+        $this->findLocationStatement->execute($array);
+
+        $dto = $this->findLocationStatement->fetchObject($this->getClassName());
+        return $dto ? $dto : null;
+    
+
     }
 
 }

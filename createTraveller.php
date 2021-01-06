@@ -5,7 +5,7 @@ require_once 'inc/tools.inc.php';
 
 class CreateTravellerPage extends Page {
     
-    private string $message;
+    // private string $message;
     // private TravellerDao $travellerDao;
     // private ?Traveller $traveller;
 

@@ -93,7 +93,7 @@ abstract class GenericDao {
 
         $array = $this->getCreateArray($dto);
         $this->createStatement->execute($array);
-        $dto->setId(intVal($this->connection->lastInsertId()));
+        // $dto->setId(intVal($this->connection->lastInsertId()));
 
         return $this->createStatement->rowCount() == 1;
     }
@@ -152,5 +152,7 @@ abstract class GenericDao {
     function getClassName(): string {
         return $this->className;
     }
+
+
 
 }

@@ -5,12 +5,22 @@ abstract class Page {
     
     private string $title;
     private string $headline;
-    //
-    private TravellerDao $travellerDao;
     private bool $loggedIn;
-    private Traveller $traveller;
     private string $email;
     private string $message;
+    //
+    private Traveller $traveller;
+    private Location $location;
+    // private PointOfInterest $pointOfInterest;
+    private ?PointOfInterest $poi;
+    
+    private TravellerDao $travellerDao;
+    private LocationDao $locationDao;
+    private PointOfInterestDao $pointOfInterestDao;
+    private array $locations;
+    private array $pointOfInterest;
+
+
     
     protected function __construct(string $title, string $headline) {
         $this->title = $title;
@@ -41,8 +51,6 @@ abstract class Page {
         // LOGIN AND REDIRECT 
         if (isSet($_POST['login'])) {
             $this->doLogin();
-            //  header('Location: travellerLoggedIn.php');
-            // include 'html/navigation.html.php';
         }
         // LOGOUT AND REDIRECT
         if (isSet($_POST['logout'])) {
@@ -60,8 +68,6 @@ abstract class Page {
         if ($tr = $this->travellerDao->checkLogin($this->email, $password)) {
             $this->loggedIn = true;
             $_SESSION['email'] = $this->email;
-            // $_SESSION['id'] = serialize($tr);
-            // $_SESSION['id'] = serialize($this->travellerDao->readOne($id));
             $_SESSION['traveller'] = serialize($tr);
         } else {
             $this->loggedIn = false;
@@ -90,9 +96,9 @@ abstract class Page {
        if($this->loggedIn == true){
            include 'html/navigation.html.php';
        }
-       else {
-           printData('Doesnt work!');
-       }
+    //    else {
+    //        printData('Doesnt work!');
+    //    }
        
    }
 
