@@ -4,9 +4,6 @@
         PASSWORD
       
 -->
-</div>
-  <header id="showcase">
-	<div class="showcase-content">
         <form method="post">
             <input type="text" name="email" placeholder="Username / Email" value="<?=$email?>" ><br>
             <input type="password" name="password" placeholder="Password" value="<?=$password?>"><br>
@@ -17,4 +14,10 @@
             <?=$message?>
         </p>
     </div>
-  </header>
+
+
+<!-- </div>
+  <header id="showcase">
+	<div class="showcase-content">
+    </div>
+  </header> -->

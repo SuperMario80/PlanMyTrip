@@ -215,6 +215,7 @@ figure .image img {
   display: flex;
   align-items: center;
   height: 60px;
+  cursor: pointer;
 }
 
 .dropdown-item img {
@@ -226,7 +227,7 @@ figure .image img {
 .dropdown {
   display: inline-flex;
   position: relative;
-  vertical-align: top;
+  vertical-align: bottom;
 }
 
 .dropdown.is-active .dropdown-menu, .dropdown.is-hoverable:hover .dropdown-menu {
@@ -236,7 +237,7 @@ figure .image img {
 
 .dropdown-menu {
   display: none;
-  left: 0;
+  left: 10;
   min-width: 12rem;
   padding-top: 4px;
   position: absolute;

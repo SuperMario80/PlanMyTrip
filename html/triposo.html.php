@@ -2,9 +2,8 @@
 //    INPUT INTERFACE FOR REST API SEARCH WITH TRIPOSO TRAVEL WEBSITE
 //    
 ?>
-
-
-<div class="container py-3">
+<header id="showcase">
+	<div class="showcase-content">
     <div class="hero is-primary is-bold">
       <div class="hero-body">
         <!-- <div class="">
@@ -19,9 +18,13 @@
     </div>
     <!-- <div class="container"> -->
       <div class="autocomplete"></div>
+    </div>
+  </header>
+
       <!-- <form>
         <div><button type="button" id="phpSubmit" value="phpSubmit" class="button block right">Submit</button></div>
         </form> -->
+<div class="container py-3">
         
       <div id="summary"></div>
       <div id="summary2"></div>

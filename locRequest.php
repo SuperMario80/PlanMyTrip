@@ -28,11 +28,14 @@ class locRequestPage extends Page {
       
         // $this->saveLocationFromJSON();
         // printData($this->saveLocationFromJSON());
-       
+        
     }
     
-
+    
     protected function viewContent(): void {
+        $this->saveRequestedLoc();
+        // include 'html/triposo.html.php';
+
         //  printData($_REQUEST);
         // printData($_POST);
         // printData(file_get_contents('php://input'));
@@ -46,7 +49,6 @@ class locRequestPage extends Page {
         //     $this->location = new Location();
         //     $this->location->setIdTraveller($this->getTraveller()->getId());
         // }
-        $this->saveRequestedLoc();
                 
                 // $message = $this->message;
                 // $location = $this->location;
@@ -83,7 +85,8 @@ class locRequestPage extends Page {
                 }else{
                     $this->location = $l;
                 }
-                    $_SESSION['locationId'] = $this->location->getId();
+                $_SESSION['locationId'] = $this->location->getId();
+                    // $_SESSION['locKey'] = $l;
                     
                 printData($locData);
     

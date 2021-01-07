@@ -6,4 +6,3 @@
         <li><a href="locRequest.php">LocationRequest</a></li>
         <li>Impressum</li>
     </ul>
-</div>

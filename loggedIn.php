@@ -43,6 +43,7 @@ class loggedInPage extends Page {
     }
 
     protected function viewContent(): void {
+        include_once 'html/showcase.html.php';
 
         $this->showTravLoc();
         $this->showLocPois();
