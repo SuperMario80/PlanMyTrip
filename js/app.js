@@ -17,13 +17,14 @@ createAutoComplete({
   root: document.querySelector('.autocomplete'),
   renderOption(location) {
     //  const imgSrc = location.images[0].source_url === 'N/A' ? '' : location.images[0].source_url;
-    // return `
-    //   <div>${location.results.name} (${location.results.id}) ${location.results.country_id} ${location.results.type}</div>
-      
-    // `;
     return `
-    <img src="" />${location.name} | ${location.id} | (${location.country_id}, ${location.type})
-    `;
+      <div>${location.name}      (${location.type},    ${location.country_id})</div>
+      
+    
+      `;
+    // return `
+    // <img src="" />${location.name} | ${location.id} | (${location.country_id}, ${location.type})
+    // `;
     
   },
   onOptionSelect(location) {

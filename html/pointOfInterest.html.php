@@ -50,7 +50,7 @@
     
       <?php foreach ($selectedPoi as $poi) : ?>  
 <div class="notification is-primary">
-            <div class="">#<?= $poi->getId() ?> |  Location #<?= $poi->getIdLocation() ?> | 
+            <div class="">Location#<?= $poi->getIdLocation() ?> |  #<?= $poi->getId() ?> | 
                 <a href="<?= htmlSpecialChars($poi->getPoiMap()) ?>" target="_blank"> <?= htmlSpecialChars($poi->getPoiName()) ?> |  </a>
                 <a href="<?= htmlSpecialChars($poi->getInfoLink()) ?>" target="_blank">Map</a>    
               |  <?= htmlSpecialChars($poi->getCity()) ?>  |  <?= htmlSpecialChars($poi->getLocationKey()) ?>   |  <?= htmlSpecialChars($poi->getAttraction()) ?> 

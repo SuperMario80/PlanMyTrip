@@ -36,23 +36,7 @@ class locRequestPage extends Page {
         $this->saveRequestedLoc();
         // include 'html/triposo.html.php';
 
-        //  printData($_REQUEST);
-        // printData($_POST);
-        // printData(file_get_contents('php://input'));
-        // $tr = unserialize($_SESSION['traveller']);
-        // $travId = $tr->getId();
-        // OPENS CREATE/UPDATE LOCATION FORM
-        // $id = intVal($_GET['id'] ?? 0);
-        // $this->location = $this->locationDao->readOne($id);
-        // if ($this->location == null) {
-        //     // $this->location->getIdTraveller() = $travId;
-        //     $this->location = new Location();
-        //     $this->location->setIdTraveller($this->getTraveller()->getId());
-        // }
-                
-                // $message = $this->message;
-                // $location = $this->location;
-                // include 'html/createLocation.html.php';
+  
             }
             
             

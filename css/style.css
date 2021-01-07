@@ -171,7 +171,7 @@ p {
   max-width: 1100px;
   margin: auto;
   /* padding: 0 2 rem; */
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 
@@ -211,23 +211,47 @@ figure .image img {
   justify-content: space-around;
 }
 
-.dropdown-item {
+/* .dropdown-item {
   display: flex;
   align-items: center;
   height: 60px;
   cursor: pointer;
-}
+} */
 
-.dropdown-item img {
+/* .dropdown-item img {
   height: 50px;
   margin-right: 10px;
-}
+} */
+
+.input, .textarea {
+
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  box-shadow: none;
+  display: inline-flex;
+  font-size: 1rem;
+  height: 2.5em;
+  justify-content: flex-start;
+  opacity: 0.9;
+  /* line-height: 1; */
+  padding: 1rem;
+  
+  
+   /* padding-bottom: calc(0.5em - 1px);
+  padding-left: calc(0.75em - 1px);
+  padding-right: calc(0.75em - 1px);
+  padding-top: calc(0.5em - 1px);  */
+  position: relative;
+  vertical-align: top;
+} 
+
 
 
 .dropdown {
-  display: inline-flex;
+  display: flex;
   position: relative;
-  vertical-align: bottom;
+  /* vertical-align: bottom; */
 }
 
 .dropdown.is-active .dropdown-menu, .dropdown.is-hoverable:hover .dropdown-menu {
@@ -242,7 +266,7 @@ figure .image img {
   padding-top: 4px;
   position: absolute;
   top: 100%;
-  z-index: 20;
+  /* z-index: 20; */
 }
 
 .dropdown-content {
@@ -265,7 +289,8 @@ figure .image img {
 a.dropdown-item,
 button.dropdown-item {
   padding-right: 3rem;
-  text-align: inherit;
+  text-align: start;
+  /* align-items: left; */
   white-space: nowrap;
   width: 100%;
 }
@@ -274,6 +299,7 @@ a.dropdown-item:hover,
 button.dropdown-item:hover {
   background-color: whitesmoke;
   color: #0a0a0a;
+  cursor: pointer;
 }
 
 a.dropdown-item.is-active,
