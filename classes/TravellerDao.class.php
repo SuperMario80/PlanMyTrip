@@ -66,6 +66,7 @@ class TravellerDao extends GenericDao {
             $travellers = $this->readAll();
             foreach ($travellers as $traveller) {
                 if ($traveller->getEmail() == $email){
+                    //  if(password_needs_rehash($traveller->getPassword(), PASSWORD_DEFAULT) == $password) {
                     if($traveller->getPassword() == $password) {
                     return $traveller;
                     }

@@ -19,7 +19,7 @@ class IndexPage extends Page {
     }
      
     protected function viewContent(): void {
-
+     
          include 'html/triposo.html.php';
     }
 }

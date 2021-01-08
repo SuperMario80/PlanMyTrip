@@ -15,24 +15,25 @@ class locRequestPage extends Page {
     public function __construct() {
         parent::__construct('PlanMyTrip', 'API Location');
         $this->message = '';
-        $this->locationDao = new LocationDao();
     }
-
-
+    
+    
     protected function init() : void {
         // if (isSet($_POST['save'])) {
-        //     // Save-Button gedrückt
+            //     // Save-Button gedrückt
             // $this->saveRequestedLoc();
-        // }
-
-      
-        // $this->saveLocationFromJSON();
-        // printData($this->saveLocationFromJSON());
+            // }
+            
+            
+            // $this->saveLocationFromJSON();
+            // printData($this->saveLocationFromJSON());
+            
+        }
         
-    }
-    
-    
-    protected function viewContent(): void {
+        
+        protected function viewContent(): void {
+        $this->locationDao = new LocationDao();
+        
         $this->saveRequestedLoc();
         // include 'html/triposo.html.php';
 

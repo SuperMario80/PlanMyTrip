@@ -65,8 +65,8 @@ class Traveller {
         $this->id = $id;
     }
     
-//     function setPasswordImKlartext(string $klartextPassword): void {
-//        $this->password = password_hash($klartextPassword, PASSWORD_DEFAULT);
+//     function setPasswordRead(string $readPassword): void {
+//        $this->password = password_hash($readPassword, PASSWORD_DEFAULT);
 //    }
 //    
 //    public function __toString() {

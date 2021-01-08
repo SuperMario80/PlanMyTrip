@@ -89,8 +89,9 @@ const locationTemplate = input => {
   return `
  
       <div class="content media-content">
-       <form>
-        <div><button type="button" id="phpSubmit" value="phpSubmit" class="button block right">Submit</button></div>
+        <form>
+          <div><button type="button" id="phpSubmit" value="phpSubmit" class="button block right">Submit</button>
+          </div>
         </form>
         <div class="content">
           <h4><a href="${input.attribution[1].url}" target="_blank">Location:  ${input.name}  | ${input.id}| ${input.country_id} | ${input.type}</a></h4>
@@ -121,6 +122,7 @@ const locationTemplate = input => {
 const poiTemplate = value => {
   // <pre>${JSON.stringify(value,null,2)}</pre>
   // ${input.id} 
+  // <img src="${value.images[0].sizes.medium.url}"/>
   return `
         <div class="content media-content notification is-secondary">
         
@@ -208,6 +210,7 @@ savePoi.addEventListener('click',(e)=>{
           poiName: currentPointofInterest.name,
           city: currentPointofInterest.location_ids[0],
           locationKey: currentPointofInterest.location_ids[2],
+          // locationKey: currentPointofInterest.location_id,
           attraction: currentPointofInterest.tag_labels[0],
           intro: currentPointofInterest.snippet,
           infoLink: currentPointofInterest.attribution[1].url,
