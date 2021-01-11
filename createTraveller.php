@@ -53,16 +53,36 @@ class CreateTravellerPage extends Page {
         $this->readFormData();
         
         if ($this->traveller->getId() == 0) {
-             if ($this->travellerDao->create($this->traveller)){
+            if($this->traveller->getEmail() == NULL  || $this->traveller->getFirstName() == NULL ||  $this->traveller->getLastName() == NULL||  $this->traveller->getPassword() == NULL){
+            
+                $this->message = 'Please fill out ALL data'; 
+    
+            }
+            else{
+                if ($this->travellerDao->create($this->traveller)){
                 $this->message =   "New Account created";
+
+                }else{
+                    $this->message = "Account already exists! No Traveller created";
+                    }
+                }
+
+
+
+
+
+
+
+        //      if ($this->travellerDao->create($this->traveller)){
+        //         $this->message =   "New Account created";
                
-        //    } elseif($this->traveller->setEmail($_POST['email']) == false) {
-        //        printData('hello');
+        // //    } elseif($this->traveller->setEmail($_POST['email']) == false) {
+        // //        printData('hello');
                
-        //         $this->message = "Please enter a valid email";
-           }else {
-                $this->message = "Account already exists! No Traveller created";
-           }
+        // //         $this->message = "Please enter a valid email";
+        //    }else {
+        //         $this->message = "Account already exists! No Traveller created";
+        //    }
            
                 
            

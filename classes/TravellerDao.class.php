@@ -38,44 +38,40 @@ class TravellerDao extends GenericDao {
         ];
     }
     
-//    // user-tabellen-spezifisch
+    //    // user-tabellen-spezifisch
     function checkLogin($email, $password): ?Traveller {
-        
-////         Login-Prüfung mit echter DB-Tabelle
-//        $sql = 'SELECT * FROM `customer` WHERE `email`=:email';
-//        $checkLoginStatement = $pdo->prepare($sql);
-//        $checkLoginStatement->execute([':email' => $e]);
-//        $email = $checkLoginStatement->fetchObject('email');
-//        if ($email) {
-//            if (password_verify($p, $email->getPassword())) {
-//                
-////                if (password_needs_rehash($email->getPassword(), PASSWORD_DEFAULT)) {
-////                    $user->setPasswordImKlartext($p);
-//                    $this->update($email);
-////                }
-//
-//                return true;
-//            }
-//        }
-//        return false;
-
-
-
-            //CHECKS IF EMAIL AND PASSWORD MATCH WITH 
-            //EXISTING TRAVELLER IN DATABASE
-            $travellers = $this->readAll();
-            foreach ($travellers as $traveller) {
-                if ($traveller->getEmail() == $email){
-                    //  if(password_needs_rehash($traveller->getPassword(), PASSWORD_DEFAULT) == $password) {
-                    if($traveller->getPassword() == $password) {
-                    return $traveller;
-                    }
-                }
-                    
-            }
-            return null;
             
-    }
+                        //CHECKS IF EMAIL AND PASSWORD MATCH WITH 
+                        //EXISTING TRAVELLER IN DATABASE
+                        $travellers = $this->readAll();
+                        foreach ($travellers as $traveller) {
+                            if ($traveller->getEmail() == $email){
+                                if($traveller->getPassword() == $password) {
+                                return $traveller;
+                                }
+                            }
+                                
+                        }
+                        return null;
+
+
+            //Try with password hash
+            // $travellers = $this->readAll();
+            // foreach ($travellers as $traveller) {
+            //     if ($traveller->getEmail() == $email){
+            //         if(password_verify($password, $traveller->getPassword())) {
+            //             // if(password_needs_rehash($traveller->getPassword(), PASSWORD_DEFAULT)) {
+            //             //     $traveller->setPasswordRead($password);
+            //             //     $this->update($traveller);
+            //             // }
+            //             // printData($traveller);
+            //             return $traveller;
+            //         }
+                    
+            //     }
+            // }
+            // return Null;
+        }
     
 
 

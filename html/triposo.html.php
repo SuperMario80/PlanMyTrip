@@ -20,7 +20,9 @@
       <div class="autocomplete"></div>
     </div>
   </header>
-
+      <p>
+            <?=$message?>
+        </p>
       <!-- <form>
         <div><button type="button" id="phpSubmit" value="phpSubmit" class="button block right">Submit</button></div>
         </form> -->

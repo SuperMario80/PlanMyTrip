@@ -19,7 +19,7 @@ class IndexPage extends Page {
     }
      
     protected function viewContent(): void {
-     
+        $message = $_SESSION['message'] ?? '';
          include 'html/triposo.html.php';
     }
 }

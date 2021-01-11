@@ -56,18 +56,19 @@ class Traveller {
     }
     function setPassword(string $password): void {
         $this->password = $password;
-    }
+        //  $this->password = password_hash($password, PASSWORD_DEFAULT);
+        }
     
-    function getId(): int {
-        return $this->id;
-    }
-    function setId(int $id): void {
-        $this->id = $id;
-    }
-    
-//     function setPasswordRead(string $readPassword): void {
-//        $this->password = password_hash($readPassword, PASSWORD_DEFAULT);
-//    }
+        function getId(): int {
+            return $this->id;
+        }
+        function setId(int $id): void {
+            $this->id = $id;
+        }
+        
+        //     function setPasswordRead(string $readPassword): void {
+        //        $this->password = password_hash($readPassword, PASSWORD_DEFAULT);
+        //    }
 //    
 //    public function __toString() {
 //        return 'Name ' . $this->firstName . ' ' . $this->lastName;

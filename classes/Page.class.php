@@ -61,11 +61,11 @@ abstract class Page {
     // LOGIN HANDLER (VALIDATION)
     private function doLogin(): void {
         $this->email = $_POST['email'] ?? '';
-        $password = $_POST['password'] ?? '';
+        $this->password = $_POST['password'] ?? '';
         
         $this->travellerDao = new TravellerDao();
         //VALIDATION OF THE DATA
-        if ($tr = $this->travellerDao->checkLogin($this->email, $password)) {
+        if ($tr = $this->travellerDao->checkLogin($this->email, $this->password)) {
             $this->loggedIn = true;
             $_SESSION['email'] = $this->email;
             $_SESSION['traveller'] = serialize($tr);

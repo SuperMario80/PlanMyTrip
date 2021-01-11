@@ -64,9 +64,13 @@ class locRequestPage extends Page {
                 $this->location->setTravelLink($locData['travelLink']);
 
                 $l = $this->locationDao->findLocation($this->location->getLocationKey());
-
+                $message ='';
                 if($l == NULL){
-                    printData($this->locationDao->create($this->location));
+                    $message = 
+                    $this->locationDao->create($this->location)
+                    ? 'location saved'
+                    : 'location not saved';
+
                 }else{
                     $this->location = $l;
                 }
@@ -75,14 +79,17 @@ class locRequestPage extends Page {
                     
                 printData($locData);
     
-                }
-                  else{
-            throw new Exception( "no json data received");
-        }
+            } 
+            // else {
+            //     $message = 'no json data received';
+            //     // throw new Exception( "no json data received");
+            // }
         }catch (Exception $e){
             printData($e->getMessage());
         }
-            
+        $_SESSION['message'] = $message;
+         header('Location: index.php');
+         exit;   
     }
 }
 
