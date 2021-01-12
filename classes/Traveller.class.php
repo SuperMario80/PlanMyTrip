@@ -20,7 +20,6 @@ class Traveller {
         $this->email = $email;
         $this->password = $password;
         
- 
     }
     
     
@@ -48,23 +47,23 @@ class Traveller {
             printData("$email is a valid email address");
             $this->email = $email;
         }
-        
     }
     
     function getPassword(): string {
         return $this->password;
     }
+
     function setPassword(string $password): void {
-        $this->password = $password;
-        //  $this->password = password_hash($password, PASSWORD_DEFAULT);
-        }
+        // $this->password = $password;
+         $this->password = password_hash($password, PASSWORD_DEFAULT);
+    }
     
-        function getId(): int {
-            return $this->id;
-        }
-        function setId(int $id): void {
-            $this->id = $id;
-        }
+    function getId(): int {
+        return $this->id;
+    }
+    function setId(int $id): void {
+        $this->id = $id;
+    }
         
         //     function setPasswordRead(string $readPassword): void {
         //        $this->password = password_hash($readPassword, PASSWORD_DEFAULT);

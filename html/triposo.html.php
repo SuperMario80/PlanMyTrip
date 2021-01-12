@@ -27,9 +27,10 @@
         <div><button type="button" id="phpSubmit" value="phpSubmit" class="button block right">Submit</button></div>
         </form> -->
 <div class="container py-3">
-        
+  <div class="items">
       <div id="summary"></div>
-      <div id="summary2"></div>
+</div>
+
       <!-- <div id="summaryPoi"></div> -->
     <!-- </div> -->
 

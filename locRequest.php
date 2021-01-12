@@ -55,7 +55,12 @@ class locRequestPage extends Page {
                 $locData = json_decode($content, true);
                 //SAVING POST DATA IN VARIABLES
                 $this->location = new Location();
+
+
+                //gets Id from logged in Traveller
+                // $travId = 
                 $this->location->setIdTraveller($this->getTraveller()->getId());
+
                 $this->location->setLocation($locData['location']);
                 $this->location->setLocationKey($locData['locationKey']);
                 $this->location->setClassification($locData['classification']);
@@ -63,9 +68,13 @@ class locRequestPage extends Page {
                 $this->location->setIntro($locData['intro']);
                 $this->location->setTravelLink($locData['travelLink']);
 
-                $l = $this->locationDao->findLocation($this->location->getLocationKey());
+                // Variable for LocationKey+IdTraveller
+                $l = $this->locationDao->findLocation($this->location->getLocationKey(),$this->location->getIdTraveller());
+               
                 $message ='';
-                if($l == NULL){
+                
+                //Checks if locationKey + IdTraveller doesnt exist
+                if($l == NULL){ 
                     $message = 
                     $this->locationDao->create($this->location)
                     ? 'location saved'
@@ -73,23 +82,24 @@ class locRequestPage extends Page {
 
                 }else{
                     $this->location = $l;
+                    $message = 'Location already exists';
                 }
-                $_SESSION['locationId'] = $this->location->getId();
-                    // $_SESSION['locKey'] = $l;
+                // $_SESSION['locationId'] = $this->location->getId();
                     
                 printData($locData);
     
             } 
-            // else {
-            //     $message = 'no json data received';
-            //     // throw new Exception( "no json data received");
-            // }
+            else {
+                $message = 'no json data received';
+                // throw new Exception( "no json data received");
+            }
         }catch (Exception $e){
             printData($e->getMessage());
         }
+
         $_SESSION['message'] = $message;
-         header('Location: index.php');
-         exit;   
+        header('Location: index.php');
+        exit;
     }
 }
 

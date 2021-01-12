@@ -52,17 +52,18 @@ class LocationDao extends GenericDao {
         ];
     }
 
-    public function findLocation(string $locationKey): ?object {
+    public function findLocation(string $locationKey, int $idTraveller): ?object {
         
 
         if ($this->findLocationStatement == null) {
-            $sql = 'SELECT * FROM `' . $this->getTableName() . '` WHERE `locationKey`=:locationKey';
+            $sql = 'SELECT * FROM `' . $this->getTableName() . '` WHERE `locationKey`=:locationKey AND `idTraveller`=:idTraveller';
             //PREPARES SQL  STATEMENT
             $this->findLocationStatement = $this->getConnection()->prepare($sql);
         }
 
         $array = [
-            ':locationKey' => $locationKey
+            ':locationKey' => $locationKey,
+            ':idTraveller' => $idTraveller,
         ];
         //EXECUTES STATEMENT WITH PASSED-IN PARAMETER
         $this->findLocationStatement->execute($array);

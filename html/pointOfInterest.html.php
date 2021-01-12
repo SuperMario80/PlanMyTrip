@@ -1,49 +1,3 @@
-<!-- <form method="post">
-    
-    
-   
-    <table border="1">
-      
-        <tr>
-        <th><b><i>PointOfInterest</i></b></th>
-        <th></th>
-        <th>Id</th>
-        <th>idLocation</th>
-        <th>PointOfInterest</th>
-        <th>Attraction</th>
-        <th>Intro</th>
-        <th>InfoLink</th>
-        <th>Map</th>
-        <th>notes</th>
-        </tr>
-        
-        <?php foreach ($selectedPoi as $poi) : ?>
-            <tr>
-            <td></td>                      
-                <td>
-                    <button name="updatePoi" value="<?= $poi->getId() ?>" >update</button>
-                </td>
-                   
-                <td><?= $poi->getId() ?></td>
-                <td><?= $poi->getIdLocation() ?></td>
-                <td><?= htmlSpecialChars($poi->getPoiName()) ?></td>
-                <td><?= htmlSpecialChars($poi->getAttraction()) ?></td>
-                <td><?= htmlSpecialChars($poi->getIntro()) ?></td>
-                <td><?= htmlSpecialChars($poi->getInfoLink()) ?></td>
-                <td><?= htmlSpecialChars($poi->getPoiMap()) ?></td>
-                <td><?= htmlSpecialChars($poi->getNotes()) ?></td>
-            </tr>
-        <?php endforeach; ?>
-        
-    </table>
-     <button name="newPoi" value="<?= $location->getId() ?>" >new PointOfInterest</button>
-     <button name="delete" value="2" >Delete Poi</button>
-       
-    <div>-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</div>
-    <br>
-    <br>
-</form> -->
-
 <div class="content notification is-secondary">
 <h3 class="content media-content ">Points Of Interest</h3>
 <form method="post">
@@ -66,3 +20,37 @@
      <button class="btn btn-dark" name="delete" value="2" >Delete Poi</button>
 </form>
 </div>
+
+
+<!-- <div class="content notification is-secondary">
+<h3 class="content media-content ">Points Of Interest</h3>
+<form method="post">
+
+<?php foreach ($selectedPoi as $poi) : ?> 
+<li class="results-grid__col">
+    <div class="square">
+        <div class="results-grid__inner">
+            <div class="zoom-image-holder">
+                <div class="zoom-image-holder__inner results-grid-result__inner">
+                    <a href="https://travelpicker.com/destinations/africa/cape-verde/" class="js-destination" data-post_title="Cape Verde" data-post_name="cape-verde" data-post_id="70" data-result_index="1">
+                        <span class="results-grid-result__title__holder">
+                            <span class="results-grid-result__title">Cape Verde</span>
+                            <span class="results-grid-result__subtitle">Africa</span>
+                        </span>
+                        <ul class="results-grid-result__meta"></ul>
+                    </a>
+                    <img src="https://travelpicker.com/wp-content/uploads/2015/12/shutterstock_363111110-380x380.jpg" class="zoom" alt="Africa">
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-dark" name="updatePoi" value="<?= $poi->getId() ?>" >update</button>
+              </div>
+</li>
+<?php endforeach; ?>
+
+      <button class="btn btn-dark" name="newPoi" value="<?= $location->getId() ?>" >new PointOfInterest</button>
+     <button class="btn btn-dark" name="delete" value="2" >Delete Poi</button>
+
+</form>
+</div> -->

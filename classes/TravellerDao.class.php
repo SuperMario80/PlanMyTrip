@@ -39,38 +39,38 @@ class TravellerDao extends GenericDao {
     }
     
     //    // user-tabellen-spezifisch
-    function checkLogin($email, $password): ?Traveller {
+    function checkLogin($email, $pw): ?Traveller {
             
-                        //CHECKS IF EMAIL AND PASSWORD MATCH WITH 
-                        //EXISTING TRAVELLER IN DATABASE
-                        $travellers = $this->readAll();
-                        foreach ($travellers as $traveller) {
-                            if ($traveller->getEmail() == $email){
-                                if($traveller->getPassword() == $password) {
-                                return $traveller;
-                                }
-                            }
+                        // //CHECKS IF EMAIL AND PASSWORD MATCH WITH 
+                        // //EXISTING TRAVELLER IN DATABASE
+                        // $travellers = $this->readAll();
+                        // foreach ($travellers as $traveller) {
+                        //     if ($traveller->getEmail() == $email){
+                        //         if($traveller->getPassword() == $password) {
+                        //         return $traveller;
+                        //         }
+                        //     }
                                 
-                        }
-                        return null;
+                        // }
+                        // return null;
 
 
-            //Try with password hash
-            // $travellers = $this->readAll();
-            // foreach ($travellers as $traveller) {
-            //     if ($traveller->getEmail() == $email){
-            //         if(password_verify($password, $traveller->getPassword())) {
-            //             // if(password_needs_rehash($traveller->getPassword(), PASSWORD_DEFAULT)) {
-            //             //     $traveller->setPasswordRead($password);
-            //             //     $this->update($traveller);
-            //             // }
-            //             // printData($traveller);
-            //             return $traveller;
-            //         }
+            // Try with password hash
+            $travellers = $this->readAll();
+            foreach ($travellers as $traveller) {
+                if ($traveller->getEmail() == $email){
+                    if(password_verify($pw, $traveller->getPassword())) {
+                        // if(password_needs_rehash($traveller->getPassword(), PASSWORD_DEFAULT)) {
+                        //     $traveller->setPasswordRead($password);
+                        //     $this->update($traveller);
+                        // }
+                        // printData($traveller);
+                        return $traveller;
+                    }
                     
-            //     }
-            // }
-            // return Null;
+                }
+            }
+            return Null;
         }
     
 

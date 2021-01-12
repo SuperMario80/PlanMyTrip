@@ -41,7 +41,7 @@ abstract class Page {
     //  INIT SESSION AFTER LOGIN CHECK
     private function initSession(): void {
         // echo 'SESSION';
-        // printData($_SESSION);
+        printData($_SESSION);
         $this->message = '';
         $this->email = $_SESSION['email'] ?? '';
         $this->loggedIn = $this->email != '';
@@ -61,11 +61,11 @@ abstract class Page {
     // LOGIN HANDLER (VALIDATION)
     private function doLogin(): void {
         $this->email = $_POST['email'] ?? '';
-        $this->password = $_POST['password'] ?? '';
+        $password = $_POST['password'] ?? '';
         
         $this->travellerDao = new TravellerDao();
         //VALIDATION OF THE DATA
-        if ($tr = $this->travellerDao->checkLogin($this->email, $this->password)) {
+        if ($tr = $this->travellerDao->checkLogin($this->email, $password)) {
             $this->loggedIn = true;
             $_SESSION['email'] = $this->email;
             $_SESSION['traveller'] = serialize($tr);
