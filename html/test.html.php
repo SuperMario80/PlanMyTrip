@@ -90,3 +90,16 @@
        
    
 </form> -->
+
+   <!-- // //CHECKS IF EMAIL AND PASSWORD MATCH WITH 
+                        // //EXISTING TRAVELLER IN DATABASE
+                        // $travellers = $this->readAll();
+                        // foreach ($travellers as $traveller) {
+                        //     if ($traveller->getEmail() == $email){
+                        //         if($traveller->getPassword() == $password) {
+                        //         return $traveller;
+                        //         }
+                        //     }
+                                
+                        // }
+                        // return null; -->

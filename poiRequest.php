@@ -10,7 +10,6 @@ class poiRequestPage extends Page {
         $this->message = '';
     }
 
-    
     protected function init() : void {}
     
     
@@ -33,8 +32,6 @@ class poiRequestPage extends Page {
                 //SAVING POST DATA IN VARIABLES
                 $this->poi = new PointOfInterest();
  
-                // $this->poi->setIdLocation((intVal($this->getIdLocation())));
-                // $this->poi->setIdLocation($this->getLocation()->getId());
                 $l = $this->locationDao->findLocation($poiData['locationKey'],$this->getTraveller()->getId());
                     // $l auf null prüfen
 

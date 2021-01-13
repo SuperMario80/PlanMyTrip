@@ -48,33 +48,45 @@ class loggedInPage extends Page {
         $this->showTravLoc();
         $this->showLocPois();
 }
-
+        //SHOWS ALL SAVED LOCATIONS FROM LOGGED-IN TRAVELLER
         private function showTravLoc() {
-            // printData($_SESSION);
+
+            // gets data from logged-in Traveller
             $tr = unserialize($_SESSION['traveller']);
 
+            //id from current traveller
             $idValue = $tr->getId();
+
+            //variable for database column 'idTraveller'
             $foreignId = "idTraveller";
             $this->locationDao = new LocationDao();
+
+            //compares all data from Location-Table where idTraveller matches current Travellers Id
             $this->locations = $this->locationDao->readForeign($idValue, $foreignId);
         }
-
+        //SHOWS ALL SAVED POINTS OF INTEREST TO EVERY LOCATION FROM LOGGED-IN TRAVELLER
         private function showLocPois() {
+            //Shows every Poi for saved Location
             foreach ($this->locations as $location) {
-                $selectedLoc = $this->locations;
+                
+                //id from Travellers saved Location
                 $idValue = $location->getId();
+
+                //variable for database column 'idLocation' in PointOfInterest
                 $foreignId = "idLocation";
-                // intVal($_GET['id']);
-                include 'html/location.html.php';
-                // $idLocValue = $idValue;
-                // printData($idLocValue);
+                
                 
                 $this->pointOfInterestDao = new PointOfInterestDao();
+
+                //compares all data from PointOfInterest-Table where idPoi matches Location Id
                 $this->pointOfInterest = $this->pointOfInterestDao->readForeign($idValue, $foreignId);
+                
 
                 $selectedPoi = $this->pointOfInterest;
-                // include 'html/location.html.php';
-                // if($idValue === $selectedPoi->idLocation()){
+
+                include 'html/location.html.php';
+
+                //shows html for PointOfINterst only when data exists
                 if($selectedPoi != NULL){
                 include 'html/pointOfInterest.html.php';
                 }

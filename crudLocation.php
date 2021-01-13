@@ -4,63 +4,69 @@ declare(strict_types=1);
 require_once 'inc/tools.inc.php';
 
 class crudLocationPage extends Page {
+
     
     public function __construct() {
         parent::__construct('PlanMyTrip', 'Location');
         $this->message = '';
+
     }
 
 
     protected function init() : void {
 
         if (isSet($_POST['back']) or !isSet($_GET['id'])) { 
-            // $travId = $this->location->getTravellerId();
-        // printData($tr);
+            
             header('Location: loggedIn.php');
             exit;
         }
-        // $this->saveRequestedLoc();
-        // printData($this->saveRequestedLoc());
-       
-    }
-    
 
+    }
+
+    
     protected function viewContent(): void {
-        // $tr = unserialize($_SESSION['traveller']);
-        // $travId = $tr->getId();
+        
         // OPENS CREATE/UPDATE LOCATION FORM
         $id = intVal($_GET['id'] ?? 0);
         $this->locationDao = new LocationDao();
         $this->location = $this->locationDao->readOne($id);
+
         if ($this->location == null) {
-            // $this->location->getIdTraveller() = $travId;
+
             $this->location = new Location();
             $this->location->setIdTraveller($this->getTraveller()->getId());
+
         }
         
         if (isSet($_POST['save'])) {
-            // Save-Button gedrückt
-            $this->saveLocation();
+            
+            $this->save();
+
         }
         
         if (isSet($_POST['delete'])) {
-            // Delete-Button gedrückt
-            $this->deleteLocation();
+            
+            $this->delete();
+
         }
         
         $message = $this->message;
         $location = $this->location;
         include 'html/createLocation.html.php';
+
     }
+
     
-    private function saveLocation() {
+    // SAVES CREATED OR UPDATED LOCATION IN DATABASE
+    private function save() {
         $this->readFormData();
         
         if ($this->location->getId() == 0) {
             if($this->location->getLocation() == NULL  || $this->location->getClassification() == NULL){
-            // if(empty($this->location->getLocation()) || empty($this->location->getClassification())){
-                $this->message = 'Please fill out Location and Category'; 
-    
+
+            $this->message = 'Please fill out Location and Category'; 
+            
+            // create new Location
             }else{
                 if($this->locationDao->create($this->location)){
                 printData($this->location->getLocation());
@@ -70,9 +76,9 @@ class crudLocationPage extends Page {
                 }else{
                     $this->message = 'Location already exists';
                     }
-                }
+            }
 
-
+        // update existing Location
         } else {
             $this->message = $this->locationDao->update($this->location)
                     ? 'Location Updated'
@@ -81,8 +87,8 @@ class crudLocationPage extends Page {
         
     }
 
-
-    private function deleteLocation() {
+    // DELETES EXISTING LOCATION
+    private function delete() {
         $this->readFormData();
         //TODO double confirm 'Delete Location'
         if ($this->locationDao->delete($this->location)) {

@@ -18,27 +18,14 @@ class locRequestPage extends Page {
     }
     
     
-    protected function init() : void {
-        // if (isSet($_POST['save'])) {
-            //     // Save-Button gedrückt
-            // $this->saveRequestedLoc();
-            // }
-            
-            
-            // $this->saveLocationFromJSON();
-            // printData($this->saveLocationFromJSON());
-            
-        }
+    protected function init() : void {}
         
         
-        protected function viewContent(): void {
-        $this->locationDao = new LocationDao();
-        
-        $this->saveRequestedLoc();
-        // include 'html/triposo.html.php';
+    protected function viewContent(): void {
 
-  
-            }
+        $this->locationDao = new LocationDao();
+        $this->saveRequestedLoc();
+    }
             
             
      private function saveRequestedLoc() {

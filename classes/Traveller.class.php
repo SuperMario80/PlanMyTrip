@@ -23,19 +23,26 @@ class Traveller {
     }
     
     
-    
     function getFirstName(): string {
         return $this->firstName;
     }
+
+
     function setFirstName(string $firstName): void {
         $this->firstName = $firstName;
     }
+
+
     function getLastName(): string {
         return $this->lastName;
     }
+
+
     function setLastName(string $lastName): void {
         $this->lastName = $lastName;
     }
+
+
     function getEmail(): string {
         return $this->email;
     }
@@ -49,28 +56,31 @@ class Traveller {
         }
     }
     
+
     function getPassword(): string {
+
         return $this->password;
     }
 
     function setPassword(string $password): void {
-        // $this->password = $password;
+
          $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
     
     function getId(): int {
+
         return $this->id;
     }
+
+
     function setId(int $id): void {
+
         $this->id = $id;
     }
-        
-        //     function setPasswordRead(string $readPassword): void {
-        //        $this->password = password_hash($readPassword, PASSWORD_DEFAULT);
-        //    }
-//    
-//    public function __toString() {
-//        return 'Name ' . $this->firstName . ' ' . $this->lastName;
-//    }
-    
+
+
+    function setPasswordRead(string $readPassword): void {
+        $this->password = password_hash($readPassword, PASSWORD_DEFAULT);
+    }
+
 }

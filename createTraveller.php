@@ -5,9 +5,6 @@ require_once 'inc/tools.inc.php';
 
 class CreateTravellerPage extends Page {
     
-    // private string $message;
-    // private TravellerDao $travellerDao;
-    // private ?Traveller $traveller;
 
     public function __construct() {
         parent::__construct('Database', 'Create Traveller');
@@ -61,6 +58,11 @@ class CreateTravellerPage extends Page {
             else{
                 if ($this->travellerDao->create($this->traveller)){
                 $this->message =   "New Account created";
+
+                $this->email = '';
+                $this->firstName =''; 
+                $this->lastName = ''; 
+                $this->password = '';
 
                 }else{
                     $this->message = "Account already exists! No Traveller created";

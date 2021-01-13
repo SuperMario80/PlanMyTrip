@@ -8,10 +8,10 @@ abstract class Page {
     private bool $loggedIn;
     private string $email;
     private string $message;
-    //
+    
     private Traveller $traveller;
     private Location $location;
-    // private PointOfInterest $pointOfInterest;
+
     private ?PointOfInterest $poi;
     
     private TravellerDao $travellerDao;
@@ -40,8 +40,7 @@ abstract class Page {
     }
     //  INIT SESSION AFTER LOGIN CHECK
     private function initSession(): void {
-        // echo 'SESSION';
-        printData($_SESSION);
+       
         $this->message = '';
         $this->email = $_SESSION['email'] ?? '';
         $this->loggedIn = $this->email != '';
@@ -107,7 +106,6 @@ abstract class Page {
         $password = "";   
         $email = $this->email;
         if ($this->loggedIn) {
-            // include 'html/navigation.html.php';
             include 'html/logout.html.php';
 
         } else {
