@@ -6,7 +6,7 @@ require_once 'inc/tools.inc.php';
 class poiRequestPage extends Page {
 
     public function __construct() {
-        parent::__construct('PlanMyTrip', 'API POI');
+        parent::__construct('Save PointOfInterest Request');
         $this->message = '';
     }
 

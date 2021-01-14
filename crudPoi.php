@@ -5,19 +5,16 @@ require_once 'inc/tools.inc.php';
 
 class showPoiPage extends Page {
     
-    // private string $message;
-    // // private PointOfInterestDao $pointOfInterestDao;
-    // private ?PointOfInterest $poi;
 
     public function __construct() {
-        parent::__construct('PlanMyTrip', 'PointOfInterest');
+        parent::__construct('CRUD PointOfInterest');
         $this->message = '';
     }
 
     protected function init() : void {
         
         if (isSet($_POST['back']) or !isSet($_GET['id'])) {
-            header('Location: loggedIn.php');
+            header('Location: travellerArea.php');
             exit;
         }
     }
@@ -32,14 +29,13 @@ class showPoiPage extends Page {
             $this->poi->setIdLocation(intVal($_GET['idLoc']));
         }
         
+        
         if (isSet($_POST['savePoi'])) {
-            // Save-Button gedrückt
             $this->savePoi();
             
         }
         
         if (isSet($_POST['deletePoi'])) {
-            // Delete-Button gedrückt
             $this->deletePoi();
         }
         
@@ -67,26 +63,6 @@ class showPoiPage extends Page {
                     }
                 }
 
-
-
-
-
-
-        
-        // if ($this->poi->getId() == 0) {
-        //     $this->message = $this->pointOfInterestDao->create($this->poi)
-        //             ? 'New Point Of Interest created'
-        //             : 'Point Of Interest already exists';
-
-
-
-
-
-
-
-
-
-
         } else {
             $this->message = $this->pointOfInterestDao->update($this->poi)
                     ? 'Point Of Interest Updated'
@@ -94,6 +70,7 @@ class showPoiPage extends Page {
         }
         
     }
+
 
     private function deletePoi() {
         $this->readFormData();
@@ -106,6 +83,7 @@ class showPoiPage extends Page {
         }
     }
     
+
     private function readFormData() {
         $this->poi->setIdLocation(intval($_POST['idLocation']));
         $this->poi->setPoiName($_POST['poiName']);

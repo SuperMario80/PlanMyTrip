@@ -5,9 +5,9 @@ require_once 'inc/tools.inc.php';
 
 class CreateTravellerPage extends Page {
     
-
+    
     public function __construct() {
-        parent::__construct('Database', 'Create Traveller');
+        parent::__construct('Register');
         $this->message = '';
     }
 
@@ -53,18 +53,18 @@ class CreateTravellerPage extends Page {
             if($this->traveller->getEmail() == NULL  || $this->traveller->getFirstName() == NULL ||  $this->traveller->getLastName() == NULL||  $this->traveller->getPassword() == NULL){
             
                 $this->message = 'Please fill out ALL data'; 
+
     
             }
             else{
                 if ($this->travellerDao->create($this->traveller)){
                 $this->message =   "New Account created";
+                // printData(" show $this->email");
+                header('Location: index.php?mess=1');
+                exit;
 
-                $this->email = '';
-                $this->firstName =''; 
-                $this->lastName = ''; 
-                $this->password = '';
-
-                }else{
+                
+                } else{
                     $this->message = "Account already exists! No Traveller created";
                     }
                 }
@@ -116,7 +116,7 @@ class CreateTravellerPage extends Page {
     private function readFormData() {
         $this->traveller->setFirstName($_POST['firstName']);
         $this->traveller->setLastName($_POST['lastName']);
-        $this->traveller->setEmail($_POST['email']);
+        $email = $this->traveller->setEmail($_POST['email']);
         $this->traveller->setPassword($_POST['password']);
     }
 

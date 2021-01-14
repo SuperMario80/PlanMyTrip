@@ -50,7 +50,7 @@ class TravellerDao extends GenericDao {
                 if ($traveller->getEmail() == $email){
                     // reads and checks hashed password
                     if(password_verify($pw, $traveller->getPassword())) {
-
+                        // checks if hash algorithm is still PASSWORD_DEFAULT (can change due to new security standards)
                         if(password_needs_rehash($traveller->getPassword(), PASSWORD_DEFAULT)) {
                             $traveller->setPasswordRead($password);
                             $this->update($traveller);

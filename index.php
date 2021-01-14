@@ -5,10 +5,9 @@ require_once 'inc/tools.inc.php';
 class IndexPage extends Page {
 
     public function __construct() {
-        parent::__construct('PlanMyTrip Search Engine', 'Welcome to PlanMyTrip');
+        parent::__construct('PlanMyTrip TravelSearch Engine');
         $this->message = '';
-        // $tr = '';
-        // $this->password = '';
+       
     }
 
     protected function init(): void {
@@ -16,11 +15,19 @@ class IndexPage extends Page {
              header('Location: createTraveller.php?id=0');
              exit;
          }
-    }
-     
-    protected function viewContent(): void {
+
+        }
+        
+        protected function viewContent(): void {
         $message = $_SESSION['message'] ?? '';
-         include 'html/triposo.html.php';
+        include 'html/searchMyTrip.html.php';
+
+        $mess = isset($_REQUEST['mess']) ? $_REQUEST['mess'] : null;
+        if($mess == 1) {
+            $message =   "New Account created";
+           echo 'New Account created'; 
+        }
+
     }
 }
 

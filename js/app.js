@@ -91,7 +91,8 @@ const locationTemplate = (input) => {
       <div class="notification is-primary">
           <p class="small">INTRO</p>
           <p class="small">${input.intro}</p>
-      </div>
+	  </div>
+	  <div class="items">
       `;
 };
 // <div><input type="submit" id="phpSubmit" value="phpSubmit" class="button block right"></div>
@@ -110,6 +111,59 @@ const locationTemplate = (input) => {
 //   };
 
 const poiTemplate = (value) => {
+	//1st element
+	const itemDiv = document.createElement('div');
+	itemDiv.className = 'item';
+
+	//2nd element with childNode
+	const imgDiv = document.createElement('div');
+	imgDiv.className = 'item-image';
+	const img = document.createElement('img');
+	img.setAttribute('src', `${value.images[0].sizes.medium.url}`);
+
+	const itemTextDiv = document.createElement('div');
+	itemTextDiv.className = 'item-text';
+
+	const itwDiv = document.createElement('div');
+	itwDiv.className = 'item-text-wrap';
+
+	const poiName = document.createElement('h2');
+	poiName.className = 'item-text-title';
+
+	const poiLink = document.createElement('a');
+	poiLink.setAttribute('href', `${value.attribution[1].url}`);
+	poiLink.innerText = `${value.name}`;
+	poiName.appendChild(poiLink);
+
+	const country = document.createElement('p');
+	country.className = 'item-text-category';
+
+	const wikiLink = document.createElement('a');
+	wikiLink.setAttribute('href', `${value.attribution[0].url}`);
+	wikiLink.innerText = `${value.location_ids[2]}`;
+	country.appendChild(wikiLink);
+
+	const btn = document.createElement('button');
+	btn.className = 'button block center';
+	btn.id = `poiSubmit${poiCount}`;
+	btn.setAttribute('type', 'button');
+	btn.setAttribute('data-count', `${poiCount}`);
+	btn.setAttribute('value', `poiSubmit${poiCount}`);
+	btn.innerText = 'Submit';
+
+	const itemDesc = document.createElement('div');
+	itemDesc.className = 'item-desc';
+	itemDesc.innerHTML = `${value.snippet}`;
+
+	poiName.insertAdjacentElement('afterend', country);
+	country.insertAdjacentElement('afterend', btn);
+	imgDiv.appendChild(img);
+
+	itwDiv.appendChild(poiName);
+	itemTextDiv.appendChild(itwDiv);
+	itemDiv.appendChild(imgDiv);
+	itemDiv.insertAdjacentElement('afterend', itemDesc);
+	console.log('hello');
 	// <pre>${JSON.stringify(value,null,2)}</pre>
 	// ${input.id}
 	// <img src="${value.images[0].sizes.medium.url}"/>
@@ -132,35 +186,35 @@ const poiTemplate = (value) => {
 	//           </div>
 	//      `;
 
-	return `
-              <li class="item">
-                  
-                      <div class="item-image">
-                        <img src="${value.images[0].sizes.medium.url}" class="zoom" alt="">
-                        </div>
-                      <div class="item-text">
-                          <div class="item-text-wrap">
-                              <div class="zoom-image-holder__inner results-grid-result__inner">
-                                    <span class="results-grid-result">
-                                      <a href="" data-post_title="${value.attribution[1]
-											.url}" data-post_name="" data-post_id="" data-result_index="">
-                                          <span class="results-grid-result__title">${value.name}</span>
-                                      </a>
-                                      <a href="" data-post_title="${value.attribution[0]
-											.url}" data-post_name="" data-post_id="" data-result_index="">
-                                          <span class="results-grid-result__subtitle">${value.location_ids[0]}</span>
-                                          </a>
-                                          <span class="results-grid-result__subtitle">${value.location_ids[2]}</span>
-                                        </span>
-                                      <ul class="results-grid-result__meta"></ul>
-                    
-                              </div>
-                          </div>
-                      </div>
-                  <div class="content">${value.snippet}</div>
-                  <button type="button" id="poiSubmit${poiCount}" data-count="${poiCount}" value="poiSubmit${poiCount}" class="button block right">Submit
-            </li>
-    `;
+	// return `
+	//           <li class="item">
+
+	//                   <div class="item-image">
+	//                     <img src="${value.images[0].sizes.medium.url}" class="zoom" alt="">
+	//                     </div>
+	//                   <div class="item-text">
+	//                       <div class="item-text-wrap">
+	//                           <div class="zoom-image-holder__inner results-grid-result__inner">
+	//                                 <span class="results-grid-result">
+	//                                   <a href="" data-post_title="${value.attribution[1]
+	// 										.url}" data-post_name="" data-post_id="" data-result_index="">
+	//                                       <span class="results-grid-result__title">${value.name}</span>
+	//                                   </a>
+	//                                   <a href="" data-post_title="${value.attribution[0]
+	// 										.url}" data-post_name="" data-post_id="" data-result_index="">
+	//                                       <span class="results-grid-result__subtitle">${value.location_ids[0]}</span>
+	//                                       </a>
+	//                                       <span class="results-grid-result__subtitle">${value.location_ids[2]}</span>
+	//                                     </span>
+	//                                   <ul class="results-grid-result__meta"></ul>
+
+	//                           </div>
+	//                       </div>
+	//                   </div>
+	//               <div class="content">${value.snippet}</div>
+	//               <button type="button" id="poiSubmit${poiCount}" data-count="${poiCount}" value="poiSubmit${poiCount}" class="button block right">Submit</button>
+	//         </li>
+	// `;
 };
 
 const savePhp = document.querySelector('#summary');

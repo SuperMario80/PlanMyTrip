@@ -7,7 +7,7 @@ class crudLocationPage extends Page {
 
     
     public function __construct() {
-        parent::__construct('PlanMyTrip', 'Location');
+        parent::__construct('CRUD Location');
         $this->message = '';
 
     }
@@ -17,7 +17,7 @@ class crudLocationPage extends Page {
 
         if (isSet($_POST['back']) or !isSet($_GET['id'])) { 
             
-            header('Location: loggedIn.php');
+            header('Location: travellerArea.php');
             exit;
         }
 

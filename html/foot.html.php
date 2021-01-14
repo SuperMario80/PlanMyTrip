@@ -1,4 +1,6 @@
 
+        </div>
+      </div>
       <footer class="mt-5 p-3 text-center bg-light">
         PlanMyTrip &copy;
       </footer>

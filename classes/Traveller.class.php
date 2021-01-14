@@ -53,6 +53,8 @@ class Traveller {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)){
             printData("$email is a valid email address");
             $this->email = $email;
+        }else{
+            printData("Please check email $email");
         }
     }
     

@@ -24,5 +24,4 @@
               <i class="fas fa-plane"></i>
             </span>
           </h1>
-          <!-- <h1><?=$headline?></h1> -->
         </div>

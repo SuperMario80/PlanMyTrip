@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 // GENERAL SUPER_DAO
-// BASIC CLASS FOR ALL DATABSE TABLES
+// BASIC CLASS FOR ALL DATABASE TABLES
 abstract class GenericDao {
 
     private PDO $connection;
@@ -33,9 +33,10 @@ abstract class GenericDao {
         }
         $this->readAllStatement->execute();
         
-        // DISPAYS DATA TRANSFER OBJERCTS OF TABLE AS ARRAY 
         $dtos = [];
+        // DISPLAYS ALL DATA TRANSFER OBJECTS FROM TABLE AS ARRAY 
         while ($dto = $this->readAllStatement->fetchObject($this->className)) {
+            // Saves every single dto in Array
             $dtos[] = $dto;
         }
         return $dtos;
@@ -83,16 +84,19 @@ abstract class GenericDao {
 
 
 
-    //SENDS CREATED ARRAY(getCreateArray()) TO DATABASE AS OBJECT
+    //CREATES NEW ARRAY(getCreateArray()) AND SEND IT TO DATABASE AS OBJECT
     function create(object $dto): bool {
 
         if ($this->createStatement == null) {
             $sql = $this->getCreateSql();
+            //creates SQL Statement, declared in Subclass (abstract function getCreateSql())
             $this->createStatement = $this->connection->prepare($sql);
         }
-
+        //creates new database array from passed in object, declared in subclass
         $array = $this->getCreateArray($dto);
         $this->createStatement->execute($array);
+
+        
         // $dto->setId(intVal($this->connection->lastInsertId()));
 
         return $this->createStatement->rowCount() == 1;

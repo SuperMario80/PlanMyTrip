@@ -2,10 +2,10 @@
 declare(strict_types=1);
 require_once 'inc/tools.inc.php';
 
-class loggedInPage extends Page {
+class travellerAreaPage extends Page {
 
     public function __construct() {
-        parent::__construct('Traveller Area', 'Traveller Area');
+        parent::__construct('Traveller Tables');
         $this->message = '';
         $this->password = '';
        
@@ -94,5 +94,5 @@ class loggedInPage extends Page {
         }
 }
 
-$page = new loggedInPage();
+$page = new travellerAreaPage();
 $page->view();

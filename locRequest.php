@@ -13,7 +13,7 @@ class locRequestPage extends Page {
     // private ?Traveller $traveller;
     
     public function __construct() {
-        parent::__construct('PlanMyTrip', 'API Location');
+        parent::__construct('Save Location Request');
         $this->message = '';
     }
     
