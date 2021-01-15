@@ -3,6 +3,13 @@
 //    
 ?>
 <header id="showcase">
+
+  <!-- <select name="category" id="category" class="form-control">
+        <option value="">--Category--</option>
+        <option value="sightseeing">Sightseeing</option>
+        <option value="topattractions">Top Attractions</option>
+        <option value="exploringnature">Exploring Nature</option>
+  </select> -->
 	<div class="showcase-content">
     <div class="hero is-primary is-bold">
       <div class="hero-body">
@@ -14,10 +21,12 @@
   </div>
 </header>
      
-<div class="container py-3">
 <p><?=htmlSpecialChars($message)?></p>
+<div class="container py-3">
   <!-- <div class="items"> -->
-      <div id="summary">
+      <div id="summary"></div>
+      <div id="summary2">
+        <div class="items" id="poi">
   <!-- </div> -->
 
 

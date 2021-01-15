@@ -20,13 +20,18 @@ class IndexPage extends Page {
         
         protected function viewContent(): void {
         $message = $_SESSION['message'] ?? '';
+        // printData($_SESSION);
+        $_SESSION['message'] = '';
         include 'html/searchMyTrip.html.php';
 
-        $mess = isset($_REQUEST['mess']) ? $_REQUEST['mess'] : null;
-        if($mess == 1) {
-            $message =   "New Account created";
-           echo 'New Account created'; 
-        }
+
+        
+
+        // $mess = isset($_REQUEST['mess']) ? $_REQUEST['mess'] : null;
+        // if($mess == 1) {
+        //     $message =   "New Account created";
+        //    echo 'New Account created'; 
+        // }
 
     }
 }

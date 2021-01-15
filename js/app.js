@@ -1,22 +1,19 @@
 let api_token = '9j6492j7wd3qjvppyb8hj2og788veo72';
 let account_id = 'BSOO2T1I';
+// let choose;
 
 let currentLocation;
 let currentPointofInterest;
-// const poiCounts = [];
 let poiCount;
 let poiRes;
-// var count;
 
 createAutoComplete({
 	root: document.querySelector('.autocomplete'),
 	renderOption(location) {
 		//  const imgSrc = location.images[0].source_url === 'N/A' ? '' : location.images[0].source_url;
 		return `
-      <div>${location.name}      (${location.type},    ${location.country_id})</div>
-      
-    
-      `;
+			<div>${location.name}      (${location.type},    ${location.country_id})</div>
+			`;
 		// return `
 		// <img src="" />${location.name} | ${location.id} | (${location.country_id}, ${location.type})
 		// `;
@@ -27,15 +24,13 @@ createAutoComplete({
 	inputValue(location) {
 		return location.id;
 	},
-	//  onOptionSelectPoi(poi) {
-	//   onPoiSelect(poi);
-	// },
 
 	async fetchData(searchTerm) {
 		// this.api_token = '9j6492j7wd3qjvppyb8hj2og788veo72';
 		// this.account_id = 'BSOO2T1I';
-		const placeResponse = await fetch(`https://www.triposo.com/api/20201111/location.json?annotate=trigram:${searchTerm}&trigram=>=0.3&order_by=-trigram
-    &account=${account_id}&token=${api_token}`);
+		const placeResponse = await fetch(
+			`https://www.triposo.com/api/20201111/location.json?annotate=trigram:${searchTerm}&trigram=>=0.3&order_by=-trigram&account=${account_id}&token=${api_token}`
+		);
 
 		const place = await placeResponse.json();
 
@@ -58,15 +53,17 @@ let onLocationSelect = async (location) => {
 
 	poiRes = await poiResponse.json();
 
-	for (poiCount = 0; poiCount < 20; poiCount++) {
-		// for(poiCount =0; poiRes.results.length; poiCount++){
+	document.querySelector('#poi').innerHTML = '';
+	// for (poiCount = 0; poiCount < 20; poiCount++) {
+	for (poiCount = 0; poiRes.results.length; poiCount++) {
 		currentPointofInterest = poiRes.results[poiCount];
-		document.querySelector('#summary').innerHTML += poiTemplate(currentPointofInterest);
+		document.querySelector('#poi').append(poiTemplate(currentPointofInterest));
+		// document.querySelector('#poi').innerHtml += poiTemplate(currentPointofInterest);
 
-		// if(poiCount<19){
-		//   console.log('only' + poiCount + 'PointsOfInterest available');
-		// }
-		console.log(currentPointofInterest);
+		if (poiCount < 19) {
+			console.log('only ' + (poiCount + 1) + ' PointsOfInterest available');
+		}
+		// console.log(poiTemplate(currentPointofInterest));
 		// currentPointofInterest = currentPoi[poiCount];
 
 		//  return res;
@@ -77,7 +74,6 @@ const locationTemplate = (input) => {
 	// <pre>${JSON.stringify(input,null,2)}</pre>
 	// ${input.id}
 	return `
- 
       <div class="content media-content">
         <form>
           <div><button type="button" id="phpSubmit" value="phpSubmit" class="button block right">Submit</button>
@@ -92,25 +88,15 @@ const locationTemplate = (input) => {
           <p class="small">INTRO</p>
           <p class="small">${input.intro}</p>
 	  </div>
-	  <div class="items">
+	  
       `;
 };
-// <div><input type="submit" id="phpSubmit" value="phpSubmit" class="button block right"></div>
-// <input type="submit" id="search" value="submit" class="inline-block"></input>
-
-// const onPointOfInterestSelect = async poi => {
-
-//   const poiResponse = await fetch(`https://www.triposo.com/api/20201111/poi.json?location_id=${poi.id}&fields=all&tag_labels=sightseeing&count=20&order_by=-score&account=${this.account_id}&token=${this.api_token}`);
-
-//   const poiRes = await poiResponse.json();
-
-//       for(let poiCount =0; poiCount<19; poiCount++){
-//         resultPoi = document.querySelector('#summaryPoi').innerHTML += poiTemplate(poiRes.results[poiCount]);
-//         return resultPoi;
-//       }
-//   };
 
 const poiTemplate = (value) => {
+	// if (document.querySelector('#poi').hasChildNodes()) {
+	// 	document.querySelector('#poi').removeChild(outerDiv);
+	// }
+	// const outerDiv = document.createElement('div');
 	//1st element
 	const itemDiv = document.createElement('div');
 	itemDiv.className = 'item';
@@ -155,72 +141,31 @@ const poiTemplate = (value) => {
 	itemDesc.className = 'item-desc';
 	itemDesc.innerHTML = `${value.snippet}`;
 
-	poiName.insertAdjacentElement('afterend', country);
-	country.insertAdjacentElement('afterend', btn);
+	// poiName.insertAdjacentElement('afterend', country);
+	// country.insertAdjacentElement('afterend', btn);
 	imgDiv.appendChild(img);
 
 	itwDiv.appendChild(poiName);
+	itwDiv.appendChild(country);
+	itwDiv.appendChild(btn);
 	itemTextDiv.appendChild(itwDiv);
 	itemDiv.appendChild(imgDiv);
-	itemDiv.insertAdjacentElement('afterend', itemDesc);
-	console.log('hello');
-	// <pre>${JSON.stringify(value,null,2)}</pre>
-	// ${input.id}
-	// <img src="${value.images[0].sizes.medium.url}"/>
-	// return `
-	//       <div class="content media-content notification is-secondary">
+	itemDiv.appendChild(itemTextDiv);
+	itemDiv.appendChild(itemDesc);
+	// outerDiv.appendChild(itemDiv);
+	// itemDiv.insertAdjacentElement('afterend', itemDesc);
 
-	//           <div class="content">
-	//             <a href="${value.attribution[1].url}" target="_blank">PointOfInterest
-	//             </a> :
-	//             <a href="${value.attribution[0].url}" target="_blank">    ${value.name}
-	//             </a> |  ${value.location_ids[0]} |  ${value.location_ids[2]}
-	//           </div>
-	//           <div class="content">INTRO:  ${value.snippet}</div>
-	//             <form>
-	//               <div>
-	//                 <button type="button" id="poiSubmit${poiCount}" data-count="${poiCount}" value="poiSubmit${poiCount}" class="button block right">Submit
-	//                 </button>
-	//               </div>
-	//             </form>
-	//           </div>
-	//      `;
+	console.log(itemDiv);
 
-	// return `
-	//           <li class="item">
-
-	//                   <div class="item-image">
-	//                     <img src="${value.images[0].sizes.medium.url}" class="zoom" alt="">
-	//                     </div>
-	//                   <div class="item-text">
-	//                       <div class="item-text-wrap">
-	//                           <div class="zoom-image-holder__inner results-grid-result__inner">
-	//                                 <span class="results-grid-result">
-	//                                   <a href="" data-post_title="${value.attribution[1]
-	// 										.url}" data-post_name="" data-post_id="" data-result_index="">
-	//                                       <span class="results-grid-result__title">${value.name}</span>
-	//                                   </a>
-	//                                   <a href="" data-post_title="${value.attribution[0]
-	// 										.url}" data-post_name="" data-post_id="" data-result_index="">
-	//                                       <span class="results-grid-result__subtitle">${value.location_ids[0]}</span>
-	//                                       </a>
-	//                                       <span class="results-grid-result__subtitle">${value.location_ids[2]}</span>
-	//                                     </span>
-	//                                   <ul class="results-grid-result__meta"></ul>
-
-	//                           </div>
-	//                       </div>
-	//                   </div>
-	//               <div class="content">${value.snippet}</div>
-	//               <button type="button" id="poiSubmit${poiCount}" data-count="${poiCount}" value="poiSubmit${poiCount}" class="button block right">Submit</button>
-	//         </li>
-	// `;
+	console.log(itemTextDiv);
+	// return outerDiv;
+	return itemDiv;
 };
 
-const savePhp = document.querySelector('#summary');
+const saveLocation = document.querySelector('#summary');
 // console.log(savePhp);
 
-savePhp.addEventListener('click', async (e) => {
+saveLocation.addEventListener('click', async (e) => {
 	if (e.target.id == 'phpSubmit') {
 		// async postPlace(){
 		let locationValue = {
@@ -257,7 +202,7 @@ savePhp.addEventListener('click', async (e) => {
 		console.log(sendPlace);
 	}
 });
-let savePoi = document.querySelector('#summary');
+let savePoi = document.querySelector('#poi');
 
 //  let poiSub = document.getElementById('poiSubmit'.poiCount);
 //  console.log(poiSub);

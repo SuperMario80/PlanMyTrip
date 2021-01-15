@@ -1,3 +1,30 @@
+//old poiTeplate
+
+// return;
+// <pre>${JSON.stringify(value,null,2)}</pre>
+// ${input.id}
+// <img src="${value.images[0].sizes.medium.url}"/>
+// return `
+//       <div class="content media-content notification is-secondary">
+
+//           <div class="content">
+//             <a href="${value.attribution[1].url}" target="_blank">PointOfInterest
+//             </a> :
+//             <a href="${value.attribution[0].url}" target="_blank">    ${value.name}
+//             </a> |  ${value.location_ids[0]} |  ${value.location_ids[2]}
+//           </div>
+//           <div class="content">INTRO:  ${value.snippet}</div>
+//             <form>
+//               <div>
+//                 <button type="button" id="poiSubmit${poiCount}" data-count="${poiCount}" value="poiSubmit${poiCount}" class="button block right">Submit
+//                 </button>
+//               </div>
+//             </form>
+//           </div>
+//      `;
+
+// return `
+//           <li class="item">
 {
 	/* <li class="item">
                   
@@ -27,19 +54,19 @@
 }
 {
 	/* <div class="item">
-            
-                <div class="item-image">
-                <img src="img\showcase3.jpg" alt="" />
-                </div>
-                    <div class="item-text">
-                        <div class="item-text-wrap">
-                            <h2 class="item-text-title"><a href="http://www.openstreetmap.org/" >Middle Rhine</a></h2>
-                            <p class="item-text-category"><a href="http://en.wikipedia.org/wiki/Middle%20Rhine">Germany</a></p>
-                            <button type="button" id="poiSubmit0" data-count="0" value="poiSubmit0" class="button block center">Submit
-                            </button>
-                        </div>
-                    </div>
-                <div class="item-desc">Ferry across the Rhine from Niederheimbach.</div> */
+			<div class="item-image">
+			<img src="img\showcase3.jpg" alt="" />
+			</div>
+			<div class="item-text">
+				<div class="item-text-wrap">
+					<h2 class="item-text-title"><a href="http://www.openstreetmap.org/" >Middle Rhine</a></h2>
+					<p class="item-text-category"><a href="http://en.wikipedia.org/wiki/Middle%20Rhine">Germany</a></p>
+					<button type="button" id="poiSubmit0" data-count="0" value="poiSubmit0" class="button block center">Submit
+					</button>
+				</div>
+			</div>
+			<div class="item-desc">Ferry across the Rhine from Niederheimbach.</div> 
+		</div>*/
 }
 
 const poiTemplate = (value) => {
