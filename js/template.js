@@ -123,3 +123,29 @@ const poiTemplate = (value) => {
 	itemDiv.appendChild(imgDiv);
 	itemDiv.insertAdjacentElement('afterend', itemDesc);
 };
+
+<div class="single">
+	<div class="single-wrap">
+		<div class="single-headline">
+			Discover
+			<h2 class="single-title">
+				<a href="${currentLocation.attribution[1].url}">${currentLocation.name}</a>
+			</h2>
+			<h4 class="single-category">
+				<a href="${currentLocation.attribution[1].url}">${currentLocation.type}</a>
+			</h4>
+		</div>
+		<div class="single-image">
+			<a href="${currentLocation.attribution[0].url}">
+				<img src="${currentLocation.images[0].sizes.medium.url}" alt="" />
+			</a>
+		</div>
+		<div class="single-text">
+			<div class="single-desc">Ferry across the Rhine from Niederheimbach.</div>
+
+			<button type="button" id="phpSubmit" value="phpSubmit" class="button block">
+				Save
+			</button>
+		</div>
+	</div>
+</div>;

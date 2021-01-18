@@ -53,14 +53,23 @@ class PointOfInterest {
         return $this->city;
     }
     function setCity(string $city): void {
-        $this->city = $city;
+        if (empty($city)){
+            $this->city = 'Unknown';
+        }else{
+            $this->city = $city;
+        }
     }
     
     function getLocationKey(): string {
         return $this->locationKey;
     }
     function setLocationKey(string $locationKey): void {
-        $this->locationKey = $locationKey;
+        if (empty($locationKey)){
+            $this->locationKey = '';
+        }else{
+            $this->locationKey = $locationKey;
+        }
+      
     }
 
 
@@ -68,7 +77,12 @@ class PointOfInterest {
         return $this->attraction;
     }
     function setAttraction(string $attraction): void {
-        $this->attraction = $attraction;
+         if (empty($attraction)){
+            $this->attraction = '';
+        }else{
+            $this->attraction = $attraction;
+        }
+        
     }
 
 
@@ -76,15 +90,25 @@ class PointOfInterest {
         return $this->intro;
     }
     function setIntro(string $intro): void {
-        $this->intro = $intro;
+        if (empty($intro)){
+            $this->intro = 'No Info available';
+        }else{
+            $this->intro = $intro;
+        }
+        
     }
     
     
     function getInfoLink(): string {
         return $this->infoLink;
     }
+    
     function setInfoLink(string $infoLink): void {
-        $this->infoLink = $infoLink;
+        if (empty($infoLink)){
+            $this->infoLink = '';
+        }else{
+            $this->infoLink = $infoLink;
+        }
     }
 
 
@@ -92,7 +116,11 @@ class PointOfInterest {
         return $this->poiMap;
     }
     function setPoiMap(string $poiMap): void {
-        $this->poiMap = $poiMap;
+         if (empty($poiMap)){
+            $this->poiMap = '';
+        }else{
+            $this->poiMap = $poiMap;
+        }
     }
 
 

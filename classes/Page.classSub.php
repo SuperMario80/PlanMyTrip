@@ -10,9 +10,9 @@ abstract class Page extends Logic {
     
     protected function __construct(string $title) {
         $this->title = $title;
+        $this->loggedIn = false;
         $this->logStart();
         $this->getTraveller();
-         $this->loggedIn = false;
          $this->email = '';
         }
         
@@ -22,19 +22,29 @@ abstract class Page extends Logic {
         public function view() : void {
             
         $this->viewHead();
+        $this->viewNavigation();
         $this->viewLogin();
         $this->viewContent();
         $this->viewFoot();
-        $this->viewNavigation();
         printData('hello');
     }
 
+   
    
 
     
     private function viewHead() : void {
         $title = $this->title;
         require_once 'html/head.html.php';
+    }
+    
+    private function viewNavigation() : void {
+        if($this->loggedIn == true){
+            include 'html/navigation.html.php';
+        }
+     //    else {
+     //        printData('Doesnt work!');
+     //    }
     }
     
     private function viewLogin() {
@@ -50,14 +60,6 @@ abstract class Page extends Logic {
      }
  }
 
-   private function viewNavigation() : void {
-       if($this->loggedIn == true){
-           include 'html/navigation.html.php';
-       }
-    //    else {
-    //        printData('Doesnt work!');
-    //    }
-   }
 
 
 

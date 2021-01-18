@@ -6,17 +6,21 @@ let currentLocation;
 let currentPointofInterest;
 let poiCount;
 let poiRes;
+let logout = document.querySelector('#logout');
 
 createAutoComplete({
 	root: document.querySelector('.autocomplete'),
 	renderOption(location) {
-		//  const imgSrc = location.images[0].source_url === 'N/A' ? '' : location.images[0].source_url;
+		// const imgSrc =
+		// 		location.images[0].sizes.thumbnail.url === 'N/A' ? '' :
+		// 		location.images[0].sizes.thumbnail.url;
+		// return `
+		// <div><img class="thumbnail" src="${imgSrc}" />${location.name}      (${location.type},    ${location.country_id})</div>
+		// `;
+
 		return `
 			<div>${location.name}      (${location.type},    ${location.country_id})</div>
 			`;
-		// return `
-		// <img src="" />${location.name} | ${location.id} | (${location.country_id}, ${location.type})
-		// `;
 	},
 	onOptionSelect(location) {
 		onLocationSelect(location);
@@ -29,7 +33,7 @@ createAutoComplete({
 		// this.api_token = '9j6492j7wd3qjvppyb8hj2og788veo72';
 		// this.account_id = 'BSOO2T1I';
 		const placeResponse = await fetch(
-			`https://www.triposo.com/api/20201111/location.json?annotate=trigram:${searchTerm}&trigram=>=0.3&order_by=-trigram&account=${account_id}&token=${api_token}`
+			`https://www.triposo.com/api/20201111/location.json?annotate=trigram:${searchTerm}&trigram=>=0.3&order_by=-score&account=${account_id}&token=${api_token}`
 		);
 
 		const place = await placeResponse.json();
@@ -54,42 +58,74 @@ let onLocationSelect = async (location) => {
 	poiRes = await poiResponse.json();
 
 	document.querySelector('#poi').innerHTML = '';
-	// for (poiCount = 0; poiCount < 20; poiCount++) {
-	for (poiCount = 0; poiRes.results.length; poiCount++) {
-		currentPointofInterest = poiRes.results[poiCount];
-		document.querySelector('#poi').append(poiTemplate(currentPointofInterest));
-		// document.querySelector('#poi').innerHtml += poiTemplate(currentPointofInterest);
 
-		if (poiCount < 19) {
-			console.log('only ' + (poiCount + 1) + ' PointsOfInterest available');
+	try {
+		// for (poiCount = 0; poiCount < 20; poiCount++) {
+		for (poiCount = 0; poiRes.results.length; poiCount++) {
+			currentPointofInterest = poiRes.results[poiCount];
+			document.querySelector('#poi').append(poiTemplate(currentPointofInterest));
+			// document.querySelector('#poi').innerHtml += poiTemplate(currentPointofInterest);
 		}
-		// console.log(poiTemplate(currentPointofInterest));
-		// currentPointofInterest = currentPoi[poiCount];
+	} catch (e) {
+		console.log(TypeError(e));
 
-		//  return res;
+		// if (poiCount < 19) {
+		// 	console.log('only ' + (poiCount + 1) + ' PointsOfInterest available');
+		// 	// console.log(poiTemplate(currentPointofInterest));
+		// 	// currentPointofInterest = currentPoi[poiCount];
+
+		// 	//  return res;
+		// }
 	}
 };
 
 const locationTemplate = (input) => {
 	// <pre>${JSON.stringify(input,null,2)}</pre>
 	// ${input.id}
+	// return `
+	//   <div class="content media-content">
+	//     <form>
+	//       <div><button type="button" id="phpSubmit" value="phpSubmit" class="button block right">Submit</button>
+	//       </div>
+	//     </form>
+	//     <div class="content">
+	//       <h4><a href="${input.attribution[1]
+	// 			.url}" target="_blank">Location:  ${input.name}  | ${input.id}| ${input.country_id} | ${input.type}</a></h4>
+	//     </div>
+	//   </div>
+	//   <div class="notification is-primary">
+	//       <p class="small">INTRO</p>
+	//       <p class="small">${input.intro}</p>
+	//   </div>
+
+	//   `;
 	return `
-      <div class="content media-content">
-        <form>
-          <div><button type="button" id="phpSubmit" value="phpSubmit" class="button block right">Submit</button>
-          </div>
-        </form>
-        <div class="content">
-          <h4><a href="${input.attribution[1]
-				.url}" target="_blank">Location:  ${input.name}  | ${input.id}| ${input.country_id} | ${input.type}</a></h4>
-        </div>
-      </div>
-      <div class="notification is-primary">
-          <p class="small">INTRO</p>
-          <p class="small">${input.intro}</p>
-	  </div>
-	  
-      `;
+
+			<div class="single">
+			<div class="single-wrap">
+				<div class="single-headline">
+					<h2 class="single-title">Discover 
+						<a href="${currentLocation.attribution[1].url}">${currentLocation.name}</a>
+					</h2>
+					<h4 class="single-category">
+						<a href="${currentLocation.attribution[1].url}">${currentLocation.type}</a>
+					</h4>
+				</div>
+				<div class="single-image">
+					<a href="${currentLocation.attribution[0].url}">
+						<img src="${currentLocation.images[0].sizes.medium.url}" alt="" />
+					</a>
+				</div>
+				</div>
+				<div class="single-text">
+					<div class="single-desc">${input.intro}</div>
+	
+					<button type="button" id="phpSubmit" value="phpSubmit" class="button block">
+						Save
+					</button>
+				</div>
+		</div>
+		`;
 };
 
 const poiTemplate = (value) => {
@@ -98,44 +134,54 @@ const poiTemplate = (value) => {
 	// }
 	// const outerDiv = document.createElement('div');
 	//1st element
-	const itemDiv = document.createElement('div');
-	itemDiv.className = 'item';
+	const item = document.createElement('div');
+	item.className = 'item';
 
 	//2nd element with childNode
-	const imgDiv = document.createElement('div');
-	imgDiv.className = 'item-image';
+	const image = document.createElement('div');
+	image.className = 'item-image';
 	const img = document.createElement('img');
 	img.setAttribute('src', `${value.images[0].sizes.medium.url}`);
 
-	const itemTextDiv = document.createElement('div');
-	itemTextDiv.className = 'item-text';
+	const itemText = document.createElement('div');
+	itemText.className = 'item-text';
 
-	const itwDiv = document.createElement('div');
-	itwDiv.className = 'item-text-wrap';
+	const itWrap = document.createElement('div');
+	itWrap.className = 'item-text-wrap';
 
-	const poiName = document.createElement('h2');
-	poiName.className = 'item-text-title';
+	const itTitle = document.createElement('h2');
+	itTitle.className = 'item-text-title';
 
-	const poiLink = document.createElement('a');
-	poiLink.setAttribute('href', `${value.attribution[1].url}`);
-	poiLink.innerText = `${value.name}`;
-	poiName.appendChild(poiLink);
+	const itLink = document.createElement('a');
+	itLink.setAttribute('href', `${value.attribution[1].url}`);
+	itLink.innerText = `${value.name}`;
+	itTitle.appendChild(itLink);
 
-	const country = document.createElement('p');
-	country.className = 'item-text-category';
+	const itCategory = document.createElement('p');
+	itCategory.className = 'item-text-category';
 
-	const wikiLink = document.createElement('a');
-	wikiLink.setAttribute('href', `${value.attribution[0].url}`);
-	wikiLink.innerText = `${value.location_ids[2]}`;
-	country.appendChild(wikiLink);
+	const itCatLink = document.createElement('a');
+	itCatLink.setAttribute('href', `${value.attribution[0].url}`);
+	// wikiLink.innerText = `${value.location_ids[2]}`;
+	itCatLink.innerText = `${currentPointofInterest.tag_labels[0]}`;
+	itCategory.appendChild(itCatLink);
 
-	const btn = document.createElement('button');
-	btn.className = 'button block center';
-	btn.id = `poiSubmit${poiCount}`;
-	btn.setAttribute('type', 'button');
-	btn.setAttribute('data-count', `${poiCount}`);
-	btn.setAttribute('value', `poiSubmit${poiCount}`);
-	btn.innerText = 'Submit';
+	image.appendChild(img);
+
+	itWrap.appendChild(itTitle);
+	itWrap.appendChild(itCategory);
+	// console.log(logout);
+	if (logout) {
+		const btn = document.createElement('button');
+		btn.className = 'button block center btn btn-dark';
+		btn.id = `poiSubmit${poiCount}`;
+		btn.setAttribute('type', 'button');
+		btn.setAttribute('data-count', `${poiCount}`);
+		btn.setAttribute('value', `poiSubmit${poiCount}`);
+		btn.innerText = 'save';
+
+		itWrap.appendChild(btn);
+	}
 
 	const itemDesc = document.createElement('div');
 	itemDesc.className = 'item-desc';
@@ -143,23 +189,18 @@ const poiTemplate = (value) => {
 
 	// poiName.insertAdjacentElement('afterend', country);
 	// country.insertAdjacentElement('afterend', btn);
-	imgDiv.appendChild(img);
-
-	itwDiv.appendChild(poiName);
-	itwDiv.appendChild(country);
-	itwDiv.appendChild(btn);
-	itemTextDiv.appendChild(itwDiv);
-	itemDiv.appendChild(imgDiv);
-	itemDiv.appendChild(itemTextDiv);
-	itemDiv.appendChild(itemDesc);
+	itemText.appendChild(itWrap);
+	item.appendChild(image);
+	item.appendChild(itemText);
+	item.appendChild(itemDesc);
 	// outerDiv.appendChild(itemDiv);
 	// itemDiv.insertAdjacentElement('afterend', itemDesc);
 
-	console.log(itemDiv);
+	// console.log(itemDiv);
 
-	console.log(itemTextDiv);
+	// console.log(itemTextDiv);
 	// return outerDiv;
-	return itemDiv;
+	return item;
 };
 
 const saveLocation = document.querySelector('#summary');
@@ -219,7 +260,8 @@ savePoi.addEventListener('click', (e) => {
 		let poiValue = {
 			poiName: currentPointofInterest.name,
 			city: currentPointofInterest.location_ids[0],
-			locationKey: currentPointofInterest.location_ids[2],
+			// locationKey: currentPointofInterest.location_ids[2],
+			locationKey: currentLocation.id,
 			// locationKey: currentPointofInterest.location_id,
 			attraction: currentPointofInterest.tag_labels[0],
 			intro: currentPointofInterest.snippet,

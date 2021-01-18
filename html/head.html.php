@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>" />
     </head>
     <body>
-        <div id="navbar">
+        <div id="navbar" class="bg-dark">
         <div>
            <h1 class=""><a href="index.php">PlanMyTrip</a>
             <span class="icon">

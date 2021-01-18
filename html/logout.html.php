@@ -3,7 +3,7 @@
 //        $email - EMAIL OF LOGGED IN USER
 ?>
         <h5><?=$email?></h5>
-        <form method="post">
+        <form id="logout" method="post">
             <input class="btn" type="submit" name="logout" value="Logout" >
         </form>
     </div>

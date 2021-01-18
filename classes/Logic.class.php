@@ -8,7 +8,7 @@ abstract class Logic {
     private string $email;
     private string $message;
     
-    private Traveller $traveller;
+    // private Traveller $traveller;
     private Location $location;
 
     private ?PointOfInterest $poi;
@@ -24,14 +24,17 @@ abstract class Logic {
         $this->logStart();
     }
     
-
+    
     public function logStart() : void {
-
+        
         $this->initSession();
         $this->init();
-
+        
     }
-
+    public function getTraveller() :?Traveller{
+        return $this->traveller;
+    }
+    
     
     //  INIT SESSION AFTER LOGIN CHECK
     private function initSession(): void {
@@ -42,9 +45,8 @@ abstract class Logic {
         if($this->loggedIn){
             //converts serialised traveller data back to readable php value
             $this->traveller = unserialize($_SESSION['traveller']);
-        }
-        // LOGIN AND REDIRECT 
-        if (isSet($_POST['login'])) {
+
+             if (isSet($_POST['login'])) {
             $this->doLogin();
         }
         // LOGOUT AND REDIRECT
@@ -52,6 +54,8 @@ abstract class Logic {
             $this->doLogout();
             header('Location: index.php');
         }
+        }
+        // LOGIN AND REDIRECT 
     }
 
     // LOGIN HANDLER (VALIDATION)
@@ -60,11 +64,11 @@ abstract class Logic {
         $password = $_POST['password'] ?? '';
         
         $this->travellerDao = new TravellerDao();
-        //VALIDATION OF THE DATA
+        //DATA VALIDATION
         if ($tr = $this->travellerDao->checkLogin($this->email, $password)) {
             $this->loggedIn = true;
             $_SESSION['email'] = $this->email;
-            //Generates a storable representation from travellers session
+            //Generates a storable representation from traveller-session
             $_SESSION['traveller'] = serialize($tr);
         } else {
             $this->loggedIn = false;
@@ -88,7 +92,4 @@ abstract class Logic {
     // PROVIDES HTML FORMS
 
 
-    public function getTraveller() :?Traveller{
-        return $this->traveller;
-    }
 }

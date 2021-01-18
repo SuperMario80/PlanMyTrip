@@ -48,7 +48,11 @@ class Location {
         return $this->locationKey;
     }
     function setlocationKey(string $locationKey): void {
-        $this->locationKey = $locationKey;
+         if (empty($locationKey)){
+            $this->locationKey = '';
+        }else{
+            $this->locationKey = $locationKey;
+        }
     }
   
     function getClassification(): string {
@@ -78,6 +82,7 @@ class Location {
         }else{
             $this->region = $region;
         }
+        printData($this->region);
     }
 
       function getIntro(): string {

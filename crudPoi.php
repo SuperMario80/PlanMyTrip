@@ -48,9 +48,9 @@ class showPoiPage extends Page {
         $this->readFormData();
 
          if ($this->poi->getId() == 0) {
-            if($this->poi->getPoiName() == NULL  || $this->poi->getAttraction() == NULL){
+            if($this->poi->getPoiName() == NULL){
             // if(empty($this->location->getLocation()) || empty($this->location->getClassification())){
-                $this->message = 'Please fill out poiName and attraction'; 
+                $this->message = "PointOfInterest can't be empty"; 
     
             }else{
                 if($this->pointOfInterestDao->create($this->poi)){
