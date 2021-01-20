@@ -13,6 +13,7 @@
             <div class="">INTRO:  <?= htmlSpecialChars($location->getIntro()) ?></div>
             <div class="content">Notes:  <?= htmlSpecialChars($location->getNotes()) ?></div>
           </div>
+          
     <button class="btn btn-dark" name="newLocation" >new Location</button>
     <button class="btn btn-dark" name="updateLocation" value="<?= $location->getId()?>" >update Location</button>
     <button class="btn btn-dark" name="newPoi" value="<?= $location->getId() ?>" >new PointOfInterest</button>

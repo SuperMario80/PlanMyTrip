@@ -2,10 +2,12 @@
 //    INPUT INTERFACE
 //        $email - EMAIL OF LOGGED IN USER
 ?>
-        <h5><?=$email?></h5>
+<div class="sign-out">
+        <h4><?=$email?></h4>
         <form id="logout" method="post">
             <input class="btn" type="submit" name="logout" value="Logout" >
         </form>
+    </div>
     </div>
 
 <!-- <header id="showcase">

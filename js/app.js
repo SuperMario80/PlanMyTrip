@@ -101,32 +101,33 @@ const locationTemplate = (input) => {
 	//   `;
 	return `
 
-			<div class="single">
+		<div class="single">
 			<div class="single-wrap">
-				<div class="single-headline">
-					<h2 class="single-title">Discover 
-						<a href="${currentLocation.attribution[1].url}">${currentLocation.name}</a>
-					</h2>
-					<h4 class="single-category">
-						<a href="${currentLocation.attribution[1].url}">${currentLocation.type}</a>
-					</h4>
-				</div>
-				<div class="single-image">
-					<a href="${currentLocation.attribution[0].url}">
-						<img src="${currentLocation.images[0].sizes.medium.url}" alt="" />
-					</a>
-				</div>
-				</div>
+				<h1 class="single-category">${currentLocation.type}</h1>
 				<div class="single-text">
-					<div class="single-desc">${input.intro}</div>
-	
-					<button type="button" id="phpSubmit" value="phpSubmit" class="button block">
-						Save
+						<div class="single-headline">
+							<h2 class="single-title">
+							<a href="${currentLocation.attribution[1]
+								.url}">Discover ${currentLocation.name} &nbsp;&nbsp;&nbsp;&nbsp;<span>${currentLocation.part_of}</span></a>
+							</h2>
+						</div>
+					<div class="single-desc">
+						<a href="${currentLocation.attribution[0].url}">${input.intro}</a>
+					</div>
+					<button type="button" id="phpSubmit" value="phpSubmit" class="btn block center">
+					Save
 					</button>
 				</div>
+			</div>
 		</div>
 		`;
 };
+
+// <div class="single-image">
+// 	<a href="${currentLocation.attribution[0].url}">
+// 		<img src="${currentLocation.images[0].sizes.medium.url}" alt="" />
+// 	</a>
+// </div>
 
 const poiTemplate = (value) => {
 	// if (document.querySelector('#poi').hasChildNodes()) {
@@ -171,16 +172,19 @@ const poiTemplate = (value) => {
 	itWrap.appendChild(itTitle);
 	itWrap.appendChild(itCategory);
 	// console.log(logout);
+	itemText.appendChild(itWrap);
+	item.appendChild(image);
+	item.appendChild(itemText);
 	if (logout) {
 		const btn = document.createElement('button');
-		btn.className = 'button block center btn btn-dark';
+		btn.className = 'block center btn';
 		btn.id = `poiSubmit${poiCount}`;
 		btn.setAttribute('type', 'button');
 		btn.setAttribute('data-count', `${poiCount}`);
 		btn.setAttribute('value', `poiSubmit${poiCount}`);
-		btn.innerText = 'save';
+		btn.innerText = 'Save Point of Interest';
 
-		itWrap.appendChild(btn);
+		item.appendChild(btn);
 	}
 
 	const itemDesc = document.createElement('div');
@@ -189,9 +193,6 @@ const poiTemplate = (value) => {
 
 	// poiName.insertAdjacentElement('afterend', country);
 	// country.insertAdjacentElement('afterend', btn);
-	itemText.appendChild(itWrap);
-	item.appendChild(image);
-	item.appendChild(itemText);
 	item.appendChild(itemDesc);
 	// outerDiv.appendChild(itemDiv);
 	// itemDiv.insertAdjacentElement('afterend', itemDesc);
