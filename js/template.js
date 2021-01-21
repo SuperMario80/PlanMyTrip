@@ -149,3 +149,26 @@ const poiTemplate = (value) => {
 		</div>
 	</div>
 </div>;
+
+// return `
+
+// 	<div class="single">
+// 		<div class="single-wrap">
+// 			<h1 class="single-category">${currentLocation.type}</h1>
+// 			<div class="single-text">
+// 				<div class="single-headline">
+// 					<h2 class="single-title">
+// 					<a href="${currentLocation.attribution[1]
+// 						.url}">Discover ${currentLocation.name} &nbsp;&nbsp;&nbsp;&nbsp;<span>${currentLocation.part_of}</span></a>
+// 					</h2>
+// 				</div>
+// 				<div class="single-desc">
+// 					<a href="${currentLocation.attribution[0].url}">${input.intro}</a>
+// 				</div>
+// 				<button type="button" id="phpSubmit" value="phpSubmit" class="btn inline-block">
+// 				Save
+// 				</button>
+// 			</div>
+// 		</div>
+// 	</div>
+// 	`;

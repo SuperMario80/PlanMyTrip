@@ -48,8 +48,10 @@ let onLocationSelect = async (location) => {
 	);
 
 	let res = await response.json();
+
+	document.querySelector('#summary').innerHTML = '';
 	currentLocation = res.results[0];
-	document.querySelector('#summary').innerHTML = locationTemplate(currentLocation);
+	document.querySelector('#summary').append(locationTemplate(currentLocation));
 
 	let poiResponse = await fetch(
 		`https://www.triposo.com/api/20201111/poi.json?location_id=${location.id}&fields=all&tag_labels=sightseeing&count=20&order_by=-score&account=${account_id}&token=${api_token}`
@@ -57,6 +59,7 @@ let onLocationSelect = async (location) => {
 
 	poiRes = await poiResponse.json();
 
+	//clears poi results (if new request is executed)
 	document.querySelector('#poi').innerHTML = '';
 
 	try {
@@ -64,7 +67,6 @@ let onLocationSelect = async (location) => {
 		for (poiCount = 0; poiRes.results.length; poiCount++) {
 			currentPointofInterest = poiRes.results[poiCount];
 			document.querySelector('#poi').append(poiTemplate(currentPointofInterest));
-			// document.querySelector('#poi').innerHtml += poiTemplate(currentPointofInterest);
 		}
 	} catch (e) {
 		console.log(TypeError(e));
@@ -81,101 +83,130 @@ let onLocationSelect = async (location) => {
 
 const locationTemplate = (input) => {
 	// <pre>${JSON.stringify(input,null,2)}</pre>
-	// ${input.id}
-	// return `
-	//   <div class="content media-content">
-	//     <form>
-	//       <div><button type="button" id="phpSubmit" value="phpSubmit" class="button block right">Submit</button>
-	//       </div>
-	//     </form>
-	//     <div class="content">
-	//       <h4><a href="${input.attribution[1]
-	// 			.url}" target="_blank">Location:  ${input.name}  | ${input.id}| ${input.country_id} | ${input.type}</a></h4>
-	//     </div>
-	//   </div>
-	//   <div class="notification is-primary">
-	//       <p class="small">INTRO</p>
-	//       <p class="small">${input.intro}</p>
-	//   </div>
 
-	//   `;
-	return `
+	const single = document.createElement('div');
+	single.className = 'single';
 
-		<div class="single">
-			<div class="single-wrap">
-				<h1 class="single-category">${currentLocation.type}</h1>
-				<div class="single-text">
-						<div class="single-headline">
-							<h2 class="single-title">
-							<a href="${currentLocation.attribution[1]
-								.url}">Discover ${currentLocation.name} &nbsp;&nbsp;&nbsp;&nbsp;<span>${currentLocation.part_of}</span></a>
-							</h2>
-						</div>
-					<div class="single-desc">
-						<a href="${currentLocation.attribution[0].url}">${input.intro}</a>
-					</div>
-					<button type="button" id="phpSubmit" value="phpSubmit" class="btn block center">
-					Save
-					</button>
-				</div>
-			</div>
-		</div>
-		`;
+	const singleWrap = document.createElement('div');
+	singleWrap.className = 'single-wrap';
+
+	const singleCategory = document.createElement('h1');
+	singleCategory.className = 'single-category';
+	singleCategory.innerText = `${currentLocation.type}`;
+
+	const singleText = document.createElement('div');
+	singleText.className = 'single-text';
+
+	const singleHeadline = document.createElement('div');
+	singleHeadline.className = 'single-headline';
+
+	const singleTitle = document.createElement('h2');
+	singleTitle.className = 'single-title';
+
+	// const singleTl = createLink(
+	// 	'a',
+	// 	`${currentLocation.attribution[1].url}`,
+	// 	`Discover ${currentLocation.name}    ${currentLocation.part_of}`
+	// );
+	const singleTL = document.createElement('a');
+	singleTL.setAttribute('href', `${currentLocation.attribution[1].url}`);
+	singleTL.setAttribute('target', '_blank');
+	singleTL.innerText = `Discover ${currentLocation.name}    ${currentLocation.part_of}`;
+	singleTitle.appendChild(singleTL);
+	// console.log(singleTl);
+
+	singleHeadline.appendChild(singleTitle);
+
+	const singleDesc = document.createElement('div');
+	singleDesc.className = 'single-desc';
+
+	const singleDL = document.createElement('a');
+	singleDL.setAttribute('href', `${currentLocation.attribution[0].url}`);
+	singleDL.setAttribute('target', '_blank');
+	singleDL.innerText = `${input.intro}`;
+	singleDesc.appendChild(singleDL);
+
+	singleText.appendChild(singleHeadline);
+	singleText.appendChild(singleDesc);
+
+	// if traveller is logged in, create save button
+	if (logout) {
+		//creates 3rd child of item, sets attributes and append
+		const btn = document.createElement('button');
+		btn.className = 'block center btn';
+		btn.id = `phpSubmit`;
+		btn.setAttribute('type', 'button');
+		btn.setAttribute('value', 'phpSubmit');
+		btn.innerText = 'Save';
+
+		singleText.appendChild(btn);
+	}
+	singleWrap.appendChild(singleCategory);
+	singleWrap.appendChild(singleText);
+
+	single.appendChild(singleWrap);
+
+	return single;
 };
 
-// <div class="single-image">
-// 	<a href="${currentLocation.attribution[0].url}">
-// 		<img src="${currentLocation.images[0].sizes.medium.url}" alt="" />
-// 	</a>
-// </div>
-
 const poiTemplate = (value) => {
-	// if (document.querySelector('#poi').hasChildNodes()) {
-	// 	document.querySelector('#poi').removeChild(outerDiv);
-	// }
-	// const outerDiv = document.createElement('div');
-	//1st element
+	//creates wrapper item
 	const item = document.createElement('div');
 	item.className = 'item';
 
-	//2nd element with childNode
+	//creates 1st child of item
 	const image = document.createElement('div');
 	image.className = 'item-image';
+	//creates child of image, sets attribute and append
 	const img = document.createElement('img');
 	img.setAttribute('src', `${value.images[0].sizes.medium.url}`);
+	image.appendChild(img);
 
+	//creates 2nd child of item
 	const itemText = document.createElement('div');
 	itemText.className = 'item-text';
 
+	//creates 1st child of itemText
 	const itWrap = document.createElement('div');
 	itWrap.className = 'item-text-wrap';
 
+	//creates 1st child of itWrap
 	const itTitle = document.createElement('h2');
 	itTitle.className = 'item-text-title';
-
+	//creates child of itTitle, sets attribute and append
 	const itLink = document.createElement('a');
 	itLink.setAttribute('href', `${value.attribution[1].url}`);
+	itLink.setAttribute('target', '_blank');
 	itLink.innerText = `${value.name}`;
 	itTitle.appendChild(itLink);
 
+	//creates 2nd child of itWrap
 	const itCategory = document.createElement('p');
 	itCategory.className = 'item-text-category';
 
+	//creates child of itCategory, sets attribute and append
 	const itCatLink = document.createElement('a');
 	itCatLink.setAttribute('href', `${value.attribution[0].url}`);
-	// wikiLink.innerText = `${value.location_ids[2]}`;
+	itCatLink.setAttribute('target', '_blank');
 	itCatLink.innerText = `${currentPointofInterest.tag_labels[0]}`;
 	itCategory.appendChild(itCatLink);
+	//sets default value for specific result
+	if (itCatLink.innerText.toLowerCase() === 'person') {
+		itCatLink.innerText = 'Sightseeing';
+	}
 
-	image.appendChild(img);
-
+	//appends child elements to itWrap
 	itWrap.appendChild(itTitle);
 	itWrap.appendChild(itCategory);
-	// console.log(logout);
+
 	itemText.appendChild(itWrap);
+
 	item.appendChild(image);
 	item.appendChild(itemText);
+
+	// if traveller is logged in, create save button
 	if (logout) {
+		//creates 3rd child of item, sets attributes and append
 		const btn = document.createElement('button');
 		btn.className = 'block center btn';
 		btn.id = `poiSubmit${poiCount}`;
@@ -187,142 +218,21 @@ const poiTemplate = (value) => {
 		item.appendChild(btn);
 	}
 
+	//creates last child of item, sets attributes and append
 	const itemDesc = document.createElement('div');
 	itemDesc.className = 'item-desc';
 	itemDesc.innerHTML = `${value.snippet}`;
 
-	// poiName.insertAdjacentElement('afterend', country);
-	// country.insertAdjacentElement('afterend', btn);
 	item.appendChild(itemDesc);
-	// outerDiv.appendChild(itemDiv);
-	// itemDiv.insertAdjacentElement('afterend', itemDesc);
-
-	// console.log(itemDiv);
 
 	// console.log(itemTextDiv);
-	// return outerDiv;
 	return item;
 };
 
-const saveLocation = document.querySelector('#summary');
-// console.log(savePhp);
-
-saveLocation.addEventListener('click', async (e) => {
-	if (e.target.id == 'phpSubmit') {
-		// async postPlace(){
-		let locationValue = {
-			location: currentLocation.name,
-			locationKey: currentLocation.id,
-			classification: currentLocation.type,
-			country: currentLocation.country_id,
-			region: currentLocation.part_of,
-			intro: currentLocation.intro,
-			travelLink: currentLocation.attribution[1].url
-		};
-		console.log(locationValue);
-		// if (onLocationSelect.res != '') {
-		// let locationData = new FormData();
-
-		// locationData.append( "json", JSON.stringify(locationValue));
-		const data = {
-			method: 'POST',
-			mode: 'no-cors',
-			body: JSON.stringify(locationValue),
-			headers: { 'Content-Type': 'application/json' }
-		};
-
-		const sendPlace = await fetch(`http://localhost/php/projects/PlanMyTrip/locRequest.php`, data);
-		// const sendPlace = fetch(`https://ptsv2.com/t/arto5-1608728634/post`, data);
-
-		// const sendPl = await sendPlace.json();
-
-		// console.log(sendPl);
-		// return sendPl;
-		// }
-		// }
-		// e.preventDefault();
-		console.log(sendPlace);
-	}
-});
-let savePoi = document.querySelector('#poi');
-
-//  let poiSub = document.getElementById('poiSubmit'.poiCount);
-//  console.log(poiSub);
-
-savePoi.addEventListener('click', (e) => {
-	let poiVal = e.target.getAttribute('data-count');
-
-	// if(e.target.id === `poiSubmit${poiVal}`) {
-	if (e.target.hasAttribute('data-count')) {
-		// console.log(poiCount);
-
-		currentPointofInterest = poiRes.results[poiVal];
-		// async postPlace(){
-		let poiValue = {
-			poiName: currentPointofInterest.name,
-			city: currentPointofInterest.location_ids[0],
-			// locationKey: currentPointofInterest.location_ids[2],
-			locationKey: currentLocation.id,
-			// locationKey: currentPointofInterest.location_id,
-			attraction: currentPointofInterest.tag_labels[0],
-			intro: currentPointofInterest.snippet,
-			infoLink: currentPointofInterest.attribution[1].url,
-			poiMap: currentPointofInterest.attribution[0].url
-			// location_ids2: currentPointofInterest.location_ids[2],
-		};
-		console.log(poiValue);
-		// if (onLocationSelect.res != '') {
-		// let locationData = new FormData();
-
-		// locationData.append( "json", JSON.stringify(locationValue));
-		const data = {
-			method: 'POST',
-			mode: 'no-cors',
-			body: JSON.stringify(poiValue),
-			headers: { 'Content-Type': 'application/json' }
-		};
-
-		const sendPoi = fetch(`http://localhost/php/projects/PlanMyTrip/poiRequest.php`, data);
-		// const sendPlace = fetch(`https://ptsv2.com/t/arto5-1608728634/post`, data);
-
-		// const sendPl = await sendPlace.json();
-
-		// console.log(sendPl);
-		// return sendPl;
-		// }
-		// }
-		// e.preventDefault();
-		console.log(e.target.id);
-		console.log(sendPoi);
-	}
-});
-
-//  <div class="content">
-//           <span class="notification">Country:   ${value.location_ids[2]}</span>
-//           <span class="notification">    |      City:  ${value.location_ids[0]}</span>
-//         </div>
-
-// PHP Submit Form
-
-// // saveErrorMsg = document.querySelector('.save-error');
-
-//  let locationData = new FormData();
-//       locationData.append( "json", JSON.stringify(locationValue));
-
-//       fetch(`http://localhost/php/projects/PlanMyTrip/crudLocation.php?`,
-//         {
-//               method: 'post',
-//               body: JSON.stringify(locationData),
-//               headers: { 'Content-type': 'application/json' }
-//           })
-//               .then(function(res){ return res.json(); })
-//                console.log(res)
-//               .then(function(data){ alert( JSON.stringify( data ) )
-//               })
-//               .then(text => console.log(text))
-//               console.log(locationData.text())
-//         // }
-
-//         e.preventDefault();
-//             }
-//        });
+// function createLink(element, href, innerText) {
+// 	const link = document.createElement(element);
+// 	link.setAttribute('href', href);
+// 	link.setAttribute('target', '_blank');
+// 	link.innerText = innerText;
+// 	// parent.appendChild(link);
+// }

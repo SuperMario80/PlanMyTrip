@@ -78,7 +78,7 @@ class Location {
     }
     function setRegion(string $region): void {
         if (empty($region)){
-            $this->region = 'Undefined';
+            $this->region = '';
         }else{
             $this->region = $region;
         }

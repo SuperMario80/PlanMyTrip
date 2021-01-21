@@ -5,7 +5,7 @@
       
 -->
         <form method="post">
-            <input type="text" name="email" placeholder="Username / Email" value="<?=$email?>" ><br>
+            <input type="text" name="email" placeholder="Email Adress" value="<?=$email?>" >
             <input type="password" name="password" placeholder="Password" value="<?=$password?>"><br>
             <input class="btn" type="submit" name="login" value="Login" >
             <input class="btn" type="submit" name="register" value="Register" >
