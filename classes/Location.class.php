@@ -64,7 +64,11 @@ class Location {
     
     
     function getCountry(): string {
-        return $this->country;
+        if($this->country == $this->getLocation()){
+            return $this->country = '';
+        }else{
+            return $this->country;
+        }
     }
     function setCountry(string $country): void {
         if (empty($country)){

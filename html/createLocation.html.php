@@ -10,7 +10,7 @@
     <input type="text" name="intro" placeholder="Intro" value="<?=htmlSpecialChars($location->getIntro())?>" ><br>
     <input type="text" name="travelLink" placeholder="Travel Link" value="<?=htmlSpecialChars($location->getTravelLink())?>" ><br>
     <input type="text" name="notes" placeholder="Notes" value="<?=htmlSpecialChars($location->getNotes())?>" ><br>
-    <button class="btn-dark" name="save" value="1" >Save</button>
+    <button id="saveMyLoc" class="btn-dark" name="save" value="1" >Save</button>
     <button class="btn-dark" name="delete" value="2" >Delete</button>
 </form>
 <p>

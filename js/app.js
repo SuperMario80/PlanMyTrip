@@ -1,6 +1,5 @@
 let api_token = '9j6492j7wd3qjvppyb8hj2og788veo72';
 let account_id = 'BSOO2T1I';
-// let choose;
 
 let currentLocation;
 let currentPointofInterest;
@@ -84,6 +83,7 @@ let onLocationSelect = async (location) => {
 const locationTemplate = (input) => {
 	// <pre>${JSON.stringify(input,null,2)}</pre>
 
+	// const single = document.createDocumentFragment('div');
 	const single = document.createElement('div');
 	single.className = 'single';
 
@@ -94,6 +94,18 @@ const locationTemplate = (input) => {
 	singleCategory.className = 'single-category';
 	singleCategory.innerText = `${currentLocation.type}`;
 
+	// if (singleCategory.innerText.toLowerCase() === 'country') {
+	// 	singleWrap.className = 'single-wrap country';
+	// }
+	// if (singleCategory.innerText.toLowerCase() === 'region') {
+	// 	singleWrap.className = 'single-wrap region';
+	// }
+	// if (singleCategory.innerText.toLowerCase() === 'city') {
+	// 	singleWrap.className = 'single-wrap city';
+	// }
+	// displayLocType();
+	console.log(singleWrap.className);
+
 	const singleText = document.createElement('div');
 	singleText.className = 'single-text';
 
@@ -103,16 +115,25 @@ const locationTemplate = (input) => {
 	const singleTitle = document.createElement('h2');
 	singleTitle.className = 'single-title';
 
-	// const singleTl = createLink(
-	// 	'a',
-	// 	`${currentLocation.attribution[1].url}`,
-	// 	`Discover ${currentLocation.name}    ${currentLocation.part_of}`
-	// );
-	const singleTL = document.createElement('a');
-	singleTL.setAttribute('href', `${currentLocation.attribution[1].url}`);
-	singleTL.setAttribute('target', '_blank');
-	singleTL.innerText = `Discover ${currentLocation.name}    ${currentLocation.part_of}`;
+	let currentRegion = removeChars(currentLocation.part_of[0]);
+	const singleTL = createLink(
+		'a',
+		`${currentLocation.attribution[1].url}`,
+		`Discover ${currentLocation.name}    ${currentRegion}`
+	);
+
+	displayLocType(singleCategory, singleWrap);
+	// const singleTL = document.createElement('a');
+	// singleTL.setAttribute('href', `${currentLocation.attribution[1].url}`);
+	// singleTL.setAttribute('target', '_blank');
+	// let currentRegion = removeChars(currentLocation.part_of[0]);
+	// singleTL.innerText = `Discover ${currentLocation.name}    ${currentRegion}`;
+
+	// currentRegion.value.replace('_', '');
+	console.log(singleTL.innerText);
+
 	singleTitle.appendChild(singleTL);
+
 	// console.log(singleTl);
 
 	singleHeadline.appendChild(singleTitle);
@@ -120,10 +141,13 @@ const locationTemplate = (input) => {
 	const singleDesc = document.createElement('div');
 	singleDesc.className = 'single-desc';
 
-	const singleDL = document.createElement('a');
-	singleDL.setAttribute('href', `${currentLocation.attribution[0].url}`);
-	singleDL.setAttribute('target', '_blank');
-	singleDL.innerText = `${input.intro}`;
+	// const singleDL = document.createElement('a');
+	// singleDL.setAttribute('href', `${currentLocation.attribution[0].url}`);
+	// singleDL.setAttribute('target', '_blank');
+	// singleDL.innerText = `${input.intro}`;
+	const singleDL = createLink('a', `${currentLocation.attribution[0].url}`, `${input.intro}`);
+	console.log(singleDL);
+
 	singleDesc.appendChild(singleDL);
 
 	singleText.appendChild(singleHeadline);
@@ -133,11 +157,11 @@ const locationTemplate = (input) => {
 	if (logout) {
 		//creates 3rd child of item, sets attributes and append
 		const btn = document.createElement('button');
-		btn.className = 'block center btn';
+		btn.className = 'single-btn btn';
 		btn.id = `phpSubmit`;
 		btn.setAttribute('type', 'button');
 		btn.setAttribute('value', 'phpSubmit');
-		btn.innerText = 'Save';
+		btn.innerText = 'Save Location';
 
 		singleText.appendChild(btn);
 	}
@@ -145,12 +169,14 @@ const locationTemplate = (input) => {
 	singleWrap.appendChild(singleText);
 
 	single.appendChild(singleWrap);
+	// displayLocType();
 
 	return single;
 };
 
 const poiTemplate = (value) => {
 	//creates wrapper item
+	// const item = document.createDocumentFragment('div');
 	const item = document.createElement('div');
 	item.className = 'item';
 
@@ -204,6 +230,13 @@ const poiTemplate = (value) => {
 	item.appendChild(image);
 	item.appendChild(itemText);
 
+	//creates last child of item, sets attributes and append
+	const itemDesc = document.createElement('div');
+	itemDesc.className = 'item-desc';
+	itemDesc.innerHTML = `${value.snippet}`;
+
+	item.appendChild(itemDesc);
+
 	// if traveller is logged in, create save button
 	if (logout) {
 		//creates 3rd child of item, sets attributes and append
@@ -218,21 +251,52 @@ const poiTemplate = (value) => {
 		item.appendChild(btn);
 	}
 
-	//creates last child of item, sets attributes and append
-	const itemDesc = document.createElement('div');
-	itemDesc.className = 'item-desc';
-	itemDesc.innerHTML = `${value.snippet}`;
-
-	item.appendChild(itemDesc);
-
 	// console.log(itemTextDiv);
 	return item;
 };
 
-// function createLink(element, href, innerText) {
-// 	const link = document.createElement(element);
-// 	link.setAttribute('href', href);
-// 	link.setAttribute('target', '_blank');
-// 	link.innerText = innerText;
-// 	// parent.appendChild(link);
-// }
+// let removeChars = (char) => {
+// 	return char.replace(/_/g, ' ');
+// };
+
+// displayLocType();
+function removeChars(str) {
+	if (str) {
+		return str.replace(/_/g, ' ');
+	} else {
+		return str;
+	}
+}
+
+function createLink(element, href, innerText) {
+	let link = document.createElement(element);
+	link.setAttribute('href', href);
+	link.setAttribute('target', '_blank');
+	link.innerText = innerText;
+
+	return link;
+	// parent.appendChild(link);
+}
+
+// test redirect when saved
+
+// let saveMyLoc = document.querySelector('#saveMyLoc');
+// saveMyLoc.addEventListener('click', (e) => {
+// 	e.target.replace('travellerArea.php');
+// 	// return saveThis;
+// });
+
+function displayLocType(locType, wrap) {
+	// let wrap = document.querySelector('.single-wrap');
+	// let locType = document.querySelector('.single-category');
+	if (locType.innerText.toLowerCase() === 'country') {
+		wrap.className = 'single-wrap country';
+	}
+	if (locType.innerText.toLowerCase() === 'region') {
+		wrap.className = 'single-wrap region';
+	}
+	if (locType.innerText.toLowerCase() === 'city') {
+		wrap.className = 'single-wrap city';
+	}
+	return wrap;
+}

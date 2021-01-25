@@ -10,11 +10,12 @@ saveLocation.addEventListener('click', async (e) => {
 			locationKey: currentLocation.id,
 			classification: currentLocation.type,
 			country: currentLocation.country_id,
-			region: currentLocation.part_of,
+			region: currentRegion,
 			intro: currentLocation.intro,
 			travelLink: currentLocation.attribution[1].url
 		};
 		console.log(locationValue);
+		// prompt("Please enter the name of your playlist");
 		// if (onLocationSelect.res != '') {
 		// let locationData = new FormData();
 

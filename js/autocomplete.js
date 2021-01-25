@@ -1,11 +1,4 @@
-const createAutoComplete = ({
-	root,
-	renderOption,
-	onOptionSelect,
-	// onOptionSelectPoi,
-	inputValue,
-	fetchData
-}) => {
+const createAutoComplete = ({ root, renderOption, onOptionSelect, inputValue, fetchData }) => {
 	root.innerHTML = `
     <input class="input" placeholder="Search Location"/>
     <div class="dropdown">
