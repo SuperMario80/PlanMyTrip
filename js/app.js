@@ -1,11 +1,10 @@
-let api_token = '9j6492j7wd3qjvppyb8hj2og788veo72';
-let account_id = 'BSOO2T1I';
-
 let currentLocation;
 let currentPointofInterest;
 let poiCount;
 let poiRes;
-let logout = document.querySelector('#logout');
+
+// let locationType = document.querySelector('.single-category');
+// let locationCategory = document.querySelector('.single-wrap');
 
 createAutoComplete({
 	root: document.querySelector('.autocomplete'),
@@ -18,8 +17,8 @@ createAutoComplete({
 		// `;
 
 		return `
-			<div>${location.name}      (${location.type},    ${location.country_id})</div>
-			`;
+		<div>${location.name}      (${location.type},    ${removeChars(location.country_id.toString())})</div>
+		`;
 	},
 	onOptionSelect(location) {
 		onLocationSelect(location);
@@ -29,10 +28,13 @@ createAutoComplete({
 	},
 
 	async fetchData(searchTerm) {
-		// this.api_token = '9j6492j7wd3qjvppyb8hj2og788veo72';
-		// this.account_id = 'BSOO2T1I';
+		// let api_token = '9j6492j7wd3qjvppyb8hj2og788veo72';
+		// let account_id = 'BSOO2T1I';
+		this.api_token = '9j6492j7wd3qjvppyb8hj2og788veo72';
+		this.account_id = 'BSOO2T1I';
 		const placeResponse = await fetch(
-			`https://www.triposo.com/api/20201111/location.json?annotate=trigram:${searchTerm}&trigram=>=0.3&order_by=-score&account=${account_id}&token=${api_token}`
+			`https://www.triposo.com/api/20201111/location.json?annotate=trigram:${searchTerm}&trigram=>=0.3&order_by=-score&account=${this
+				.account_id}&token=${this.api_token}`
 		);
 
 		const place = await placeResponse.json();
@@ -43,7 +45,8 @@ createAutoComplete({
 
 let onLocationSelect = async (location) => {
 	let response = await fetch(
-		`https://www.triposo.com/api/20201111/location.json?id=${location.id}&fields=all&account=${account_id}&token=${api_token}`
+		`https://www.triposo.com/api/20201111/location.json?id=${location.id}&fields=all&account=${this
+			.account_id}&token=${this.api_token}`
 	);
 
 	let res = await response.json();
@@ -53,7 +56,8 @@ let onLocationSelect = async (location) => {
 	document.querySelector('#summary').append(locationTemplate(currentLocation));
 
 	let poiResponse = await fetch(
-		`https://www.triposo.com/api/20201111/poi.json?location_id=${location.id}&fields=all&tag_labels=sightseeing&count=20&order_by=-score&account=${account_id}&token=${api_token}`
+		`https://www.triposo.com/api/20201111/poi.json?location_id=${location.id}&fields=all&tag_labels=sightseeing&count=20&order_by=-score&account=${this
+			.account_id}&token=${this.api_token}`
 	);
 
 	poiRes = await poiResponse.json();
@@ -82,94 +86,50 @@ let onLocationSelect = async (location) => {
 
 const locationTemplate = (input) => {
 	// <pre>${JSON.stringify(input,null,2)}</pre>
-
 	// const single = document.createDocumentFragment('div');
-	const single = document.createElement('div');
-	single.className = 'single';
+	const single = createItem('div', 'single');
 
-	const singleWrap = document.createElement('div');
-	singleWrap.className = 'single-wrap';
+	const singleWrap = createItem('div', 'single-wrap');
 
-	const singleCategory = document.createElement('h1');
-	singleCategory.className = 'single-category';
-	singleCategory.innerText = `${currentLocation.type}`;
+	const singleCategory = createItem('h1', 'single-category');
+	singleCategory.innerText = `${removeChars(currentLocation.type).toString()}`;
 
-	// if (singleCategory.innerText.toLowerCase() === 'country') {
-	// 	singleWrap.className = 'single-wrap country';
-	// }
-	// if (singleCategory.innerText.toLowerCase() === 'region') {
-	// 	singleWrap.className = 'single-wrap region';
-	// }
-	// if (singleCategory.innerText.toLowerCase() === 'city') {
-	// 	singleWrap.className = 'single-wrap city';
-	// }
-	// displayLocType();
-	console.log(singleWrap.className);
+	const singleText = createItem('div', 'single-text');
 
-	const singleText = document.createElement('div');
-	singleText.className = 'single-text';
+	const singleHeadline = createItem('div', 'single-headline');
 
-	const singleHeadline = document.createElement('div');
-	singleHeadline.className = 'single-headline';
-
-	const singleTitle = document.createElement('h2');
-	singleTitle.className = 'single-title';
-
-	let currentRegion = removeChars(currentLocation.part_of[0]);
+	const singleTitle = createItem('h2', 'single-title');
+	let currentRegion = removeChars(currentLocation.part_of.toString());
 	const singleTL = createLink(
 		'a',
 		`${currentLocation.attribution[1].url}`,
 		`Discover ${currentLocation.name}    ${currentRegion}`
 	);
 
-	displayLocType(singleCategory, singleWrap);
-	// const singleTL = document.createElement('a');
-	// singleTL.setAttribute('href', `${currentLocation.attribution[1].url}`);
-	// singleTL.setAttribute('target', '_blank');
-	// let currentRegion = removeChars(currentLocation.part_of[0]);
-	// singleTL.innerText = `Discover ${currentLocation.name}    ${currentRegion}`;
-
-	// currentRegion.value.replace('_', '');
 	console.log(singleTL.innerText);
 
 	singleTitle.appendChild(singleTL);
-
-	// console.log(singleTl);
-
 	singleHeadline.appendChild(singleTitle);
 
-	const singleDesc = document.createElement('div');
-	singleDesc.className = 'single-desc';
-
-	// const singleDL = document.createElement('a');
-	// singleDL.setAttribute('href', `${currentLocation.attribution[0].url}`);
-	// singleDL.setAttribute('target', '_blank');
-	// singleDL.innerText = `${input.intro}`;
+	const singleDesc = createItem('div', 'single-desc');
 	const singleDL = createLink('a', `${currentLocation.attribution[0].url}`, `${input.intro}`);
-	console.log(singleDL);
 
 	singleDesc.appendChild(singleDL);
-
 	singleText.appendChild(singleHeadline);
 	singleText.appendChild(singleDesc);
 
 	// if traveller is logged in, create save button
-	if (logout) {
+	if (addButton()) {
 		//creates 3rd child of item, sets attributes and append
-		const btn = document.createElement('button');
-		btn.className = 'single-btn btn';
-		btn.id = `phpSubmit`;
-		btn.setAttribute('type', 'button');
-		btn.setAttribute('value', 'phpSubmit');
-		btn.innerText = 'Save Location';
-
+		const btn = createBtn('button', 'single-btn btn', 'phpSubmit', 'phpSubmit', 'Save Location');
 		singleText.appendChild(btn);
 	}
 	singleWrap.appendChild(singleCategory);
 	singleWrap.appendChild(singleText);
 
 	single.appendChild(singleWrap);
-	// displayLocType();
+
+	displayLocType(singleCategory, singleWrap);
 
 	return single;
 };
@@ -177,126 +137,67 @@ const locationTemplate = (input) => {
 const poiTemplate = (value) => {
 	//creates wrapper item
 	// const item = document.createDocumentFragment('div');
-	const item = document.createElement('div');
-	item.className = 'item';
+	const item = createItem('div', 'item');
 
 	//creates 1st child of item
-	const image = document.createElement('div');
-	image.className = 'item-image';
+	const image = createItem('div', 'item-image');
+
 	//creates child of image, sets attribute and append
 	const img = document.createElement('img');
 	img.setAttribute('src', `${value.images[0].sizes.medium.url}`);
 	image.appendChild(img);
 
 	//creates 2nd child of item
-	const itemText = document.createElement('div');
-	itemText.className = 'item-text';
+	const itemText = createItem('div', 'item-text');
 
 	//creates 1st child of itemText
-	const itWrap = document.createElement('div');
-	itWrap.className = 'item-text-wrap';
-
+	const itWrap = createItem('div', 'item-text-wrap');
 	//creates 1st child of itWrap
-	const itTitle = document.createElement('h2');
-	itTitle.className = 'item-text-title';
-	//creates child of itTitle, sets attribute and append
-	const itLink = document.createElement('a');
-	itLink.setAttribute('href', `${value.attribution[1].url}`);
-	itLink.setAttribute('target', '_blank');
-	itLink.innerText = `${value.name}`;
+	const itTitle = createItem('h2', 'item-text-title');
+	//creates link of itTitle, sets attribute and append
+	const itLink = createLink('a', `${value.attribution[1].url}`, `${value.name}`);
 	itTitle.appendChild(itLink);
-
 	//creates 2nd child of itWrap
-	const itCategory = document.createElement('p');
-	itCategory.className = 'item-text-category';
+	const itCategory = createItem('p', 'item-text-category');
 
-	//creates child of itCategory, sets attribute and append
-	const itCatLink = document.createElement('a');
-	itCatLink.setAttribute('href', `${value.attribution[0].url}`);
-	itCatLink.setAttribute('target', '_blank');
-	itCatLink.innerText = `${currentPointofInterest.tag_labels[0]}`;
+	const itCatLink = createLink('a', `${value.attribution[0].url}`, `${currentPointofInterest.tag_labels[0]}`);
 	itCategory.appendChild(itCatLink);
+
+	//creates last child of item, sets attributes and append
+	const itemDesc = createItem('div', 'item-desc');
+	itemDesc.innerHTML = `${value.snippet}`;
+
+	//appends child elements
+	itWrap.appendChild(itTitle);
+	itWrap.appendChild(itCategory);
+	itemText.appendChild(itWrap);
+	item.appendChild(image);
+	item.appendChild(itemText);
+	item.appendChild(itemDesc);
+
+	// if traveller is logged in, create save button
+	// if (locationTemplate.logout) {
+	//creates 3rd child of item, sets attributes and append
+	if (addButton()) {
+		const btn = createBtn(
+			'button',
+			'block center btn',
+			`poiSubmit${poiCount}`,
+			`poiSubmit${poiCount}`,
+			'Save Point of Interest'
+		);
+		btn.setAttribute('data-count', `${poiCount}`);
+		item.appendChild(btn);
+	}
+	// }
+
 	//sets default value for specific result
 	if (itCatLink.innerText.toLowerCase() === 'person') {
 		itCatLink.innerText = 'Sightseeing';
 	}
 
-	//appends child elements to itWrap
-	itWrap.appendChild(itTitle);
-	itWrap.appendChild(itCategory);
-
-	itemText.appendChild(itWrap);
-
-	item.appendChild(image);
-	item.appendChild(itemText);
-
-	//creates last child of item, sets attributes and append
-	const itemDesc = document.createElement('div');
-	itemDesc.className = 'item-desc';
-	itemDesc.innerHTML = `${value.snippet}`;
-
-	item.appendChild(itemDesc);
-
-	// if traveller is logged in, create save button
-	if (logout) {
-		//creates 3rd child of item, sets attributes and append
-		const btn = document.createElement('button');
-		btn.className = 'block center btn';
-		btn.id = `poiSubmit${poiCount}`;
-		btn.setAttribute('type', 'button');
-		btn.setAttribute('data-count', `${poiCount}`);
-		btn.setAttribute('value', `poiSubmit${poiCount}`);
-		btn.innerText = 'Save Point of Interest';
-
-		item.appendChild(btn);
-	}
-
-	// console.log(itemTextDiv);
 	return item;
 };
 
-// let removeChars = (char) => {
-// 	return char.replace(/_/g, ' ');
-// };
-
-// displayLocType();
-function removeChars(str) {
-	if (str) {
-		return str.replace(/_/g, ' ');
-	} else {
-		return str;
-	}
-}
-
-function createLink(element, href, innerText) {
-	let link = document.createElement(element);
-	link.setAttribute('href', href);
-	link.setAttribute('target', '_blank');
-	link.innerText = innerText;
-
-	return link;
-	// parent.appendChild(link);
-}
-
-// test redirect when saved
-
-// let saveMyLoc = document.querySelector('#saveMyLoc');
-// saveMyLoc.addEventListener('click', (e) => {
-// 	e.target.replace('travellerArea.php');
-// 	// return saveThis;
-// });
-
-function displayLocType(locType, wrap) {
-	// let wrap = document.querySelector('.single-wrap');
-	// let locType = document.querySelector('.single-category');
-	if (locType.innerText.toLowerCase() === 'country') {
-		wrap.className = 'single-wrap country';
-	}
-	if (locType.innerText.toLowerCase() === 'region') {
-		wrap.className = 'single-wrap region';
-	}
-	if (locType.innerText.toLowerCase() === 'city') {
-		wrap.className = 'single-wrap city';
-	}
-	return wrap;
-}
+// displayLocType(locationType, locationCategory);
+// console.log(locationCategory);

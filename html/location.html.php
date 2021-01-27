@@ -8,7 +8,7 @@
 				<div class="single-text">
 					<div class="single-headline">
 						<h2 class="single-title">Destination &nbsp;&nbsp;
-						<a href="<?= htmlSpecialChars($location->getTravelLink()) ?>"><?= htmlSpecialChars($location->getLocation()) ?> <?= htmlSpecialChars($location->getCountry()) ?> <?= htmlSpecialChars($location->getRegion()) ?></a>
+						<a href="<?= htmlSpecialChars($location->getTravelLink()) ?>"><?= htmlSpecialChars($location->getLocation()) ?> &nbsp;&nbsp;&nbsp;&nbsp;<?= htmlSpecialChars($location->getCountry()) ?> &nbsp;&nbsp;&nbsp;&nbsp;<?= htmlSpecialChars($location->getRegion()) ?></a>
 						</h2>
 					</div>
 					<div class="single-desc saved-data">

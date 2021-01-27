@@ -3,6 +3,7 @@ const savePoi = document.querySelector('#poi');
 // console.log(savePhp);
 
 saveLocation.addEventListener('click', async (e) => {
+	// let regexPartOf = removeChars(currentLocation.part_of[0]);
 	if (e.target.id == 'phpSubmit') {
 		// async postPlace(){
 		let locationValue = {
@@ -10,11 +11,11 @@ saveLocation.addEventListener('click', async (e) => {
 			locationKey: currentLocation.id,
 			classification: currentLocation.type,
 			country: currentLocation.country_id,
-			region: currentRegion,
+			region: currentLocation.part_of,
 			intro: currentLocation.intro,
 			travelLink: currentLocation.attribution[1].url
 		};
-		console.log(locationValue);
+		// console.log(regexPartOf);
 		// prompt("Please enter the name of your playlist");
 		// if (onLocationSelect.res != '') {
 		// let locationData = new FormData();
@@ -37,7 +38,7 @@ saveLocation.addEventListener('click', async (e) => {
 		// }
 		// }
 		// e.preventDefault();
-		console.log(sendPlace);
+		// console.log(regexPartOf);
 	}
 });
 

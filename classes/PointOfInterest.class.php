@@ -77,8 +77,8 @@ class PointOfInterest {
         return $this->attraction;
     }
     function setAttraction(string $attraction): void {
-         if (empty($attraction)){
-            $this->attraction = '';
+         if (empty($attraction) || $attraction == 'person'){
+            $this->attraction = 'Sightseeing';
         }else{
             $this->attraction = $attraction;
         }

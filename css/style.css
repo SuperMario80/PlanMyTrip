@@ -1,8 +1,9 @@
 :root {
 	--primary-color: #ffff;
 	--secondary-color: #31363f;
-	--highlight-color: #f25621;
+	--lighter-color: #636c7e;
 	--dark-color: rgba(0, 0, 0, .87);
+	--highlight-color: #f25621;
 	--bg-sec-color: #fef0ec;
 	--alternative-color: #2767e7;
 	--max-width: 1100px;
@@ -16,9 +17,11 @@
 
 body {
 	font-family: Helvetica, sans-serif;
-	font-weight: 300;
-	line-height: 1.4;
+	font-weight: 500;
 	font-size: 16px;
+	word-spacing: .2rem;
+	letter-spacing: .05rem;
+	line-height: 1.33;
 	/* color: #fff; */
 }
 
@@ -381,17 +384,25 @@ button.dropdown-item.is-active {
 	top: 1rem;
 	padding: 0 2rem;
 	text-align: right;
+	font-weight: bold;
 	/* transform: translateY(-50%); */
 }
+/* .item-text-title a {
+	color: var(--lighter-color);
+} */
+.item-text-category a {
+	color: var(--lighter-color);
+	font-weight: bold;
+}
+
 .item-text-title {
 	text-transform: capitalize;
-	font-size: 1.2rem;
 
 	margin: 5px 0 0 0;
 }
 .item-text-category {
 	text-transform: uppercase;
-	font-size: 1rem;
+	font-size: 0.9rem;
 	/* opacity: 0.7; */
 	margin: 0;
 }
@@ -432,14 +443,14 @@ button.dropdown-item.is-active {
 	color: var(--alternative-color);
 }
 
-/* .view {
+.view {
 	height: 6%;
 	color: var(--bg-sec-color);
 }
 
 .saved {
 	background-color: var(--secondary-color);
-} */
+}
 
 .single {
 	/* flex-grow: 0; */
@@ -461,6 +472,10 @@ button.dropdown-item.is-active {
 	/* color: #0a0a0a; */
 	/* position: relative; */
 }
+.sight-color {
+	background-color: var(--alternative-color);
+}
+
 .single-text {
 	display: flex;
 	flex-direction: column;
@@ -484,6 +499,10 @@ button.dropdown-item.is-active {
 	/* padding: 0 1rem; */
 	/* margin: 5px 0 0 0; */
 }
+
+.single-title h2 {
+	color: var(--primary-color);
+}
 /* .single-title span {
 	font-style: oblique;
 	text-transform: uppercase;
@@ -501,6 +520,13 @@ button.dropdown-item.is-active {
 	width: 30%;
 	padding: 0 1rem;
 	/* overflow: hidden; */
+}
+
+.small {
+	font-size: 1rem;
+	/* width: 25%; */
+	color: var(--secondary-color);
+	background-color: var(--highlight-color);
 }
 
 .country {
