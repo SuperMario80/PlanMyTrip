@@ -1,5 +1,20 @@
 const saveLocation = document.querySelector('#summary');
 const savePoi = document.querySelector('#poi');
+
+const modal = document.querySelector('.modal');
+const sum = modal.querySelector('.summary');
+
+savePoi.addEventListener('click', function(e) {
+	console.log('hello modal');
+	if (e.target.classList === 'mapModal') {
+		modal.classList.remove('hidden');
+	}
+});
+
+modal.addEventListener('click', function(e) {
+	if (e.target !== modal && e.target !== sum) return;
+	modal.classList.add('hidden');
+});
 // console.log(savePhp);
 
 saveLocation.addEventListener('click', async (e) => {
@@ -48,11 +63,11 @@ saveLocation.addEventListener('click', async (e) => {
 savePoi.addEventListener('click', (e) => {
 	let poiVal = e.target.getAttribute('data-count');
 
+	let currentPointofInterest = poiRes.results[poiVal];
 	// if(e.target.id === `poiSubmit${poiVal}`) {
 	if (e.target.hasAttribute('data-count')) {
 		// console.log(poiCount);
-
-		currentPointofInterest = poiRes.results[poiVal];
+		// currentPointofInterest = poiRes.results[poiVal];
 		// async postPlace(){
 		let poiValue = {
 			poiName: currentPointofInterest.name,
@@ -64,10 +79,10 @@ savePoi.addEventListener('click', (e) => {
 			infoLink: currentPointofInterest.attribution[1].url,
 			poiMap: currentPointofInterest.attribution[0].url
 		};
-		console.log(poiValue);
 		// if (onLocationSelect.res != '') {
 		// let locationData = new FormData();
-
+		// let changeVal = removeChars(poiValue);
+		// console.log(changeVal);
 		// locationData.append( "json", JSON.stringify(locationValue));
 		const data = {
 			method: 'POST',

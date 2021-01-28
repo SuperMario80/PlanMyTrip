@@ -36,10 +36,10 @@ class locRequestPage extends Page {
                 
                 //RECEIVE THE RAW POST DATA FROM app.js
                 $content = file_get_contents('php://input');
-                
                 printData($content);
                 //Decode the incoming RAW post data from JSON
                 $locData = json_decode($content, true);
+                // $locData=  preg_replace('/_/', ' ', $locData);
                 //SAVING POST DATA IN VARIABLES
                 $this->location = new Location();
 

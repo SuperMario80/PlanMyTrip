@@ -4,7 +4,7 @@
   <button class="btn" name="newLocation" >Create New Location</button>
 <div class="single">
 			<div class="single-wrap">
-				<h1 class="single-category"><?= htmlSpecialChars($location->getClassification()) ?></h1>
+				<h1 class="single-category" ><?= htmlSpecialChars($location->getClassification()) ?></h1>
 				<div class="single-text">
 					<div class="single-headline">
 						<h2 class="single-title">Destination &nbsp;&nbsp;

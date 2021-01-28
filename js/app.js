@@ -1,5 +1,5 @@
 let currentLocation;
-let currentPointofInterest;
+// let currentPointofInterest;
 let poiCount;
 let poiRes;
 
@@ -15,9 +15,11 @@ createAutoComplete({
 		// return `
 		// <div><img class="thumbnail" src="${imgSrc}" />${location.name}      (${location.type},    ${location.country_id})</div>
 		// `;
-
+		// location = removeChars(location.toString());
 		return `
-		<div>${location.name}      (${location.type},    ${removeChars(location.country_id.toString())})</div>
+		<div>${location.name}      (${removeChars(location.type.toString())},    ${removeChars(
+			location.country_id.toString()
+		)})</div>
 		`;
 	},
 	onOptionSelect(location) {
@@ -68,7 +70,7 @@ let onLocationSelect = async (location) => {
 	try {
 		// for (poiCount = 0; poiCount < 20; poiCount++) {
 		for (poiCount = 0; poiRes.results.length; poiCount++) {
-			currentPointofInterest = poiRes.results[poiCount];
+			let currentPointofInterest = poiRes.results[poiCount];
 			document.querySelector('#poi').append(poiTemplate(currentPointofInterest));
 		}
 	} catch (e) {
@@ -92,6 +94,7 @@ const locationTemplate = (input) => {
 	const singleWrap = createItem('div', 'single-wrap');
 
 	const singleCategory = createItem('h1', 'single-category');
+	// singleCategory.id = 'mapModal';
 	singleCategory.innerText = `${removeChars(currentLocation.type).toString()}`;
 
 	const singleText = createItem('div', 'single-text');
@@ -99,7 +102,7 @@ const locationTemplate = (input) => {
 	const singleHeadline = createItem('div', 'single-headline');
 
 	const singleTitle = createItem('h2', 'single-title');
-	let currentRegion = removeChars(currentLocation.part_of.toString());
+	const currentRegion = removeChars(currentLocation.part_of.toString());
 	const singleTL = createLink(
 		'a',
 		`${currentLocation.attribution[1].url}`,
@@ -160,11 +163,12 @@ const poiTemplate = (value) => {
 	//creates 2nd child of itWrap
 	const itCategory = createItem('p', 'item-text-category');
 
-	const itCatLink = createLink('a', `${value.attribution[0].url}`, `${currentPointofInterest.tag_labels[0]}`);
+	const itCatLink = createLink('a', `${value.attribution[0].url}`, `${value.tag_labels[0]}`);
 	itCategory.appendChild(itCatLink);
 
 	//creates last child of item, sets attributes and append
-	const itemDesc = createItem('div', 'item-desc');
+	const itemDesc = createItem('div', 'item-desc mapModal');
+
 	itemDesc.innerHTML = `${value.snippet}`;
 
 	//appends child elements

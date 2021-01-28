@@ -74,7 +74,8 @@ class Location {
         if (empty($country)){
             $this->country = 'Unknown';
         }else{
-            $this->country = $country;
+            // $this->country = $country;
+             $this->country=  preg_replace('/_/', ' ', $country);
         }
     }
       function getRegion(): string {

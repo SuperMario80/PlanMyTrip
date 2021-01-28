@@ -56,7 +56,8 @@ class PointOfInterest {
         if (empty($city)){
             $this->city = 'Unknown';
         }else{
-            $this->city = $city;
+            $this->city=  preg_replace('/_/', ' ', $city);
+            // $this->city = $city;
         }
     }
     
