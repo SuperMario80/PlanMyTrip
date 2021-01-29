@@ -30,9 +30,10 @@ function addButton() {
 	let logout = document.querySelector('#logout');
 	if (logout) {
 		return logout;
-	} else {
-		console.log('please login');
 	}
+	// else {
+	// 	console.log('please login');
+	// }
 }
 
 function createBtn(element, classEl, id, value, innerText) {

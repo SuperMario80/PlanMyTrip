@@ -1,5 +1,5 @@
 let currentLocation;
-// let currentPointofInterest;
+let currentPointofInterest;
 let poiCount;
 let poiRes;
 
@@ -167,8 +167,8 @@ const poiTemplate = (value) => {
 	itCategory.appendChild(itCatLink);
 
 	//creates last child of item, sets attributes and append
-	const itemDesc = createItem('div', 'item-desc mapModal');
-
+	const itemDesc = createItem('div', 'item-desc');
+	itemDesc.setAttribute('data-modal', `${poiCount}`);
 	itemDesc.innerHTML = `${value.snippet}`;
 
 	//appends child elements
