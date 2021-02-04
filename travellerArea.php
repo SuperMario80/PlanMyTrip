@@ -44,9 +44,13 @@ class travellerAreaPage extends Page {
 
     protected function viewContent(): void {
         include_once 'html/showcase.html.php';
+        include 'html/modal.html.php';
 
+        
         $this->showTravLoc();
         $this->showLocPois();
+
+        
 }
         //SHOWS ALL SAVED LOCATIONS FROM LOGGED-IN TRAVELLER
         private function showTravLoc() {

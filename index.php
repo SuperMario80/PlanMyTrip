@@ -22,6 +22,7 @@ class IndexPage extends Page {
         $message = $_SESSION['message'] ?? '';
         // printData($_SESSION);
         $_SESSION['message'] = '';
+        include 'html/modal.html.php';
         include 'html/searchMyTrip.html.php';
 
 

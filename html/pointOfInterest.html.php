@@ -19,7 +19,8 @@
         <img src="img\showcase3.jpg" alt="" />
         </div> -->
                 <h2 class="item-text-title alt"><a href="<?= htmlSpecialChars($poi->getInfoLink()) ?>" ><?= htmlSpecialChars($poi->getPoiName()) ?></a></h2>
-                <p class="item-text-category alt"><a href="<?= htmlSpecialChars($poi->getInfoLink()) ?>"><?= htmlSpecialChars($poi->getCity()) ?></a></p>
+                <p class="item-text-category alt"><a href=""<?= htmlSpecialChars($poi->getPoiMap()) ?>"><?= htmlSpecialChars($poi->getCity()) ?></a></p>
+                <p hidden class="itemMyMod" ><?= htmlSpecialChars($poi->getPoiMap()) ?></p>
               </div>
             </div>
             <div class="item-flex">

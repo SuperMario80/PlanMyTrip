@@ -7,11 +7,12 @@
     <input type="text" name="classification" placeholder="Classification" value="<?= htmlSpecialChars($location->getClassification())?>" ><br>
     <input type="text" name="country" placeholder="Country" value="<?=htmlSpecialChars($location->getCountry())?>" ><br>
     <input type="text" name="region" placeholder="Region" value="<?=htmlSpecialChars($location->getRegion())?>" ><br>
-    <input type="text" name="intro" placeholder="Intro" value="<?=htmlSpecialChars($location->getIntro())?>" ><br>
+    <textarea type="text" name="intro" placeholder="Intro" value="<?=htmlSpecialChars($location->getIntro())?>" ></textarea><br>
     <input type="text" name="travelLink" placeholder="Travel Link" value="<?=htmlSpecialChars($location->getTravelLink())?>" ><br>
-    <input type="text" name="notes" placeholder="Notes" value="<?=htmlSpecialChars($location->getNotes())?>" ><br>
+    <textarea type="text" name="notes" placeholder="Notes" value="<?=htmlSpecialChars($location->getNotes())?>" ></textarea><br>
     <button id="saveMyLoc" class="btn-dark" name="save" value="1" >Save</button>
     <button class="btn-dark" name="delete" value="2" >Delete</button>
+    
 </form>
 <p>
     <?=htmlSpecialChars($message)?>
