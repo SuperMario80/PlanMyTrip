@@ -108,7 +108,11 @@ p {
 .btn.large {
 	font-size: 1rem;
 	letter-spacing: 0;
+<<<<<<< HEAD
 	padding: .7rem 1rem;
+=======
+	padding: .7rem 1.5rem;
+>>>>>>> 3e1b3a4453fe24b454ea4d5e07f8f6ee322a3eec
 }
 
 .btn:hover {
@@ -442,6 +446,7 @@ button.dropdown-item.is-active {
 	align-items: flex-end; */
 	font-size: small;
 }
+<<<<<<< HEAD
 
 .item-map:hover {
 	color: var(--highlight-color);
@@ -455,6 +460,14 @@ button.dropdown-item.is-active {
 	display: grid;
 	grid-template-columns: 30px, 20px;
 } */
+=======
+
+.item-map:hover {
+	color: var(--highlight-color);
+	text-decoration: underline;
+	cursor: pointer;
+}
+>>>>>>> 3e1b3a4453fe24b454ea4d5e07f8f6ee322a3eec
 
 /* .loc-info {
 	grid-column: 4fr;
@@ -464,12 +477,17 @@ button.dropdown-item.is-active {
 	/* flex-direction: column; */
 	/* grid-column: 2fr; */
 	padding: 1rem;
+<<<<<<< HEAD
 	color: var(--highlight-color);
 	/* border-top: .0625rem solid #f1f2f4; */
 }
 
 .button-area {
 	text-align: right;
+=======
+	color: var(--alternative-color);
+	border-top: .0625rem solid #f1f2f4;
+>>>>>>> 3e1b3a4453fe24b454ea4d5e07f8f6ee322a3eec
 }
 
 .view {
@@ -485,7 +503,11 @@ button.dropdown-item.is-active {
 	/* flex-grow: 0; */
 	/* height: 20vh; */
 
+<<<<<<< HEAD
 	border-radius: .45rem;
+=======
+	border-radius: .25rem;
+>>>>>>> 3e1b3a4453fe24b454ea4d5e07f8f6ee322a3eec
 	margin-bottom: 1rem;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, .38);
 
@@ -495,10 +517,17 @@ button.dropdown-item.is-active {
 }
 
 .single-wrap {
+<<<<<<< HEAD
 	/* display: flex;
 	flex-direction: row; */
 	display: grid;
 	/* grid-template-rows: 1fr, 5fr; */
+=======
+	display: flex;
+	flex-direction: row;
+	/* display: grid;
+	grid-template-columns: repeat(1, 2fr, 4fr); */
+>>>>>>> 3e1b3a4453fe24b454ea4d5e07f8f6ee322a3eec
 
 	background-color: var(--highlight-color);
 	text-align: center;
@@ -512,10 +541,18 @@ button.dropdown-item.is-active {
 .single-text {
 	/* display: flex;
 	flex-direction: column; */
+<<<<<<< HEAD
 	/* display: grid;
 	grid-template-rows: 2fr, auto, 1fr; */
+=======
+	display: grid;
+	grid-template-rows: repeat(1, 1fr);
+>>>>>>> 3e1b3a4453fe24b454ea4d5e07f8f6ee322a3eec
 	background: var(--bg-sec-color);
 	/* width: 100%; */
+}
+.single-text.btn {
+	align-self: flex-start;
 }
 .single-text.btn {
 	align-self: flex-start;
@@ -587,8 +624,13 @@ button.dropdown-item.is-active {
 	padding: 1rem;
 	/* height: 10vh; */
 	overflow: hidden;
+<<<<<<< HEAD
 	/* display: grid;
 	grid-template-columns: 2fr, 1fr; */
+=======
+	display: grid;
+	grid-template-columns: 2fr, 1fr;
+>>>>>>> 3e1b3a4453fe24b454ea4d5e07f8f6ee322a3eec
 }
 
 .single-desc a {

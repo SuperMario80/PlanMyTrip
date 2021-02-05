@@ -129,6 +129,12 @@ const locationTemplate = (input) => {
 		div.appendChild(btn);
 		singleText.appendChild(div);
 		console.log(div);
+
+		// const div = document.createElement('div');
+		const btn = createBtn('button', 'btn large', 'phpSubmit', 'phpSubmit', 'Save Location');
+		// div.appendChild(btn);
+		singleText.appendChild(btn);
+		console.log(btn);
 	}
 	singleWrap.appendChild(singleCategory);
 	singleWrap.appendChild(singleText);
