@@ -7,21 +7,23 @@
 				<h1 class="single-category" ><?= htmlSpecialChars($location->getClassification()) ?></h1>
 				<div class="single-text">
 					<div class="single-headline">
-						<h2 class="single-title">Destination &nbsp;&nbsp;
-						<a href="<?= htmlSpecialChars($location->getTravelLink()) ?>"><?= htmlSpecialChars($location->getLocation()) ?> &nbsp;&nbsp;&nbsp;&nbsp;<?= htmlSpecialChars($location->getCountry()) ?> &nbsp;&nbsp;&nbsp;&nbsp;<?= htmlSpecialChars($location->getRegion()) ?></a>
+						<h2 class="single-title">
+						<a href="<?= htmlSpecialChars($location->getTravelLink()) ?>"><?= htmlSpecialChars($location->getLocation()) ?> <?= htmlSpecialChars($location->getCountry()) ?> <?= htmlSpecialChars($location->getRegion()) ?></a>
 						</h2>
 					</div>
 					<div class="single-desc saved-data">
-            <div>
+            <div class="loc-info">
             <?= htmlSpecialChars($location->getIntro()) ?>
             </div>
             <div class="loc-notes">
-                <?= htmlSpecialChars($location->getNotes()) ?>
+              <h4>Notes</h4>
+                <p><?= htmlSpecialChars($location->getNotes()) ?></p>
             </div>
           </div>
-          <div>
-          <button class="btn" name="updateLocation" value="<?= $location->getId()?>" >EDIT</button>
-          <button class="btn" name="newPoi" value="<?= $location->getId() ?>" >Create  POINT OF INTEREST</button>
+          <div class="button-area">
+          <button class="btn btn-dark" name="delete" value="2" >Delete <?= htmlSpecialChars($location->getLocation()) ?></button>
+          <button class="btn" name="updateLocation" value="<?= $location->getId()?>" >Edit <?= htmlSpecialChars($location->getLocation()) ?></button>
+          <button class="btn" name="newPoi" value="<?= $location->getId() ?>" >New PointOfInterest</button>
           </div>
         </div>
 			</div>

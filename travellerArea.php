@@ -19,6 +19,10 @@ class travellerAreaPage extends Page {
         //      exit;
         //  }
         // $tr = unserialize($_SESSION['traveller']);
+        // if (isSet($_POST['delete'])) {
+        //     header('Location: crudLocation.php?id=' . $_POST['delete']);
+        //     exit;
+        // }
         // $travId = $tr->getId();
         if (isSet($_POST['updateLocation'])) {
                     
@@ -40,13 +44,18 @@ class travellerAreaPage extends Page {
             header('Location: crudPoi.php?id=' . $_POST['updatePoi']);
             exit;
         }
+        
     }
 
     protected function viewContent(): void {
         include_once 'html/showcase.html.php';
+        include 'html/modal.html.php';
 
+        
         $this->showTravLoc();
         $this->showLocPois();
+
+        
 }
         //SHOWS ALL SAVED LOCATIONS FROM LOGGED-IN TRAVELLER
         private function showTravLoc() {

@@ -96,12 +96,19 @@ p {
 
 .btn {
 	display: inline-block;
+	font-weight: bold;
 	color: var(--primary-color);
 	background: var(--highlight-color);
-	padding: 0.3rem 1rem;
-	margin: 1rem;
+	padding: 0.4rem 1.5rem;
+	margin: 1rem .5rem;
 	border: none;
-	border-radius: 5px;
+	border-radius: .25rem;
+}
+
+.btn.large {
+	font-size: 1rem;
+	letter-spacing: 0;
+	padding: .7rem 1rem;
 }
 
 .btn:hover {
@@ -331,10 +338,12 @@ button.dropdown-item.is-active {
 
 .item {
 	position: relative;
-	border-radius: 1rem;
+	border-radius: .25rem;
 	overflow: hidden;
-	display: flex;
-	flex-direction: column;
+	/* display: flex;
+	flex-direction: column; */
+	display: grid;
+	grid-template-rows: repeat(1, 4fr);
 	background: var(--bg-sec-color);
 	/* padding: 0rem 0.5rem; */
 	box-shadow: 0 2px 8px rgba(0, 0, 0, .38);
@@ -412,10 +421,12 @@ button.dropdown-item.is-active {
 } */
 
 .item-desc {
+	height: 14vh;
 	/* text-align: start;
 	position: sticky; */
+	margin-top: -2rem;
 	font-size: 1rem;
-	height: 20vh;
+	/* height: 20vh; */
 	overflow: hidden;
 	/* z-index: 1; */
 	/* color: #f4f4f4; */
@@ -423,24 +434,42 @@ button.dropdown-item.is-active {
 	padding: 1.5rem 1rem;
 }
 
-/* .item-flex {
-	display: flex;
-} */
-
-/* .item-intro {
-	display: block;
-	padding-top: 6rem;
-
-	overflow: hidden;
-} */
-
-.saved-data {
-	height: 40vh;
+.item-map {
+	text-align: right;
+	color: var(--highlight-color);
+	font-weight: bold;
+	/* position: relative;
+	align-items: flex-end; */
+	font-size: small;
 }
+
+.item-map:hover {
+	color: var(--highlight-color);
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+/* .saved-data {
+	display: flex;
+	flex-direction: column;
+	display: grid;
+	grid-template-columns: 30px, 20px;
+} */
+
+/* .loc-info {
+	grid-column: 4fr;
+} */
 .loc-notes {
 	text-align: right;
+	/* flex-direction: column; */
+	/* grid-column: 2fr; */
 	padding: 1rem;
-	color: var(--alternative-color);
+	color: var(--highlight-color);
+	/* border-top: .0625rem solid #f1f2f4; */
+}
+
+.button-area {
+	text-align: right;
 }
 
 .view {
@@ -455,7 +484,8 @@ button.dropdown-item.is-active {
 .single {
 	/* flex-grow: 0; */
 	/* height: 20vh; */
-	border-radius: 1rem;
+
+	border-radius: .45rem;
 	margin-bottom: 1rem;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, .38);
 
@@ -465,8 +495,11 @@ button.dropdown-item.is-active {
 }
 
 .single-wrap {
-	display: flex;
-	flex-direction: row;
+	/* display: flex;
+	flex-direction: row; */
+	display: grid;
+	/* grid-template-rows: 1fr, 5fr; */
+
 	background-color: var(--highlight-color);
 	text-align: center;
 	/* color: #0a0a0a; */
@@ -477,15 +510,21 @@ button.dropdown-item.is-active {
 }
 
 .single-text {
-	display: flex;
-	flex-direction: column;
+	/* display: flex;
+	flex-direction: column; */
+	/* display: grid;
+	grid-template-rows: 2fr, auto, 1fr; */
 	background: var(--bg-sec-color);
-	width: 100%;
+	/* width: 100%; */
+}
+.single-text.btn {
+	align-self: flex-start;
 }
 
 .single-headline {
 	background: var(--dark-color);
-	padding: .6rem 0;
+	padding: 1rem;
+
 	/* display: flex;
 	flex-direction: row; */
 
@@ -512,13 +551,14 @@ button.dropdown-item.is-active {
 /* margin: 5px 0 0 0; */
 
 .single-category {
-	text-transform: capitalize;
+	text-transform: uppercase;
 	text-align: center;
 	align-self: center;
 	font-size: 3rem;
 	color: var(--primary-color);
-	width: 30%;
-	padding: 0 1rem;
+	/* border-top: 1rem var(--primary-color); */
+	/* width: 30%; */
+	padding: 1rem;
 	/* overflow: hidden; */
 }
 
@@ -536,20 +576,24 @@ button.dropdown-item.is-active {
 	background-color: var(--secondary-color);
 }
 .city {
-	background-color: var(--bg-sec-color);
+	background-color: var(--lighter-color);
 }
-.city h1 {
-	color: var(--alternative-color);
+/* .city h1 {
+	color: var(--dark-color);
 	border-right: var(--dark-color);
-}
+} */
 
 .single-desc {
-	height: 10vh;
+	padding: 1rem;
+	/* height: 10vh; */
 	overflow: hidden;
+	/* display: grid;
+	grid-template-columns: 2fr, 1fr; */
 }
 
 .single-desc a {
 	/* position: relative; */
+
 	font-size: 1rem;
 	/* overflow: hidden; */
 	text-align: left;
@@ -566,6 +610,7 @@ button.dropdown-item.is-active {
 	
 } */
 
+/* Modal implementation */
 .modal {
 	background-color: rgba(0, 0, 0, 0.4); /* Transparent dimmed overlay */
 	position: fixed;
@@ -574,6 +619,7 @@ button.dropdown-item.is-active {
 	width: 100%;
 	height: 100%;
 	display: table;
+	z-index: 1;
 }
 
 .modal.hidden {

@@ -124,8 +124,11 @@ const locationTemplate = (input) => {
 	// if traveller is logged in, create save button
 	if (addButton()) {
 		//creates 3rd child of item, sets attributes and append
-		const btn = createBtn('button', 'single-btn btn', 'phpSubmit', 'phpSubmit', 'Save Location');
-		singleText.appendChild(btn);
+		const div = document.createElement('div');
+		const btn = createBtn('button', 'btn large', 'phpSubmit', 'phpSubmit', 'Save Location');
+		div.appendChild(btn);
+		singleText.appendChild(div);
+		console.log(div);
 	}
 	singleWrap.appendChild(singleCategory);
 	singleWrap.appendChild(singleText);
@@ -167,9 +170,20 @@ const poiTemplate = (value) => {
 	itCategory.appendChild(itCatLink);
 
 	//creates last child of item, sets attributes and append
+
 	const itemDesc = createItem('div', 'item-desc');
-	itemDesc.setAttribute('data-modal', `${poiCount}`);
-	itemDesc.innerHTML = `${value.snippet}`;
+
+	const itemMap = createItem('p', 'item-map');
+	itemMap.setAttribute('data-modal', `${poiCount}`);
+	itemMap.innerHTML = 'Show on Map';
+	// const itemMapLink = createLink('a', '', 'Show on Map');
+	// itemMap.append(itemMapLink);
+
+	const itemDescInner = document.createElement('p');
+
+	itemDescInner.innerHTML = `${value.snippet}`;
+	itemDesc.appendChild(itemMap);
+	itemDesc.appendChild(itemDescInner);
 
 	//appends child elements
 	itWrap.appendChild(itTitle);
@@ -183,15 +197,18 @@ const poiTemplate = (value) => {
 	// if (locationTemplate.logout) {
 	//creates 3rd child of item, sets attributes and append
 	if (addButton()) {
+		const div = document.createElement('div');
 		const btn = createBtn(
 			'button',
-			'block center btn',
+			'btn large',
 			`poiSubmit${poiCount}`,
 			`poiSubmit${poiCount}`,
 			'Save Point of Interest'
 		);
 		btn.setAttribute('data-count', `${poiCount}`);
-		item.appendChild(btn);
+		div.appendChild(btn);
+		item.appendChild(div);
+		console.log(div);
 	}
 	// }
 
