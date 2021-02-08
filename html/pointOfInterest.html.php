@@ -1,5 +1,5 @@
 
-
+<!-- 
   <div>
     <form method="post">
       <button class="btn btn-dark" name="newPoi" value="<?= $location->getId() ?>" >Create PointOfInterest</button>
@@ -16,9 +16,9 @@
             <div class="item-text">
               <div class="item-text-wrap">
               <p class="item-map itemMod" data-itemMod="<?= $poi->getId() ?>">Show on Map</p>
-                <!-- <div class="item-image">
+                <div class="item-image">
         <img src="img\showcase3.jpg" alt="" />
-        </div> -->
+        </div>
                 <h2 class="item-text-title alt"><a href="<?= htmlSpecialChars($poi->getInfoLink()) ?>" ><?= htmlSpecialChars($poi->getPoiName()) ?></a></h2>
                 <p class="item-text-category alt"><a href=""<?= htmlSpecialChars($poi->getPoiMap()) ?>"><?= htmlSpecialChars($poi->getCity()) ?></a></p>
                 <p hidden class="itemMyMod" ><?= htmlSpecialChars($poi->getPoiMap()) ?></p>
@@ -34,7 +34,62 @@
 
         
       </form>
-    </div>
+    </div> -->
+
+
+
+
+
+<div>
+  <form method="post">
+
+          
+    <?php foreach ($selectedPoi as $poi) : ?>  
+    <div class="single">
+          <div class="single-wrap poi">
+            <h1 class="single-category" ><?= htmlSpecialChars($poi->getAttraction()) ?>
+            </h1>
+            <div class="single-text">
+              <div class="single-headline">
+                <h2 class="single-title">
+                  <a href="<?= htmlSpecialChars($poi->getInfoLink()) ?>"><?= htmlSpecialChars($poi->getPoiName()) ?> <?= htmlSpecialChars($poi->getCity()) ?>
+                </a>
+              </h2>
+            </div>
+            <div class="single-desc saved-data">
+                <p class="item-text-category alt"><a href=""<?= htmlSpecialChars($poi->getPoiMap()) ?>">
+                <div class="loc-info">
+                <?= htmlSpecialChars($poi->getIntro()) ?>
+                </div>
+                <div class="loc-notes">
+                  <h5>Your Notes</h5>
+                    <p><?= htmlSpecialChars($poi->getNotes()) ?></p>
+                </div>
+              </div>
+              <div class="button-area">
+                <button class="btn block center" name="updatePoi" value="<?= $poi->getId() ?>" >Edit</button>
+                <button class="btn" name="delete" value="2" >Delete Poi</button>
+                <button class="btn" name="newPoi" value="<?= $location->getId() ?>" >New PointOfInterest</button>
+              </div>
+            </div>
+          </div>
+        </div>
+          <?php endforeach; ?>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
 

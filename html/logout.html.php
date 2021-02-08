@@ -5,7 +5,7 @@
 <div class="sign-out">
         <h4><?=$email?></h4>
         <form id="logout" method="post">
-            <input class="btn" type="submit" name="logout" value="Logout" >
+            <input class="btn btn-secondary" type="submit" name="logout" value="Logout" >
         </form>
     </div>
     </div>

@@ -10,11 +10,7 @@ savePoi.addEventListener('click', function(e) {
 	// console.log(itemMap);
 	const modalVal = e.target.getAttribute('data-modal');
 
-<<<<<<< HEAD
 	currentPointofInterest = poiRes.results[modalVal];
-=======
-	currentPointofInterest = poiRes.results[poiVal];
->>>>>>> 3e1b3a4453fe24b454ea4d5e07f8f6ee322a3eec
 	// const modalBody = document.querySelector('.modal-body');
 
 	if (e.target.hasAttribute('data-modal')) {
@@ -55,7 +51,6 @@ savePoi.addEventListener('click', function(e) {
 	});
 });
 
-
 // const itemMap = document.querySelector('.itemMod');
 
 // itemMap.addEventListener('click', function(e) {
@@ -76,24 +71,24 @@ savePoi.addEventListener('click', function(e) {
 // 	});
 // 	e.preventDefault();
 // });
-const itemMap = document.querySelector('.item-text-category');
+// const itemMap = document.querySelector('.item-text-category');
 
-itemMap.addEventListener('click', function(e) {
-	const itemMyMod = document.querySelector('.itemMyMod');
+// itemMap.addEventListener('click', function(e) {
+// 	const itemMyMod = document.querySelector('.itemMyMod');
 
-	// currentPointofInterest = poiRes.results[poiVal];
+// 	// currentPointofInterest = poiRes.results[poiVal];
 
-	modal.classList.remove('hidden');
-	let iframeMod = document.querySelector('.iframeMod');
+// 	modal.classList.remove('hidden');
+// 	let iframeMod = document.querySelector('.iframeMod');
 
-	iframeMod.setAttribute('src', `${itemMyMod.innerText}`);
+// 	iframeMod.setAttribute('src', `${itemMyMod.innerText}`);
 
-	modal.addEventListener('click', function(e) {
-		if (e.target !== modal && e.target !== sum) return;
-		modal.classList.add('hidden');
-	});
-	e.preventDefault();
-});
+// 	modal.addEventListener('click', function(e) {
+// 		if (e.target !== modal && e.target !== sum) return;
+// 		modal.classList.add('hidden');
+// 	});
+// 	e.preventDefault();
+// });
 
 saveLocation.addEventListener('click', async (e) => {
 	console.log('click');

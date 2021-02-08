@@ -52,6 +52,7 @@ class crudLocationPage extends Page {
         
         $message = $this->message;
         $location = $this->location;
+        // include 'html/showcase.html.php';
         include 'html/createLocation.html.php';
 
     }

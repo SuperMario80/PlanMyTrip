@@ -106,7 +106,7 @@ const locationTemplate = (input) => {
 	const singleTL = createLink(
 		'a',
 		`${currentLocation.attribution[1].url}`,
-		`Discover ${currentLocation.name}    ${currentRegion}`
+		`${currentLocation.name}    ${currentRegion}`
 	);
 
 	console.log(singleTL.innerText);
@@ -125,16 +125,10 @@ const locationTemplate = (input) => {
 	if (addButton()) {
 		//creates 3rd child of item, sets attributes and append
 		const div = document.createElement('div');
-		const btn = createBtn('button', 'btn large', 'phpSubmit', 'phpSubmit', 'Save Location');
+		const btn = createBtn('button', 'btn btn-highlight large', 'phpSubmit', 'phpSubmit', 'Save Location');
 		div.appendChild(btn);
 		singleText.appendChild(div);
 		console.log(div);
-
-		// const div = document.createElement('div');
-		const btn = createBtn('button', 'btn large', 'phpSubmit', 'phpSubmit', 'Save Location');
-		// div.appendChild(btn);
-		singleText.appendChild(btn);
-		console.log(btn);
 	}
 	singleWrap.appendChild(singleCategory);
 	singleWrap.appendChild(singleText);
@@ -206,7 +200,7 @@ const poiTemplate = (value) => {
 		const div = document.createElement('div');
 		const btn = createBtn(
 			'button',
-			'btn large',
+			'btn btn-highlight large',
 			`poiSubmit${poiCount}`,
 			`poiSubmit${poiCount}`,
 			'Save Point of Interest'

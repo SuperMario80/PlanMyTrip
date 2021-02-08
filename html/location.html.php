@@ -1,7 +1,7 @@
 <div>
 <form method="post">
 
-  <button class="btn" name="newLocation" >Create New Location</button>
+  <button class="btn btn-dark large" name="newLocation" >Create New Location</button>
 <div class="single">
 			<div class="single-wrap">
 				<h1 class="single-category" ><?= htmlSpecialChars($location->getClassification()) ?></h1>
@@ -16,12 +16,12 @@
             <?= htmlSpecialChars($location->getIntro()) ?>
             </div>
             <div class="loc-notes">
-              <h4>Notes</h4>
+              <h5>Your Notes</h5>
                 <p><?= htmlSpecialChars($location->getNotes()) ?></p>
             </div>
           </div>
           <div class="button-area">
-          <button class="btn btn-dark" name="delete" value="2" >Delete <?= htmlSpecialChars($location->getLocation()) ?></button>
+          <button class="btn" name="delete" value="2" >Delete <?= htmlSpecialChars($location->getLocation()) ?></button>
           <button class="btn" name="updateLocation" value="<?= $location->getId()?>" >Edit <?= htmlSpecialChars($location->getLocation()) ?></button>
           <button class="btn" name="newPoi" value="<?= $location->getId() ?>" >New PointOfInterest</button>
           </div>

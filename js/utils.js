@@ -53,6 +53,9 @@ function displayLocType(locType, wrap) {
 	if (locType.innerText.toLowerCase() === 'country') {
 		wrap.className = 'single-wrap country';
 	}
+	if (locType.innerText.toLowerCase() === 'national park') {
+		wrap.className = 'single-wrap np';
+	}
 	if (locType.innerText.toLowerCase() === 'region') {
 		wrap.className = 'single-wrap region';
 	}

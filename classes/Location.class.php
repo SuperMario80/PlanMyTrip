@@ -59,7 +59,7 @@ class Location {
         return $this->classification;
     }
     function setClassification(string $classification): void {
-        $this->classification = $classification;
+        $this->classification=  preg_replace('/_/', ' ', $classification);
     }
     
     
@@ -72,7 +72,7 @@ class Location {
     }
     function setCountry(string $country): void {
         if (empty($country)){
-            $this->country = 'Unknown';
+            $this->country = '';
         }else{
             // $this->country = $country;
              $this->country=  preg_replace('/_/', ' ', $country);

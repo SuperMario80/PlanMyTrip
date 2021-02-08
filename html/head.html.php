@@ -19,7 +19,7 @@
     <body>
         <div id="navbar" class="bg-dark">
         <div>
-           <h1 class=""><a href="index.php">PlanMyTrip</a>
+           <h1 class="icon"><a href="index.php">PlanMyTrip</a>
             <span class="icon">
               <i class="fas fa-plane"></i>
             </span>
