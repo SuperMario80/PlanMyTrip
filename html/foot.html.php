@@ -8,7 +8,7 @@
 
 
     </div>
-      <footer class="lead py-2 text-center bg-secondary">
+      <footer class="lead py-2 text-center bg-light">
         PlanMyTrip &copy;
       </footer>
       

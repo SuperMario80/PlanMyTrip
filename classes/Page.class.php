@@ -113,7 +113,12 @@ abstract class Page {
         if ($this->loggedIn) {
             include 'html/logout.html.php';
 
-        } else {
+        } 
+        // if($_SERVER['PHP_SELF'] !== "/php/projects/PlanMyTrip/createTraveller.php"){
+        //     printData($_SERVER['PHP_SELF']);
+        
+        // }
+        else{
             $message = $this->message;
             include 'html/login.html.php';
         }

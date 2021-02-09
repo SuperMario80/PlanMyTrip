@@ -12,6 +12,7 @@
 	--max-width: 1100px;
 }
 
+/* UTILITY AND UTILITY CLASSES */
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -23,10 +24,9 @@ textarea {
 	font-family: Helvetica, sans-serif;
 	font-weight: 300;
 	font-size: 16px;
-	word-spacing: .2rem;
-	letter-spacing: .05rem;
+	/* word-spacing: .2rem;
+	letter-spacing: .05rem; */
 	line-height: 1.33;
-	/* color: #fff; */
 }
 
 a {
@@ -36,10 +36,6 @@ a {
 
 li {
 	list-style: none;
-}
-
-p {
-	margin: 0.75rem 0;
 }
 
 label {
@@ -56,7 +52,6 @@ textarea {
 	margin: 0.3rem 0 1.5rem 0;
 	width: 100%;
 	padding: .5rem;
-	/* color: #666; */
 	font-size: .8rem;
 	border-radius: 3px !important;
 }
@@ -68,20 +63,22 @@ textarea {
 	column-count: initial !important;
 }
 
-.text-center {
-	text-align: center;
+.container {
+	max-width: 1100px;
+	margin: auto;
+	overflow: hidden;
 }
 
-/* .text-primary {
-	color: #003580;
-} */
-
 .bg-primary {
-	background: var(--primary-color);
+	background: var(--primary-color) !important;
 	color: var(--secondary-color);
 }
 
 .bg-secondary {
+	background: var(--secondary-color) !important;
+	color: var(--bg-sec-color);
+}
+.bg-light {
 	color: var(--secondary-color);
 	background: var(--bg-sec-color);
 }
@@ -102,10 +99,21 @@ textarea {
 	margin-bottom: 0.75rem;
 	line-height: 1.1;
 }
+.s-heading {
+	color: var(--highlight-color);
+	font-size: 0.8rem;
+	margin-bottom: -2rem;
+	padding-top: 2rem;
+	line-height: .8;
+}
 
 .lead {
 	font-size: 1.3rem;
 	margin-bottom: 2rem;
+}
+
+.text-center {
+	text-align: center;
 }
 
 .py-1 {
@@ -126,6 +134,20 @@ textarea {
 }
 .p-3 {
 	padding: 3rem;
+}
+
+.my-1 {
+	margin: 1.5rem 0;
+}
+.my-2 {
+	margin: 2rem 0;
+}
+.my-3 {
+	margin: 3rem 0;
+}
+
+.mb-3 {
+	margin-bottom: 6rem;
 }
 
 .btn {
@@ -154,14 +176,16 @@ textarea {
 .btn-secondary {
 	background: var(--primary-color);
 	color: var(--dark-color-alt);
-	/* font-weight: 400; */
-	/* padding: 0.4rem 0.2rem; */
 }
 
 .btn.large {
 	font-size: 1rem;
 	letter-spacing: 0;
 	padding: .7rem 1rem;
+}
+
+.button-area {
+	text-align: right;
 }
 
 .list {
@@ -173,10 +197,14 @@ textarea {
 	padding: 0.5rem 0;
 	font-size: 1.3rem;
 	font-weight: bold;
-	/* border-bottom: #444 dotted 1px; */
 }
 
-/* Navbar */
+.border-bottom {
+	margin: 5rem 0 9rem 0;
+	border-bottom: 2px solid #ccc;
+}
+
+/* NAVBAR */
 #navbar {
 	display: flex;
 	position: sticky;
@@ -188,11 +216,6 @@ textarea {
 	padding: .8rem 1.4rem;
 	align-items: center;
 }
-
-/* #navbar .icon a {
-	font-size: 3rem;
-	font-weight: bold;
-} */
 
 #navbar ul {
 	display: flex;
@@ -210,18 +233,18 @@ textarea {
 	background: var(--highlight-color);
 	border-radius: 5px;
 }
+
 #navbar .sign-out {
 	display: flex;
 	align-items: center;
 	list-style: none;
 }
 
-/* Showcase */
+/* SHOWCASE */
 #showcase {
 	background: var(--dark-color) url('../img/showcase.jpg') no-repeat center center/cover;
 	height: 50vh;
 	color: #fff;
-	/* position: relative; */
 }
 
 #showcase .showcase-content {
@@ -235,64 +258,7 @@ textarea {
 	background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* example style triposo
-.side-menu {
-    width: 224px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    margin: 0;
-    height: 100%;
-    background-color: #333439;
-    z-index: 1;
-    overflow-y: scroll;
-} */
-
-.container {
-	max-width: 1100px;
-	margin: auto;
-	/* padding: 0 2 rem; */
-	overflow: hidden;
-}
-
-/* .thumbnail {
-	width: 12%;
-	height: auto;
-} */
-
-/* .tutorial {
-	width: 600px;
-	text-align: center;
-	margin: auto;
-}
-
-figure.image {
-	display: flex;
-	justify-content: center;
-	background-color: black;
-}
-
-figure .image img {
-	width: 128px;
-}
-
-.notification {
-	margin-top: 20px !important;
-}
-
-.title .icon {
-	margin-left: 15px;
-}
-
-.hero {
-	margin-bottom: 20px;
-}
-
-.forms {
-	display: flex;
-	justify-content: space-around;
-} */
-
+/* DROPDOWN MENUE */
 /* property of Dropdown-Menue */
 .input,
 .textarea {
@@ -313,7 +279,6 @@ figure .image img {
 .dropdown {
 	display: flex;
 	position: relative;
-	/* vertical-align: bottom; */
 }
 
 .dropdown.is-active .dropdown-menu,
@@ -328,7 +293,6 @@ figure .image img {
 	padding-top: 4px;
 	position: absolute;
 	top: 100%;
-	/* z-index: 20; */
 }
 
 .dropdown-content {
@@ -353,7 +317,6 @@ a.dropdown-item,
 button.dropdown-item {
 	padding-right: 3rem;
 	text-align: start;
-	/* align-items: left; */
 	white-space: nowrap;
 	width: 100%;
 }
@@ -371,31 +334,27 @@ button.dropdown-item.is-active {
 	color: var(--primary-color);
 }
 
-/* text, der später ausgeblendet wird */
 .is-hidden {
 	display: none !important;
 }
 
+/* POINTS OF INTEREST SEARCH RESULTS */
 /* item properties for Points Of Interest */
 .items {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	/* box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.3); */
 }
 
 .item {
 	position: relative;
 	border-radius: .25rem;
 	overflow: hidden;
-	/* display: flex;
-	flex-direction: column; */
 	display: grid;
-	grid-template-rows: repeat(1, 4fr);
+	grid-template-rows: repeat(1, 1fr auto auto auto);
 	background: var(--bg-sec-color);
 	/* padding: 0rem 0.5rem; */
 	box-shadow: 0 2px 8px rgba(0, 0, 0, .38);
 	margin: .4rem;
-	height: 40vh;
 }
 
 .item-image:hover {
@@ -403,14 +362,7 @@ button.dropdown-item.is-active {
 }
 
 .item-image {
-	/* height: 20vh; */
-	/* transform: translateY(1);
-	transform: translateZ(1); */
-	/* display: block; */
 	transition: transform 750ms;
-
-	/* overflow: hidden; */
-	/* cubic-bezier(0.2, 1, 0.3, 1); */
 }
 .item-image:before {
 	content: '';
@@ -419,7 +371,6 @@ button.dropdown-item.is-active {
 	overflow: hidden;
 }
 .item-image img {
-	/* background: center center/cover; */
 	position: absolute;
 	display: block;
 	top: 0;
@@ -428,24 +379,18 @@ button.dropdown-item.is-active {
 	width: 100%;
 	height: 20vh;
 	background: var(--dark-color);
-
 	overflow: hidden;
-	/* height: fit-content; */
-	/* line-height: 20rem; */
 }
 
 .item-text-wrap {
 	position: absolute;
 	width: 100%;
 	top: 1rem;
-	padding: 0 2rem;
+	right: 1rem;
 	text-align: right;
 	font-weight: bold;
-	/* transform: translateY(-50%); */
 }
-/* .item-text-title a {
-	color: var(--lighter-color);
-} */
+
 .item-text-category a {
 	color: var(--lighter-color);
 	font-weight: bold;
@@ -454,7 +399,7 @@ button.dropdown-item.is-active {
 .item-text-title {
 	text-transform: capitalize;
 
-	margin: 5px 0 0 0;
+	/* margin: 5px 0 0 0; */
 }
 .item-text-category {
 	text-transform: uppercase;
@@ -463,30 +408,18 @@ button.dropdown-item.is-active {
 	margin: 0;
 }
 
-/* .item button {
-	margin-top: 1.5rem;
-} */
-
 .item-desc {
 	height: 14vh;
-	/* text-align: start;
-	position: sticky; */
-	margin-top: -2rem;
+	margin-top: -1rem;
 	font-size: 1rem;
-	/* height: 20vh; */
 	overflow: hidden;
-	/* z-index: 1; */
-	/* color: #f4f4f4; */
-
 	padding: 1.5rem 1rem;
 }
 
 .item-map {
 	text-align: right;
 	color: var(--highlight-color);
-	font-weight: bold;
-	/* position: relative;
-	align-items: flex-end; */
+	padding-bottom: 0.2rem;
 	font-size: small;
 }
 
@@ -501,71 +434,48 @@ button.dropdown-item.is-active {
 	grid-template-columns: 5fr 2fr;
 }
 
-/* .loc-info {
-	grid-column: 4fr;
-} */
 .loc-notes {
 	text-align: right;
 	vertical-align: text-top;
-	/* flex-direction: column; */
-	/* grid-column: 2fr; */
 	padding: 0 1rem;
 	color: var(--secondary-color-alt);
 	border-left: solid .0625rem var(--secondary-color-alt);
-	/* border-top: .0625rem solid #f1f2f4; */
 }
 
-.button-area {
-	text-align: right;
-}
-
-.view {
+/* .view {
 	height: 6%;
 	color: var(--bg-sec-color);
-}
+} */
 
 .saved {
 	background-color: var(--secondary-color);
 }
 
+/* SHOWS LOCATION IN SEARCH AND LOCATIONS + POINTS OF INTEREST IN TRAVELLER AREA */
 .single {
-	/* flex-grow: 0; */
-	/* height: 20vh; */
-
 	border-radius: .45rem;
 	margin-bottom: 1rem;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, .38);
-
 	overflow: hidden;
-
-	/* background: #2c3543 inherit; */
 }
 
 .single-wrap {
-	/* display: flex;
-	flex-direction: row; */
-	display: grid;
-	/* grid-template-rows: 1fr, 5fr; */
-
-	background-color: var(--lighter-color-alt);
+	background-color: var(--highlight-color);
 	text-align: center;
-	/* color: #0a0a0a; */
-	/* position: relative; */
 }
 
+/* pointsOfInterest in Traveller Area */
 .single-wrap.poi {
 	display: grid;
-	grid-template-columns: 2fr 5fr;
+	grid-template-columns: 7fr 2fr;
+	background-color: var(--dark-color-alt);
+	color: var(--secondary-color);
 }
 .sight-color {
 	background-color: var(--alternative-color);
 }
 
 .single-text {
-	/* display: flex;
-	flex-direction: column; */
-	/* display: grid;
-	grid-template-rows: 2fr, auto, 1fr; */
 	background: var(--bg-sec-color);
 	/* width: 100%; */
 }
@@ -579,10 +489,6 @@ button.dropdown-item.is-active {
 .single-headline {
 	background: var(--dark-color);
 	padding: 1rem;
-
-	/* display: flex;
-	flex-direction: row; */
-
 	font-size: 2rem;
 }
 
@@ -597,13 +503,6 @@ button.dropdown-item.is-active {
 .single-title h2 {
 	color: var(--primary-color);
 }
-/* .single-title span {
-	font-style: oblique;
-	text-transform: uppercase;
-	font-size: 1.1rem;
-	text-align: end;
-	/* padding: 0 1rem; */
-/* margin: 5px 0 0 0; */
 
 .single-category {
 	text-transform: uppercase;
@@ -611,21 +510,28 @@ button.dropdown-item.is-active {
 	align-self: center;
 	font-size: 3rem;
 	color: var(--primary-color);
-	/* border-top: 1rem var(--primary-color); */
-	/* width: 30%; */
 	padding: 1rem;
-	/* overflow: hidden; */
+}
+
+.single-desc {
+	padding: 1rem;
+	overflow: hidden;
+}
+
+.single-desc a {
+	font-size: 1rem;
+	text-align: left;
+	color: var(--dark-color);
+	/* padding: 0.2rem 1rem; */
 }
 
 .small {
-	font-size: 1rem;
-	/* width: 25%; */
-	color: var(--secondary-color);
-	background-color: var(--highlight-color);
+	font-size: 1.5rem;
 }
 
+/* color for different search category */
 .country {
-	background-color: var(--lighter-color-alt);
+	background-color: var(--highlight-color);
 }
 .np {
 	background-color: var(--secondary-color-alt);
@@ -636,37 +542,6 @@ button.dropdown-item.is-active {
 .city {
 	background-color: var(--lighter-color);
 }
-/* .city h1 {
-	color: var(--dark-color);
-	border-right: var(--dark-color);
-} */
-
-.single-desc {
-	padding: 1rem;
-	/* height: 10vh; */
-	overflow: hidden;
-	/* display: grid;
-	grid-template-columns: 2fr, 1fr; */
-}
-
-.single-desc a {
-	/* position: relative; */
-
-	font-size: 1rem;
-	/* overflow: hidden; */
-	text-align: left;
-	/* z-index: 1; */
-	color: var(--dark-color);
-
-	/* padding: 0.2rem 1rem; */
-}
-
-/* .single-btn {
-	overflow: hidden;
-	text-align: center;
-	position: relative;
-	
-} */
 
 /* Modal implementation */
 .modal {
@@ -680,7 +555,8 @@ button.dropdown-item.is-active {
 	z-index: 1;
 }
 
-.modal.hidden {
+.modal.hidden,
+.hidden {
 	display: none;
 }
 
@@ -699,6 +575,8 @@ button.dropdown-item.is-active {
 	padding: 10px;
 }
 
+/* FORM STYLING */
+/* form to CRUD items */
 .greybox {
 	border: 1px solid #eaeaea;
 	background-color: #f4f4f4;
@@ -718,6 +596,7 @@ button.dropdown-item.is-active {
 	margin: 0 1rem;
 }
 
+/* Header for CRUD items */
 .headersection {
 	background-color: var(--secondary-color-alt);
 	border-top: solid 2rem var(--lighter-color-alt);
@@ -728,11 +607,10 @@ button.dropdown-item.is-active {
 	font-weight: 900;
 }
 
+/* login form area */
 .loginBox {
-	/* border: 1px solid #eaeaea; */
 	background-color: #f4f4f4;
 	padding: .5rem;
-	/* border-radius: 3px; */
 	display: block;
 }
 
