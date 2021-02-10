@@ -62,9 +62,9 @@ abstract class GenericDao {
     }
 
     // READS ALL STATEMENTS/ROWS IN TABLE WITH PASSED IN FOREIGN KEY VALUE($idValue) AND INDIVIDUAL COLUMN NAME($foreignId)
-    function readForeign(int $idValue, string $foreignId): array {
+    function readForeign(int $idValue, string $foreignId, string $yourColumn): array {
         if ($this->readForeignStatement == null) {
-            $sql = 'SELECT * FROM `' . $this->tableName . '` WHERE `' . $foreignId . '`=:idValue';
+            $sql = 'SELECT * FROM `' . $this->tableName . '` WHERE `' . $foreignId . '`=:idValue ORDER BY  `' . $yourColumn . '`';
             $this->readForeignStatement = $this->connection->prepare($sql);
         }
 

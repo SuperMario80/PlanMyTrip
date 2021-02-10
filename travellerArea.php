@@ -68,10 +68,11 @@ class travellerAreaPage extends Page {
 
             //variable for database column 'idTraveller'
             $foreignId = "idTraveller";
+            $yourColumn = "classification";
             $this->locationDao = new LocationDao();
 
             //compares all data from Location-Table where idTraveller matches current Travellers Id
-            $this->locations = $this->locationDao->readForeign($idValue, $foreignId);
+            $this->locations = $this->locationDao->readForeign($idValue, $foreignId, $yourColumn);
         }
         //SHOWS ALL SAVED POINTS OF INTEREST TO EVERY LOCATION FROM LOGGED-IN TRAVELLER
         private function showLocPois() {
@@ -83,12 +84,13 @@ class travellerAreaPage extends Page {
 
                 //variable for database column 'idLocation' in PointOfInterest
                 $foreignId = "idLocation";
+                $yourColumn = "poiName";
                 
                 
                 $this->pointOfInterestDao = new PointOfInterestDao();
 
                 //compares all data from PointOfInterest-Table where idPoi matches Location Id
-                $this->pointOfInterest = $this->pointOfInterestDao->readForeign($idValue, $foreignId);
+                $this->pointOfInterest = $this->pointOfInterestDao->readForeign($idValue, $foreignId, $yourColumn);
                 
 
                 $selectedPoi = $this->pointOfInterest;

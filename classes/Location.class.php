@@ -5,9 +5,9 @@ class Location {
 
     private int $id;
     private int $idTraveller;
+    private string $classification;
     private string $location;
     private string $locationKey;
-    private string $classification;
     private string $country;
     private string $region;
     private string $intro;
@@ -15,15 +15,15 @@ class Location {
     private string $notes;
     
     
-    function __construct(string $location='', string $locationKey='',string $classification='', string $country='',string $region='',string $intro='', string $travelLink='', string $notes='',int $id=0, int $idTraveller=0) {
+    function __construct(string $classification='', string $location='', string $locationKey='', string $country='',string $region='',string $intro='', string $travelLink='', string $notes='',int $id=0, int $idTraveller=0) {
          if (isSet($this->id)) {
             return;
         }
         $this->id = $id;
         $this->idTraveller = $idTraveller;
+        $this->classification = $classification;
         $this->location = $location;
         $this->locationKey = $locationKey;
-        $this->classification = $classification;
         $this->country = $country;
         $this->region = $region;
         $this->intro = $intro;

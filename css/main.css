@@ -1,0 +1,217 @@
+:root {
+	--primary-color: #ffff;
+	--secondary-color: #31363f;
+	--secondary-color-alt: #444;
+	--lighter-color: #636c7e;
+	--lighter-color-alt: #555;
+	--dark-color: rgba(0, 0, 0, .87);
+	--dark-color-alt: #666;
+	--highlight-color: #f25621;
+	--bg-sec-color: #fef0ec;
+	--alternative-color: #2767e7;
+	--max-width: 1100px;
+}
+
+/* UTILITY AND UTILITY CLASSES */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body,
+textarea {
+	font-family: Helvetica, sans-serif;
+	font-weight: 300;
+	font-size: 16px;
+	/* word-spacing: .2rem;
+	letter-spacing: .05rem; */
+	line-height: 1.33;
+}
+
+a {
+	text-decoration: none;
+	color: var(--primary-color);
+}
+
+li {
+	list-style: none;
+}
+
+label {
+	font-size: .8rem;
+	color: #333;
+}
+
+input,
+textarea {
+	background-color: var(--primary-color);
+	border: 1px solid #bbb;
+	box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
+	height: 2.3125rem;
+	margin: 0.3rem 0 1.5rem 0;
+	width: 100%;
+	padding: .5rem;
+	font-size: .8rem;
+	border-radius: 3px !important;
+}
+
+textarea {
+	height: 117px;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+	column-count: initial !important;
+}
+
+.container {
+	max-width: 1100px;
+	margin: auto;
+	overflow: hidden;
+}
+
+.bg-primary {
+	background: var(--primary-color) !important;
+	color: var(--secondary-color);
+}
+
+.bg-secondary {
+	background: var(--secondary-color) !important;
+	color: var(--bg-sec-color);
+}
+.bg-light {
+	color: var(--secondary-color);
+	background: var(--bg-sec-color);
+}
+
+.bg-highlight {
+	background: var(--highlight-color);
+	color: var(--primary-color);
+}
+
+.l-heading {
+	font-size: 4rem;
+	margin-bottom: 0.75rem;
+	line-height: 1.1;
+}
+
+.m-heading {
+	font-size: 2rem;
+	margin-bottom: 0.75rem;
+	line-height: 1.1;
+}
+
+/* TODO */
+.s-heading {
+	color: var(--highlight-color);
+	font-size: 0.8rem;
+	margin-bottom: -2rem;
+	padding-top: 2rem;
+	line-height: .8;
+}
+
+.lead {
+	font-size: 1.3rem;
+	margin-bottom: 2rem;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.py-0 {
+	padding: 0.5rem 0;
+}
+.py-1 {
+	padding: 1.5rem 0;
+}
+.py-2 {
+	padding: 2rem 0;
+}
+.py-3 {
+	padding: 3rem 0;
+}
+
+.p-0 {
+	padding: 0.5rem;
+}
+.p-1 {
+	padding: 1.5rem;
+}
+.p-2 {
+	padding: 2rem;
+}
+.p-3 {
+	padding: 3rem;
+}
+
+.my-0 {
+	margin: 0.5rem 0;
+}
+.my-1 {
+	margin: 1.5rem 0;
+}
+.my-2 {
+	margin: 2rem 0;
+}
+.my-3 {
+	margin: 3rem 0;
+}
+
+/* TODO */
+.mb-3 {
+	margin-bottom: 6rem;
+}
+
+.btn {
+	display: inline-block;
+	font-weight: bold;
+	color: var(--primary-color);
+	background: var(--secondary-color-alt);
+	padding: 0.4rem 1.5rem;
+	margin: 1rem .5rem;
+	border: none;
+	border-radius: .25rem;
+}
+
+.btn:hover {
+	opacity: 0.7;
+}
+
+.btn-dark {
+	background: var(--dark-color);
+	color: var(--primary-color);
+}
+
+.btn-highlight {
+	background: var(--highlight-color);
+}
+.btn-secondary {
+	background: var(--primary-color);
+	color: var(--dark-color-alt);
+}
+
+.btn.large {
+	font-size: 1rem;
+	letter-spacing: 0;
+	padding: .7rem 1rem;
+}
+
+.button-area {
+	text-align: right;
+}
+
+.list {
+	margin: 0.5rem 0;
+	list-style: none;
+}
+
+.list li {
+	padding: 0.5rem 0;
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+
+.border-bottom {
+	margin: 5rem 0 9rem 0;
+	border-bottom: 2px solid #ccc;
+}

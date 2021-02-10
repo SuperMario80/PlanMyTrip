@@ -14,6 +14,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css"
     /> -->
+    <link rel="stylesheet" href="css/main.css?<?php echo time(); ?>" />
+    <link rel="stylesheet" href="css/utility.css?<?php echo time(); ?>" />
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>" />
     </head>
     <body>

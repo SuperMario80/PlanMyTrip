@@ -13,16 +13,16 @@ class LocationDao extends GenericDao {
     }
 
     protected function getCreateSql(): string {
-        return 'INSERT INTO `' . $this->getTableName() . '` (`idTraveller`, `location`, `locationKey`, `classification`, `country`, `region`, `intro`, `travelLink`,`notes`) '
-                . 'VALUES (:idTraveller, :location, :locationKey, :classification, :country, :region, :intro, :travelLink, :notes)';
+        return 'INSERT INTO `' . $this->getTableName() . '` (`idTraveller`, `classification`, `location`, `locationKey`, `country`, `region`, `intro`, `travelLink`,`notes`) '
+                . 'VALUES (:idTraveller, :classification, :location, :locationKey,  :country, :region, :intro, :travelLink, :notes)';
     }
 
     protected function getCreateArray(object $location): array {
         return [
             ':idTraveller' => $location->getIdTraveller(),
+            ':classification' => $location->getClassification(),
             ':location' => $location->getLocation(),
             ':locationKey' => $location->getLocationKey(),
-            ':classification' => $location->getClassification(),
             ':country' => $location->getCountry(),
             ':region' => $location->getRegion(),
             ':intro' => $location->getIntro(),
@@ -33,16 +33,16 @@ class LocationDao extends GenericDao {
 
     protected function getUpdateSql(): string {
         return 'UPDATE `' . $this->getTableName() . '` SET `idTraveller`=:idTraveller, '
-        . '`location`=:location, `locationKey`=:locationKey,`classification`=:classification, `country`=:country, `region`=:region, '
+        . '`classification`=:classification, `location`=:location, `locationKey`=:locationKey,`country`=:country, `region`=:region, '
         . '`intro`=:intro, `travelLink`=:travelLink, `notes`=:notes WHERE `id`=:id';
     }
 
     protected function getUpdateArray(object $location): array {
         return [
             ':idTraveller' => $location->getIdTraveller(),
+            ':classification' => $location->getClassification(),
             ':location' => $location->getLocation(),
             ':locationKey' => $location->getLocationKey(),
-            ':classification' => $location->getClassification(),
             ':country' => $location->getCountry(),
             ':region' => $location->getRegion(),
             ':intro' => $location->getIntro(),
@@ -56,7 +56,7 @@ class LocationDao extends GenericDao {
         
 
         if ($this->findLocationStatement == null) {
-            $sql = 'SELECT * FROM `' . $this->getTableName() . '` WHERE `locationKey`=:locationKey AND `idTraveller`=:idTraveller';
+            $sql = 'SELECT * FROM `' . $this->getTableName() . '` WHERE `locationKey`=:locationKey AND `idTraveller`=:idTraveller ORDER BY `classification`';
             //PREPARES SQL  STATEMENT
             $this->findLocationStatement = $this->getConnection()->prepare($sql);
         }
