@@ -13,7 +13,7 @@ abstract class GenericDao {
     //
     private $readAllStatement;  // : PDOstatement
     private $readOneStatement;  // : PDOstatement
-    private $readForeignStatement;  // : PDOstatement
+    private $readForKeyStatement;  // : PDOstatement
     private $createStatement;   // : PDOstatement
     private $updateStatement;   // : PDOstatement
     private $deleteStatement;   // : PDOstatement
@@ -62,19 +62,20 @@ abstract class GenericDao {
     }
 
     // READS ALL STATEMENTS/ROWS IN TABLE WITH PASSED IN FOREIGN KEY VALUE($idValue) AND INDIVIDUAL COLUMN NAME($foreignId)
-    function readForeign(int $idValue, string $foreignId, string $yourColumn): array {
-        if ($this->readForeignStatement == null) {
-            $sql = 'SELECT * FROM `' . $this->tableName . '` WHERE `' . $foreignId . '`=:idValue ORDER BY  `' . $yourColumn . '`';
-            $this->readForeignStatement = $this->connection->prepare($sql);
+    function readForeign(int $idValue): array {
+        if ($this->readForKeyStatement == null) {
+            // $sql = 'SELECT * FROM `' . $this->tableName . '` WHERE `' . $foreignId . '`=:idValue ORDER BY  `' . $yourColumn . '`';
+            $sql = $this->getForKeySql();
+            $this->readForKeyStatement = $this->connection->prepare($sql);
         }
 
         $array = [
             ':idValue' => $idValue
         ];
-        $this->readForeignStatement->execute($array);
+        $this->readForKeyStatement->execute($array);
 
         $dtos = [];
-        while ($dto = $this->readForeignStatement->fetchObject($this->className)) {
+        while ($dto = $this->readForKeyStatement->fetchObject($this->className)) {
             $dtos[] = $dto;
         }
 
@@ -123,9 +124,10 @@ abstract class GenericDao {
     }
 
     protected abstract function getUpdateSql(): string;
-
+    
     protected abstract function getUpdateArray(object $dto): array;
-
+    
+    protected abstract function getForKeySql(): string;
 
     //DELETES AN EXISTING ENTITY AND REMOVES IT FROMDATABASE
     function delete(object $dto): bool {

@@ -6,6 +6,7 @@ declare(strict_types=1);
 
 class LocationDao extends GenericDao {
 
+    // private $readForKeyStatement;
     private $findLocationStatement;
 
     function __construct() {
@@ -50,6 +51,32 @@ class LocationDao extends GenericDao {
             ':notes' => $location->getNotes(),
             ':id' => $location->getId(),
         ];
+    }
+
+
+      // READS ALL STATEMENTS/ROWS IN TABLE WITH PASSED IN FOREIGN KEY VALUE($idValue) AND INDIVIDUAL COLUMN NAME($foreignId)
+    // function showLocForKey(int $idValue): array {
+    //     if ($this->readForKeyStatement == null) {
+    //         $sql = 'SELECT * FROM `' . $this->getTableName() . '` WHERE `idTraveller`=:idValue ORDER BY  `classification`, `location`';
+    //         $this->readForKeyStatement = $this->getConnection()->prepare($sql);
+    //     }
+
+    //     $array = [
+    //         ':idValue' => $idValue
+    //     ];
+    //     $this->readForKeyStatement->execute($array);
+
+    //     $dtos = [];
+    //     while ($dto = $this->readForKeyStatement->fetchObject($this->getClassName())) {
+    //         $dtos[] = $dto;
+    //     }
+
+    //     return $dtos;
+    //     return $dtos[0]->getId();
+    // }
+
+    protected function getForKeySql(): string{
+        return 'SELECT * FROM `' . $this->getTableName() . '` WHERE `idTraveller`=:idValue ORDER BY `classification`, `location`';
     }
 
     public function findLocation(string $locationKey, int $idTraveller): ?object {

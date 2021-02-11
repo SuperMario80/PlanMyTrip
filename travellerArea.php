@@ -44,21 +44,23 @@ class travellerAreaPage extends Page {
             header('Location: crudPoi.php?id=' . $_POST['updatePoi']);
             exit;
         }
-        
     }
-
+    
     protected function viewContent(): void {
-        include_once 'html/showcase.html.php';
-        include 'html/modal.html.php';
-
+        // include_once 'html/locationList.html.php';
+        // include_once 'html/showcase.html.php';
+        include_once 'html/modal.html.php';
+        
         
         $this->showTravLoc();
         $this->showLocPois();
+        // include_once 'html/locationList.html.php';
 
         
 }
         //SHOWS ALL SAVED LOCATIONS FROM LOGGED-IN TRAVELLER
         private function showTravLoc() {
+  
 
             // gets data from logged-in Traveller
             $tr = unserialize($_SESSION['traveller']);
@@ -67,12 +69,17 @@ class travellerAreaPage extends Page {
             $idValue = $tr->getId();
 
             //variable for database column 'idTraveller'
-            $foreignId = "idTraveller";
-            $yourColumn = "classification";
+            // $foreignId = "idTraveller";
+            // $yourColumn = "classification";
             $this->locationDao = new LocationDao();
 
             //compares all data from Location-Table where idTraveller matches current Travellers Id
-            $this->locations = $this->locationDao->readForeign($idValue, $foreignId, $yourColumn);
+           
+            // $this->locations = $this->locationDao->readForeign($idValue, $foreignId, $yourColumn);
+            // $this->locations = $this->locationDao->showLocForKey($idValue);
+            $this->locations = $this->locationDao->readForeign($idValue);
+
+            // include_once 'html/locationList.html.php';
         }
         //SHOWS ALL SAVED POINTS OF INTEREST TO EVERY LOCATION FROM LOGGED-IN TRAVELLER
         private function showLocPois() {
@@ -83,18 +90,21 @@ class travellerAreaPage extends Page {
                 $idValue = $location->getId();
 
                 //variable for database column 'idLocation' in PointOfInterest
-                $foreignId = "idLocation";
-                $yourColumn = "poiName";
+                // $foreignId = "idLocation";
+                // $yourColumn = "poiName";
                 
                 
                 $this->pointOfInterestDao = new PointOfInterestDao();
 
-                //compares all data from PointOfInterest-Table where idPoi matches Location Id
-                $this->pointOfInterest = $this->pointOfInterestDao->readForeign($idValue, $foreignId, $yourColumn);
+                //compares all data from PosintOfInterest-Table where idPoi matches Location Id
+                // $this->pointOfInterest = $this->pointOfInterestDao->readForeign($idValue, $foreignId, $yourColumn);
+                // $this->pointOfInterest = $this->pointOfInterestDao->showPoiForKey($idValue);
+                $this->pointOfInterest = $this->pointOfInterestDao->readForeign($idValue);
                 
 
                 $selectedPoi = $this->pointOfInterest;
 
+                // include_once 'html/locationList.html.php';
                 include 'html/location.html.php';
 
                 //shows html for PointOfINterst only when data exists

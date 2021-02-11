@@ -6,6 +6,8 @@ declare(strict_types=1);
 
 class PointOfInterestDao extends GenericDao {
 
+    // private $readForKeyStatement;
+
     function __construct() {
         parent::__construct('pointofinterest', 'PointOfInterest');
     }
@@ -48,5 +50,30 @@ class PointOfInterestDao extends GenericDao {
             ':id' => $poi->getId(),
         ];
     }
+
+    protected function getForKeySql(): string{
+        return 'SELECT * FROM `' . $this->getTableName() . '` WHERE `idLocation`=:idValue ORDER BY  `attraction`, `poiName`';
+    }
+
+    // READS ALL STATEMENTS/ROWS IN TABLE WITH PASSED IN FOREIGN KEY VALUE($idValue) AND INDIVIDUAL COLUMN NAME($foreignId)
+    // function showPoiForKey(int $idValue): array {
+    //     if ($this->readForKeyStatement == null) {
+    //         $sql = 'SELECT * FROM `' . $this->getTableName() . '` WHERE `idLocation`=:idValue ORDER BY  `attraction`, `poiName`';
+    //         $this->readForKeyStatement = $this->getConnection()->prepare($sql);
+    //     }
+
+    //     $array = [
+    //         ':idValue' => $idValue
+    //     ];
+    //     $this->readForKeyStatement->execute($array);
+
+    //     $dtos = [];
+    //     while ($dto = $this->readForKeyStatement->fetchObject($this->getClassName())) {
+    //         $dtos[] = $dto;
+    //     }
+
+    //     return $dtos;
+    //     return $dtos[0]->getId();
+    // }
 
 }

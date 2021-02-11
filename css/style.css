@@ -9,6 +9,7 @@
 	z-index: 1;
 	padding: .8rem 1.4rem;
 	align-items: center;
+	height: 10vh;
 }
 
 #navbar ul {
@@ -37,7 +38,7 @@
 /* SHOWCASE */
 #showcase {
 	background: var(--dark-color) url('../img/showcase.jpg') no-repeat center center/cover;
-	height: 50vh;
+	height: 60vh;
 	color: #fff;
 }
 
@@ -239,7 +240,7 @@
 .single-desc a {
 	font-size: 1rem;
 	text-align: left;
-	color: var(--dark-color);
+	color: var(--highlight-color);
 	/* padding: 0.2rem 1rem; */
 }
 

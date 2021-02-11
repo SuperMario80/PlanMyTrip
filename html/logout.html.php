@@ -10,6 +10,12 @@
     </div>
     </div>
 
+    
+    <div class="myLocationList">
+        
+    </div>
+    
+
 <!-- <header id="showcase">
     <div class="showcase-content">
 </header> -->

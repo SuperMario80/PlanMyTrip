@@ -19,7 +19,7 @@
               </div>
               <div class="single-desc saved-data">
                 <div class="loc-info">
-                  <p class="item-text-category alt"><a href=""<?= htmlSpecialChars($poi->getPoiMap()) ?>"></a></p>
+                  <p class="item-map"><a href="<?= htmlSpecialChars($poi->getPoiMap()) ?>">show on Map</a></p>
                   <p>
                     <?= htmlSpecialChars($poi->getIntro()) ?>
                   </p>
@@ -30,9 +30,9 @@
                 </div>
               </div>
               <div class="button-area">
-                <button class="btn block center" name="updatePoi" value="<?= $poi->getId() ?>" >Edit</button>
-                <button class="btn" name="delete" value="2" >Delete Poi</button>
-                <button class="btn" name="newPoi" value="<?= $location->getId() ?>" >New PointOfInterest</button>
+                <button class="btn block center" name="updatePoi" value="<?= $poi->getId() ?>" >Edit / Delete <?= htmlSpecialChars($poi->getPoiName()) ?></button>
+                <!-- <button class="btn" name="delete" value="2" >Delete Poi</button> -->
+                <!-- <button class="btn" name="newPoi" value="<?= $location->getId() ?>" >New PointOfInterest</button> -->
               </div>
           </div>
             <h1 class="single-category small" ><?= htmlSpecialChars($poi->getAttraction()) ?>

@@ -63,7 +63,9 @@ class TravellerDao extends GenericDao {
             return Null;
         }
     
-
+        protected function getForKeySql(): string{
+            
+        }
 
 
 }

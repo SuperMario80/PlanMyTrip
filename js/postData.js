@@ -6,6 +6,10 @@ const savePoi = document.querySelector('#poi');
 const modal = document.querySelector('.modal');
 const sum = modal.querySelector('.summary');
 
+// document.addEventListener('load', loadLocationList);
+// console.log(loadLocationList);
+loadLocationList();
+
 savePoi.addEventListener('click', function(e) {
 	// console.log(itemMap);
 	const modalVal = e.target.getAttribute('data-modal');

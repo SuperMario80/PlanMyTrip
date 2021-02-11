@@ -1,4 +1,0 @@
-
-<p>
-    <?=htmlSpecialChars($message)?>
-</p>
