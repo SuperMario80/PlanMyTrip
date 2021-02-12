@@ -208,7 +208,7 @@ const poiTemplate = (value) => {
 		btn.setAttribute('data-count', `${poiCount}`);
 		div.appendChild(btn);
 		item.appendChild(div);
-		console.log(div);
+		// console.log(div);
 	}
 	// }
 

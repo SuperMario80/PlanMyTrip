@@ -18,8 +18,11 @@
                 </h2>
               </div>
               <div class="single-desc saved-data">
+               <div class="myModalLink hidden"><?= htmlSpecialChars($poi->getPoiMap()) ?></div>
                 <div class="loc-info">
-                  <p class="item-map"><a href="<?= htmlSpecialChars($poi->getPoiMap()) ?>">show on Map</a></p>
+                  <p class="item-map savedItemMap" data-poi="<?= htmlSpecialChars($poi->getId()) ?>">show on Map
+                  </p>
+                  <!-- <a class="savedItemMap" href="<?= htmlSpecialChars($poi->getPoiMap()) ?>">show on Map</a> -->
                   <p>
                     <?= htmlSpecialChars($poi->getIntro()) ?>
                   </p>

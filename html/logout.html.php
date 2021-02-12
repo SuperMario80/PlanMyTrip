@@ -11,9 +11,7 @@
     </div>
 
     
-    <div class="myLocationList">
-        
-    </div>
+    
     
 
 <!-- <header id="showcase">

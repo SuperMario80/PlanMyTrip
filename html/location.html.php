@@ -6,7 +6,7 @@
 			<div class="single-wrap">
 				<h1 class="single-category" ><?= htmlSpecialChars($location->getClassification()) ?>
         </h1>
-        
+        <!-- <div class="hidden myModalLink"><?= htmlSpecialChars($location->getTravelLink()) ?></div> -->
 				<div class="single-text">
 					<div class="single-headline">
 						<h2 class="single-title">
@@ -27,7 +27,7 @@
           <button class="btn" name="updateLocation" value="<?= $location->getId()?>" ><span class="p-0">
               <i class="fas fa-pen"></i>
             </span>
-            <span class="p-0"><i class="far fa-trash-alt"></i></span>
+            <!-- <span class="p-0"><i class="far fa-trash-alt"></i></span> -->
     
           <!-- <button class="btn" name="updateLocation" value="<?= $location->getId()?>" >Edit / Delete <?= htmlSpecialChars($location->getLocation()) ?></button> -->
           <button class="btn" name="newPoi" value="<?= $location->getId() ?>" >New PointOfInterest</button>

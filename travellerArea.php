@@ -47,7 +47,7 @@ class travellerAreaPage extends Page {
     }
     
     protected function viewContent(): void {
-        // include_once 'html/locationList.html.php';
+        include_once 'html/locationList.html.php';
         // include_once 'html/showcase.html.php';
         include_once 'html/modal.html.php';
         

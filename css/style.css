@@ -53,6 +53,25 @@
 	background-color: rgba(0, 0, 0, 0.4);
 }
 
+#myLocationList {
+	/* display: flex;
+	flex-direction: column; */
+	/* color: var(--primary-color); */
+	/* position: absolute; */
+	/* background-color: rgba(0, 0, 0, .3); */
+	margin-top: -2rem;
+	word-spacing: .3rem;
+	letter-spacing: .08rem;
+	line-height: 1.7;
+	/* font-size: 13px; */
+	/* align-self: center; */
+	width: 100%;
+	/* top: 1rem;
+	right: 1rem; */
+	text-align: end;
+	font-weight: 800;
+}
+
 /* POINTS OF INTEREST SEARCH RESULTS */
 /* item properties for Points Of Interest */
 .items {

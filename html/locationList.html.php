@@ -1,12 +1,9 @@
 
-<form method="post">
-    
-    <ul>
-        <li>
-            <?= htmlSpecialChars($location->getLocation()) ?>
-            <?= htmlSpecialChars($location->getCountry()) ?>
-            <?= htmlSpecialChars($location->getRegion()) ?>
-            
-        </li>
-    </ul>
-</form>
+<div class="headersection">
+    <div class="row">
+        <h1>My Saved Data</h1>
+    </div>
+</div>
+<div id="myLocationList" class="p-1 bg-light"></div>
+
+<div class="container py-3">

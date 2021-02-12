@@ -70,27 +70,6 @@ function removeChars(str) {
 	return newStr;
 }
 
-function loadLocationList() {
-	const myLocationList = document.querySelector('.myLocationList');
-	let myLocationNames = document.querySelectorAll('.myLocationName');
-
-	// if (myLocationName) {
-	// for (let i = 0; i < myLocationName.length; i++) {
-	for (const myLocationName of myLocationNames) {
-		const div = document.createElement('div');
-		const innerDiv = myLocationList.appendChild(div);
-		const myLocationNameTemp = () => {
-			return ` 
-		${myLocationName.innerHTML}
-		 `;
-		};
-		// forEach (myLocationNames, myLocationName) {
-		innerDiv.append(myLocationNameTemp());
-		console.log(myLocationNameTemp());
-	}
-	return myLocationList;
-}
-
 // let removeChars = (char) => {
 // 	return char.replace(/_/g, ' ');
 // };
