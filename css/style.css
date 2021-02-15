@@ -54,22 +54,22 @@
 }
 
 #myLocationList {
-	/* display: flex;
-	flex-direction: column; */
-	/* color: var(--primary-color); */
-	/* position: absolute; */
-	/* background-color: rgba(0, 0, 0, .3); */
+	padding: 0 4rem;
 	margin-top: -2rem;
 	word-spacing: .3rem;
-	letter-spacing: .08rem;
-	line-height: 1.7;
+	letter-spacing: .12rem;
+	line-height: 1.8;
 	/* font-size: 13px; */
-	/* align-self: center; */
 	width: 100%;
-	/* top: 1rem;
-	right: 1rem; */
-	text-align: end;
+	text-align: left;
 	font-weight: 800;
+}
+#myLocationList a {
+	color: var(--secondary-color);
+	display: block;
+}
+#myLocationList a:hover {
+	color: var(--highlight-color);
 }
 
 /* POINTS OF INTEREST SEARCH RESULTS */

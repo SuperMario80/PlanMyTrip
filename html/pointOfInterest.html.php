@@ -33,7 +33,11 @@
                 </div>
               </div>
               <div class="button-area">
-                <button class="btn block center" name="updatePoi" value="<?= $poi->getId() ?>" >Edit / Delete <?= htmlSpecialChars($poi->getPoiName()) ?></button>
+                <button class="btn block center" name="updatePoi" value="<?= $poi->getId() ?>" >
+                  <span class="p-0">
+                    <i class="fas fa-pen"></i> Edit
+                  </span>
+                </button>
                 <!-- <button class="btn" name="delete" value="2" >Delete Poi</button> -->
                 <!-- <button class="btn" name="newPoi" value="<?= $location->getId() ?>" >New PointOfInterest</button> -->
               </div>
