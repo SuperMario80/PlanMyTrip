@@ -76,7 +76,7 @@
         </button>
         <button id="saveMyLoc" class="btn btn-dark" name="save" value="1" >Save
         </button>
-        <button class="btn btn-dark" name="delete" value="2" >Delete
+        <button id="deleteMyLoc" class="btn btn-dark" name="delete" value="2" >Delete
         </button>
 
     </form>

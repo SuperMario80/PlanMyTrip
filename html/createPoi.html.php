@@ -95,9 +95,9 @@
         </ul>
         <button class="btn btn-dark" name="back" value="0">Back
         </button>
-        <button id="saveMyLoc" class="btn btn-dark" name="savePoi" value="1" >Save
+        <button id="saveMyPoi" class="btn btn-dark" name="savePoi" value="1" >Save
         </button>
-        <button class="btn btn-dark" name="deletePoi" value="2" >Delete
+        <button id="deleteMyPoi" class="btn btn-dark" name="deletePoi" value="2" >Delete
         </button>
 
     </form>

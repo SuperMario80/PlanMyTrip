@@ -73,7 +73,7 @@ class crudLocationPage extends Page {
                 printData($this->location->getLocation());
                 printData($this->location->getClassification());
                 $this->message = 'New Location created';
-
+                header('Refresh:2; url=travellerArea.php');
                 }else{
                     $this->message = 'Location already exists';
                     }
@@ -81,9 +81,16 @@ class crudLocationPage extends Page {
 
         // update existing Location
         } else {
-            $this->message = $this->locationDao->update($this->location)
-                    ? 'Location Updated'
-                    : 'Location NOT Updated';
+            if($this->locationDao->update($this->location)){
+              
+                $this->message = 'Location Updated';
+                header('Refresh:2; url=travellerArea.php');
+            }else{
+                $this->message = 'Location NOT Updated';
+            }
+            // $this->message = $this->locationDao->update($this->location)
+            //         ? 'Location Updated'  
+            //         : 'Location NOT Updated';
         }
         
     }
@@ -95,6 +102,7 @@ class crudLocationPage extends Page {
         if ($this->locationDao->delete($this->location)) {
             $this->message = 'Location removed';
             $this->location = new Location();
+            header('Refresh:1; url=travellerArea.php');
         } else {
             $this->message = 'Location NOT Removed';
         }

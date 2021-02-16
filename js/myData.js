@@ -1,6 +1,6 @@
-loadLocationList();
+// loadLocationList();
 
-function loadLocationList() {
+(function loadLocationList() {
 	const myLocationList = document.querySelector('#myLocationList');
 	const myLocationNames = document.querySelectorAll('.myLocationName');
 	const myLocContainer = document.createElement('div');
@@ -29,5 +29,5 @@ function loadLocationList() {
 		a.append(myLocationNameTemp());
 	}
 
-	return myLocationList;
-}
+	// return myLocationList;
+})();

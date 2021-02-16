@@ -57,6 +57,7 @@ class showPoiPage extends Page {
                 printData($this->poi->getPoiName());
                 printData($this->poi->getAttraction());
                 $this->message = 'New Point Of Interest created';
+                header('Refresh:2; url=travellerArea.php');
 
                 }else{
                     $this->message = 'Point Of Interest already exists';
@@ -64,9 +65,18 @@ class showPoiPage extends Page {
                 }
 
         } else {
-            $this->message = $this->pointOfInterestDao->update($this->poi)
-                    ? 'Point Of Interest Updated'
-                    : 'Point Of Interest NOT Updated';
+            if($this->pointOfInterestDao->update($this->poi)){
+              
+                $this->message = 'Point Of Interest Updated';
+                header('Refresh:2; url=travellerArea.php');
+            }else{
+                $this->message = 'Point Of Interest NOT Updated';
+            }
+
+
+            // $this->message = $this->pointOfInterestDao->update($this->poi)
+            //         ? 'Point Of Interest Updated'
+            //         : 'Point Of Interest NOT Updated';
         }
         
     }
@@ -78,6 +88,7 @@ class showPoiPage extends Page {
         if ($this->pointOfInterestDao->delete($this->poi)) {
             $this->message = 'Point Of Interest Removed';
             $this->poi = new PointOfInterest();
+            header('Refresh:1; url=travellerArea.php');
         } else {
             $this->message = 'Point Of Interest NOT Removed';
         }

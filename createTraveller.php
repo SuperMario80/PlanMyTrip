@@ -60,8 +60,8 @@ class CreateTravellerPage extends Page {
                 if ($this->travellerDao->create($this->traveller)){
                 $this->message =   "New Account created";
                 // printData(" show $this->email");
-                header('Location: index.php?mess=1');
-                exit;
+                header('Refresh:3; url=index.php?mess=1');
+                // exit;
 
                 
                 } else{
