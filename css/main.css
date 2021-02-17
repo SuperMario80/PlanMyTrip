@@ -113,7 +113,7 @@ textarea {
 
 .lead {
 	font-size: 1.3rem;
-	margin-bottom: 2rem;
+	/* margin-bottom: 2rem; */
 }
 
 .text-center {
@@ -158,6 +158,9 @@ textarea {
 .my-3 {
 	margin: 3rem 0;
 }
+.my-4 {
+	margin: 4rem 0;
+}
 
 /* TODO */
 .mb-3 {
@@ -194,8 +197,14 @@ textarea {
 
 .btn.large {
 	font-size: 1rem;
-	letter-spacing: 0;
+
 	padding: .7rem 1rem;
+}
+
+.btn.x-large {
+	font-size: 1.7rem;
+	/* letter-spacing: 0.7; */
+	padding: 1rem 3rem;
 }
 
 .button-area {

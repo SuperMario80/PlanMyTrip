@@ -9,6 +9,7 @@ class CreateTravellerPage extends Page {
     public function __construct() {
         parent::__construct('Register');
         $this->message = '';
+
     }
 
     protected function init() : void {
@@ -25,9 +26,9 @@ class CreateTravellerPage extends Page {
         
         $id = intVal($_GET['id'] ?? 0);
         $this->travellerDao = new TravellerDao();
-        $this->traveller = $this->travellerDao->readOne($id);
-        if ($this->traveller == null) {
-            $this->traveller = new Traveller();
+        $this->setTraveller($this->travellerDao->readOne($id));
+        if ($this->getTraveller() == null) {
+            $this->setTraveller(new Traveller());
         }
         
         if (isSet($_POST['save'])) {
@@ -42,32 +43,41 @@ class CreateTravellerPage extends Page {
         }
         
         $message = $this->message;
-        $traveller = $this->traveller;
+        $traveller = $this->getTraveller();
         include 'html/createTraveller.html.php';
+        
+        printData($traveller);
     }
     
     private function saveTraveller() {
         $this->readFormData();
         
-        if ($this->traveller->getId() == 0) {
-            if($this->traveller->getEmail() == NULL  || $this->traveller->getFirstName() == NULL ||  $this->traveller->getLastName() == NULL||  $this->traveller->getPassword() == NULL){
+        if ($this->getTraveller()->getId() == 0) {
             
-                $this->message = 'Please fill out ALL data'; 
-
-    
-            }
-            else{
-                if ($this->travellerDao->create($this->traveller)){
-                $this->message =   "New Account created";
-                // printData(" show $this->email");
-                header('Refresh:3; url=index.php?mess=1');
-                // exit;
-
-                
-                } else{
-                    $this->message = "Account already exists! No Traveller created";
-                    }
+            try{
+                if($this->getTraveller()->getFirstName() == NULL ||  $this->getTraveller()->getLastName() == NULL||  $this->getTraveller()->getPassword() == NULL || $this->getTraveller()->getEmail() == NULL){
+                    $this->message = 'Please fill out ALL data'; 
                 }
+
+                if ($this->travellerDao->create($this->getTraveller())){
+                    $this->message =   "New Account created";
+                    // printData(" show $this->email");
+                    header('Refresh:2; url=index.php');
+                }
+            }
+            // else{
+            catch (PDOException $e) {
+                $e->getMessage();
+                 $this->getTraveller()->setEmail('');
+                    $this->getTraveller()->setPassword('');
+                    printData($this->getTraveller());
+                // printData($this->traveller->getEmail());
+                $this->message = "Email already exists!";
+                // $_POST['password'] = "";
+                // $password = "";
+
+            }
+        } 
 
 
 
@@ -93,7 +103,6 @@ class CreateTravellerPage extends Page {
                     
             //         : "Account already exists! No Traveller created";
             
-        } 
 //        else {
 //            $this->message = $this->customerDao->update($this->customer)
 //                    ? 'Customer Saved'
@@ -105,19 +114,19 @@ class CreateTravellerPage extends Page {
     private function deleteTraveller() {
         $this->readFormData();
         
-        if ($this->travellerDao->delete($this->traveller)) {
+        if ($this->travellerDao->delete($this->getTraveller())) {
             $this->message = 'Account Removed';
-            $this->traveller = new Traveller();
+            $this->setTraveller(new Traveller());
         } else {
             $this->message = 'Account NOT Removed';
         }
     }
     
     private function readFormData() {
-        $this->traveller->setFirstName($_POST['firstName']);
-        $this->traveller->setLastName($_POST['lastName']);
-        $email = $this->traveller->setEmail($_POST['email']);
-        $this->traveller->setPassword($_POST['password']);
+        $this->getTraveller()->setFirstName($_POST['firstName']);
+        $this->getTraveller()->setLastName($_POST['lastName']);
+        $this->getTraveller()->setEmail($_POST['email']);
+        $this->getTraveller()->setPassword($_POST['password']);
     }
 
 }

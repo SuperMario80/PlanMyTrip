@@ -3,7 +3,7 @@
 declare(strict_types=1);
 require_once 'inc/tools.inc.php';
 
-class crudLocationPage extends Page {
+class crudTravellerPage extends Page {
 
     
     public function __construct() {

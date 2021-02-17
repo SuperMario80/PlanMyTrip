@@ -4,7 +4,13 @@
         <h1>My Saved Data</h1>
     </div>
 </div>
-<div id="myLocationList" class="p-2 bg-light"></div>
+<div id="myLocationList" class="bg-light"></div>
 
 
-<div class="container py-3">
+<div class="container py-0">
+    <div class="text-center">
+        <form method="post">
+            <button class="btn btn-dark x-large" name="newLocation" >Create New Location</button>
+        </form>
+
+    </div>

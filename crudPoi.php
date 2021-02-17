@@ -50,14 +50,15 @@ class showPoiPage extends Page {
          if ($this->poi->getId() == 0) {
             if($this->poi->getPoiName() == NULL){
             // if(empty($this->location->getLocation()) || empty($this->location->getClassification())){
-                $this->message = "PointOfInterest can't be empty"; 
+                $this->message = "Please fill out ALL required Fields"; 
     
             }else{
                 if($this->pointOfInterestDao->create($this->poi)){
-                printData($this->poi->getPoiName());
-                printData($this->poi->getAttraction());
+                // printData($this->poi->getPoiName());
+                // printData($this->poi->getAttraction());
                 $this->message = 'New Point Of Interest created';
                 header('Refresh:2; url=travellerArea.php');
+                // exit;
 
                 }else{
                     $this->message = 'Point Of Interest already exists';
@@ -65,13 +66,28 @@ class showPoiPage extends Page {
                 }
 
         } else {
-            if($this->pointOfInterestDao->update($this->poi)){
+                // if($this->poi->getPoiName() == NULL || $this->poi->getAttraction() == NULL){
+                if($this->poi->getPoiName() == NULL){
               
-                $this->message = 'Point Of Interest Updated';
-                header('Refresh:2; url=travellerArea.php');
-            }else{
-                $this->message = 'Point Of Interest NOT Updated';
-            }
+                    $this->message = 'Please fill out ALL required Fields';
+                }else{
+                    if($this->pointOfInterestDao->update($this->poi)){
+                        $this->message = 'PointOfInterest Updated';
+                        header('Refresh:2; url=travellerArea.php');
+                        // exit;
+                    }else{
+                         $this->message = 'PointOfInterest NOT Updated';
+                    }
+                }
+
+
+            // if($this->pointOfInterestDao->update($this->poi)){
+              
+            //     $this->message = 'Point Of Interest Updated';
+            //     header('Refresh:2; url=travellerArea.php');
+            // }else{
+            //     $this->message = 'Point Of Interest NOT Updated';
+            // }
 
 
             // $this->message = $this->pointOfInterestDao->update($this->poi)
@@ -89,6 +105,7 @@ class showPoiPage extends Page {
             $this->message = 'Point Of Interest Removed';
             $this->poi = new PointOfInterest();
             header('Refresh:1; url=travellerArea.php');
+            // exit;
         } else {
             $this->message = 'Point Of Interest NOT Removed';
         }

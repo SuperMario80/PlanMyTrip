@@ -23,7 +23,7 @@
     <div class="row">
         <div class="small-12 columns">
             
-            <h1>CREATE / UPDATE YOUR POINT OF INTEREST</h1>
+            <h1>EDIT YOUR POINT OF INTEREST</h1>
         </div>
     </div>
 </div>
@@ -31,6 +31,9 @@
 
 
 <div class="greybox">
+    <h1 class="m-heading text-center">
+        <?=htmlSpecialChars($message)?>
+    </h1>
     <form method="post" >
         <input type="hidden" name="id" placeholder="id" value="<?= htmlSpecialChars($poi->getId())?>" readonly>
         <input type="hidden" name="locationKey" placeholder="locationKey" value="<?= htmlSpecialChars($poi->getLocationKey())?>" readonly><br>
@@ -81,7 +84,7 @@
         <ul>
 
             <li>
-                <label for="intro" class="optional">Introducing your Point Of Interest
+                <label for="intro" class="optional">Introduction
                 </label>
                 <textarea type="text" name="intro" placeholder="Intro" tabindex="7"><?=htmlSpecialChars($poi->getIntro())?>
                 </textarea>
@@ -97,12 +100,10 @@
         </button>
         <button id="saveMyPoi" class="btn btn-dark" name="savePoi" value="1" >Save
         </button>
-        <button id="deleteMyPoi" class="btn btn-dark" name="deletePoi" value="2" >Delete
+        <button id="deleteMyPoi" class="btn btn-dark" name="deletePoi" value="3" >Delete
         </button>
 
     </form>
-    <p class="m-heading text-center">
-        <?=htmlSpecialChars($message)?>
-    </p>
+   
 </div>
 </div>

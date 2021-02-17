@@ -1,10 +1,13 @@
 <div class="container">
     <form method="post" >
         
-        <div class="greybox">
+        <div class="greybox my-4 ">
+            <p class="m-heading text-center my-1">
+        <?=htmlSpecialChars($message)?>
+    </p>
             <button class="btn btn-dark" name="back" value="0">Back</button>
 
-         <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-2">
+         <ul >
             <li>
                 <label for="classification" class="required">First Name<span id="required" title="This field is required">*</span>
                 </label>
@@ -32,9 +35,7 @@
         </div>
         <!-- <button class="btn btn-dark" name="delete" value="2" >Delete without Confirmation</button> -->
     </form>
-    <p>
-        <?=htmlSpecialChars($message)?>
-    </p>
+    
 
 
  <!-- <input type="text" name="id" placeholder="Id" value="<htmlSpecialChars$traveller->getId" readonly><br> -->

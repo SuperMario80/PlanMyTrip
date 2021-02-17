@@ -1,4 +1,8 @@
 /* NAVBAR */
+#page-container {
+	min-height: calc(100vh - 13vh);
+}
+
 #navbar {
 	display: flex;
 	position: sticky;
@@ -38,7 +42,7 @@
 /* SHOWCASE */
 #showcase {
 	background: var(--dark-color) url('../img/showcase.jpg') no-repeat center center/cover;
-	height: 60vh;
+	height: 50vh;
 	color: #fff;
 }
 
@@ -54,7 +58,7 @@
 }
 
 #myLocationList {
-	padding: 0 4rem;
+	/* padding: 0 4rem; */
 	margin-top: -2rem;
 	word-spacing: .3rem;
 	letter-spacing: .12rem;
@@ -70,6 +74,13 @@
 }
 #myLocationList a:hover {
 	color: var(--highlight-color);
+}
+
+#footer {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	align-items: center;
+	height: 13vh;
 }
 
 /* POINTS OF INTEREST SEARCH RESULTS */

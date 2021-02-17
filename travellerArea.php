@@ -48,12 +48,17 @@ class travellerAreaPage extends Page {
     
     protected function viewContent(): void {
         include_once 'html/locationList.html.php';
+        // include_once 'html/createLocBtn.html.php';
         // include_once 'html/showcase.html.php';
         include_once 'html/modal.html.php';
         
         
         $this->showTravLoc();
         $this->showLocPois();
+        
+        // if($this->showTravLoc() == NULL){
+            
+        // }
         // include_once 'html/locationList.html.php';
 
         

@@ -1,7 +1,7 @@
-<div class="wrap" id="scrollId-<?= htmlSpecialChars($location->getId()) ?>" data-scrollId="<?= htmlSpecialChars($location->getId()) ?>">
+<div class="wrap my-4" id="scrollId-<?= htmlSpecialChars($location->getId()) ?>" data-scrollId="<?= htmlSpecialChars($location->getId()) ?>">
 <form method="post">
 
-  <button class="btn btn-dark large" name="newLocation" >Create New Location</button>
+  <!-- <button class="btn btn-dark large" name="newLocation" >Create New Location</button> -->
 <div class="single" >
 			<div class="single-wrap">
 				<h1 class="single-category" ><?= htmlSpecialChars($location->getClassification()) ?>

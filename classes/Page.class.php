@@ -8,7 +8,7 @@ abstract class Page {
     private string $email;
     private string $message;
     
-    private Traveller $traveller;
+    private ?Traveller $traveller;
     private Location $location;
 
     private ?PointOfInterest $poi;
@@ -119,9 +119,19 @@ abstract class Page {
         
         // }
         else{
-            $message = $this->message;
-            include 'html/login.html.php';
-        }
+            
+            if($_SERVER['PHP_SELF'] === "/php/projects/PlanMyTrip/createTraveller.php"){
+                // if(is_page( 'createTraveller.php')){
+                    include 'html/closingDiv.html.php';
+                    // else{
+                        // if(basename(get_page_template()) != 'createTraveller.php' ){
+                            // }
+                        }else{
+                            $message = $this->message;
+                            include 'html/login.html.php';
+                            
+                        }
+                    }
     }
 
     
@@ -134,5 +144,8 @@ abstract class Page {
 
     public function getTraveller() :?Traveller{
         return $this->traveller;
+    }
+    public function setTraveller(?Traveller $traveller) :void{
+        $this->traveller = $traveller;
     }
 }

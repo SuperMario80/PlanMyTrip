@@ -10,6 +10,9 @@
 
 
 <div class="greybox">
+    <h1 class="m-heading text-center">
+        <?=htmlSpecialChars($message)?>
+    </h1>
     <form method="post" >
         <input type="hidden" name="id" placeholder="id" value="<?= htmlSpecialChars($location->getId()) ?>" readonly>
         <input type="hidden" name="locationKey" placeholder="locationKey" value="<?= htmlSpecialChars($location->getLocationKey())?>" readonly><br>
@@ -80,8 +83,5 @@
         </button>
 
     </form>
-    <p class="m-heading text-center">
-        <?=htmlSpecialChars($message)?>
-    </p>
 </div>
 </div>

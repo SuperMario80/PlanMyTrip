@@ -2,6 +2,7 @@ const saveLocation = document.querySelector('#summary');
 const savePoi = document.querySelector('#poi');
 const modal = document.querySelector('.modal');
 const sum = modal.querySelector('.summary');
+
 // const itemMap = document.querySelector('.item-map');
 // console.log(itemMap);
 

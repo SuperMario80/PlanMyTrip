@@ -2,7 +2,9 @@
         </div>
       </div>
     </div>
-    <footer class="lead py-2 text-center bg-light">
+  </div>
+    <footer id="footer" class="lead py-2 text-center bg-light">
+      <div></div>
       <div>PlanMyTrip &copy;</div>
       <div class="footer-wrapper">
         <a href="https://www.facebook.com" target="_blank">
@@ -25,9 +27,9 @@
       
     <script src="js/utils.js?<?php echo time(); ?>"></script>
     <script src="js/autocomplete.js?<?php echo time(); ?>"></script>
+    <script src="js/crudData.js?<?php echo time(); ?>"></script>
     <script src="js/reqData.js?<?php echo time(); ?>"></script>
     <script src="js/postData.js?<?php echo time(); ?>"></script>
     <script src="js/myData.js?<?php echo time(); ?>"></script>
-    <script src="js/crudData.js?<?php echo time(); ?>"></script>
   </body>
 </html>
