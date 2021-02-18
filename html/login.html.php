@@ -8,6 +8,9 @@
     
 </div>
 <div class="loginBox">
+    <p class="text-center">
+        <?=$message?>
+    </p>
         <form method="post">
             <ul>
                 <li>
@@ -25,9 +28,6 @@
             </ul>
             </form>
         </div>
-        <p>
-            <?=$message?>
-        </p>
     
 
 

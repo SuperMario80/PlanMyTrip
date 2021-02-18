@@ -53,8 +53,10 @@ class Traveller {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)){
             printData("$email is a valid email address");
             $this->email = $email;
-        }else{
+        }
+        else{
             printData("Please check email $email");
+            $this->email = '';
         }
     }
     
@@ -65,8 +67,13 @@ class Traveller {
     }
 
     function setPassword(string $password): void {
+        if($this->password){
 
-         $this->password = password_hash($password, PASSWORD_DEFAULT);
+            $this->password = password_hash($password, PASSWORD_DEFAULT);
+        }else{
+            $this->password = "";
+        }
+
     }
     
     function getId(): int {

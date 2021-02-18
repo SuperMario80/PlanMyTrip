@@ -32,11 +32,14 @@ createAutoComplete({
 	async fetchData(searchTerm) {
 		// let api_token = '9j6492j7wd3qjvppyb8hj2og788veo72';
 		// let account_id = 'BSOO2T1I';
+		var myHeaders = new Headers();
+		myHeaders.append('Content-Type', 'application/json; charset=UTF-8');
 		this.api_token = '9j6492j7wd3qjvppyb8hj2og788veo72';
 		this.account_id = 'BSOO2T1I';
 		const placeResponse = await fetch(
-			`https://www.triposo.com/api/20201111/location.json?annotate=trigram:${searchTerm}&trigram=>=0.3&order_by=-score&account=${this
-				.account_id}&token=${this.api_token}`
+			`https://www.triposo.com/api/20201111/location.json?annotate=trigram:${searchTerm}&trigram=>=0.5&order_by=-score&account=${this
+				.account_id}&token=${this.api_token}`,
+			myHeaders
 		);
 
 		const place = await placeResponse.json();
@@ -63,24 +66,23 @@ let onLocationSelect = async (location) => {
 	);
 
 	poiRes = await poiResponse.json();
+	console.log(poiRes);
 
 	//clears poi results (if new request is executed)
 	document.querySelector('#poi').innerHTML = '';
 
 	try {
 		// for (poiCount = 0; poiCount < 20; poiCount++) {
-		for (poiCount = 0; poiRes.results.length; poiCount++) {
+		for (poiCount = 0; poiCount < poiRes.results.length; poiCount++) {
 			let currentPointofInterest = poiRes.results[poiCount];
 			document.querySelector('#poi').append(poiTemplate(currentPointofInterest));
 		}
 	} catch (e) {
-		console.log(TypeError(e));
-
+		console.log(TypeError(e).message);
 		// if (poiCount < 19) {
 		// 	console.log('only ' + (poiCount + 1) + ' PointsOfInterest available');
 		// 	// console.log(poiTemplate(currentPointofInterest));
 		// 	// currentPointofInterest = currentPoi[poiCount];
-
 		// 	//  return res;
 		// }
 	}
@@ -103,11 +105,8 @@ const locationTemplate = (input) => {
 
 	const singleTitle = createItem('h2', 'single-title');
 	const currentRegion = removeChars(currentLocation.part_of.toString());
-	const singleTL = createLink(
-		'a',
-		`${currentLocation.attribution[1].url}`,
-		`${currentLocation.name}    ${currentRegion}`
-	);
+	const currentName = removeChars(currentLocation.name.toString());
+	const singleTL = createLink('a', `${currentLocation.attribution[1].url}`, `${currentName}    ${currentRegion}`);
 
 	console.log(singleTL.innerText);
 
@@ -125,10 +124,16 @@ const locationTemplate = (input) => {
 	if (addButton()) {
 		//creates 3rd child of item, sets attributes and append
 		const div = document.createElement('div');
-		const btn = createBtn('button', 'btn btn-highlight large', 'phpSubmit', 'phpSubmit', 'Save Location');
+		const btn = createBtn(
+			'button',
+			'btn-save-loc btn btn-highlight large',
+			'phpSubmit',
+			'phpSubmit',
+			'Save Location'
+		);
+
 		div.appendChild(btn);
 		singleText.appendChild(div);
-		console.log(div);
 	}
 	singleWrap.appendChild(singleCategory);
 	singleWrap.appendChild(singleText);
@@ -161,7 +166,7 @@ const poiTemplate = (value) => {
 	//creates 1st child of itWrap
 	const itTitle = createItem('h2', 'item-text-title');
 	//creates link of itTitle, sets attribute and append
-	const itLink = createLink('a', `${value.attribution[1].url}`, `${value.name}`);
+	const itLink = createLink('a', `${value.attribution[1].url}`, `${removeChars(value.name.toString())}`);
 	itTitle.appendChild(itLink);
 	//creates 2nd child of itWrap
 	const itCategory = createItem('p', 'item-text-category');
@@ -194,9 +199,8 @@ const poiTemplate = (value) => {
 	item.appendChild(itemDesc);
 
 	// if traveller is logged in, create save button
-	// if (locationTemplate.logout) {
-	//creates 3rd child of item, sets attributes and append
 	if (addButton()) {
+		//creates 3rd child of item, sets attributes and append
 		const div = document.createElement('div');
 		const btn = createBtn(
 			'button',
@@ -208,9 +212,7 @@ const poiTemplate = (value) => {
 		btn.setAttribute('data-count', `${poiCount}`);
 		div.appendChild(btn);
 		item.appendChild(div);
-		// console.log(div);
 	}
-	// }
 
 	//sets default value for specific result
 	if (itCatLink.innerText.toLowerCase() === 'person') {
@@ -219,6 +221,3 @@ const poiTemplate = (value) => {
 
 	return item;
 };
-
-// displayLocType(locationType, locationCategory);
-// console.log(locationCategory);

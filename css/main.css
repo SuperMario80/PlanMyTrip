@@ -211,6 +211,15 @@ textarea {
 	text-align: right;
 }
 
+.btn:disabled {
+	background: var(--primary-color);
+	color: var(--bg-sec-color);
+}
+
+.noHover {
+	pointer-events: none;
+}
+
 .list {
 	margin: 0.5rem 0;
 	list-style: none;

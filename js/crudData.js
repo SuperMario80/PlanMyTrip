@@ -1,3 +1,11 @@
+// function delConfirmation(confirmText) {
+// 	let e;
+// 	if (confirm(confirmText) === true) {
+// 		return true;
+// 	} else {
+// 		e.preventDefault();
+// 	}
+// }
 // console.log(deleteMyLoc);
 
 function deleteMyData() {
@@ -29,11 +37,8 @@ function deleteMyData() {
 		});
 	}
 }
+
 deleteMyData();
-// function delConfirmation(confirmText) {
-// 	let popup = confirm(confirmText);
-// 	return popup;
-// }
 
 // function deleteMyData() {
 // 	const deleteMyPoi = document.querySelector('#deleteMyPoi');

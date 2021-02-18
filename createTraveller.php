@@ -67,15 +67,20 @@ class CreateTravellerPage extends Page {
             }
             // else{
             catch (PDOException $e) {
-                $e->getMessage();
-                 $this->getTraveller()->setEmail('');
-                    $this->getTraveller()->setPassword('');
+
+                if($this->getTraveller()->getEmail()){
+                    printData($e->getMessage());
+                    $this->message = "Email already exists!";
+                }else{
+
                     printData($this->getTraveller());
-                // printData($this->traveller->getEmail());
-                $this->message = "Email already exists!";
+                    // printData($this->traveller->getEmail());
+                    $this->message = "Email is not valid!";
+                }
                 // $_POST['password'] = "";
                 // $password = "";
-
+                // $this->getTraveller()->setEmail('');
+                // $this->getTraveller()->setPassword('');
             }
         } 
 

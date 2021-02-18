@@ -7,7 +7,9 @@ const sum = modal.querySelector('.summary');
 // console.log(itemMap);
 
 saveLocation.addEventListener('click', async (e) => {
-	console.log('click');
+	// console.log('click');
+	const locBtn = document.querySelector('.btn-save-loc');
+	// console.log(locBtn);
 	// let regexPartOf = removeChars(currentLocation.part_of[0]);
 	if (e.target.id == 'phpSubmit') {
 		// async postPlace(){
@@ -37,27 +39,20 @@ saveLocation.addEventListener('click', async (e) => {
 		// const sendPlace = fetch(`https://ptsv2.com/t/arto5-1608728634/post`, data);
 
 		// const sendPl = await sendPlace.json();
-
-		// console.log(sendPl);
-		// return sendPl;
-		// }
-		// }
-		// e.preventDefault();
-		// console.log(regexPartOf);
+	}
+	if (locBtn) {
+		locBtn.disabled = true;
+		locBtn.className += ' noHover';
 	}
 });
 
-//  let poiSub = document.getElementById('poiSubmit'.poiCount);
-//  console.log(poiSub);
-
-savePoi.addEventListener('click', (e) => {
+savePoi.addEventListener('click', async (e) => {
 	let poiVal = e.target.getAttribute('data-count');
-
+	const poiBtn = document.querySelector(`#poiSubmit${poiVal}`);
 	currentPointofInterest = poiRes.results[poiVal];
 	// if(e.target.id === `poiSubmit${poiVal}`) {
 	if (e.target.hasAttribute('data-count')) {
 		// console.log(poiCount);
-		// currentPointofInterest = poiRes.results[poiVal];
 		// async postPlace(){
 		let poiValue = {
 			poiName: currentPointofInterest.name,
@@ -82,7 +77,7 @@ savePoi.addEventListener('click', (e) => {
 			headers: { 'Content-Type': 'application/json' }
 		};
 
-		const sendPoi = fetch(`http://localhost/php/projects/PlanMyTrip/poiRequest.php`, data);
+		const sendPoi = await fetch(`http://localhost/php/projects/PlanMyTrip/poiRequest.php`, data);
 		// const sendPlace = fetch(`https://ptsv2.com/t/arto5-1608728634/post`, data);
 
 		// const sendPl = await sendPlace.json();
@@ -94,6 +89,11 @@ savePoi.addEventListener('click', (e) => {
 		// e.preventDefault();
 		console.log(e.target.id);
 		console.log(sendPoi);
+	}
+	if (currentPointofInterest) {
+		poiBtn.disabled = true;
+		poiBtn.className += ' noHover';
+		// locBtn.blur();
 	}
 });
 
@@ -144,6 +144,22 @@ savePoi.addEventListener('click', function(e) {
 		modal.classList.add('hidden');
 	});
 });
+// disableButton();
+
+// console.log(disableButton);
+// function disableButton() {
+// 	// if (locationTemplate != '') {
+// 	const locBtn = document.querySelector('#locBtn');
+// 	console.log(locBtn);
+
+// 	locBtn.addEventListener('click', function() {
+// 		// if (locBtn) {
+// 		locBtn.disabled = true;
+// 		// }
+// 	});
+// 	return true;
+// 	// }
+// }
 
 // function mySavedLocModal() {
 // 	const savedItemMap = document.querySelectorAll('.savedItemMap');
