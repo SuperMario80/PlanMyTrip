@@ -106,7 +106,7 @@ const locationTemplate = (input) => {
 	const singleTitle = createItem('h2', 'single-title');
 	const currentRegion = removeChars(currentLocation.part_of.toString());
 	const currentName = removeChars(currentLocation.name.toString());
-	const singleTL = createLink('a', `${currentLocation.attribution[1].url}`, `${currentName}    ${currentRegion}`);
+	const singleTL = createLink('a', `${currentLocation.attribution[0].url}`, `${currentName}    ${currentRegion}`);
 
 	console.log(singleTL.innerText);
 
@@ -114,7 +114,12 @@ const locationTemplate = (input) => {
 	singleHeadline.appendChild(singleTitle);
 
 	const singleDesc = createItem('div', 'single-desc');
-	const singleDL = createLink('a', `${currentLocation.attribution[0].url}`, `${input.intro}`);
+	const singleDL = createLink(
+		'a',
+		`https://maps.google.com/maps/embed/v1/place?key=AIzaSyA9h2yTUJQGROM9gtphNHPIt-TVXF9a4mg&q=${currentLocation
+			.coordinates.latitude},${currentLocation.coordinates.longitude}`,
+		`${input.intro}`
+	);
 
 	singleDesc.appendChild(singleDL);
 	singleText.appendChild(singleHeadline);
@@ -165,29 +170,39 @@ const poiTemplate = (value) => {
 	const itWrap = createItem('div', 'item-text-wrap');
 	//creates 1st child of itWrap
 	const itTitle = createItem('h2', 'item-text-title');
+	itTitle.innerHTML = `${removeChars(value.name.toString())}`;
 	//creates link of itTitle, sets attribute and append
-	const itLink = createLink('a', `${value.attribution[1].url}`, `${removeChars(value.name.toString())}`);
-	itTitle.appendChild(itLink);
+	// const itLink = createLink('a', `${value.attribution[1].url}`, `${removeChars(value.name.toString())}`);
+	// itTitle.appendChild(itLink);
 	//creates 2nd child of itWrap
 	const itCategory = createItem('p', 'item-text-category');
+	itCategory.innerHTML = `${value.tag_labels[0]}`;
 
-	const itCatLink = createLink('a', `${value.attribution[0].url}`, `${value.tag_labels[0]}`);
-	itCategory.appendChild(itCatLink);
+	// const itCatLink = createLink('a', `${value.attribution[0].url}`, `${value.tag_labels[0]}`);
+	// itCategory.appendChild(itCatLink);
 
 	//creates last child of item, sets attributes and append
 
 	const itemDesc = createItem('div', 'item-desc');
+	const itLinkDiv = createItem('div', 'itLinkDiv');
 
-	const itemMap = createItem('p', 'item-map');
+	const itLink = createItem('p', 'item-link py-0');
+	const itLinkTag = createLink('a', `${value.attribution[1].url}`, 'more Info');
+	itLink.appendChild(itLinkTag);
+
+	const itemMap = createItem('p', 'item-map py-0');
 	itemMap.setAttribute('data-modal', `${poiCount}`);
 	itemMap.innerHTML = 'Show on Map';
+
 	// const itemMapLink = createLink('a', '', 'Show on Map');
 	// itemMap.append(itemMapLink);
 
 	const itemDescInner = document.createElement('p');
 
-	itemDescInner.innerHTML = `${value.snippet}`;
-	itemDesc.appendChild(itemMap);
+	itemDescInner.innerHTML = `${value.intro}`;
+	itLinkDiv.appendChild(itLink);
+	itLinkDiv.appendChild(itemMap);
+	itemDesc.appendChild(itLinkDiv);
 	itemDesc.appendChild(itemDescInner);
 
 	//appends child elements
@@ -215,8 +230,8 @@ const poiTemplate = (value) => {
 	}
 
 	//sets default value for specific result
-	if (itCatLink.innerText.toLowerCase() === 'person') {
-		itCatLink.innerText = 'Sightseeing';
+	if (itCategory.innerText.toLowerCase() === 'person') {
+		itCategory.innerText = 'Sightseeing';
 	}
 
 	return item;

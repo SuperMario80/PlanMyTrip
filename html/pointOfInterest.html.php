@@ -13,7 +13,7 @@
             <div class="bg-primary single-text">
               <div class="bg-secondary single-headline">
                 <h2 class="single-title">
-                  <a href="<?= htmlSpecialChars($poi->getInfoLink()) ?>"><?= htmlSpecialChars($poi->getPoiName()) ?> <?= htmlSpecialChars($poi->getCity()) ?>
+                  <a href="<?= htmlSpecialChars($poi->getInfoLink()) ?>" target="_blank"><?= htmlSpecialChars($poi->getPoiName()) ?> <?= htmlSpecialChars($poi->getCity()) ?>
                   </a>
                 </h2>
               </div>

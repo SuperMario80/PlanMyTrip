@@ -19,11 +19,11 @@ class IndexPage extends Page {
         }
         
         protected function viewContent(): void {
-        $message = $_SESSION['message'] ?? '';
-        // printData($_SESSION);
-        $_SESSION['message'] = '';
-        include 'html/modal.html.php';
-        include 'html/searchMyTrip.html.php';
+            $message = $_SESSION['message'] ?? '';
+            printData($message);
+            include 'html/modal.html.php';
+            include 'html/searchMyTrip.html.php';
+            $_SESSION['message'] = '';
 
 
         

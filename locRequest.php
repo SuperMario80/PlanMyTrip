@@ -22,9 +22,16 @@ class locRequestPage extends Page {
         
         
     protected function viewContent(): void {
-
+        
         $this->locationDao = new LocationDao();
-        $this->saveRequestedLoc();
+        // if(!empty($this->saveRequestedLoc())){
+            // include 'html/searchMyTrip.html.php';
+            $this->saveRequestedLoc();
+        //     header('Location: index.php');
+        // exit;
+
+
+        // }
     }
             
             
@@ -85,8 +92,8 @@ class locRequestPage extends Page {
         }
 
         $_SESSION['message'] = $message;
-        header('Location: index.php');
-        exit;
+        // header('Location: index.php');
+        // exit;
     }
 }
 

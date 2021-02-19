@@ -10,7 +10,7 @@
 				<div class="single-text">
 					<div class="single-headline">
 						<h2 class="single-title">
-						<a class="myLocationName" href="<?= htmlSpecialChars($location->getTravelLink()) ?>">
+						<a class="myLocationName" href="<?= htmlSpecialChars($location->getTravelLink()) ?>" target="_blank">
             <?= htmlSpecialChars($location->getLocation()) ?> <?= htmlSpecialChars($location->getCountry()) ?> 
             <?= htmlSpecialChars($location->getRegion()) ?>
             </a>
@@ -27,7 +27,7 @@
           </div>
           <div class="button-area">
           <!-- <button class="btn" name="delete" value="2" >Delete <?= htmlSpecialChars($location->getLocation()) ?></button> -->
-          <button class="btn" name="updateLocation" value="<?= $location->getId()?>" ><span class="p-0">
+          <button class="btn" name="updateLocation" value="<?= $location->getId()?>" ><span >
               <i class="fas fa-pen"></i> Edit
             </span>
             <!-- <span class="p-0"><i class="far fa-trash-alt"></i></span> -->

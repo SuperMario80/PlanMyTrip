@@ -30,6 +30,7 @@
     <script src="js/crudData.js?<?php echo time(); ?>"></script>
     <script src="js/reqData.js?<?php echo time(); ?>"></script>
     <script src="js/postData.js?<?php echo time(); ?>"></script>
+    <script src="js/myModal.js?<?php echo time(); ?>"></script>
     <script src="js/myData.js?<?php echo time(); ?>"></script>
   </body>
 </html>
