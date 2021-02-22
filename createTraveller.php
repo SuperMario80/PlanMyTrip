@@ -9,6 +9,7 @@ class CreateTravellerPage extends Page {
     public function __construct() {
         parent::__construct('Register');
         $this->message = '';
+        // $this->headline = 'Create your Account';
 
     }
 
@@ -82,7 +83,11 @@ class CreateTravellerPage extends Page {
                 // $this->getTraveller()->setEmail('');
                 // $this->getTraveller()->setPassword('');
             }
-        } 
+        } else {
+           $this->message = $this->travellerDao->update($this->getTraveller())
+                   ? 'Customer Saved'
+                   : 'Customer NOT Saved';
+       }
 
 
 

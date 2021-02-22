@@ -24,6 +24,13 @@ class travellerAreaPage extends Page {
         //     exit;
         // }
         // $travId = $tr->getId();
+        if (isSet($_POST['updateTraveller'])) {
+                
+            header('Location: createTraveller.php?id=' . $_POST['updateTraveller']);
+            exit;
+        }
+
+
         if (isSet($_POST['updateLocation'])) {
                     
             header('Location: crudLocation.php?id=' . $_POST['updateLocation']);
@@ -52,7 +59,7 @@ class travellerAreaPage extends Page {
         // include_once 'html/showcase.html.php';
         include_once 'html/modal.html.php';
         
-        
+        // $this->showTraveller();
         $this->showTravLoc();
         $this->showLocPois();
         
@@ -63,12 +70,30 @@ class travellerAreaPage extends Page {
 
         
 }
+    //     private function showTraveller(){
+
+    //     if(view()->initSession() != NULL){
+
+    //         $tr = unserialize($_SESSION['traveller']);
+    //         printData($tr);
+       
+    //                id from current traveller
+    //                $idTr = $tr->getId();
+    //     }
+    // }
+
+
+
+
+
+
         //SHOWS ALL SAVED LOCATIONS FROM LOGGED-IN TRAVELLER
         private function showTravLoc() {
   
 
             // gets data from logged-in Traveller
             $tr = unserialize($_SESSION['traveller']);
+            printData($tr);
 
             //id from current traveller
             $idValue = $tr->getId();

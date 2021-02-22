@@ -30,17 +30,31 @@ saveLocation.addEventListener('click', async (e) => {
 			headers: { 'Content-Type': 'application/json' }
 		};
 
-		const sendPlace = await fetch(`http://localhost/php/projects/PlanMyTrip/locRequest.php`, data);
+		const sendPl = await fetch(`http://localhost/php/projects/PlanMyTrip/locRequest.php`, data);
+
+		// .then((response) => {
+		// 	if (response.status == 'ok') {
+		// 		alert('it worked');
+		// 	} else {
+		// 		alert("it didn't work");
+		// 	}
+		// 	console.log('fetch', response);
+		// 	console.log(response.statusText);
+		// });
+
 		// const sendPlace = fetch(`https://ptsv2.com/t/arto5-1608728634/post`, data);
 
+		console.log('fetch', sendPlace);
+		console.log(sendPlace.statusText);
 		// const sendPl = await sendPlace.json();
+		// return sendPlace;
 	}
 	// if (locBtn) {
-	locBtn.addEventListener('click', () => {
-		// if (locBtn.disabled === true) {
-		locBtn.disabled = true;
-		locBtn.className += ' noHover';
-	});
+	// locBtn.addEventListener('click', () => {
+
+	locBtn.disabled = true;
+	locBtn.className += ' noHover';
+	// });
 	// }
 	console.log('show me' + postDataMsg.innerHTML);
 });
@@ -90,7 +104,7 @@ savePoi.addEventListener('click', async (e) => {
 		console.log(sendPoi);
 		console.log(poiBtn);
 	}
-	// if (locBtn.disabled === true) {
+	// if (locBtn.hasAttribute('disabled')) {
 	poiBtn.disabled = true;
 	poiBtn.className += ' noHover';
 

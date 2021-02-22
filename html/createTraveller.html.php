@@ -1,11 +1,17 @@
 <!-- </div> -->
+
+<div class="headersection">
+    <h1>CREATE YOUR ACCOUNT</h1>
+</div>
+
 <div class="container">
+
     <form method="post" >
         
         <div class="greybox my-4 ">
             <p class="m-heading text-center my-1">
         <?=htmlSpecialChars($message)?>
-    </p>
+            </p>
             <button class="btn btn-dark" name="back" value="0">Back</button>
 
          <ul >

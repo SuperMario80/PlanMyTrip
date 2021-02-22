@@ -20,12 +20,7 @@
 
 
 <div class="headersection">
-    <div class="row">
-        <div class="small-12 columns">
-            
-            <h1>EDIT YOUR POINT OF INTEREST</h1>
-        </div>
-    </div>
+    <h1>EDIT YOUR POINT OF INTEREST</h1>
 </div>
 <div class="container py-3">
 

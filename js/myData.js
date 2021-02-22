@@ -1,6 +1,6 @@
-// loadLocationList();
+loadLocationList();
 
-(function loadLocationList() {
+function loadLocationList() {
 	const myLocationList = document.querySelector('#myLocationList');
 
 	if (myLocationList) {
@@ -10,10 +10,12 @@
 		myLocationList.appendChild(myLocContainer);
 
 		const scrollIds = document.querySelectorAll('.wrap');
+		const LocCategory = document.querySelectorAll('.single-category.location');
 
 		// for (const myLocationName of myLocationNames) {
 		for (let i = 0; i < myLocationNames.length; i++) {
-			const div = document.createElement('div');
+			const div1 = document.createElement('div');
+			const div2 = document.createElement('div');
 			let a;
 
 			// for (const scrollId of scrollIds) {
@@ -22,15 +24,23 @@
 			a.setAttribute('href', `#${scrollIds[i].getAttribute('id')}`);
 			myLocContainer.appendChild(a);
 			// }
-			a.appendChild(div);
+			a.appendChild(div1);
+			a.appendChild(div2);
+			const myLocationCategoryTemp = () => {
+				return ` 
+					${LocCategory[i].innerText}  
+					`;
+			};
 			const myLocationNameTemp = () => {
 				return ` 
 					${myLocationNames[i].innerText}
 					`;
 			};
-			a.append(myLocationNameTemp());
+			div1.append(myLocationCategoryTemp());
+			div2.append(myLocationNameTemp());
 		}
 	}
+	// e.preventDefault();
 
 	// return myLocationList;
-})();
+}

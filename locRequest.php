@@ -66,7 +66,7 @@ class locRequestPage extends Page {
                 $l = $this->locationDao->findLocation($this->location->getLocationKey(),$this->location->getIdTraveller());
                
                 $message ='';
-                
+                echo '{"status":"ok"}';
                 //Checks if locationKey + IdTraveller doesnt exist
                 if($l == NULL){ 
                     $message = 
@@ -84,6 +84,7 @@ class locRequestPage extends Page {
     
             } 
             else {
+                echo '{"status":"error"}';
                 $message = 'no json data received';
                 // throw new Exception( "no json data received");
             }
@@ -92,6 +93,8 @@ class locRequestPage extends Page {
         }
 
         $_SESSION['message'] = $message;
+        echo json_encode($l);
+        echo'12345';
         // header('Location: index.php');
         // exit;
     }

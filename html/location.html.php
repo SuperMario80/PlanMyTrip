@@ -4,7 +4,7 @@
   <!-- <button class="btn btn-dark large" name="newLocation" >Create New Location</button> -->
 <div class="single" >
 			<div class="single-wrap">
-				<h1 class="single-category" ><?= htmlSpecialChars($location->getClassification()) ?>
+				<h1 class="single-category location" ><?= htmlSpecialChars($location->getClassification()) ?>
         </h1>
         <!-- <div class="hidden myModalLink"><?= htmlSpecialChars($location->getTravelLink()) ?></div> -->
 				<div class="single-text">

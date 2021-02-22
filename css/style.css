@@ -67,13 +67,25 @@
 	width: 100%;
 	text-align: left;
 	font-weight: 800;
+	/* display: grid;
+	grid-template-columns: auto auto; */
 }
 #myLocationList a {
 	color: var(--secondary-color);
 	display: block;
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	text-align: left;
+	/* border-bottom: dotted .0025rem var(--lighter-color-alt); */
+	/* box-shadow: 0 1px 0 rgba(0, 0, 0, .18); */
 }
+/* #myLocationList a div {
+	display: grid;
+	grid-template-columns: auto auto;
+} */
 #myLocationList a:hover {
 	color: var(--highlight-color);
+	text-decoration: underline;
 }
 
 #footer {
