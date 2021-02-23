@@ -26,18 +26,15 @@ function loadLocationList() {
 			// }
 			a.appendChild(div1);
 			a.appendChild(div2);
-			const myLocationCategoryTemp = () => {
-				return ` 
-					${LocCategory[i].innerText}  
-					`;
-			};
-			const myLocationNameTemp = () => {
-				return ` 
-					${myLocationNames[i].innerText}
-					`;
-			};
-			div1.append(myLocationCategoryTemp());
-			div2.append(myLocationNameTemp());
+			// const myLocationCategoryTemp = () => {
+			// 	return LocCategory[i].innerText;
+			// };
+			// const myLocationNameTemp = () => {
+			// 	return myLocationNames[i].innerText;
+			// };
+
+			div1.append(LocCategory[i].innerText);
+			div2.append(myLocationNames[i].innerText);
 		}
 	}
 	// e.preventDefault();

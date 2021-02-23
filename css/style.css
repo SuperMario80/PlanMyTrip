@@ -146,6 +146,7 @@
 	right: 1rem;
 	text-align: right;
 	font-weight: bold;
+	text-shadow: 1px 1px var(--dark-color);
 }
 
 /* .item-text-category {
@@ -169,16 +170,20 @@
 }
 
 .item-desc {
-	height: 14vh;
+	/* height: 14vh; */
 	margin-top: -1rem;
 	font-size: 1rem;
 	overflow: hidden;
 	padding: 1.5rem 1rem;
 }
+.item-desc div:last-child {
+	height: 16vh;
+}
 
 .itLinkDiv {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+	font-weight: bold;
 }
 .item-map {
 	text-align: right;
@@ -191,6 +196,7 @@
 	color: var(--highlight-color);
 	/* padding-bottom: 0.2rem; */
 	font-size: small;
+	/* font-weight: bold; */
 }
 
 .item-map:hover,

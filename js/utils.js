@@ -20,6 +20,7 @@ function createItem(element, className) {
 function createLink(element, href, innerText) {
 	let link = document.createElement(element);
 	link.setAttribute('href', href);
+
 	link.setAttribute('target', '_blank');
 	link.innerText = innerText;
 
