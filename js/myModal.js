@@ -49,8 +49,8 @@ function showSavedModal() {
 	const savedItemMap = document.querySelectorAll('.savedItemMap');
 	const myModalLink = document.querySelectorAll('.myModalLink');
 	for (let i = 0; i < savedItemMap.length; i++) {
-		console.log(savedItemMap[i]);
-		console.log(myModalLink[i]);
+		// console.log(savedItemMap[i]);
+		// console.log(myModalLink[i]);
 		savedItemMap[i].addEventListener('click', function(e) {
 			if (e.target.hasAttribute('data-poi')) {
 				modal.classList.remove('hidden');

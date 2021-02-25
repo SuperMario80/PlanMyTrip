@@ -142,5 +142,6 @@ class CreateTravellerPage extends Page {
 }
 
 $page = new CreateTravellerPage();
+$page->initAll();
 $page->view();
 

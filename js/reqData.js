@@ -2,6 +2,8 @@ let currentLocation;
 let currentPointofInterest;
 let poiCount;
 let poiRes;
+// document.addEventListener('DOMContentLoaded', displayLocation);
+// displayLocation();
 
 // let locationType = document.querySelector('.single-category');
 // let locationCategory = document.querySelector('.single-wrap');
@@ -24,7 +26,11 @@ createAutoComplete({
 	},
 	onOptionSelect(location) {
 		onLocationSelect(location);
-		addPlace(location);
+		console.log(displayLocation());
+		console.log(addPlace(location));
+
+		// document.addEventListener('DOMContentLoaded', displayLocation);
+
 		// displayLocation();
 		// document.addEventListener('DOMContentLoaded', displayLocation);
 		// removeLocation();
@@ -54,7 +60,7 @@ createAutoComplete({
 		// ,myHeaders);
 
 		const place = await placeResponse.json();
-		console.log(place);
+		// console.log(place);
 
 		return place.results;
 	}
@@ -65,9 +71,7 @@ let onLocationSelect = async (location) => {
 		`https://www.triposo.com/api/20201111/location.json?id=${location.id}&fields=all&account=${this
 			.account_id}&token=${this.api_token}`
 	);
-
 	let res = await response.json();
-
 	document.querySelector('#summary').innerHTML = '';
 	currentLocation = res.results[0];
 	document.querySelector('#summary').append(locationTemplate(currentLocation));
@@ -76,13 +80,10 @@ let onLocationSelect = async (location) => {
 		`https://www.triposo.com/api/20201111/poi.json?location_id=${location.id}&fields=all&tag_labels=sightseeing&count=20&order_by=-score&account=${this
 			.account_id}&token=${this.api_token}`
 	);
-
 	poiRes = await poiResponse.json();
-	console.log(poiRes);
-
+	// console.log(poiRes);
 	//clears poi results (if new request is executed)
 	document.querySelector('#poi').innerHTML = '';
-
 	try {
 		// for (poiCount = 0; poiCount < 20; poiCount++) {
 		for (poiCount = 0; poiCount < poiRes.results.length; poiCount++) {
@@ -98,9 +99,12 @@ let onLocationSelect = async (location) => {
 		// 	//  return res;
 		// }
 	}
+
+	// addPlace(location);
+	// displayLocation();
+	// document.addEventListener('DOMContentLoaded', displayLocation);
+	// return;
 };
-// getLocation(onLocationSelect);
-// console.log(onLocationSelect);
 
 const locationTemplate = (input) => {
 	// <pre>${JSON.stringify(input,null,2)}</pre>
@@ -139,7 +143,7 @@ const locationTemplate = (input) => {
 	singleText.appendChild(singleHeadline);
 	singleText.appendChild(singleDesc);
 
-	// if traveller is logged in, create save button
+	// if logged in, create save button
 	if (addButton()) {
 		//creates 3rd child of item, sets attributes and append
 		const div = document.createElement('div');
@@ -150,7 +154,6 @@ const locationTemplate = (input) => {
 			'phpSubmit',
 			'Save Location'
 		);
-
 		div.appendChild(btn);
 		singleText.appendChild(div);
 	}
@@ -201,8 +204,33 @@ const poiTemplate = (value) => {
 	const itLinkDiv = createItem('div', 'itLinkDiv');
 
 	const itLink = createItem('p', 'item-link py-0');
-	const itLinkTag = createLink('a', `${value.attribution[1].url}`, 'more Info');
-	itLink.appendChild(itLinkTag);
+	// console.log(itLink);
+
+	try {
+		const itLinkTag = createLink('a', `${value.attribution[2].url}`, 'more Info');
+		itLink.appendChild(itLinkTag);
+	} catch (e) {
+		// console.log(Error(e).message);
+		Error(e).message;
+		// itLinkTag = createLink('a', `${value.attribution[0].url}`, 'more Info');
+		// itLink.appendChild(itLinkTag);
+	}
+	// let infoLinkUrl;
+	// let itLinkTag;
+
+	// try {
+	// 	infoLinkUrl = value.attribution[2].url;
+	// } catch (e) {
+	// 	if (infoLinkUrl === undefined) {
+	// 		console.log(Error(e).message);
+	// 		infoLinkUrl = value.attribution[0].url;
+
+	// 		itLinkTag = createLink('a', `${infoLinkUrl}`, 'more Info');
+	// 		// return itLinkTag;
+	// 	}
+	// }
+
+	// console.log(value.attribution[2].url);
 
 	const itemMap = createItem('p', 'item-map py-0');
 	itemMap.setAttribute('data-modal', `${poiCount}`);
@@ -267,7 +295,7 @@ function displayLocation() {
 
 	places.forEach(function(place) {
 		onLocationSelect(place);
-		console.log(place);
+		// return place;
 	});
 	// return places;
 }
@@ -278,6 +306,7 @@ function addPlace(place) {
 	places.push(place);
 
 	localStorage.setItem('places', JSON.stringify(places));
+	return places;
 }
 // #4 remove Book from LocalStorage
 // function removeLocation() {

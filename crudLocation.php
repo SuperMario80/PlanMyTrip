@@ -131,5 +131,6 @@ class crudLocationPage extends Page {
 }
 
 $page = new crudLocationPage();
+$page->initAll();
 $page->view();
 

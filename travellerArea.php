@@ -146,4 +146,5 @@ class travellerAreaPage extends Page {
 }
 
 $page = new travellerAreaPage();
+$page->initAll();
 $page->view();

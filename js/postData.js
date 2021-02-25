@@ -33,23 +33,42 @@ saveLocation.addEventListener('click', async (e) => {
 		console.log(data);
 
 		const sendPlace = await fetch(`http://localhost/php/projects/PlanMyTrip/locRequest.php`, data)
-			// .then((response) => response.text())
+			.then((response) => response.json())
+			// {
+			// 	console.log(response);
+			// 	// console.log(response.text());
+			// 	// if (response.json() != undefined) {
+			// 	response.json();
+			// 	// } else {
+			// 	// 	alert('something went wrong');
+			// 	// 	console.log(response.text());
+			// 	// }
+			// })
 			.then((res) => {
 				if (res.statusText == 'OK') {
-					console.log(res.status);
-					alert('it worked');
+					console.log(res.statusText);
+					alert('Location added to MySavedTrip');
 					locBtn.disabled = true;
 					locBtn.className += ' noHover';
 				} else {
-					console.log(res.status);
-					// alert("it didn't work");
+					if (res.statusText == 'Error') {
+						alert('Location already exists');
+						locBtn.disabled = true;
+						locBtn.className += ' noHover';
+					} else {
+						// console.log(res.statusText);
+						alert('no Data submitted');
+					}
 				}
-				console.log(res);
-				return res.statusText;
+				// 	console.log(res);
+				// 	return res.statusText;
 				// console.log(res.JSON.serialize());
 				// console.log(res.parse());
 			});
 
+		// console.log('hello', sendPlace);
+		// let statusText = sendPlace.match(/\{statusText:([a-zA-Z]{2,5})\}/);
+		// console.log('hello', statusText[1]);
 		// const sendPlace = fetch(`https://ptsv2.com/t/arto5-1608728634/post`, data);
 
 		// console.log('fetch', sendPlace);
@@ -68,13 +87,25 @@ saveLocation.addEventListener('click', async (e) => {
 	// locBtn.addEventListener('click', () => {
 	// });
 	// }
-	console.log('show me ' + postDataMsg.innerHTML);
+	// console.log('show me ' + postDataMsg.innerHTML);
 });
 
 savePoi.addEventListener('click', async (e) => {
 	let poiVal = e.target.getAttribute('data-count');
 	const poiBtn = document.querySelector(`#poiSubmit${poiVal}`);
 	currentPointofInterest = poiRes.results[poiVal];
+	let infoLinkReplacement;
+	if (currentPointofInterest.attribution.length >= 3) {
+		infoLinkReplacement = currentPointofInterest.attribution[2].url;
+	} else {
+		if (currentPointofInterest.attribution.length >= 2) {
+			infoLinkReplacement = currentPointofInterest.attribution[1].url;
+		} else {
+			infoLinkReplacement = '';
+		}
+	}
+	// console.log(infoLinkReplacement);
+
 	// if(e.target.id === `poiSubmit${poiVal}`) {
 	if (e.target.hasAttribute('data-count')) {
 		// console.log(poiCount);
@@ -86,7 +117,7 @@ savePoi.addEventListener('click', async (e) => {
 			locationKey: currentLocation.id,
 			attraction: currentPointofInterest.tag_labels[0],
 			intro: currentPointofInterest.intro,
-			infoLink: currentPointofInterest.attribution[1].url,
+			infoLink: infoLinkReplacement,
 			poiMap: `https://maps.google.com/maps/embed/v1/place?key=AIzaSyA9h2yTUJQGROM9gtphNHPIt-TVXF9a4mg&q=${currentPointofInterest
 				.coordinates.latitude},${currentPointofInterest.coordinates.longitude}`
 		};
@@ -102,23 +133,46 @@ savePoi.addEventListener('click', async (e) => {
 			headers: { 'Content-Type': 'application/json' }
 		};
 
-		const sendPoi = await fetch(`http://localhost/php/projects/PlanMyTrip/poiRequest.php`, data);
+		const sendPoi = await fetch(`http://localhost/php/projects/PlanMyTrip/poiRequest.php`, data)
+			.then((response) => response.json())
+			.then((res) => {
+				if (res.statusText == 'OK') {
+					console.log(res);
+					alert('Point of Interest added to MySavedTrip');
+					poiBtn.disabled = true;
+					poiBtn.className += ' noHover';
+				} else {
+					if (res.statusText == 'Error') {
+						console.log(res);
+						alert('Point of Interest already exist');
+						poiBtn.disabled = true;
+						poiBtn.className += ' noHover';
+					} else {
+						console.log(res);
+						alert('no Data submitted');
+					}
+				}
+				// 	console.log(res);
+				// 	return res.statusText;
+				// console.log(res.JSON.serialize());
+				// console.log(res.parse());
+			});
 		// const sendPlace = fetch(`https://ptsv2.com/t/arto5-1608728634/post`, data);
 
 		// const sendPl = await sendPlace.json();
 
-		// console.log(sendPl);
+		console.log(sendPoi);
 		// return sendPl;
 		// }
 		// }
 		// e.preventDefault();
 		console.log(e.target.id);
-		console.log(sendPoi);
-		console.log(poiBtn);
+		// console.log(sendPoi);
+		// console.log(poiBtn);
 	}
 	// if (locBtn.hasAttribute('disabled')) {
-	poiBtn.disabled = true;
-	poiBtn.className += ' noHover';
+	// poiBtn.disabled = true;
+	// poiBtn.className += ' noHover';
 
 	// locBtn.blur();
 	// }

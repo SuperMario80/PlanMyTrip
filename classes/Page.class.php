@@ -25,11 +25,14 @@ abstract class Page {
         $this->loggedIn = false;
     }
     
-
-    public function view() : void {
+    public function initAll() : void {
 
         $this->initSession();
         $this->init();
+    }
+
+    public function view() : void {
+
         
         $this->viewHead();
         $this->viewNavigation();

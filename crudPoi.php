@@ -127,5 +127,6 @@ class showPoiPage extends Page {
 }
 
 $page = new showPoiPage();
+$page->initAll();
 $page->view();
 

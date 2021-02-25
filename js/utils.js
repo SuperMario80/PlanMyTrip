@@ -17,7 +17,7 @@ function createItem(element, className) {
 	return item;
 }
 
-function createLink(element, href, innerText) {
+function createLink(element, href = '', innerText) {
 	let link = document.createElement(element);
 	link.setAttribute('href', href);
 

@@ -21,7 +21,7 @@
   </div>
 </header>
      
-<p id="postDataMsg"><?=htmlSpecialChars($message)?></p>
+<!-- <p id="postDataMsg"><?=htmlSpecialChars($message)?></p> -->
 <div class="container py-3">
   <!-- <div class="items"> -->
       <div id="summary"></div>

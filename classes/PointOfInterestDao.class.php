@@ -6,6 +6,8 @@ declare(strict_types=1);
 
 class PointOfInterestDao extends GenericDao {
 
+    private $findPoiStatement;
+
     // private $readForKeyStatement;
 
     function __construct() {
@@ -54,6 +56,31 @@ class PointOfInterestDao extends GenericDao {
     protected function getForKeySql(): string{
         return 'SELECT * FROM `' . $this->getTableName() . '` WHERE `idLocation`=:idValue ORDER BY  `attraction`, `poiName`';
     }
+
+
+     public function findPoi(string $poiName, int $idLocation, string $locationKey, ): ?object {
+        
+
+        if ($this->findPoiStatement == null) {
+            $sql = 'SELECT * FROM `' . $this->getTableName() . '` WHERE `idLocation`=:idLocation AND `poiName`=:poiName AND `locationKey`=:locationKey';
+            //PREPARES SQL  STATEMENT
+            $this->findPoiStatement = $this->getConnection()->prepare($sql);
+        }
+
+        $array = [
+            ':idLocation' => $idLocation,
+            ':poiName' => $poiName,
+            ':locationKey' => $locationKey,
+        ];
+        //EXECUTES STATEMENT WITH PASSED-IN PARAMETER
+        $this->findPoiStatement->execute($array);
+
+        $dto = $this->findPoiStatement->fetchObject($this->getClassName());
+        return $dto ? $dto : null;
+    
+
+    }
+
 
     // READS ALL STATEMENTS/ROWS IN TABLE WITH PASSED IN FOREIGN KEY VALUE($idValue) AND INDIVIDUAL COLUMN NAME($foreignId)
     // function showPoiForKey(int $idValue): array {

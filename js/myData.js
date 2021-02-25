@@ -33,6 +33,7 @@ function loadLocationList() {
 			// 	return myLocationNames[i].innerText;
 			// };
 
+			// div1.append(LocCategory[i].innerText.toLowerCase());
 			div1.append(LocCategory[i].innerText);
 			div2.append(myLocationNames[i].innerText);
 		}

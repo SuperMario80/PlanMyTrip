@@ -61,4 +61,5 @@ class IndexPage extends Page {
 }
 
 $page = new IndexPage();
+$page->initAll();
 $page->view();

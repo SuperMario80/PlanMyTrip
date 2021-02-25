@@ -18,7 +18,7 @@ const createAutoComplete = ({ root, renderOption, onOptionSelect, inputValue, fe
 
 	const onInput = async (event) => {
 		const items = await fetchData(event.target.value);
-		console.log(items);
+		// console.log(items);
 
 		if (!items.length) {
 			dropdown.classList.remove('is-active');
@@ -36,7 +36,7 @@ const createAutoComplete = ({ root, renderOption, onOptionSelect, inputValue, fe
 				dropdown.classList.remove('is-active');
 				input.value = inputValue(item);
 				onOptionSelect(item);
-				console.log(item);
+				// console.log(item);
 			});
 
 			resultsWrapper.appendChild(option);
