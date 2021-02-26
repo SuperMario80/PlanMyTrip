@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 class TravellerDao extends GenericDao {
 
+    private $findTravellerStatement;
+
     function __construct() {
         parent::__construct('traveller', 'Traveller');
     }
@@ -66,6 +68,27 @@ class TravellerDao extends GenericDao {
         protected function getForKeySql(): string{
             
         }
+
+        public function findTraveller(string $email): ?object {
+        
+
+        if ($this->findTravellerStatement == null) {
+            $sql = 'SELECT * FROM `' . $this->getTableName() . '` WHERE `email`=:email';
+            //PREPARES SQL  STATEMENT
+            $this->findTravellerStatement = $this->getConnection()->prepare($sql);
+        }
+
+        $array = [
+            ':email' => $email,
+        ];
+        //EXECUTES STATEMENT WITH PASSED-IN PARAMETER
+        $this->findTravellerStatement->execute($array);
+
+        $dto = $this->findTravellerStatement->fetchObject($this->getClassName());
+        return $dto ? $dto : null;
+    
+
+    }
 
 
 }

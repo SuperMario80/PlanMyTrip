@@ -67,10 +67,14 @@ class Traveller {
     }
 
     function setPassword(string $password): void {
-        if($this->password){
-
+        // $this->password = $password;
+        if($password){
             $this->password = password_hash($password, PASSWORD_DEFAULT);
-        }else{
+            printData("password: $password");
+            
+        }
+        else{
+               printData("password not vald: $password");
             $this->password = "";
         }
 

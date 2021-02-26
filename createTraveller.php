@@ -52,37 +52,45 @@ class CreateTravellerPage extends Page {
     
     private function saveTraveller() {
         $this->readFormData();
+        $t = $this->travellerDao->findTraveller($this->getTraveller()->getEmail());
         
         if ($this->getTraveller()->getId() == 0) {
             
-            try{
+            // try{
                 if($this->getTraveller()->getFirstName() == NULL ||  $this->getTraveller()->getLastName() == NULL||  $this->getTraveller()->getPassword() == NULL || $this->getTraveller()->getEmail() == NULL){
                     $this->message = 'Please fill out ALL data'; 
                 }
+                if($t == NULL){
 
-                if ($this->travellerDao->create($this->getTraveller())){
-                    $this->message =   "New Account created";
-                    // printData(" show $this->email");
-                    header('Refresh:2; url=index.php');
-                }
-            }
-            // else{
-            catch (PDOException $e) {
+                    if ($this->travellerDao->create($this->getTraveller())){
+                        $this->message =   "New Account created";
+                        //   printData($this->traveller->getPassword());
+                        // printData(" show $this->email");
+                        // header('Refresh:2; url=index.php');
+                    }else{
 
-                if($this->getTraveller()->getEmail()){
-                    printData($e->getMessage());
-                    $this->message = "Email already exists!";
+                        if($t != NULL){
+                        // printData($e->getMessage());
+                        $this->message = "Email already exists!";
+                        }
+        
+                        
+                    }
                 }else{
 
                     printData($this->getTraveller());
-                    // printData($this->traveller->getEmail());
-                    $this->message = "Email is not valid!";
+                        // printData($this->traveller->getEmail());
+                        $this->message = "Email is not valid!";
                 }
+            // }
+            // else{
+            // catch (PDOException $e) {
+
                 // $_POST['password'] = "";
                 // $password = "";
                 // $this->getTraveller()->setEmail('');
                 // $this->getTraveller()->setPassword('');
-            }
+            // }
         } else {
            $this->message = $this->travellerDao->update($this->getTraveller())
                    ? 'Customer Saved'

@@ -26,10 +26,11 @@ createAutoComplete({
 	},
 	onOptionSelect(location) {
 		onLocationSelect(location);
-		console.log(displayLocation());
-		console.log(addPlace(location));
+		// console.log(addPlace(location));
+		// document.addEventListener('DOMContentLoaded', displayLocation());
+		// // console.log(displayLocation());
 
-		// document.addEventListener('DOMContentLoaded', displayLocation);
+		// removeLocation();
 
 		// displayLocation();
 		// document.addEventListener('DOMContentLoaded', displayLocation);
@@ -109,7 +110,7 @@ let onLocationSelect = async (location) => {
 const locationTemplate = (input) => {
 	// <pre>${JSON.stringify(input,null,2)}</pre>
 	// const single = document.createDocumentFragment('div');
-	const single = createItem('div', 'single');
+	const single = createItem('div', 'single my-3');
 
 	const singleWrap = createItem('div', 'single-wrap');
 
@@ -170,7 +171,7 @@ const locationTemplate = (input) => {
 const poiTemplate = (value) => {
 	//creates wrapper item
 	// const item = document.createDocumentFragment('div');
-	const item = createItem('div', 'item');
+	const item = createItem('div', 'item my-3');
 
 	//creates 1st child of item
 	const image = createItem('div', 'item-image');
@@ -289,14 +290,15 @@ function getLocation() {
 
 	return places;
 }
+
 //#3 display book in UI / HTML
 function displayLocation() {
 	const places = getLocation();
 
-	places.forEach(function(place) {
-		onLocationSelect(place);
-		// return place;
-	});
+	// places.forEach(function(place) {
+	onLocationSelect(places);
+	// return place;
+	// });
 	// return places;
 }
 //#2 add Book to Local Storage
@@ -306,17 +308,21 @@ function addPlace(place) {
 	places.push(place);
 
 	localStorage.setItem('places', JSON.stringify(places));
-	return places;
+	// return places;
 }
 // #4 remove Book from LocalStorage
-// function removeLocation() {
-// 	const places = getLocation();
+function removeLocation() {
+	const places = getLocation();
 
-// 	places.forEach(function(place, index) {
-// 		// if (places) {
-// 		place.splice(index, 1);
-// 		// }
-// 	});
+	places.forEach(function(place) {
+		console.log(place);
 
-// 	localStorage.setItem('places', JSON.stringify(places));
-// }
+		// if (places != []) {
+		// places = [];
+		// if (places) {
+		places.splice(place, 1);
+		// }
+	});
+	localStorage.setItem('places', JSON.stringify(places));
+	// }
+}
