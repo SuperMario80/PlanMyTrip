@@ -1,7 +1,7 @@
 <!-- </div> -->
 
 <div class="headersection">
-    <h1>CREATE YOUR ACCOUNT</h1>
+    <h1><?=htmlSpecialChars($headline)?></h1>
 </div>
 
 <div class="container">

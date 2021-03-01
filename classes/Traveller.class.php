@@ -50,14 +50,15 @@ class Traveller {
     
     function setEmail(string $email): void {
         //CHECKS IF EMAIL IS VALID
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)){
-            printData("$email is a valid email address");
+        // if (filter_var($email, FILTER_VALIDATE_EMAIL)){
+        //     printData("$email is a valid email address");
             $this->email = $email;
-        }
-        else{
-            printData("Please check email $email");
-            $this->email = '';
-        }
+            printData("$email after check");
+        // }
+        // else{
+        //     printData("Please check email $email");
+        //     // $this->email = '';
+        // }
     }
     
 
@@ -74,7 +75,7 @@ class Traveller {
             
         }
         else{
-               printData("password not vald: $password");
+               printData("password not set: $password");
             $this->password = "";
         }
 

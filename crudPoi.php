@@ -47,55 +47,83 @@ class showPoiPage extends Page {
     private function savePoi() {
         $this->readFormData();
 
-         if ($this->poi->getId() == 0) {
-            if($this->poi->getPoiName() == NULL){
-            // if(empty($this->location->getLocation()) || empty($this->location->getClassification())){
-                $this->message = "Please fill out ALL required Fields"; 
-    
-            }else{
-                if($this->pointOfInterestDao->create($this->poi)){
-                // printData($this->poi->getPoiName());
-                // printData($this->poi->getAttraction());
-                $this->message = 'New Point Of Interest created';
-                header('Refresh:2; url=travellerArea.php');
-                // exit;
-
-                }else{
-                    $this->message = 'Point Of Interest already exists';
-                    }
-                }
-
-        } else {
-                // if($this->poi->getPoiName() == NULL || $this->poi->getAttraction() == NULL){
-                if($this->poi->getPoiName() == NULL){
+        if($this->poi->getPoiName() == NULL){
               
                     $this->message = 'Please fill out ALL required Fields';
-                }else{
+        }else{
+            $duplicate = $this->pointOfInterestDao->findDuplicate($this->poi->getIdLocation(), $this->poi->getPoiName());
+
+            if($duplicate == NULL){
+                 if ($this->poi->getId() == 0) {
+                    if($this->pointOfInterestDao->create($this->poi)){
+                 
+                    $this->message = 'New Point Of Interest created';
+                    header('Refresh:2; url=travellerArea.php');
+                // exit;
+
+                    }
+                 }else{
                     if($this->pointOfInterestDao->update($this->poi)){
                         $this->message = 'PointOfInterest Updated';
                         header('Refresh:2; url=travellerArea.php');
                         // exit;
-                    }else{
-                         $this->message = 'PointOfInterest NOT Updated';
                     }
                 }
-
-
-            // if($this->pointOfInterestDao->update($this->poi)){
-              
-            //     $this->message = 'Point Of Interest Updated';
-            //     header('Refresh:2; url=travellerArea.php');
-            // }else{
-            //     $this->message = 'Point Of Interest NOT Updated';
-            // }
-
-
-            // $this->message = $this->pointOfInterestDao->update($this->poi)
-            //         ? 'Point Of Interest Updated'
-            //         : 'Point Of Interest NOT Updated';
-        }
-        
+                
+            }
+            else{
+                 $this->message = 'Point Of Interest already exists';
+            }
     }
+    }
+
+
+    //      if ($this->poi->getId() == 0) {
+    //         if($this->poi->getPoiName() == NULL){
+    //         // if(empty($this->location->getLocation()) || empty($this->location->getClassification())){
+    //             $this->message = "Please fill out ALL required Fields"; 
+    
+    //         }else{
+    //             if($this->pointOfInterestDao->create($this->poi)){
+    //             // printData($this->poi->getPoiName());
+    //             // printData($this->poi->getAttraction());
+    //             $this->message = 'New Point Of Interest created';
+    //             header('Refresh:2; url=travellerArea.php');
+    //             // exit;
+
+    //             }else{
+    //                 $this->message = 'Point Of Interest already exists';
+    //                 }
+    //             }
+
+    //     } else {
+    //             // if($this->poi->getPoiName() == NULL || $this->poi->getAttraction() == NULL){
+    //             else{
+    //                 if($this->pointOfInterestDao->update($this->poi)){
+    //                     $this->message = 'PointOfInterest Updated';
+    //                     header('Refresh:2; url=travellerArea.php');
+    //                     // exit;
+    //                 }else{
+    //                      $this->message = 'PointOfInterest NOT Updated';
+    //                 }
+    //             }
+
+
+    //         // if($this->pointOfInterestDao->update($this->poi)){
+              
+    //         //     $this->message = 'Point Of Interest Updated';
+    //         //     header('Refresh:2; url=travellerArea.php');
+    //         // }else{
+    //         //     $this->message = 'Point Of Interest NOT Updated';
+    //         // }
+
+
+    //         // $this->message = $this->pointOfInterestDao->update($this->poi)
+    //         //         ? 'Point Of Interest Updated'
+    //         //         : 'Point Of Interest NOT Updated';
+    //     }
+        
+    // }
 
 
     private function deletePoi() {

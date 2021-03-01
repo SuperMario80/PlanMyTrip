@@ -7,6 +7,7 @@ declare(strict_types=1);
 class PointOfInterestDao extends GenericDao {
 
     private $findPoiStatement;
+    private $findDuplicateStatement;
 
     // private $readForKeyStatement;
 
@@ -78,9 +79,30 @@ class PointOfInterestDao extends GenericDao {
         $dto = $this->findPoiStatement->fetchObject($this->getClassName());
         return $dto ? $dto : null;
     
-
     }
 
+
+    public function findDuplicate(int $idLocation, string $poiName): ?object {
+        
+
+        if ($this->findDuplicateStatement == null) {
+            $sql = 'SELECT * FROM `' . $this->getTableName() . '` WHERE `idLocation`=:idLocation AND `poiName`=:poiName';
+            //PREPARES SQL  STATEMENT
+            $this->findDuplicateStatement = $this->getConnection()->prepare($sql);
+        }
+
+        $array = [
+            ':idLocation' => $idLocation,
+            ':poiName' => $poiName,
+        ];
+        //EXECUTES STATEMENT WITH PASSED-IN PARAMETER
+        $this->findDuplicateStatement->execute($array);
+
+        $dto = $this->findDuplicateStatement->fetchObject($this->getClassName());
+        return $dto ? $dto : null;
+    
+
+    }
 
     // READS ALL STATEMENTS/ROWS IN TABLE WITH PASSED IN FOREIGN KEY VALUE($idValue) AND INDIVIDUAL COLUMN NAME($foreignId)
     // function showPoiForKey(int $idValue): array {

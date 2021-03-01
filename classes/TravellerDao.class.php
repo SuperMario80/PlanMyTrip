@@ -28,8 +28,7 @@ class TravellerDao extends GenericDao {
 
     //CREATES PREPARED SQL STATEMENT FOR UPDATING EXISTING ENTITIES
     protected function getUpdateSql(): string {
-        return 'UPDATE `' . $this->getTableName() . '` SET `firstName`=:firstName, `lastName`=:lastName, `email`=:email, '
-                . '`password`=:password WHERE `id`=:id';
+        return 'UPDATE `' . $this->getTableName() . '` SET `firstName`=:firstName, `lastName`=:lastName, `email`=:email WHERE `id`=:id';
     }
 
     //UPDATES AN EXISTING ENTITY/ROW
@@ -38,7 +37,7 @@ class TravellerDao extends GenericDao {
             ':firstName' => $traveller->getFirstName(),
             ':lastName' => $traveller->getlastName(),
             ':email' => $traveller->getEmail(),
-            ':password' => $traveller->getPassword(),
+            // ':password' => $traveller->getPassword(),
             ':id' => $traveller->getId(),
         ];
     }

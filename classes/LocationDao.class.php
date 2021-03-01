@@ -8,6 +8,7 @@ class LocationDao extends GenericDao {
 
     // private $readForKeyStatement;
     private $findLocationStatement;
+    private $findDuplicateStatement;
 
     function __construct() {
         parent::__construct('location', 'Location');
@@ -96,6 +97,29 @@ class LocationDao extends GenericDao {
         $this->findLocationStatement->execute($array);
 
         $dto = $this->findLocationStatement->fetchObject($this->getClassName());
+        return $dto ? $dto : null;
+    
+
+    }
+
+    public function findDuplicate(int $idTraveller, string $location, string $classification): ?object {
+        
+
+        if ($this->findDuplicateStatement == null) {
+            $sql = 'SELECT * FROM `' . $this->getTableName() . '` WHERE `idTraveller`=:idTraveller AND `location`=:location AND `classification`=:classification';
+            //PREPARES SQL  STATEMENT
+            $this->findDuplicateStatement = $this->getConnection()->prepare($sql);
+        }
+
+        $array = [
+            ':idTraveller' => $idTraveller,
+            ':location' => $location,
+            ':classification' => $classification,
+        ];
+        //EXECUTES STATEMENT WITH PASSED-IN PARAMETER
+        $this->findDuplicateStatement->execute($array);
+
+        $dto = $this->findDuplicateStatement->fetchObject($this->getClassName());
         return $dto ? $dto : null;
     
 
