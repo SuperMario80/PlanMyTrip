@@ -1,10 +1,20 @@
-<div class="wrap my-4" id="scrollId-<?= htmlSpecialChars($location->getId()) ?>" data-scrollId="<?= htmlSpecialChars($location->getId()) ?>">
+<!-- <div class="container"> -->
+<!-- </div> -->
+
+    <div >
+    <button type="button" class="collapsible" data-expand="<?= htmlSpecialChars($location->getId()) ?>">
+    <i class="fas fa-plus"> </i><i class="fas fa-minus hidden"> </i>
+    <span> <?= htmlSpecialChars($location->getClassification()) ?> </span> <span><?= htmlSpecialChars($location->getLocation()) ?> </span> <span> <?= htmlSpecialChars($location->getCountry()) ?> </span> <span><?= htmlSpecialChars($location->getRegion()) ?> </span></button>
+    </div>
+<div class="expandLoc wrap hidden" id="scrollId-<?= htmlSpecialChars($location->getId()) ?>" data-scrollId="<?= htmlSpecialChars($location->getId()) ?>">
+
+
 <form method="post">
 
   <!-- <button class="btn btn-dark large" name="newLocation" >Create New Location</button> -->
 <div class="single" >
 			<div class="single-wrap">
-				<h1 class="single-category location" ><?= htmlSpecialChars($location->getClassification()) ?>
+				<h1 class="single-category location " ><?= htmlSpecialChars($location->getClassification()) ?>
         </h1>
         <!-- <div class="hidden myModalLink"><?= htmlSpecialChars($location->getTravelLink()) ?></div> -->
 				<div class="single-text">

@@ -34,17 +34,16 @@ class LocationDao extends GenericDao {
     }
 
     protected function getUpdateSql(): string {
-        return 'UPDATE `' . $this->getTableName() . '` SET `idTraveller`=:idTraveller, '
-        . '`classification`=:classification, `location`=:location, `locationKey`=:locationKey,`country`=:country, `region`=:region, '
+        return 'UPDATE `' . $this->getTableName() . '` SET `classification`=:classification, `location`=:location, `country`=:country, `region`=:region, '
         . '`intro`=:intro, `travelLink`=:travelLink, `notes`=:notes WHERE `id`=:id';
     }
 
     protected function getUpdateArray(object $location): array {
         return [
-            ':idTraveller' => $location->getIdTraveller(),
+            // ':idTraveller' => $location->getIdTraveller(),
             ':classification' => $location->getClassification(),
             ':location' => $location->getLocation(),
-            ':locationKey' => $location->getLocationKey(),
+            // ':locationKey' => $location->getLocationKey(),
             ':country' => $location->getCountry(),
             ':region' => $location->getRegion(),
             ':intro' => $location->getIntro(),

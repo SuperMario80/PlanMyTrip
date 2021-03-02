@@ -35,16 +35,15 @@ class PointOfInterestDao extends GenericDao {
     }
 
     protected function getUpdateSql(): string {
-        return 'UPDATE `' . $this->getTableName() . '` SET `idLocation`=:idLocation, '
-        . '`poiName`=:poiName, `city`=:city, `locationKey`=:locationKey, `attraction`=:attraction, `intro`=:intro, `infoLink`=:infoLink, `poiMap`=:poiMap, `notes`=:notes WHERE `id`=:id';
+        return 'UPDATE `' . $this->getTableName() . '` SET `poiName`=:poiName, `city`=:city, `attraction`=:attraction, `intro`=:intro, `infoLink`=:infoLink, `poiMap`=:poiMap, `notes`=:notes WHERE `id`=:id';
     }
 
     protected function getUpdateArray(object $poi): array {
         return [
-            ':idLocation' => $poi->getIdLocation(),
+            // ':idLocation' => $poi->getIdLocation(),
             ':poiName' => $poi->getPoiName(),
             ':city' => $poi->getCity(),
-            ':locationKey' => $poi->getLocationKey(),
+            // ':locationKey' => $poi->getLocationKey(),
             ':attraction' => $poi->getAttraction(),
             ':intro' => $poi->getIntro(),
             ':infoLink' => $poi->getInfoLink(),

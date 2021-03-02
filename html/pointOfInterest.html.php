@@ -1,4 +1,5 @@
-
+ 
+<div class="hidden">
 <div class="mb-3">
   <h6 class="s-heading">
         All Properties
@@ -50,4 +51,8 @@
     </form>
 </div>
 <div class="border-bottom"></div>
+</div>
 
+   <!-- <button type="button" class=" text-center collapsible " data-expand="<?= $poi->getId() ?>">
+    <i class="fas fa-minus"> </i>
+    <span> <?= htmlSpecialChars($poi->getPoiName()) ?> </span> <span><?= htmlSpecialChars($location->getLocation()) ?> </span> <span> <?= htmlSpecialChars($poi->getCity()) ?> </span> <span> <?= htmlSpecialChars($poi->getAttraction()) ?></span></button> -->

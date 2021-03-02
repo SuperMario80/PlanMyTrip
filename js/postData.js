@@ -47,12 +47,15 @@ saveLocation.addEventListener('click', async (e) => {
 			.then((res) => {
 				if (res.statusText == 'OK') {
 					console.log(res.statusText);
-					alert('Location added to MySavedTrip');
+					// alert('Location added to MySavedTrip');
+					saveLocationMsg('Location added to MySavedTrip');
 					locBtn.disabled = true;
 					locBtn.className += ' noHover';
 				} else {
 					if (res.statusText == 'Error') {
-						alert('Location already exists');
+						// alert('Location already exists');
+						saveLocationMsg('.single', '.single-wrap', 'Location already exists');
+
 						locBtn.disabled = true;
 						locBtn.className += ' noHover';
 					} else {
@@ -139,12 +142,14 @@ savePoi.addEventListener('click', async (e) => {
 				if (res.statusText == 'OK') {
 					console.log(res);
 					alert('Point of Interest added to MySavedTrip');
+					// savePoiMsg('Point of Interest added to MySavedTrip');
 					poiBtn.disabled = true;
 					poiBtn.className += ' noHover';
 				} else {
 					if (res.statusText == 'Error') {
 						console.log(res);
 						alert('Point of Interest already exist');
+						// savePoiMsg('Point of Interest already exists');
 						poiBtn.disabled = true;
 						poiBtn.className += ' noHover';
 					} else {
@@ -161,7 +166,7 @@ savePoi.addEventListener('click', async (e) => {
 
 		// const sendPl = await sendPlace.json();
 
-		console.log(sendPoi);
+		// console.log(sendPoi);
 		// return sendPl;
 		// }
 		// }
@@ -179,6 +184,35 @@ savePoi.addEventListener('click', async (e) => {
 	// console.log(postDataMsg.innerHTML);
 });
 
+function saveLocationMsg(contClass, appendMsg, message) {
+	const container = document.querySelector(contClass);
+	const showMsg = document.querySelector(appendMsg);
+	const div = document.createElement('div');
+	div.innerText = message;
+
+	const msg = container.insertBefore(div, showMsg);
+
+	timeout = setTimeout(function() {
+		msg.remove();
+	}, 3000);
+}
+
+function savePoiMsg(message) {
+	// const container = document.querySelectorAll('.item');
+
+	const showMsg = document.querySelectorAll('.item-text');
+	const div = document.createElement('div');
+	div.innerText = message;
+	for (let i = 0; i < showMsg.length; i++) {
+		const msg = showMsg[i].append(div);
+		console.log(msg);
+		return msg;
+	}
+	timeout = setTimeout(function() {
+		msg.remove();
+	}, 3000);
+	// return;
+}
 // console.log(disableButton);
 // function disableButton() {
 // 	// if (locationTemplate != '') {

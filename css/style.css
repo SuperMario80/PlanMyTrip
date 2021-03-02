@@ -1,6 +1,7 @@
 /* NAVBAR */
 #page-container {
 	min-height: calc(100vh - 13vh);
+	margin-bottom: 2vh;
 }
 
 #navbar {
@@ -58,29 +59,29 @@
 	background-color: rgba(0, 0, 0, 0.4);
 }
 
-#myLocationList {
+/* #myLocationList {
 	padding: 0 4rem;
 	margin-top: -2rem;
 	word-spacing: .3rem;
 	letter-spacing: .12rem;
-	line-height: 1.8;
-	/* font-size: 13px; */
-	width: 100%;
+	line-height: 1.8; */
+/* font-size: 13px; */
+/* width: 100%;
 	text-align: left;
-	font-weight: 600;
-	/* display: grid;
+	font-weight: 600; */
+/* display: grid;
 	grid-template-columns: auto auto; */
-}
+/* }
 #myLocationList a {
-	color: var(--secondary-color);
-	/* text-shadow: 1px 1px var(--secondary-color); */
-	display: block;
+	color: var(--secondary-color); */
+/* text-shadow: 1px 1px var(--secondary-color); */
+/* display: block;
 	display: grid;
-	grid-template-columns: 1fr 2fr;
-	/* text-align: left; */
-	/* border-bottom: dotted .0025rem var(--lighter-color-alt); */
-	/* box-shadow: 0 1px 0 rgba(0, 0, 0, .18); */
-}
+	grid-template-columns: 1fr 2fr; */
+/* text-align: left; */
+/* border-bottom: dotted .0025rem var(--lighter-color-alt); */
+/* box-shadow: 0 1px 0 rgba(0, 0, 0, .18); */
+/* } */
 /* #myLocationList a div:first-child {
 	text-align: right;
 	padding-left: 11rem;
@@ -101,7 +102,7 @@
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	align-items: center;
-	height: 13vh;
+	height: 11vh;
 }
 
 /* POINTS OF INTEREST SEARCH RESULTS */

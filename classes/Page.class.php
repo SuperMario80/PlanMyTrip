@@ -27,8 +27,8 @@ abstract class Page {
     
     public function initAll() : void {
 
-        $this->init();
         $this->initSession();
+        $this->init();
     }
 
     public function view() : void {
