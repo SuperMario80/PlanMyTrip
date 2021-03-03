@@ -1,11 +1,17 @@
 <!-- <div class="container"> -->
 <!-- </div> -->
 
-    <div >
-    <button type="button" class="collapsible" data-expand="<?= htmlSpecialChars($location->getId()) ?>">
-    <i class="fas fa-plus"> </i><i class="fas fa-minus hidden"> </i>
-    <span> <?= htmlSpecialChars($location->getClassification()) ?> </span> <span><?= htmlSpecialChars($location->getLocation()) ?> </span> <span> <?= htmlSpecialChars($location->getCountry()) ?> </span> <span><?= htmlSpecialChars($location->getRegion()) ?> </span></button>
+  <div >
+    <div  class="collapsible" data-expand="<?= htmlSpecialChars($location->getId()) ?>">
+      <div><i class="fas fa-plus"> </i></div>
+      <div>
+          <span> <?= htmlSpecialChars($location->getClassification()) ?> </span> 
+          <span><?= htmlSpecialChars($location->getLocation()) ?> </span> 
+          <span> <?= htmlSpecialChars($location->getCountry()) ?> </span> 
+          <span><?= htmlSpecialChars($location->getRegion()) ?> </span>
+      </div>
     </div>
+  </div>
 <div class="expandLoc wrap hidden" id="scrollId-<?= htmlSpecialChars($location->getId()) ?>" data-scrollId="<?= htmlSpecialChars($location->getId()) ?>">
 
 

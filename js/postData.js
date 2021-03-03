@@ -3,7 +3,7 @@ const savePoi = document.querySelector('#poi');
 
 saveLocation.addEventListener('click', async (e) => {
 	const locBtn = document.querySelector('.btn-save-loc');
-	const postDataMsg = document.querySelector('#postDataMsg');
+	// const postDataMsg = document.querySelector('#postDataMsg');
 	// console.log(locBtn);
 	// let regexPartOf = removeChars(currentLocation.part_of[0]);
 	if (e.target.id == 'phpSubmit') {
@@ -48,7 +48,7 @@ saveLocation.addEventListener('click', async (e) => {
 				if (res.statusText == 'OK') {
 					console.log(res.statusText);
 					// alert('Location added to MySavedTrip');
-					saveLocationMsg('Location added to MySavedTrip');
+					saveLocationMsg('.single', '.single-wrap', 'Location added to MySavedTrip');
 					locBtn.disabled = true;
 					locBtn.className += ' noHover';
 				} else {
@@ -135,25 +135,28 @@ savePoi.addEventListener('click', async (e) => {
 			body: JSON.stringify(poiValue),
 			headers: { 'Content-Type': 'application/json' }
 		};
+		const msgDivPoi = poiBtn.parentNode.parentNode.querySelector('.item-desc');
 
 		const sendPoi = await fetch(`http://localhost/php/projects/PlanMyTrip/poiRequest.php`, data)
 			.then((response) => response.json())
 			.then((res) => {
 				if (res.statusText == 'OK') {
 					console.log(res);
-					alert('Point of Interest added to MySavedTrip');
-					// savePoiMsg('Point of Interest added to MySavedTrip');
+					// alert('Point of Interest added to MySavedTrip');
+					// saveLocationMsg('.item-desc', '.itLinkDiv', 'Point of Interest added to MySavedTrip', poiBtn);
+					savePoiMsg(msgDivPoi, 'Point of Interest added to MySavedTrip');
 					poiBtn.disabled = true;
 					poiBtn.className += ' noHover';
 				} else {
 					if (res.statusText == 'Error') {
 						console.log(res);
-						alert('Point of Interest already exist');
-						// savePoiMsg('Point of Interest already exists');
+						// saveLocationMsg('.item-desc', '.itLinkDiv', 'Location already exists', poiBtn);
+						// alert('Point of Interest already exist');
+						savePoiMsg(msgDivPoi, 'Point of Interest already exists');
 						poiBtn.disabled = true;
 						poiBtn.className += ' noHover';
 					} else {
-						console.log(res);
+						// console.log(Error);
 						alert('no Data submitted');
 					}
 				}
@@ -185,11 +188,11 @@ savePoi.addEventListener('click', async (e) => {
 });
 
 function saveLocationMsg(contClass, appendMsg, message) {
+	// const btn = document.querySelector(btnVal);
 	const container = document.querySelector(contClass);
 	const showMsg = document.querySelector(appendMsg);
 	const div = document.createElement('div');
 	div.innerText = message;
-
 	const msg = container.insertBefore(div, showMsg);
 
 	timeout = setTimeout(function() {
@@ -197,19 +200,16 @@ function saveLocationMsg(contClass, appendMsg, message) {
 	}, 3000);
 }
 
-function savePoiMsg(message) {
+function savePoiMsg(msgDivPoi, message) {
 	// const container = document.querySelectorAll('.item');
 
-	const showMsg = document.querySelectorAll('.item-text');
 	const div = document.createElement('div');
 	div.innerText = message;
-	for (let i = 0; i < showMsg.length; i++) {
-		const msg = showMsg[i].append(div);
-		console.log(msg);
-		return msg;
-	}
+
+	msgDivPoi.prepend(div);
+
 	timeout = setTimeout(function() {
-		msg.remove();
+		msgDivPoi.firstChild.remove();
 	}, 3000);
 	// return;
 }

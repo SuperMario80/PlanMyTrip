@@ -50,7 +50,7 @@
       <?php endforeach; ?>
     </form>
 </div>
-<div class="border-bottom"></div>
+<!-- <div class="border-bottom"></div> -->
 </div>
 
    <!-- <button type="button" class=" text-center collapsible " data-expand="<?= $poi->getId() ?>">

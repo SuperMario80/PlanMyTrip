@@ -192,6 +192,7 @@ button.dropdown-item.is-active {
 }
 
 .collapsible:after {
+	border: none;
 	/* content: '\02795'; */
 	/* Unicode character for "plus" sign (+) */
 	/* font-size: 13px; */

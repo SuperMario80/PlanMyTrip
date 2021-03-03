@@ -48,20 +48,20 @@ function createBtn(element, classEl, id, value, innerText) {
 	return btn;
 }
 
-function displayLocType(locType, wrap) {
+function displayLocType(locType, wrap, primaryClass) {
 	// let wrap = document.querySelector('.single-wrap');
 	// let locType = document.querySelector('.single-category');
 	if (locType.innerText.toLowerCase() === 'country') {
-		wrap.className = 'single-wrap country';
+		wrap.className = `${primaryClass} country`;
 	}
 	if (locType.innerText.toLowerCase() === 'national park') {
-		wrap.className = 'single-wrap np';
+		wrap.className = `${primaryClass} np`;
 	}
 	if (locType.innerText.toLowerCase() === 'region') {
-		wrap.className = 'single-wrap region';
+		wrap.className = `${primaryClass} region`;
 	}
 	if (locType.innerText.toLowerCase() === 'city') {
-		wrap.className = 'single-wrap city';
+		wrap.className = `${primaryClass} city`;
 	}
 	return wrap;
 }

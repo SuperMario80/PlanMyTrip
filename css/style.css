@@ -92,11 +92,11 @@
 	display: grid;
 	grid-template-columns: auto auto;
 } */
-#myLocationList a:hover {
+/* #myLocationList a:hover {
 	color: var(--highlight-color);
 	font-weight: 800;
 	/* text-decoration: underline; */
-}
+/* }  */
 
 #footer {
 	display: grid;

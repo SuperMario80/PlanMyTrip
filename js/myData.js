@@ -41,30 +41,40 @@
 
 // 	// return myLocationList;
 // }
+// changeColorTheme();
+function changeColorTheme() {
+	const singleWrap = document.querySelectorAll('.single-wrap');
+	const singleCategory = document.querySelectorAll('.single-category location');
+	for (let i = 0; i >= singleWrap.length; i++) {
+		console.log(singleCategory[i]);
+		displayLocType(singleCategory[i], singleWrap[i], 'single-wrap');
+	}
+	return;
+}
 
 expandLocation();
 function expandLocation() {
 	const expandLocBtn = document.querySelectorAll('.collapsible');
 	const expandLoc = document.querySelectorAll('.expandLoc');
 	const plusFa = document.querySelectorAll('.fa-plus');
-	const minusFa = document.querySelectorAll('.fa-minus');
+	// const minusFa = document.querySelectorAll('.fa-minus');
 	for (let i = 0; i < expandLocBtn.length; i++) {
-		console.log(expandLocBtn[i]);
+		// console.log(expandLocBtn[i]);
 		// console.log(expandLoc[i]);
-		expandLocBtn[i].parentElement.addEventListener('click', function(e) {
+		expandLocBtn[i].addEventListener('click', function(e) {
+			console.log('hello');
 			if (e.target.hasAttribute('data-expand')) {
-				console.log(expandLoc[i]);
 				if (expandLoc[i].className === 'expandLoc wrap hidden') {
 					expandLoc[i].classList.remove('hidden');
-					minusFa[i].classList.remove('hidden');
-					plusFa[i].classList.add('hidden');
+					// minusFa[i].classList.remove('hidden');
+					plusFa[i].classList = 'fas fa-minus';
 					expandLocBtn[i].classList.add('active');
 					expandLoc[i].nextElementSibling.classList.remove('hidden');
 					// expandLoc[i].classList.add('active');
 				} else {
 					expandLoc[i].classList.add('hidden');
-					minusFa[i].classList.add('hidden');
-					plusFa[i].classList.remove('hidden');
+					// minusFa[i].classList.add('hidden');
+					plusFa[i].classList = 'fas fa-plus';
 					expandLoc[i].nextElementSibling.classList.add('hidden');
 					expandLocBtn[i].classList.remove('active');
 					// expandLoc[i].classList.remove('active');

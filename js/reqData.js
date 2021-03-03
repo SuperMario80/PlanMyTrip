@@ -163,7 +163,7 @@ const locationTemplate = (input) => {
 
 	single.appendChild(singleWrap);
 
-	displayLocType(singleCategory, singleWrap);
+	displayLocType(singleCategory, singleWrap, 'single-wrap');
 
 	return single;
 };
