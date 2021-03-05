@@ -1,7 +1,7 @@
 const modal = document.querySelector('.modal');
 
 showSavedModal();
-showModal();
+// showModal();
 
 function showModal() {
 	savePoi.addEventListener('click', function(e) {

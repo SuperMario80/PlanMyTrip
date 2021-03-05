@@ -48,19 +48,20 @@ saveLocation.addEventListener('click', async (e) => {
 				if (res.statusText == 'OK') {
 					console.log(res.statusText);
 					// alert('Location added to MySavedTrip');
-					saveLocationMsg('.single', '.single-wrap', 'Location added to MySavedTrip');
-					locBtn.disabled = true;
-					locBtn.className += ' noHover';
+					// saveLocationMsg('.single', '.single-wrap', 'Location added to MySavedTrip');
+					showSubmitMsg('.btn-save-loc', 'LOCATION SAVED');
+					// locBtn.disabled = true;
+					// locBtn.className += ' noHover';
 				} else {
 					if (res.statusText == 'Error') {
 						// alert('Location already exists');
-						saveLocationMsg('.single', '.single-wrap', 'Location already exists');
+						// saveLocationMsg('.single', '.single-wrap', 'Location already exists');
+						showSubmitMsg('.btn-save-loc', 'Location already exists');
 
-						locBtn.disabled = true;
-						locBtn.className += ' noHover';
+						// locBtn.disabled = true;
+						// locBtn.className += ' noHover';
 					} else {
-						// console.log(res.statusText);
-						alert('no Data submitted');
+						showSubmitMsg('.btn-save-loc', 'no Data submitted');
 					}
 				}
 				// 	console.log(res);
@@ -97,26 +98,15 @@ savePoi.addEventListener('click', async (e) => {
 	let poiVal = e.target.getAttribute('data-count');
 	const poiBtn = document.querySelector(`#poiSubmit${poiVal}`);
 	currentPointofInterest = poiRes.results[poiVal];
-	let infoLinkReplacement;
-	if (currentPointofInterest.attribution.length >= 3) {
-		infoLinkReplacement = currentPointofInterest.attribution[2].url;
-	} else {
-		if (currentPointofInterest.attribution.length >= 2) {
-			infoLinkReplacement = currentPointofInterest.attribution[1].url;
-		} else {
-			infoLinkReplacement = '';
-		}
-	}
-	// console.log(infoLinkReplacement);
+
+	const infoLinkReplacement = infoLinkValue(currentPointofInterest);
 
 	// if(e.target.id === `poiSubmit${poiVal}`) {
 	if (e.target.hasAttribute('data-count')) {
-		// console.log(poiCount);
 		// async postPlace(){
 		let poiValue = {
 			poiName: currentPointofInterest.name,
 			city: currentPointofInterest.location_ids[0],
-			// locationKey: currentPointofInterest.location_ids[2],
 			locationKey: currentLocation.id,
 			attraction: currentPointofInterest.tag_labels[0],
 			intro: currentPointofInterest.intro,
@@ -135,29 +125,21 @@ savePoi.addEventListener('click', async (e) => {
 			body: JSON.stringify(poiValue),
 			headers: { 'Content-Type': 'application/json' }
 		};
-		const msgDivPoi = poiBtn.parentNode.parentNode.querySelector('.item-desc');
+		// const msgDivPoi = poiBtn.parentNode.parentNode.querySelector('.item-desc');
 
 		const sendPoi = await fetch(`http://localhost/php/projects/PlanMyTrip/poiRequest.php`, data)
 			.then((response) => response.json())
+			// .then((response) => console.log(response.text()))
 			.then((res) => {
 				if (res.statusText == 'OK') {
 					console.log(res);
-					// alert('Point of Interest added to MySavedTrip');
-					// saveLocationMsg('.item-desc', '.itLinkDiv', 'Point of Interest added to MySavedTrip', poiBtn);
-					savePoiMsg(msgDivPoi, 'Point of Interest added to MySavedTrip');
-					poiBtn.disabled = true;
-					poiBtn.className += ' noHover';
+					showSubmitMsg(`#poiSubmit${poiVal}`, 'PointOfInterest SAVED');
 				} else {
 					if (res.statusText == 'Error') {
 						console.log(res);
-						// saveLocationMsg('.item-desc', '.itLinkDiv', 'Location already exists', poiBtn);
-						// alert('Point of Interest already exist');
-						savePoiMsg(msgDivPoi, 'Point of Interest already exists');
-						poiBtn.disabled = true;
-						poiBtn.className += ' noHover';
+						showSubmitMsg(`#poiSubmit${poiVal}`, 'PointOfInterest ALREADY EXISTS');
 					} else {
-						// console.log(Error);
-						alert('no Data submitted');
+						showSubmitMsg(`#poiSubmit${poiVal}`, 'NO LOCATION FOUND');
 					}
 				}
 				// 	console.log(res);
@@ -166,68 +148,56 @@ savePoi.addEventListener('click', async (e) => {
 				// console.log(res.parse());
 			});
 		// const sendPlace = fetch(`https://ptsv2.com/t/arto5-1608728634/post`, data);
-
-		// const sendPl = await sendPlace.json();
-
 		// console.log(sendPoi);
 		// return sendPl;
-		// }
-		// }
-		// e.preventDefault();
-		console.log(e.target.id);
-		// console.log(sendPoi);
-		// console.log(poiBtn);
 	}
-	// if (locBtn.hasAttribute('disabled')) {
-	// poiBtn.disabled = true;
-	// poiBtn.className += ' noHover';
-
-	// locBtn.blur();
-	// }
-	// console.log(postDataMsg.innerHTML);
 });
 
-function saveLocationMsg(contClass, appendMsg, message) {
-	// const btn = document.querySelector(btnVal);
-	const container = document.querySelector(contClass);
-	const showMsg = document.querySelector(appendMsg);
-	const div = document.createElement('div');
-	div.innerText = message;
-	const msg = container.insertBefore(div, showMsg);
+// function saveLocationMsg(contClass, appendMsg, message) {
+// 	// const btn = document.querySelector(btnVal);
+// 	const container = document.querySelector(contClass);
+// 	const showMsg = document.querySelector(appendMsg);
+// 	const div = document.createElement('div');
+// 	div.innerText = message;
+// 	const msg = container.insertBefore(div, showMsg);
 
-	timeout = setTimeout(function() {
-		msg.remove();
-	}, 3000);
-}
-
-function savePoiMsg(msgDivPoi, message) {
-	// const container = document.querySelectorAll('.item');
-
-	const div = document.createElement('div');
-	div.innerText = message;
-
-	msgDivPoi.prepend(div);
-
-	timeout = setTimeout(function() {
-		msgDivPoi.firstChild.remove();
-	}, 3000);
-	// return;
-}
-// console.log(disableButton);
-// function disableButton() {
-// 	// if (locationTemplate != '') {
-// 	const locBtn = document.querySelector('#locBtn');
-// 	console.log(locBtn);
-
-// 	locBtn.addEventListener('click', function() {
-// 		// if (locBtn) {
-// 		locBtn.disabled = true;
-// 		// }
-// 	});
-// 	return true;
-// 	// }
+// 	timeout = setTimeout(function() {
+// 		msg.remove();
+// 	}, 3000);
 // }
+function showSubmitMsg(btnClass, message) {
+	// const btn = document.querySelector(btnVal);
+	const btn = document.querySelector(btnClass);
+	const originBtn = btn.innerText;
+	console.log(originBtn);
+	// const showMsg = document.querySelector(appendMsg);
+	// const div = document.createElement('div');
+	btn.innerText = message;
+	console.log(btn.innerText);
 
-// {
-/* <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=12.841987609863283%2C52.358828590091186%2C13.128662109375002%2C52.451197283310165&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=13/52.4050/12.9853">Größere Karte anzeigen</a></small> */
+	// const msg = container.insertBefore(div, showMsg);
+	// if (btn.innerText !== 'NO LOCATION FOUND') {
+	setTimeout(function() {
+		if (btn.innerText !== 'NO LOCATION FOUND') {
+			btn.disabled = true;
+			btn.className += ' noHover';
+		}
+		btn.innerText = originBtn;
+		console.log(btn.innerText);
+	}, 3000);
+	// }
+}
+
+// function savePoiMsg(msgDivPoi, message) {
+// 	// const container = document.querySelectorAll('.item');
+
+// 	const div = document.createElement('div');
+// 	div.innerText = message;
+
+// 	msgDivPoi.prepend(div);
+
+// 	timeout = setTimeout(function() {
+// 		msgDivPoi.firstChild.remove();
+// 	}, 5000);
+// 	// return;
 // }

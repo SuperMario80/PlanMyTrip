@@ -10,60 +10,71 @@ function debounce(func, delay = 1000) {
 	};
 }
 
-function createItem(element, className) {
-	let item = document.createElement(element);
-	item.className = className;
+const CreateDomElement = function() {
+	function createItem(element, className) {
+		let item = document.createElement(element);
+		item.className = className;
 
-	return item;
-}
-
-function createLink(element, href = '', innerText) {
-	let link = document.createElement(element);
-	link.setAttribute('href', href);
-
-	link.setAttribute('target', '_blank');
-	link.innerText = innerText;
-
-	return link;
-}
-
-function addButton() {
-	let logout = document.querySelector('#logout');
-	if (logout) {
-		return logout;
+		return item;
 	}
-	// else {
-	// 	console.log('please login');
-	// }
-}
 
-function createBtn(element, classEl, id, value, innerText) {
-	let btn = document.createElement(element);
-	btn.className = classEl;
-	btn.id = id;
-	btn.setAttribute('type', 'button');
-	btn.setAttribute('value', value);
-	btn.innerText = innerText;
+	function createLink(element, href = '', innerText) {
+		let link = document.createElement(element);
+		link.setAttribute('href', href);
+		link.setAttribute('target', '_blank');
+		link.innerText = innerText;
 
-	return btn;
-}
+		return link;
+	}
 
-function displayLocType(locType, wrap, primaryClass) {
+	function addButton() {
+		let logout = document.querySelector('#logout');
+		if (logout) {
+			return logout;
+		}
+	}
+
+	function createBtn(element, classEl, id, value, innerText) {
+		let btn = document.createElement(element);
+		btn.className = classEl;
+		btn.id = id;
+		btn.setAttribute('type', 'button');
+		btn.setAttribute('value', value);
+		btn.innerText = innerText;
+
+		return btn;
+	}
+
+	return {
+		createItem,
+		createLink,
+		addButton,
+		createBtn
+	};
+};
+// console.log(crEl().createItem);
+
+function displayLocType(locType, wrap) {
 	// let wrap = document.querySelector('.single-wrap');
+	let addLocType = locType.innerText.toLowerCase();
+	wrap.classList += ` ${addLocType}`;
+	// console.log(addLocType);
+
 	// let locType = document.querySelector('.single-category');
-	if (locType.innerText.toLowerCase() === 'country') {
-		wrap.className = `${primaryClass} country`;
-	}
-	if (locType.innerText.toLowerCase() === 'national park') {
-		wrap.className = `${primaryClass} np`;
-	}
-	if (locType.innerText.toLowerCase() === 'region') {
-		wrap.className = `${primaryClass} region`;
-	}
-	if (locType.innerText.toLowerCase() === 'city') {
-		wrap.className = `${primaryClass} city`;
-	}
-	return wrap;
+	// if (locType.innerText.toLowerCase() === 'country') {
+	// 	wrap.className = `${primaryClass} country`;
+	// }
+	// if (locType.innerText.toLowerCase() === 'national park') {
+	// 	wrap.className = `${primaryClass} np`;
+	// }
+	// if (locType.innerText.toLowerCase() === 'region') {
+	// 	wrap.className = `${primaryClass} region`;
+	// }
+	// if (locType.innerText.toLowerCase() === 'city') {
+	// 	wrap.className = `${primaryClass} city`;
+	// }
+
+	return addLocType;
 }
 
 function removeChars(str) {

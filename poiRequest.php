@@ -38,37 +38,44 @@ class poiRequestPage extends Page {
                 $l = $this->locationDao->findLocation($poiData['locationKey'],$this->getTraveller()->getId());
                     // $l auf null prüfen
 
-                // $this->poi->setIdLocation($_SESSION['locationId']);
-                $this->poi->setIdLocation($l->getId());
-                $this->poi->setPoiName($poiData['poiName']);
-                $this->poi->setCity($poiData['city']);
-                $this->poi->setLocationKey($poiData['locationKey']);
-                $this->poi->setAttraction($poiData['attraction']);
-                $this->poi->setIntro($poiData['intro']);
-                $this->poi->setInfoLink($poiData['infoLink']);
-                $this->poi->setPoiMap($poiData['poiMap']);
 
-                // printData($this->pointOfInterestDao->create($this->poi));
+                    if($l){
+                    // $this->poi->setIdLocation($_SESSION['locationId']);
+                        $this->poi->setIdLocation($l->getId());
+                        $this->poi->setPoiName($poiData['poiName']);
+                        $this->poi->setCity($poiData['city']);
+                        $this->poi->setLocationKey($poiData['locationKey']);
+                        $this->poi->setAttraction($poiData['attraction']);
+                        $this->poi->setIntro($poiData['intro']);
+                        $this->poi->setInfoLink($poiData['infoLink']);
+                        $this->poi->setPoiMap($poiData['poiMap']);
 
-                // if(empty($this->poi->getIdLocation()) && empty($this->poi->getPoiName())&& empty($this->poi->getLocationKey())){ 
-                $p = $this->pointOfInterestDao->findPoi($this->poi->getPoiName(), $this->poi->getIdLocation(),$this->poi->getLocationKey());
+                        // printData($this->pointOfInterestDao->create($this->poi));
 
-                if($p == NULL){
+                        // if(empty($this->poi->getIdLocation()) && empty($this->poi->getPoiName())&& empty($this->poi->getLocationKey())){ 
+                        $p = $this->pointOfInterestDao->findPoi($this->poi->getPoiName(), $this->poi->getIdLocation(),$this->poi->getLocationKey());
 
-                    if($this->pointOfInterestDao->create($this->poi)){
-                        // $message = 'location saved';
-                        echo '{"statusText":"OK"}';
-                        // }
-                    // $this->pointOfInterestDao->create($this->poi);
-                    // printData($poiContent);
-                }
-            }else{
-                $this->poi = $p;
-                // $message = 'Location already exists';
-                echo '{"statusText":"Error"}';
-            }
+                        if($p == NULL){
+
+                            if($this->pointOfInterestDao->create($this->poi)){
+                                // $message = 'location saved';
+                                echo '{"statusText":"OK"}';
+                                // }
+                            // $this->pointOfInterestDao->create($this->poi);
+                            // printData($poiContent);
+                            }
+                        }
+                            else{
+                                $this->poi = $p;
+                                // $message = 'Location already exists';
+                                echo '{"statusText":"Error"}';
+                            }
+                    }
+                    else{
+                        echo '{"statusText":"No Location"}';
+                    }
             // }
-        }
+                }
     // }
             // else{
 
@@ -76,7 +83,7 @@ class poiRequestPage extends Page {
             // }
 
         }catch (Exception $e){
-            echo '{"statusText":"Server out of reach"}';
+            
             // printData($e->getMessage());
             $e->getMessage();
         }

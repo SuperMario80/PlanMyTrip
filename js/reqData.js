@@ -2,6 +2,7 @@ let currentLocation;
 let currentPointofInterest;
 let poiCount;
 let poiRes;
+const crEl = new CreateDomElement();
 // document.addEventListener('DOMContentLoaded', displayLocation);
 // displayLocation();
 
@@ -26,6 +27,7 @@ createAutoComplete({
 	},
 	onOptionSelect(location) {
 		onLocationSelect(location);
+		showModal();
 		// console.log(addPlace(location));
 		// document.addEventListener('DOMContentLoaded', displayLocation());
 		// // console.log(displayLocation());
@@ -110,30 +112,38 @@ let onLocationSelect = async (location) => {
 const locationTemplate = (input) => {
 	// <pre>${JSON.stringify(input,null,2)}</pre>
 	// const single = document.createDocumentFragment('div');
-	const single = createItem('div', 'single my-3');
+	// const single = createItem('div', 'single my-3');
+	// let crEl = new CreateDomElement();
+	console.log(crEl.createItem);
+	const single = crEl.createItem('div', 'single my-3');
+	console.log(single);
 
-	const singleWrap = createItem('div', 'single-wrap');
+	const singleWrap = crEl.createItem('div', 'single-wrap');
 
-	const singleCategory = createItem('h1', 'single-category');
+	const singleCategory = crEl.createItem('h1', 'single-category');
 	// singleCategory.id = 'mapModal';
 	singleCategory.innerText = `${removeChars(currentLocation.type).toString()}`;
 
-	const singleText = createItem('div', 'single-text');
+	const singleText = crEl.createItem('div', 'single-text');
 
-	const singleHeadline = createItem('div', 'single-headline');
+	const singleHeadline = crEl.createItem('div', 'single-headline');
 
-	const singleTitle = createItem('h2', 'single-title');
+	const singleTitle = crEl.createItem('h2', 'single-title');
 	const currentRegion = removeChars(currentLocation.part_of.toString());
 	const currentName = removeChars(currentLocation.name.toString());
-	const singleTL = createLink('a', `${currentLocation.attribution[1].url}`, `${currentName}    ${currentRegion}`);
+	const singleTL = crEl.createLink(
+		'a',
+		`${currentLocation.attribution[1].url}`,
+		`${currentName}    ${currentRegion}`
+	);
 
 	console.log(singleTL.innerText);
 
 	singleTitle.appendChild(singleTL);
 	singleHeadline.appendChild(singleTitle);
 
-	const singleDesc = createItem('div', 'single-desc');
-	const singleDL = createLink(
+	const singleDesc = crEl.createItem('div', 'single-desc');
+	const singleDL = crEl.createLink(
 		'a',
 		`https://maps.google.com/maps/embed/v1/place?key=AIzaSyA9h2yTUJQGROM9gtphNHPIt-TVXF9a4mg&q=${currentLocation
 			.coordinates.latitude},${currentLocation.coordinates.longitude}`,
@@ -145,10 +155,10 @@ const locationTemplate = (input) => {
 	singleText.appendChild(singleDesc);
 
 	// if logged in, create save button
-	if (addButton()) {
+	if (crEl.addButton()) {
 		//creates 3rd child of item, sets attributes and append
 		const div = document.createElement('div');
-		const btn = createBtn(
+		const btn = crEl.createBtn(
 			'button',
 			'btn-save-loc btn btn-highlight large',
 			'phpSubmit',
@@ -163,7 +173,7 @@ const locationTemplate = (input) => {
 
 	single.appendChild(singleWrap);
 
-	displayLocType(singleCategory, singleWrap, 'single-wrap');
+	displayLocType(singleCategory, singleWrap);
 
 	return single;
 };
@@ -171,10 +181,10 @@ const locationTemplate = (input) => {
 const poiTemplate = (value) => {
 	//creates wrapper item
 	// const item = document.createDocumentFragment('div');
-	const item = createItem('div', 'item my-3');
+	const item = crEl.createItem('div', 'item my-3');
 
 	//creates 1st child of item
-	const image = createItem('div', 'item-image');
+	const image = crEl.createItem('div', 'item-image');
 
 	//creates child of image, sets attribute and append
 	const img = document.createElement('img');
@@ -182,18 +192,18 @@ const poiTemplate = (value) => {
 	image.appendChild(img);
 
 	//creates 2nd child of item
-	const itemText = createItem('div', 'item-text');
+	const itemText = crEl.createItem('div', 'item-text');
 
 	//creates 1st child of itemText
-	const itWrap = createItem('div', 'item-text-wrap');
+	const itWrap = crEl.createItem('div', 'item-text-wrap');
 	//creates 1st child of itWrap
-	const itTitle = createItem('h2', 'item-text-title');
+	const itTitle = crEl.createItem('h2', 'item-text-title');
 	itTitle.innerHTML = `${removeChars(value.name.toString())}`;
 	//creates link of itTitle, sets attribute and append
 	// const itLink = createLink('a', `${value.attribution[1].url}`, `${removeChars(value.name.toString())}`);
 	// itTitle.appendChild(itLink);
 	//creates 2nd child of itWrap
-	const itCategory = createItem('p', 'item-text-category');
+	const itCategory = crEl.createItem('p', 'item-text-category');
 	itCategory.innerHTML = `${value.tag_labels[0]}`;
 
 	// const itCatLink = createLink('a', `${value.attribution[0].url}`, `${value.tag_labels[0]}`);
@@ -201,21 +211,23 @@ const poiTemplate = (value) => {
 
 	//creates last child of item, sets attributes and append
 
-	const itemDesc = createItem('div', 'item-desc');
-	const itLinkDiv = createItem('div', 'itLinkDiv');
+	const itemDesc = crEl.createItem('div', 'item-desc');
+	const itLinkDiv = crEl.createItem('div', 'itLinkDiv');
 
-	const itLink = createItem('p', 'item-link py-0');
+	const itLink = crEl.createItem('p', 'item-link py-0');
 	// console.log(itLink);
 
-	try {
-		const itLinkTag = createLink('a', `${value.attribution[2].url}`, 'more Info');
-		itLink.appendChild(itLinkTag);
-	} catch (e) {
-		// console.log(Error(e).message);
-		Error(e).message;
-		// itLinkTag = createLink('a', `${value.attribution[0].url}`, 'more Info');
-		// itLink.appendChild(itLinkTag);
-	}
+	const linkReplacement = infoLinkValue(value);
+
+	// try {
+	const itLinkTag = crEl.createLink('a', `${linkReplacement}`, 'more Info');
+	itLink.appendChild(itLinkTag);
+	// } catch (e) {
+	// 	// console.log(Error(e).message);
+	// 	Error(e).message;
+	// 	// itLinkTag = createLink('a', `${value.attribution[0].url}`, 'more Info');
+	// 	// itLink.appendChild(itLinkTag);
+	// }
 	// let infoLinkUrl;
 	// let itLinkTag;
 
@@ -233,7 +245,7 @@ const poiTemplate = (value) => {
 
 	// console.log(value.attribution[2].url);
 
-	const itemMap = createItem('p', 'item-map py-0');
+	const itemMap = crEl.createItem('p', 'item-map py-0');
 	itemMap.setAttribute('data-modal', `${poiCount}`);
 	itemMap.innerHTML = 'Show on Map';
 
@@ -257,10 +269,10 @@ const poiTemplate = (value) => {
 	item.appendChild(itemDesc);
 
 	// if traveller is logged in, create save button
-	if (addButton()) {
+	if (crEl.addButton()) {
 		//creates 3rd child of item, sets attributes and append
 		const div = document.createElement('div');
-		const btn = createBtn(
+		const btn = crEl.createBtn(
 			'button',
 			'btn btn-highlight',
 			`poiSubmit${poiCount}`,
@@ -280,49 +292,63 @@ const poiTemplate = (value) => {
 	return item;
 };
 
-// #1 save as array in LocalStorage
-function getLocation() {
-	if (localStorage.getItem('places') === null) {
-		places = [];
+// // #1 save as array in LocalStorage
+// function getLocation() {
+// 	if (localStorage.getItem('places') === null) {
+// 		places = [];
+// 	} else {
+// 		places = JSON.parse(localStorage.getItem('places'));
+// 	}
+
+// 	return places;
+// }
+
+// //#3 display book in UI / HTML
+// function displayLocation() {
+// 	const places = getLocation();
+
+// 	// places.forEach(function(place) {
+// 	onLocationSelect(places);
+// 	// return place;
+// 	// });
+// 	// return places;
+// }
+// //#2 add Book to Local Storage
+// function addPlace(place) {
+// 	const places = getLocation();
+
+// 	places.push(place);
+
+// 	localStorage.setItem('places', JSON.stringify(places));
+// 	// return places;
+// }
+// // #4 remove Book from LocalStorage
+// function removeLocation() {
+// 	const places = getLocation();
+
+// 	places.forEach(function(place) {
+// 		console.log(place);
+
+// 		// if (places != []) {
+// 		// places = [];
+// 		// if (places) {
+// 		places.splice(place, 1);
+// 		// }
+// 	});
+// 	localStorage.setItem('places', JSON.stringify(places));
+// 	// }
+// }
+
+function infoLinkValue(currentItem) {
+	let keyValReplacement;
+	if (currentItem.attribution.length >= 3) {
+		keyValReplacement = currentItem.attribution[2].url;
 	} else {
-		places = JSON.parse(localStorage.getItem('places'));
+		if (currentItem.attribution.length >= 2) {
+			keyValReplacement = currentItem.attribution[1].url;
+		} else {
+			keyValReplacement = 'https://en.wikivoyage.org/';
+		}
 	}
-
-	return places;
-}
-
-//#3 display book in UI / HTML
-function displayLocation() {
-	const places = getLocation();
-
-	// places.forEach(function(place) {
-	onLocationSelect(places);
-	// return place;
-	// });
-	// return places;
-}
-//#2 add Book to Local Storage
-function addPlace(place) {
-	const places = getLocation();
-
-	places.push(place);
-
-	localStorage.setItem('places', JSON.stringify(places));
-	// return places;
-}
-// #4 remove Book from LocalStorage
-function removeLocation() {
-	const places = getLocation();
-
-	places.forEach(function(place) {
-		console.log(place);
-
-		// if (places != []) {
-		// places = [];
-		// if (places) {
-		places.splice(place, 1);
-		// }
-	});
-	localStorage.setItem('places', JSON.stringify(places));
-	// }
+	return keyValReplacement;
 }

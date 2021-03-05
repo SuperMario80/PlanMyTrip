@@ -173,7 +173,7 @@ button.dropdown-item.is-active {
 	border-radius: .25rem;
 	word-spacing: .3rem;
 	letter-spacing: .12rem;
-	cursor: pointer;
+	/* cursor: pointer; */
 	padding: 0.5rem 1rem;
 	width: 100%;
 	font-weight: 800;
@@ -189,6 +189,14 @@ button.dropdown-item.is-active {
 	background-color: var(--secondary-color-alt);
 	color: var(--bg-sec-color);
 	/* font-weight: 800; */
+}
+.collapsible div:first-child {
+	display: block;
+	margin-right: 2rem;
+}
+.collapsible div:first-child:hover {
+	cursor: pointer;
+	/* color: var(--highlight-color); */
 }
 
 .collapsible:after {
