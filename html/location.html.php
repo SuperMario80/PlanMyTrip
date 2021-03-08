@@ -1,11 +1,11 @@
 <!-- <div class="container"> -->
 <!-- </div> -->
 
-  <div >
-    <div  class="collapsible" data-expand="<?= htmlSpecialChars($location->getId()) ?>">
-      <div><i class="fas fa-plus"> </i></div>
+  <div>
+    <div  class="collapsible" data-expand="<?= htmlSpecialChars($location->getId()) ?>" >
+      <div><i class="fas fa-plus fa-xs"> </i></div>
       <div>
-          <span> <?= htmlSpecialChars($location->getClassification()) ?> </span> 
+          <span class="loc-classification"> <?= htmlSpecialChars($location->getClassification()) ?> </span> 
           <span><?= htmlSpecialChars($location->getLocation()) ?> </span> 
           <span> <?= htmlSpecialChars($location->getCountry()) ?> </span> 
           <span><?= htmlSpecialChars($location->getRegion()) ?> </span>
@@ -19,12 +19,12 @@
 
   <!-- <button class="btn btn-dark large" name="newLocation" >Create New Location</button> -->
 <div class="single" >
-			<div class="single-wrap location">
-				<h1 class="single-category location" ><?= htmlSpecialChars($location->getClassification()) ?>
+			<div class="single-wrap">
+				<!-- <h1 class="single-category location" ><?= htmlSpecialChars($location->getClassification()) ?> -->
         </h1>
         <!-- <div class="hidden myModalLink"><?= htmlSpecialChars($location->getTravelLink()) ?></div> -->
 				<div class="single-text">
-					<div class="single-headline">
+					<div class="single-headline location">
 						<h2 class="single-title">
 						<a class="myLocationName" href="<?= htmlSpecialChars($location->getTravelLink()) ?>" target="_blank">
             <?= htmlSpecialChars($location->getLocation()) ?> <?= htmlSpecialChars($location->getCountry()) ?> 

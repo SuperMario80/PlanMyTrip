@@ -1,3 +1,6 @@
+// UTILITY FUNCTIONS
+
+//DELAY FOR AUTOCOMPLETE WHILE TYPING IN SEARCH FIELD
 function debounce(func, delay = 1000) {
 	let timeoutId;
 	return (...args) => {
@@ -10,11 +13,11 @@ function debounce(func, delay = 1000) {
 	};
 }
 
+//CREATES DYNAMIC HTML FOR SEARCH RESULTS
 const CreateDomElement = function() {
 	function createItem(element, className) {
 		let item = document.createElement(element);
 		item.className = className;
-
 		return item;
 	}
 
@@ -41,7 +44,6 @@ const CreateDomElement = function() {
 		btn.setAttribute('type', 'button');
 		btn.setAttribute('value', value);
 		btn.innerText = innerText;
-
 		return btn;
 	}
 
@@ -52,50 +54,23 @@ const CreateDomElement = function() {
 		createBtn
 	};
 };
-// console.log(crEl().createItem);
 
-function displayLocType(locType, wrap) {
-	// let wrap = document.querySelector('.single-wrap');
-	let addLocType = locType.innerText.toLowerCase();
-	wrap.classList += ` ${addLocType}`;
-	// console.log(addLocType);
+//ADDS CLASS TO ELEMENT DEPENDING ON VALUE OF INNER TEXT
+function displayLocType(attribute, targetEl) {
+	let addAtrribute = attribute.innerText.toLowerCase();
+	targetEl.classList += ` ${addAtrribute}`;
 
-	// let locType = document.querySelector('.single-category');
-	// if (locType.innerText.toLowerCase() === 'country') {
-	// 	wrap.className = `${primaryClass} country`;
-	// }
-	// if (locType.innerText.toLowerCase() === 'national park') {
-	// 	wrap.className = `${primaryClass} np`;
-	// }
-	// if (locType.innerText.toLowerCase() === 'region') {
-	// 	wrap.className = `${primaryClass} region`;
-	// }
-	// if (locType.innerText.toLowerCase() === 'city') {
-	// 	wrap.className = `${primaryClass} city`;
-	// }
-
-	return addLocType;
+	return addAtrribute;
 }
 
+//REGEX TO REMOVE STRINGS
 function removeChars(str) {
-	let newStr = str
-		// .replace(/([^\u0000-\u007F]+)/g, 'u')
-		.replace(/^.{2,2}_/g, ' ')
-		.replace(/_/g, ' ')
-		.replace(/,/g, ' ')
-		.replace(/\d{1,2}_/g, ' ');
+	let newStr = str.replace(/^.{2,2}_/g, ' ').replace(/_/g, ' ').replace(/,/g, ' ').replace(/\d{1,2}_/g, ' ');
 	return newStr;
 }
+// .replace(/([^\u0000-\u007F]+)/g, 'u')
 // @"^[a-zA-Z0-9áéíóú@#%&',.\s-]+$"
 // ^\u0000-\u007F]
 // let removeChars = (char) => {
 // 	return char.replace(/_/g, ' ');
 // };
-
-// test redirect when saved
-
-// let saveMyLoc = document.querySelector('#saveMyLoc');
-// saveMyLoc.addEventListener('click', (e) => {
-// 	e.target.replace('travellerArea.php');
-// 	// return saveThis;
-// });

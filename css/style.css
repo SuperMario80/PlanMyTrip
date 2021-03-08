@@ -218,7 +218,8 @@
 
 .saved-data {
 	display: grid;
-	grid-template-columns: 5fr 2fr;
+	grid-template-rows: 5fr 2fr;
+	height: 25vh;
 }
 
 .loc-info {
@@ -230,7 +231,7 @@
 	vertical-align: text-top;
 	padding: 0 1rem;
 	color: var(--secondary-color-alt);
-	border-left: solid .0625rem var(--secondary-color-alt);
+	border-top: solid .0625rem var(--secondary-color-alt);
 }
 
 /* .view {
@@ -279,6 +280,14 @@
 
 .single-headline {
 	background: var(--dark-color);
+	padding: .8rem;
+	font-size: 2rem;
+}
+.single-headline.location a {
+	font-size: 1.2rem;
+}
+.single-headline {
+	background: var(--dark-color);
 	padding: 1rem;
 	font-size: 2rem;
 }
@@ -296,6 +305,7 @@
 }
 .single-title a:hover {
 	color: var(--highlight-color);
+	text-shadow: 1px 1px var(--dark-color);
 }
 
 .single-category {
@@ -321,6 +331,11 @@
 
 .small {
 	font-size: 1.5rem;
+}
+
+.loc-classification {
+	text-transform: uppercase;
+	padding-right: 3rem;
 }
 
 /* color for different search category */

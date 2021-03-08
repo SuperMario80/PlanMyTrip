@@ -61,39 +61,36 @@ class crudLocationPage extends Page {
     // SAVES CREATED OR UPDATED LOCATION IN DATABASE
     private function save() {
         
-    try{
+    // try{
         $this->readFormData();
+
+        $duplicate = $this->locationDao->findDuplicate($this->location->getIdTraveller(), $this->location->getLocation(), $this->location->getClassification());
         
         if($this->location->getLocation() == NULL  || $this->location->getClassification() == NULL){
             $this->message = 'Please fill out ALL required Fields'; 
-        // if(empty($this->location->getLocation()) || empty($this->location->getClassification())){
-        }else{
-            $duplicate = $this->locationDao->findDuplicate($this->location->getIdTraveller(), $this->location->getLocation(), $this->location->getClassification());
-
-            if($duplicate == NULL){
-                if ($this->location->getId() == 0) {
-                    printData('hello');
+            // if(empty($this->location->getLocation()) || empty($this->location->getClassification())){
+        }else {
+            if ($this->location->getId() == 0) {
+                if($duplicate == NULL){
                     if($this->locationDao->create($this->location)){
                         printData($this->location->getLocation());
                         printData($this->location->getClassification());
                         $this->message = 'New Location created';
                         header('Refresh:2; url=travellerArea.php');
-                    // exit;
                     }
-                    
                 }else{
-                    if($this->locationDao->update($this->location)){
-                        $this->message = 'Location Updated';
-                        header('Refresh:2; url=travellerArea.php');
-                    }
-
-                }
-            }else{
                     $this->message = 'Location already exists';
-                    }
+                }
+            }else {
+                if($this->locationDao->update($this->location)){
+                    
+                    $this->message = 'Location Updated';
+                    header('Refresh:2; url=travellerArea.php');
+                }
+            }
         }
-        
-
+    }
+            
                
         //     // create new Location
         //     else{
@@ -128,14 +125,13 @@ class crudLocationPage extends Page {
         //     //         : 'Location NOT Updated';
         // }
         
-    }catch (Exception $e){
-            printData($e->getMessage());
-            // $this->message = 'Server out of Reach';
-            // $e->getMessage();
-        }
+    // }catch (Exception $e){
+    //         printData($e->getMessage());
+    //         // $this->message = 'Server out of Reach';
+    //         // $e->getMessage();
+    //     }
 
 
-}
 
     // DELETES EXISTING LOCATION
     private function delete() {

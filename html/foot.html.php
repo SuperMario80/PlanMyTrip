@@ -27,10 +27,10 @@
       
     <script src="js/utils.js?<?php echo time(); ?>"></script>
     <script src="js/autocomplete.js?<?php echo time(); ?>"></script>
-    <script src="js/crudData.js?<?php echo time(); ?>"></script>
-    <script src="js/reqData.js?<?php echo time(); ?>"></script>
+    <script src="js/template.js?<?php echo time(); ?>"></script>
+    <script src="js/fetchData.js?<?php echo time(); ?>"></script>
     <script src="js/postData.js?<?php echo time(); ?>"></script>
     <script src="js/myModal.js?<?php echo time(); ?>"></script>
-    <script src="js/myData.js?<?php echo time(); ?>"></script>
+    <script src="js/myList.js?<?php echo time(); ?>"></script>
   </body>
 </html>

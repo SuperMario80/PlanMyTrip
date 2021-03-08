@@ -45,36 +45,29 @@ class showPoiPage extends Page {
     }
     
     private function savePoi() {
+
         $this->readFormData();
 
         if($this->poi->getPoiName() == NULL){
-              
-                    $this->message = 'Please fill out ALL required Fields';
+            $this->message = 'Please fill out ALL required Fields';
         }else{
             $duplicate = $this->pointOfInterestDao->findDuplicate($this->poi->getIdLocation(), $this->poi->getPoiName());
-
-            if($duplicate == NULL){
-                 if ($this->poi->getId() == 0) {
+            if ($this->poi->getId() == 0) {
+                if($duplicate == NULL){
                     if($this->pointOfInterestDao->create($this->poi)){
-                 
-                    $this->message = 'New Point Of Interest created';
-                    header('Refresh:2; url=travellerArea.php');
-                // exit;
-
-                    }
-                 }else{
-                    if($this->pointOfInterestDao->update($this->poi)){
-                        $this->message = 'PointOfInterest Updated';
+                        $this->message = 'New Point Of Interest created';
                         header('Refresh:2; url=travellerArea.php');
-                        // exit;
                     }
+                }else {
+                    $this->message = 'Point Of Interest already exists';
                 }
-                
+            }else{
+                if($this->pointOfInterestDao->update($this->poi)){
+                    $this->message = 'PointOfInterest Updated';
+                    header('Refresh:2; url=travellerArea.php');
+                }
             }
-            else{
-                 $this->message = 'Point Of Interest already exists';
-            }
-    }
+        }
     }
 
 

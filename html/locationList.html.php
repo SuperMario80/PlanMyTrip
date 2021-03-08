@@ -22,3 +22,4 @@
         </form>
 
     </div>
+    <div><button class="btn btn-dark" id="expandAll" >Expand MyList</button></div>
