@@ -162,6 +162,15 @@ textarea {
 	margin: 4rem 0;
 }
 
+.mx-0 {
+	margin: 0.2rem .7rem;
+}
+.mx-1 {
+	margin: 1rem .5rem;
+}
+.mx-2 {
+	margin: 1.5rem 1rem;
+}
 /* TODO */
 .mb-3 {
 	margin-bottom: 6rem;
@@ -173,13 +182,27 @@ textarea {
 	color: var(--primary-color);
 	background: var(--secondary-color-alt);
 	padding: 0.4rem 1.5rem;
-	margin: 1rem .5rem;
+	/* margin: 1rem .5rem; */
 	border: none;
 	border-radius: .25rem;
 }
 
 .btn:hover {
 	opacity: 0.7;
+}
+
+.btn-block {
+	display: block;
+	font-weight: bold;
+	width: 100%;
+	font-size: 1.2rem;
+	padding: 0.8rem;
+	border: none;
+	border-radius: .25rem;
+}
+
+.btn-block:hover {
+	opacity: 0.5;
 }
 
 .btn-dark {
@@ -209,6 +232,7 @@ textarea {
 
 .button-area {
 	text-align: right;
+	align-items: center;
 }
 
 .btn:disabled {
@@ -218,17 +242,6 @@ textarea {
 
 .noHover {
 	pointer-events: none;
-}
-
-.list {
-	margin: 0.5rem 0;
-	list-style: none;
-}
-
-.list li {
-	padding: 0.5rem 0;
-	font-size: 1.3rem;
-	font-weight: bold;
 }
 
 .border-bottom {

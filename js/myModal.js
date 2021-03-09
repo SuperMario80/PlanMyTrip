@@ -1,6 +1,7 @@
 const modal = document.querySelector('.modal');
 
 function showModal() {
+	const savePoi = document.querySelector('#poi');
 	savePoi.addEventListener('click', function(e) {
 		const mapKey = 'AIzaSyA9h2yTUJQGROM9gtphNHPIt-TVXF9a4mg&q';
 		const modalVal = e.target.getAttribute('data-modal');
@@ -24,17 +25,30 @@ function showSavedModal() {
 	const savedItemMap = document.querySelectorAll('.savedItemMap');
 	const myModalLink = document.querySelectorAll('.myModalLink');
 	for (let i = 0; i < savedItemMap.length; i++) {
-		savedItemMap[i].addEventListener('click', function(e) {
-			if (e.target.hasAttribute('data-poi')) {
-				modal.classList.remove('hidden');
-				let iframeMod = document.querySelector('.iframeMod');
+		savedItemMap[i].addEventListener(
+			'click',
+			// clickModal('data-poi', `${myModalLink[i].innerText}`));
+			function(e) {
+				if (e.target.hasAttribute('data-poi')) {
+					modal.classList.remove('hidden');
+					let iframeMod = document.querySelector('.iframeMod');
 
-				iframeMod.setAttribute('src', `${myModalLink[i].innerText}`);
+					iframeMod.setAttribute('src', `${myModalLink[i].innerText}`);
+				}
+				hideModal();
 			}
-			hideModal();
-		});
+		);
 	}
 }
+
+// function clickModal(dataAttr, modalLink) {
+// 	if (e.target.hasAttribute(dataAttr)) {
+// 		modal.classList.remove('hidden');
+// 		let iframeMod = document.querySelector('.iframeMod');
+
+// 		iframeMod.setAttribute('src', modalLink);
+// 	}
+// }
 
 function hideModal() {
 	const sum = modal.querySelector('.summary');

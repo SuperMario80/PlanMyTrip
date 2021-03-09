@@ -20,14 +20,17 @@
 
 #navbar ul {
 	display: flex;
+	flex-direction: row;
 	align-items: center;
 	list-style: none;
 }
 
 #navbar ul li a {
+	font-size: 1.3rem;
+	font-weight: bold;
 	color: #fff;
-	padding: 0.75rem;
-	margin: 0 0.25rem;
+	padding: 0.75rem 1rem;
+	margin: 0 0.5rem;
 }
 
 #navbar ul li a:hover {
@@ -280,17 +283,30 @@
 
 .single-headline {
 	background: var(--dark-color);
-	padding: .8rem;
+	padding: .5rem;
 	font-size: 2rem;
+	/* align-items: center; */
 }
+.single-headline div {
+	display: grid;
+	grid-template-columns: 3fr auto;
+	align-items: center;
+
+	/* align-items: center; */
+}
+/* .single-headline div h2 {
+	text-align: right;
+	align-items: center;
+} */
+
 .single-headline.location a {
 	font-size: 1.2rem;
 }
-.single-headline {
+/* .single-headline {
 	background: var(--dark-color);
 	padding: 1rem;
 	font-size: 2rem;
-}
+} */
 
 .single-title {
 	text-transform: capitalize;

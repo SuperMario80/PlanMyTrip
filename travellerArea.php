@@ -93,7 +93,7 @@ class travellerAreaPage extends Page {
 
             // gets data from logged-in Traveller
             $tr = unserialize($_SESSION['traveller']);
-            printData($tr);
+            // printData($tr);
 
             //id from current traveller
             $idValue = $tr->getId();

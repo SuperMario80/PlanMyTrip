@@ -1,21 +1,26 @@
 const crEl = new CreateDomElement();
 
 const locationTemplate = (input) => {
-	const single = crEl.createItem('div', 'single my-3');
-
-	const singleWrap = crEl.createItem('div', 'single-wrap');
-
-	const singleCategory = crEl.createItem('h1', 'single-category');
-	// singleCategory.id = 'mapModal';
-	singleCategory.innerText = `${removeChars(currentLocation.type).toString()}`;
-
-	const singleText = crEl.createItem('div', 'single-text');
-
-	const singleHeadline = crEl.createItem('div', 'single-headline');
-
-	const singleTitle = crEl.createItem('h2', 'single-title');
+	// REGEX Filter
 	const currentRegion = removeChars(currentLocation.part_of.toString());
 	const currentName = removeChars(currentLocation.name.toString());
+
+	//#1 Main Item
+	const single = crEl.createItem('div', 'single my-3');
+	//#2 Wrapper Item
+	const singleWrap = crEl.createItem('div', 'single-wrap');
+
+	//#2.1 Catergory Item
+	const singleCategory = crEl.createItem('h1', 'single-category');
+	singleCategory.innerText = `${removeChars(currentLocation.type).toString()}`;
+
+	//#2.2 Headline Text Wrap Item
+	const singleText = crEl.createItem('div', 'single-text');
+	//#2.2.1 Headline Wrap Item
+	const singleHeadline = crEl.createItem('div', 'single-headline');
+	//#2.2.1.1 Headline Location Title
+	const singleTitle = crEl.createItem('h2', 'single-title');
+	//#2.2.1.1.1 Headline Info Link
 	const singleTL = crEl.createLink(
 		'a',
 		`${currentLocation.attribution[1].url}`,
@@ -25,25 +30,25 @@ const locationTemplate = (input) => {
 	singleTitle.appendChild(singleTL);
 	singleHeadline.appendChild(singleTitle);
 
+	//#2.2.2 Description Info Item
 	const singleDesc = crEl.createItem('div', 'single-desc');
-	const singleDL = crEl.createLink(
-		'a',
-		`https://maps.google.com/maps/embed/v1/place?key=AIzaSyA9h2yTUJQGROM9gtphNHPIt-TVXF9a4mg&q=${currentLocation
-			.coordinates.latitude},${currentLocation.coordinates.longitude}`,
-		`${input.intro}`
-	);
-
-	singleDesc.appendChild(singleDL);
+	singleDesc.innerText = `${input.intro}`;
+	// const singleDL = crEl.createLink(
+	// 	'a',
+	// 	`https://maps.google.com/maps/embed/v1/place?key=AIzaSyA9h2yTUJQGROM9gtphNHPIt-TVXF9a4mg&q=${currentLocation
+	// 		.coordinates.latitude},${currentLocation.coordinates.longitude}`,
+	// 	`${input.intro}`
+	// );
+	// singleDesc.appendChild(singleDL);
 	singleText.appendChild(singleHeadline);
 	singleText.appendChild(singleDesc);
 
-	// if logged in, create save button
+	//2.2.3 Save Location Button (if Traveller logged in)
 	if (crEl.addButton()) {
-		//creates 3rd child of item, sets attributes and append
 		const div = document.createElement('div');
 		const btn = crEl.createBtn(
 			'button',
-			'btn-save-loc btn btn-highlight large',
+			'btn-save-loc btn btn-highlight large mx-1',
 			'phpSubmit',
 			'phpSubmit',
 			'Save Location'
@@ -51,62 +56,64 @@ const locationTemplate = (input) => {
 		div.appendChild(btn);
 		singleText.appendChild(div);
 	}
+
 	singleWrap.appendChild(singleCategory);
 	singleWrap.appendChild(singleText);
-
 	single.appendChild(singleWrap);
 
+	//Adds Background Color depending on Result of Category-Type
 	displayLocType(singleCategory, singleWrap);
 
 	return single;
 };
 
 const poiTemplate = (value) => {
-	//creates wrapper item
+	//#1 Main Item
 	const item = crEl.createItem('div', 'item my-3');
 
-	//creates 1st child of item
+	//#1.1 Image Item Wrapper
 	const image = crEl.createItem('div', 'item-image');
 
-	//creates child of image, sets attribute and append
+	//#1.1.1 Image Item
 	const img = document.createElement('img');
 	img.setAttribute('src', `${value.images[0].sizes.medium.url}`);
 	image.appendChild(img);
 
-	//creates 2nd child of item
+	//#1.2 Item Text
 	const itemText = crEl.createItem('div', 'item-text');
 
-	//creates 1st child of itemText
+	//#1.2.1 Item Text Wrap
 	const itWrap = crEl.createItem('div', 'item-text-wrap');
-	//creates 1st child of itWrap
+	//#1.2.1 Item Text Title
 	const itTitle = crEl.createItem('h2', 'item-text-title');
 	itTitle.innerHTML = `${removeChars(value.name.toString())}`;
-
-	//creates 2nd child of itWrap
+	//#1.2.1 Item Text Category
 	const itCategory = crEl.createItem('p', 'item-text-category');
 	itCategory.innerHTML = `${value.tag_labels[0]}`;
 
-	//creates last child of item, sets attributes and append
-
+	//#1.2.2 Item Description Wrap
 	const itemDesc = crEl.createItem('div', 'item-desc');
+	//#1.2.2.1 Item Info Link
 	const itLinkDiv = crEl.createItem('div', 'itLinkDiv');
-
+	//#1.2.2.1.1 Item Info Link Wrap
 	const itLink = crEl.createItem('p', 'item-link py-0');
-	// console.log(itLink);
 
+	//checks if Info Link Key-Value exists
 	const linkReplacement = infoLinkValue(value);
 
-	// try {
+	//#1.2.2.1.1.1 Item Info Link
 	const itLinkTag = crEl.createLink('a', `${linkReplacement}`, 'more Info');
 	itLink.appendChild(itLinkTag);
 
+	//#1.2.2.1.2 Item GoogleMaps Modal
 	const itemMap = crEl.createItem('p', 'item-map py-0');
 	itemMap.setAttribute('data-modal', `${poiCount}`);
 	itemMap.innerHTML = 'Show on Map';
 
+	//#1.2.3 Item Description Info
 	const itemDescInner = document.createElement('div');
-
 	itemDescInner.innerHTML = `${value.intro}`;
+
 	itLinkDiv.appendChild(itLink);
 	itLinkDiv.appendChild(itemMap);
 	itemDesc.appendChild(itLinkDiv);
@@ -120,13 +127,12 @@ const poiTemplate = (value) => {
 	item.appendChild(itemText);
 	item.appendChild(itemDesc);
 
-	// if traveller is logged in, create save button
+	//#1.2.4 Save PointOfIntererst Button (if Traveller logged in)
 	if (crEl.addButton()) {
-		//creates 3rd child of item, sets attributes and append
 		const div = document.createElement('div');
 		const btn = crEl.createBtn(
 			'button',
-			'btn btn-highlight',
+			'btn btn-highlight mx-1',
 			`poiSubmit${poiCount}`,
 			`poiSubmit${poiCount}`,
 			'Save Point of Interest'
@@ -146,13 +152,15 @@ const poiTemplate = (value) => {
 
 function infoLinkValue(currentItem) {
 	let keyValReplacement;
-	if (currentItem.attribution.length >= 3) {
-		keyValReplacement = currentItem.attribution[2].url;
-	} else {
-		if (currentItem.attribution.length >= 2) {
-			keyValReplacement = currentItem.attribution[1].url;
+	if (currentItem) {
+		if (currentItem.attribution.length >= 3) {
+			keyValReplacement = currentItem.attribution[2].url;
 		} else {
-			keyValReplacement = 'https://en.wikivoyage.org/';
+			if (currentItem.attribution.length >= 2) {
+				keyValReplacement = currentItem.attribution[1].url;
+			} else {
+				keyValReplacement = 'https://en.wikivoyage.org/';
+			}
 		}
 	}
 	return keyValReplacement;

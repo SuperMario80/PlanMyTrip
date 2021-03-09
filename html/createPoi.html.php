@@ -91,11 +91,11 @@
                 <textarea name="notes"  placeholder="Notes" tabindex="8"><?=htmlSpecialChars($poi->getNotes())?></textarea>
             </li>
         </ul>
-        <button class="btn btn-dark" name="back" value="0">Back
+        <button class="btn btn-dark mx-2" name="back" value="0">Back
         </button>
-        <button id="saveMyPoi" class="btn btn-dark" name="savePoi" value="1" >Save
+        <button id="saveMyPoi" class="btn btn-dark mx-2" name="savePoi" value="1" >Save
         </button>
-        <button id="deleteMyPoi" class="btn btn-dark" name="deletePoi" value="3" >Delete
+        <button id="deleteMyPoi" class="btn btn-dark mx-2" name="deletePoi" value="3" >Delete
         </button>
 
     </form>

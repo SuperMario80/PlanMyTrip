@@ -58,7 +58,7 @@ class CreateTravellerPage extends Page {
         $traveller->setPassword('');
         include 'html/createTraveller.html.php';
         
-        printData($traveller);
+        // printData($traveller);
     }
     
     private function saveTraveller() {
@@ -71,7 +71,7 @@ class CreateTravellerPage extends Page {
             }else {
                 
                 if(filter_var($this->getTraveller()->getEmail(), FILTER_VALIDATE_EMAIL) == FALSE){
-                    printData($this->getTraveller());
+                    // printData($this->getTraveller());
                     $this->message = "Email is not valid!";
                     $this->getTraveller()->setEmail('');
                     // $this->getTraveller()->setPassword('');

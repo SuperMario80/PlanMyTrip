@@ -70,11 +70,11 @@
                 <textarea name="notes"  placeholder="Notes" tabindex="8"><?=htmlSpecialChars($location->getNotes())?></textarea>
             </li>
         </ul>
-        <button class="btn btn-dark" name="back" value="0">Back
+        <button class="btn btn-dark mx-2" name="back" value="0">Back
         </button>
-        <button id="saveMyLoc" class="btn btn-dark" name="save" value="1" >Save
+        <button id="saveMyLoc" class="btn btn-dark mx-2" name="save" value="1" >Save
         </button>
-        <button id="deleteMyLoc" class="btn btn-dark" name="delete" value="2" >Delete
+        <button id="deleteMyLoc" class="btn btn-dark mx-2" name="delete" value="2" >Delete
         </button>
 
     </form>

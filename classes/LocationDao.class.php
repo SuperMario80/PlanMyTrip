@@ -34,15 +34,15 @@ class LocationDao extends GenericDao {
     }
 
     protected function getUpdateSql(): string {
-        return 'UPDATE `' . $this->getTableName() . '` SET `classification`=:classification, `location`=:location, `country`=:country, `region`=:region, '
+        return 'UPDATE `' . $this->getTableName() . '` SET `country`=:country, `region`=:region, '
         . '`intro`=:intro, `travelLink`=:travelLink, `notes`=:notes WHERE `id`=:id';
     }
 
     protected function getUpdateArray(object $location): array {
         return [
             // ':idTraveller' => $location->getIdTraveller(),
-            ':classification' => $location->getClassification(),
-            ':location' => $location->getLocation(),
+            // ':classification' => $location->getClassification(),
+            // ':location' => $location->getLocation(),
             // ':locationKey' => $location->getLocationKey(),
             ':country' => $location->getCountry(),
             ':region' => $location->getRegion(),
@@ -53,27 +53,6 @@ class LocationDao extends GenericDao {
         ];
     }
 
-
-      // READS ALL STATEMENTS/ROWS IN TABLE WITH PASSED IN FOREIGN KEY VALUE($idValue) AND INDIVIDUAL COLUMN NAME($foreignId)
-    // function showLocForKey(int $idValue): array {
-    //     if ($this->readForKeyStatement == null) {
-    //         $sql = 'SELECT * FROM `' . $this->getTableName() . '` WHERE `idTraveller`=:idValue ORDER BY  `classification`, `location`';
-    //         $this->readForKeyStatement = $this->getConnection()->prepare($sql);
-    //     }
-
-    //     $array = [
-    //         ':idValue' => $idValue
-    //     ];
-    //     $this->readForKeyStatement->execute($array);
-
-    //     $dtos = [];
-    //     while ($dto = $this->readForKeyStatement->fetchObject($this->getClassName())) {
-    //         $dtos[] = $dto;
-    //     }
-
-    //     return $dtos;
-    //     return $dtos[0]->getId();
-    // }
 
     protected function getForKeySql(): string{
         return 'SELECT * FROM `' . $this->getTableName() . '` WHERE `idTraveller`=:idValue ORDER BY `classification`, `location`';

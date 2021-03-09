@@ -33,7 +33,7 @@
                   <p><?= htmlSpecialChars($poi->getNotes()) ?></p>
                 </div>
               </div>
-              <div class="button-area">
+              <!-- <div class="button-area">
                 <button class="btn block center" name="updatePoi" value="<?= $poi->getId() ?>" >
                   <span class="p-0">
                     <i class="fas fa-pen"></i> Edit
@@ -41,10 +41,18 @@
                 </button>
                 <!-- <button class="btn" name="delete" value="2" >Delete Poi</button> -->
                 <!-- <button class="btn" name="newPoi" value="<?= $location->getId() ?>" >New PointOfInterest</button> -->
-              </div>
+              <!-- </div> -->
           </div>
-            <h1 class="single-category small" ><?= htmlSpecialChars($poi->getAttraction()) ?>
-          </h1>
+          <div class="single-category small">
+
+            <h4  ><?= htmlSpecialChars($poi->getAttraction()) ?>
+          </h4>
+          <button class="btn" name="updatePoi" value="<?= $poi->getId() ?>" >
+            <span class="p-0">
+              <i class="fas fa-pen"></i> Edit
+            </span>
+          </button>
+        </div>
         </div>
       </div>
       <?php endforeach; ?>

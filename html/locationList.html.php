@@ -1,25 +1,25 @@
 
-<div class="headersection">
+<div class="headersection myList">
+    <div><form method="post">
+            <button class="btn btn-secondary large" name="newLocation" ><i class="fas fa-plus-circle"> </i>  Location</button>
+        </form></div>
     <div class="row">
-        <h1>MY SAVED ITINERARY</h1>
+        <h1>ShowMyTrip</h1>
     </div>
     <div>
         <form method="post">
-            <button class="btn btn-secondary" name="updateTraveller" value="<?= $this->getTraveller()->getId() ?>" ><span >
-                <i class="fas fa-pen"></i> Edit My Profile</span>
+            <button class="btn btn-secondary large" name="updateTraveller" value="<?= $this->getTraveller()->getId() ?>" ><span>
+                <i class="fas fa-pen"></i> MyProfile</span>
             </button>
         </form>
     </div>
 </div>
-<div id="myLocationList" class="bg-light">
-</div>
+<!-- <div id="myLocationList" class="bg-light">
+</div> -->
 
 
 <div class="container">
-    <div class="text-center">
-        <form method="post">
-            <button class="btn btn-dark x-large" name="newLocation" >Create New Location</button>
-        </form>
-
+    
+    <div><button class="btn-block btn-dark large" id="expandAll" >Click To Expand
+    </button> 
     </div>
-    <div><button class="btn btn-dark" id="expandAll" >Expand MyList</button></div>

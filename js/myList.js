@@ -1,18 +1,18 @@
 // expandAll();
 // function expandAll() {
-// 	const expandLocBtn = document.querySelectorAll('.collapsible');
+// 	// const expandLocBtn = document.querySelectorAll('.collapsible');
 // 	const expandAll = document.querySelector('#expandAll');
 // 	const expandLoc = document.querySelectorAll('.expandLoc');
 // 	console.log(expandLoc);
 // 	const plusFa = document.querySelectorAll('.fa-plus');
 
 // 	expandAll.addEventListener('click', function() {
-// 		expandLoc.forEach(function(el) {
+// 		expandLoc.forEach(function(expAllLoc) {
 // 			// if (el.classList === 'expandLoc wrap hidden') {
-// 			console.log(el.className);
-// 			el.classList.remove('hidden');
-// 			console.log(el.previousElementSibling.childNodes[1].firstChild);
-// 			let plusFa = el.previousElementSibling.childNodes[1].firstChild.firstChild.classList;
+// 			// console.log(el.className);
+// 			expAllLoc.classList.remove('hidden');
+// 			// console.log(el.previousElementSibling.childNodes[1].firstChild);
+// 			// let plusFa = el.previousElementSibling.childNodes[1].firstChild.firstChild.classList;
 // 			plusFa.className = 'fas fa-minus fa-xs';
 
 // 			console.log(plusFa);
@@ -46,6 +46,7 @@
 // }
 
 (function expandLocation() {
+	const expandAll = document.querySelector('#expandAll');
 	const expandLocBtn = document.querySelectorAll('.collapsible');
 
 	const expandLoc = document.querySelectorAll('.expandLoc');
@@ -62,8 +63,6 @@
 					plusFa[i].classList = 'fas fa-minus fa-xs';
 					expandLocBtn[i].classList.add('open');
 					expandLoc[i].nextElementSibling.classList.remove('hidden');
-					changeColorTheme();
-					showSavedModal();
 				} else {
 					expandLoc[i].classList.add('hidden');
 					plusFa[i].classList = 'fas fa-plus fa-xs';
@@ -72,11 +71,34 @@
 				}
 			}
 		});
+		expandAll.addEventListener('click', function() {
+			if (expandLoc[i].className === 'expandLoc wrap' || expandLoc[i].className === 'expandLoc wrap hidden') {
+				// console.log(expandLoc[i].classList);
+				// if (expandLoc[i].className !== 'expandLoc wrap hidden') {
+				// console.log(expandLoc);
+				expandLoc[i].classList.remove('hidden');
+				plusFa[i].classList = 'fas fa-minus fa-xs';
+				expandLocBtn[i].classList.add('open');
+				expandLoc[i].nextElementSibling.classList.remove('hidden');
+				expandAll.innerText = 'Click To Collapse';
+				// }
+				console.log(expandLoc);
+			} else {
+				if (expandLoc[i].className === 'expandLoc wrap') {
+					expandLoc[i].classList.add('hidden');
+					plusFa[i].classList = 'fas fa-plus fa-xs';
+					expandLoc[i].nextElementSibling.classList.add('hidden');
+					expandLocBtn[i].classList.remove('open');
+					expandAll.innerText = 'Click To Expand';
+				}
+			}
+		});
 	}
 
-	// changeColorTheme();
-	// showSavedModal();
+	changeColorTheme();
+	showSavedModal();
 	deleteMyData();
+	modifyUpdateTempl();
 })();
 
 function changeColorTheme() {
@@ -109,5 +131,24 @@ function deleteMyData() {
 				e.preventDefault();
 			}
 		});
+	}
+}
+
+function modifyUpdateTempl() {
+	const id = document.querySelector('input[name=id]');
+
+	const locName = document.querySelector(`input[name=location`);
+	const poiName = document.querySelector(`input[name=poiName`);
+
+	if (id && id.value !== '0') {
+		if (locName) {
+			const classification = document.querySelector('input[name=classification]');
+			console.log(id.value);
+			classification.setAttribute('readonly', '');
+			locName.setAttribute('readonly', '');
+		}
+		if (poiName) {
+			poiName.setAttribute('readonly', '');
+		}
 	}
 }

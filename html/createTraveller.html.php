@@ -12,7 +12,7 @@
             <p class="m-heading text-center my-1">
         <?=htmlSpecialChars($message)?>
             </p>
-            <button class="btn btn-dark" name="back" value="0">Back</button>
+            <button class="btn btn-dark mx-1" name="back" value="0">Back</button>
 
          <ul >
             <li>
@@ -37,7 +37,7 @@
                 <input type="password" name="password" placeholder="password" value="<?=htmlSpecialChars($traveller->getPassword())?>" >
             </li>
         </ul>
-            <button class="btn btn-dark" name="save" value="1" >Save</button>
+            <button class="btn btn-dark mx-1" name="save" value="1" >Save</button>
 
         </div>
         <!-- <button class="btn btn-dark" name="delete" value="2" >Delete without Confirmation</button> -->
