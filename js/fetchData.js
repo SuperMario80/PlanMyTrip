@@ -35,24 +35,33 @@ createAutoComplete({
 	}
 });
 
+//STARTS ASYNC HTTP REQUEST WITH FETCH
 let onLocationSelect = async (location) => {
+	// WAITS FOR LOCATION REQUEST (CHOSEN IN DROPDOWN)
 	let response = await fetch(
 		`https://www.triposo.com/api/20201111/location.json?id=${location.id}&fields=all&account=${account_id}&token=${api_token}`
 	);
 	let res = await response.json();
+
+	//CLEARS RESULTS TEMPLATE (WHEN NEW REQUEST IS EXECUTED)
 	document.querySelector('#summary').innerHTML = '';
 	currentLocation = res.results[0];
+
+	//APPEND HTML TEMPLATE AFTER FETCH RESPONSE
 	document.querySelector('#summary').append(locationTemplate(currentLocation));
 
+	// WAITS FOR 20 BEST POINT OF INTEREST REQUEST (FIRST 20 POI's BASED ON CUSTOMER RATING)
 	let poiResponse = await fetch(
 		`https://www.triposo.com/api/20201111/poi.json?location_id=${location.id}&fields=all&tag_labels=sightseeing&count=20&order_by=-score&account=${account_id}&token=${api_token}`
 	);
 	poiRes = await poiResponse.json();
-	//clears poi results (if new request is executed)
+
+	//CLEARS RESULTS TEMPLATE (WHEN NEW REQUEST IS EXECUTED)
 	document.querySelector('#poi').innerHTML = '';
 	try {
 		for (poiCount = 0; poiCount < poiRes.results.length; poiCount++) {
 			let currentPointofInterest = poiRes.results[poiCount];
+			//APPEND HTML TEMPLATE AFTER FETCH RESPONSE
 			document.querySelector('#poi').append(poiTemplate(currentPointofInterest));
 		}
 	} catch (e) {

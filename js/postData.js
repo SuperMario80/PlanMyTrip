@@ -1,12 +1,12 @@
+//SUBMITS DATA TO PHP / MYSQL-DATABASE
 (function saveData() {
 	const saveLocation = document.querySelector('#summary');
 	const savePoi = document.querySelector('#poi');
 
 	if (saveLocation) {
 		saveLocation.addEventListener('click', async (e) => {
-			// const locBtn = document.querySelector('.btn-save-loc');
-
 			if (e.target.id == 'phpSubmit') {
+				//KEY-VALUE PAIRS TO SUBMIT
 				let locationValue = {
 					location: currentLocation.name,
 					locationKey: currentLocation.id,
@@ -23,10 +23,11 @@
 					body: JSON.stringify(locationValue),
 					headers: { 'Content-Type': 'application/json' }
 				};
-
+				//SENDS DATA TO PHP FILE
 				const sendPlace = await fetch(`http://localhost/php/projects/PlanMyTrip/locRequest.php`, data)
 					.then((response) => response.json())
 					.then((res) => {
+						//CHECKS RESPONSE STATUS WHEN SUBMITTED
 						if (res.statusText == 'OK') {
 							showSubmitMsg('.btn-save-loc', 'LOCATION SAVED');
 						} else {
@@ -43,7 +44,7 @@
 	if (savePoi) {
 		savePoi.addEventListener('click', async (e) => {
 			let poiVal = e.target.getAttribute('data-count');
-			const poiBtn = document.querySelector(`#poiSubmit${poiVal}`);
+			// const poiBtn = document.querySelector(`#poiSubmit${poiVal}`);
 			currentPointofInterest = poiRes.results[poiVal];
 
 			const infoLinkReplacement = infoLinkValue(currentPointofInterest);
@@ -85,6 +86,8 @@
 			}
 		});
 	}
+
+	// RESPONSE FUNCTION TO SUBMIT STATUS AND MANIPULATE EVENT-BUTTON
 	function showSubmitMsg(btnClass, message) {
 		const btn = document.querySelector(btnClass);
 		const originBtn = btn.innerText;

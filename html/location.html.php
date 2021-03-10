@@ -1,6 +1,3 @@
-<!-- <div class="container"> -->
-<!-- </div> -->
-
   <div>
     <div  class="collapsible" data-expand="<?= htmlSpecialChars($location->getId()) ?>" >
       <div><i class="fas fa-plus fa-xs"> </i></div>
@@ -59,14 +56,3 @@
     
     </form>
 </div>
-
-     <!-- <div class="button-area">
-          
-          <button class="btn" name="updateLocation" value="<?= $location->getId()?>" ><span >
-              <i class="fas fa-pen"></i> Edit
-            </span>
-         
-    
-         
-          <button class="btn" name="newPoi" value="<?= $location->getId() ?>" >New PointOfInterest</button>
-          </div> -->

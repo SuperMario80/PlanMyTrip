@@ -55,7 +55,7 @@ const CreateDomElement = function() {
 	};
 };
 
-//ADDS CLASS TO ELEMENT DEPENDING ON VALUE OF INNER TEXT
+//ADD CLASS TO ELEMENT DEPENDING ON VALUE OF INNER TEXT
 function displayLocType(attribute, targetEl) {
 	let addAtrribute = attribute.innerText.toLowerCase();
 	targetEl.classList += ` ${addAtrribute}`;

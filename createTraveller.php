@@ -15,18 +15,16 @@ class CreateTravellerPage extends Page {
 
     protected function init() : void {
         
-        
+        //redirect as logged in Traveller
         if (isSet($_POST['back']) and !empty($_GET['id'])) {
-                header('Location: travellerArea.php');
-                exit;
-                
-            }
-            // else{
-                if (isSet($_POST['back']) or !isSet($_GET['id'])) {
-                    header('Location: index.php');
-                    exit;
-                }
-        // }
+            header('Location: travellerArea.php');
+            exit;
+        }
+        // redirect when create an account
+        if (isSet($_POST['back']) or !isSet($_GET['id'])) {
+            header('Location: index.php');
+            exit;
+        }
     }
     
     protected function viewContent(): void {
@@ -52,50 +50,46 @@ class CreateTravellerPage extends Page {
         if (isSet($_POST['delete'])) {
             $this->deleteTraveller();
         }
+
+        // page related values
         $headline = $this->headline;
         $message = $this->message;
         $traveller = $this->getTraveller();
         $traveller->setPassword('');
         include 'html/createTraveller.html.php';
-        
-        // printData($traveller);
     }
     
     private function saveTraveller() {
         $this->readFormData();
-        
+        //CREATE NEW TRAVELLER
         if ($this->getTraveller()->getId() == 0) {
-            //  $this->headline = ' YOUR ACCOUNT';
+
             if($this->getTraveller()->getFirstName() == NULL ||  $this->getTraveller()->getLastName() == NULL||  $this->getTraveller()->getPassword() == NULL ||  $this->getTraveller()->getEmail() == NULL){
                     $this->message = 'Please fill out ALL data'; 
             }else {
                 
                 if(filter_var($this->getTraveller()->getEmail(), FILTER_VALIDATE_EMAIL) == FALSE){
-                    // printData($this->getTraveller());
                     $this->message = "Email is not valid!";
                     $this->getTraveller()->setEmail('');
-                    // $this->getTraveller()->setPassword('');
                 }else {
+                    //VARIABLE TO CHECKS IF EMAIL EXISTS IN DATABASE
                     $t = $this->travellerDao->findTraveller($this->getTraveller()->getEmail());
 
                     if($t == NULL){
                         if ($this->travellerDao->create($this->getTraveller())){
                         $this->message =   "New Account created";
                         header('Refresh:2; url=index.php');
-                    //    $this->getTraveller()->setPassword('');
                         }
                     }else{
         
                         $this->message = "Email already exists!";
-                    //  $this->getTraveller()->setPassword('');
                     }
                 }
             }
               
+        //UPDATE EXISTING TRAVELLER
         } else {
-            // $this->getTraveller()->setPassword('');
             if($this->travellerDao->update($this->getTraveller())){
-                // $this->headline = 'VIEW / UPDATE MY ACCOUNT';
                 $this->message = 'Customer Updated';
                 header('Refresh:2; url=travellerArea.php');
             }else{
@@ -106,8 +100,6 @@ class CreateTravellerPage extends Page {
         //            ? 'Customer Saved'
         //            : 'Customer NOT Saved';
        }
-
-
     }
 
     private function deleteTraveller() {

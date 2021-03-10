@@ -1,5 +1,9 @@
+//GOOGLE MAPS MODAL FOR ALL POINTS OF INTEREST
+
+//GLOBAL VARIABLE
 const modal = document.querySelector('.modal');
 
+//MODAL FOR SEARCH RESULTS
 function showModal() {
 	const savePoi = document.querySelector('#poi');
 	savePoi.addEventListener('click', function(e) {
@@ -21,6 +25,7 @@ function showModal() {
 	});
 }
 
+//MODAL FOR SAVED DATA
 function showSavedModal() {
 	const savedItemMap = document.querySelectorAll('.savedItemMap');
 	const myModalLink = document.querySelectorAll('.myModalLink');

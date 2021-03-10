@@ -18,15 +18,15 @@
                 <input type="text" name="location" placeholder="Location" value="<?= htmlSpecialChars($location->getLocation())?>" tabindex="1">
             </li>
             <!-- <li>
-                <label for="property_type" class="required">Property Type<span id="required" title="This field is required">*</span>
+                <label for="classification" class="required">Type of Location<span id="required" title="This field is required">*</span>
                 </label>
-                <select name="property_type" id="property_type" tabindex="2">
+                <select name="classification" tabindex="2" readonly>
                     <option value="" label="Please choose:">Please choose:</option>
-                    <option value="hostel" label="Hostel">Hostel</option>
-                    <option value="hotel" label="Hotel">Hotel</option>
-                    <option value="guesthouse" label="Bed and Breakfast">Bed and Breakfast</option>
-                    <option value="campsite" label="Campsite">Campsite</option>
-                    <option value="apartment" label="Apartment">Apartment</option>
+                    <option value="<?= htmlSpecialChars($location->getClassification())?>" label="<?= htmlSpecialChars($location->getClassification())?>"><?= htmlSpecialChars($location->getClassification())?></option>
+                    <option value="Country" label="Country">Country</option>
+                    <option value="City" label="City">City</option>
+                    <option value="Region" label="Region">Region</option>
+                    <option value="National Park" label="National Park">National Park</option>
                 </select>
             </li> -->
 
