@@ -15,13 +15,13 @@
 <form method="post">
 
   <!-- <button class="btn btn-dark large" name="newLocation" >Create New Location</button> -->
-<div class="single" >
+<div class="single mb-3" >
 			<div class="single-wrap">
 				<!-- <h1 class="single-category location" ><?= htmlSpecialChars($location->getClassification()) ?> -->
         </h1>
         <!-- <div class="hidden myModalLink"><?= htmlSpecialChars($location->getTravelLink()) ?></div> -->
 				<div class="single-text">
-					<div class="single-headline location">
+					<div class="single-headline py-0 text-left location">
             <div>
           
 						<h2 class="single-title">

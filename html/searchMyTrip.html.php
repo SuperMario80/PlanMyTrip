@@ -24,7 +24,7 @@
 
 <div class="container">
   <!-- <div class="items"> -->
-      <div id="summary"></div>
+      <div id="summary" class="my-3"></div>
       <div id="summary2">
         <div class="items" id="poi">
   <!-- </div> -->

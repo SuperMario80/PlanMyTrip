@@ -178,7 +178,7 @@ button.dropdown-item.is-active {
 	color: var(--secondary-color);
 	border-radius: .25rem;
 	word-spacing: .3rem;
-	letter-spacing: .12rem;
+	/* letter-spacing: .12rem; */
 	/* cursor: pointer; */
 	padding: .8rem 1rem;
 	/* width: 100%; */

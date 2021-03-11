@@ -6,7 +6,7 @@ const locationTemplate = (input) => {
 	const currentName = removeChars(currentLocation.name.toString());
 
 	//#1 Main Item
-	const single = crEl.createItem('div', 'single my-3');
+	const single = crEl.createItem('div', 'single');
 	//#2 Wrapper Item
 	const singleWrap = crEl.createItem('div', 'single-wrap');
 
@@ -17,9 +17,9 @@ const locationTemplate = (input) => {
 	//#2.2 Headline Text Wrap Item
 	const singleText = crEl.createItem('div', 'single-text');
 	//#2.2.1 Headline Wrap Item
-	const singleHeadline = crEl.createItem('div', 'single-headline');
+	const singleHeadline = crEl.createItem('div', 'single-headline py-1');
 	//#2.2.1.1 Headline Location Title
-	const singleTitle = crEl.createItem('h2', 'single-title');
+	const singleTitle = crEl.createItem('h1', 'single-title text-center');
 	//#2.2.1.1.1 Headline Info Link
 	const singleTL = crEl.createLink(
 		'a',
@@ -88,7 +88,7 @@ const poiTemplate = (value) => {
 	const itTitle = crEl.createItem('h2', 'item-text-title');
 	itTitle.innerHTML = `${removeChars(value.name.toString())}`;
 	//#1.2.1 Item Text Category
-	const itCategory = crEl.createItem('p', 'item-text-category');
+	const itCategory = crEl.createItem('p', 'item-text-category py-0');
 	itCategory.innerHTML = `${value.tag_labels[0]}`;
 
 	//#1.2.2 Item Description Wrap

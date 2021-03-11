@@ -5,57 +5,54 @@
 	const expandLoc = document.querySelectorAll('.expandLoc');
 	const plusFa = document.querySelectorAll('.fa-plus');
 
-	for (let i = 0; i < expandLocBtn.length; i++) {
-		expandLocBtn[i].addEventListener('click', function(e) {
-			if (
-				e.target.hasAttribute('data-expand') ||
-				e.target.parentElement.parentElement.hasAttribute('data-expand')
-			) {
-				expandLoc[i].classList.toggle('hidden');
-				expandLocBtn[i].classList.toggle('open');
-				expandLoc[i].nextElementSibling.classList.toggle('hidden');
+	if (expandAll) {
+		for (let i = 0; i < expandLocBtn.length; i++) {
+			expandLocBtn[i].addEventListener('click', function(e) {
+				if (
+					e.target.hasAttribute('data-expand') ||
+					e.target.parentElement.parentElement.hasAttribute('data-expand')
+				) {
+					expandLoc[i].classList.toggle('hidden');
+					expandLocBtn[i].classList.toggle('open');
+					expandLoc[i].nextElementSibling.classList.toggle('hidden');
 
-				if (expandLoc[i].className === 'expandLoc wrap hidden') {
-					plusFa[i].classList = 'fas fa-plus fa-xs';
-				} else {
+					if (expandLoc[i].className === 'expandLoc wrap hidden') {
+						plusFa[i].classList = 'fas fa-plus fa-xs';
+					} else {
+						plusFa[i].classList = 'fas fa-minus fa-xs';
+					}
+				}
+			});
+		}
+		expandAll.addEventListener('click', function() {
+			if (expandAll.innerText === 'Click To Expand') {
+				for (let i = 0; i < expandLoc.length; i++) {
+					expandLoc[i].classList.remove('hidden');
 					plusFa[i].classList = 'fas fa-minus fa-xs';
+					expandLocBtn[i].classList.add('open');
+					if (expandLoc[i].nextElementSibling.className === 'hidden') {
+						expandLoc[i].nextElementSibling.classList.remove('hidden');
+					}
+					// console.log(expandLoc[i].nextElementSibling.classList);
+					expandAll.innerText = 'Click To Collapse';
+					// }
+				}
+			} else {
+				for (let i = 0; i < expandLoc.length; i++) {
+					expandLoc[i].classList.add('hidden');
+					plusFa[i].classList = 'fas fa-plus fa-xs';
+					expandLoc[i].nextElementSibling.classList.add('hidden');
+					expandLocBtn[i].classList.remove('open');
+					expandAll.innerText = 'Click To Expand';
 				}
 			}
 		});
-	}
-	expandAll.addEventListener('click', function() {
-		if (expandAll.innerText === 'Click To Expand') {
-			for (let i = 0; i < expandLoc.length; i++) {
-				// if (expandLoc[i].classList === 'expandLoc wrap hidden') {
-				// console.log(expandLoc);
-				// console.log(expandLoc[i]);
-				// console.log(expandLoc[i].classList);
-				// if (expandLoc[i].className !== 'expandLoc wrap hidden') {
-				expandLoc[i].classList.remove('hidden');
-				plusFa[i].classList = 'fas fa-minus fa-xs';
-				expandLocBtn[i].classList.add('open');
-				if (expandLoc[i].nextElementSibling.className === 'hidden') {
-					expandLoc[i].nextElementSibling.classList.remove('hidden');
-				}
-				// console.log(expandLoc[i].nextElementSibling.classList);
-				expandAll.innerText = 'Click To Collapse';
-				// }
-			}
-		} else {
-			for (let i = 0; i < expandLoc.length; i++) {
-				expandLoc[i].classList.add('hidden');
-				plusFa[i].classList = 'fas fa-plus fa-xs';
-				expandLoc[i].nextElementSibling.classList.add('hidden');
-				expandLocBtn[i].classList.remove('open');
-				expandAll.innerText = 'Click To Expand';
-			}
-		}
-	});
 
-	changeColorTheme();
-	showSavedModal();
-	deleteMyData();
-	modifyUpdateTempl();
+		changeColorTheme();
+		showSavedModal();
+		deleteMyData();
+		modifyUpdateTempl();
+	}
 })();
 
 // (function expandAll() {

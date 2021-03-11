@@ -101,12 +101,10 @@ abstract class Page {
     
 
    private function viewNavigation() : void {
+       
        if($this->loggedIn == true){
            include 'html/navigation.html.php';
        }
-    //    else {
-    //        printData('Doesnt work!');
-    //    }
    }
 
     // PROVIDES HTML FORMS
@@ -116,25 +114,17 @@ abstract class Page {
         if ($this->loggedIn) {
             include 'html/logout.html.php';
 
-        } 
-        // if($_SERVER['PHP_SELF'] !== "/php/projects/PlanMyTrip/createTraveller.php"){
-        //     printData($_SERVER['PHP_SELF']);
-        
-        // }
-        else{
+        } else{
             
             if($_SERVER['PHP_SELF'] === "/php/projects/PlanMyTrip/createTraveller.php"){
-                // if(is_page( 'createTraveller.php')){
+
                     include 'html/closingDiv.html.php';
-                    // else{
-                        // if(basename(get_page_template()) != 'createTraveller.php' ){
-                            // }
-                        }else{
-                            $message = $this->message;
-                            include 'html/login.html.php';
-                            
-                        }
-                    }
+                    
+            }else{
+                $message = $this->message;
+                include 'html/login.html.php';
+            }
+        }
     }
 
     

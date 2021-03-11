@@ -6,7 +6,7 @@
     <footer id="footer" class="lead py-2 text-center bg-light">
       <div></div>
       <div>PlanMyTrip &copy;</div>
-      <div class="footer-wrapper">
+      <div id="footer-wrapper">
         <a href="https://www.facebook.com" target="_blank">
             <i class="fab fa-facebook-f"></i>
         </a>

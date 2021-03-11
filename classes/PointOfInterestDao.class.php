@@ -40,10 +40,8 @@ class PointOfInterestDao extends GenericDao {
 
     protected function getUpdateArray(object $poi): array {
         return [
-            // ':idLocation' => $poi->getIdLocation(),
             ':poiName' => $poi->getPoiName(),
             ':city' => $poi->getCity(),
-            // ':locationKey' => $poi->getLocationKey(),
             ':attraction' => $poi->getAttraction(),
             ':intro' => $poi->getIntro(),
             ':infoLink' => $poi->getInfoLink(),
@@ -99,29 +97,7 @@ class PointOfInterestDao extends GenericDao {
 
         $dto = $this->findDuplicateStatement->fetchObject($this->getClassName());
         return $dto ? $dto : null;
-    
 
     }
-
-    // READS ALL STATEMENTS/ROWS IN TABLE WITH PASSED IN FOREIGN KEY VALUE($idValue) AND INDIVIDUAL COLUMN NAME($foreignId)
-    // function showPoiForKey(int $idValue): array {
-    //     if ($this->readForKeyStatement == null) {
-    //         $sql = 'SELECT * FROM `' . $this->getTableName() . '` WHERE `idLocation`=:idValue ORDER BY  `attraction`, `poiName`';
-    //         $this->readForKeyStatement = $this->getConnection()->prepare($sql);
-    //     }
-
-    //     $array = [
-    //         ':idValue' => $idValue
-    //     ];
-    //     $this->readForKeyStatement->execute($array);
-
-    //     $dtos = [];
-    //     while ($dto = $this->readForKeyStatement->fetchObject($this->getClassName())) {
-    //         $dtos[] = $dto;
-    //     }
-
-    //     return $dtos;
-    //     return $dtos[0]->getId();
-    // }
 
 }

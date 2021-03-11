@@ -1,9 +1,9 @@
-/* NAVBAR */
 #page-container {
 	min-height: calc(100vh - 13vh);
 	margin-bottom: 2vh;
 }
 
+/* NAVBAR */
 #navbar {
 	display: flex;
 	position: sticky;
@@ -48,7 +48,7 @@
 #showcase {
 	background: var(--dark-color) url('../img/showcase.jpg') no-repeat center center/cover;
 	height: 65.5vh;
-	color: #fff;
+	color: var(--primary-color);
 }
 
 #showcase .showcase-content {
@@ -62,50 +62,127 @@
 	background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* #myLocationList {
-	padding: 0 4rem;
-	margin-top: -2rem;
-	word-spacing: .3rem;
-	letter-spacing: .12rem;
-	line-height: 1.8; */
-/* font-size: 13px; */
-/* width: 100%;
-	text-align: left;
-	font-weight: 600; */
-/* display: grid;
-	grid-template-columns: auto auto; */
-/* }
-#myLocationList a {
-	color: var(--secondary-color); */
-/* text-shadow: 1px 1px var(--secondary-color); */
-/* display: block;
-	display: grid;
-	grid-template-columns: 1fr 2fr; */
-/* text-align: left; */
-/* border-bottom: dotted .0025rem var(--lighter-color-alt); */
-/* box-shadow: 0 1px 0 rgba(0, 0, 0, .18); */
-/* } */
-/* #myLocationList a div:first-child {
-	text-align: right;
-	padding-left: 11rem;
-	text-transform: capitalize;
-	color: var(--secondary-color-alt);
-} */
-/* #myLocationList a div {
-	display: grid;
-	grid-template-columns: auto auto;
-} */
-/* #myLocationList a:hover {
-	color: var(--highlight-color);
-	font-weight: 800;
-	/* text-decoration: underline; */
-/* }  */
-
 #footer {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	align-items: center;
 	height: 11vh;
+}
+#footer-wrapper a {
+	color: var(--lighter-color);
+	padding: 0 .2rem;
+	/* margin: 0 .3rem; */
+}
+
+/* SHOWS LOCATION IN SEARCH AND LOCATIONS + POINTS OF INTEREST IN TRAVELLER AREA */
+.single {
+	border-radius: .45rem;
+	/* margin-bottom: 1rem; */
+	box-shadow: 0 2px 8px rgba(0, 0, 0, .38);
+	overflow: hidden;
+}
+
+.single-wrap {
+	background-color: var(--highlight-color);
+	text-align: center;
+}
+
+.single-category {
+	/* margin-top: 3rem; */
+	text-transform: uppercase;
+	text-align: center;
+	align-self: flex-start;
+	font-size: 3rem;
+	color: var(--primary-color);
+	padding: 1rem;
+}
+
+.single-text {
+	background: var(--bg-sec-color);
+}
+
+.single-category .btn {
+	margin-top: 3rem;
+}
+
+/* pointsOfInterest in Traveller Area */
+.single-wrap.poi {
+	display: grid;
+	grid-template-columns: 7fr 2fr;
+	background-color: var(--dark-color-alt);
+	color: var(--secondary-color);
+}
+.sight-color {
+	background-color: var(--alternative-color);
+}
+
+.single-headline {
+	background: var(--dark-color);
+}
+
+.single-title {
+	text-transform: capitalize;
+	align-items: center;
+	padding: 0 1rem;
+}
+
+.single-desc {
+	padding: 1rem;
+	overflow: hidden;
+}
+
+/* color for different search category */
+.country {
+	background-color: var(--highlight-color);
+}
+.national {
+	background-color: var(--secondary-color-alt);
+}
+.region {
+	background-color: var(--secondary-color);
+}
+.city {
+	background-color: var(--lighter-color);
+}
+
+.single-text.btn {
+	align-self: flex-start;
+}
+/* location myLocationList */
+.single-headline div {
+	display: grid;
+	grid-template-columns: 3fr auto;
+	align-items: center;
+}
+
+.alt-color a {
+	color: var(--secondary-color);
+	font-size: 1.3rem;
+}
+
+/* Hover Styling for saved Location and POI */
+.single-title a:hover {
+	opacity: 0.7;
+}
+
+/* .single-desc a {
+	font-size: 1rem;
+	text-align: left;
+	color: var(--highlight-color);
+} */
+/* displays POI in ShowMyTrip */
+.saved-data {
+	display: grid;
+	grid-template-rows: 5fr 2fr;
+}
+
+.small {
+	font-size: 1.5rem;
+}
+
+.loc-classification {
+	text-transform: uppercase;
+	padding-right: 3rem;
 }
 
 /* POINTS OF INTEREST SEARCH RESULTS */
@@ -122,7 +199,6 @@
 	display: grid;
 	grid-template-rows: repeat(1, 1fr auto auto auto);
 	background: var(--bg-sec-color);
-	/* padding: 0rem 0.5rem; */
 	box-shadow: 0 2px 8px rgba(0, 0, 0, .38);
 	margin: .4rem;
 }
@@ -157,33 +233,27 @@
 	width: 100%;
 	top: 1rem;
 	right: 1rem;
+	padding-left: 1rem;
 	text-align: right;
 	font-weight: bold;
+	line-break: auto;
 	text-shadow: 1px 1px var(--dark-color);
 }
-
-/* .item-text-category {
-	color: var(--lighter-color);
-	font-weight: bold;
-} */
 
 .item-text-title {
 	text-transform: capitalize;
 	color: var(--primary-color);
-
-	/* margin: 5px 0 0 0; */
 }
 .item-text-category {
 	text-transform: uppercase;
 	font-size: 0.9rem;
 	color: var(--lighter-color);
 	font-weight: bold;
-	/* opacity: 0.7; */
+
 	margin: 0;
 }
 
 .item-desc {
-	/* height: 14vh; */
 	margin-top: -1rem;
 	font-size: 1rem;
 	overflow: hidden;
@@ -201,15 +271,12 @@
 .item-map {
 	text-align: right;
 	color: var(--highlight-color);
-	/* padding-bottom: 0.2rem; */
 	font-size: small;
 }
 .item-link a {
 	text-align: left;
 	color: var(--highlight-color);
-	/* padding-bottom: 0.2rem; */
 	font-size: small;
-	/* font-weight: bold; */
 }
 
 .item-map:hover,
@@ -219,151 +286,19 @@
 	cursor: pointer;
 }
 
-.saved-data {
-	display: grid;
-	grid-template-rows: 5fr 2fr;
-	height: 25vh;
-}
-
 .loc-info {
 	text-align: left;
-	padding-right: .2rem;
+	height: auto;
 }
 .loc-notes {
-	text-align: right;
-	vertical-align: text-top;
-	padding: 0 1rem;
+	text-align: left;
+	font-weight: 800;
+	padding: 1rem 0;
 	color: var(--secondary-color-alt);
 	border-top: solid .0625rem var(--secondary-color-alt);
+	height: auto;
 }
 
-/* .view {
-	height: 6%;
-	color: var(--bg-sec-color);
-} */
-
-.saved {
+/* .saved {
 	background-color: var(--secondary-color);
-}
-
-/* SHOWS LOCATION IN SEARCH AND LOCATIONS + POINTS OF INTEREST IN TRAVELLER AREA */
-.single {
-	border-radius: .45rem;
-	margin-bottom: 1rem;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, .38);
-	overflow: hidden;
-}
-
-.single-wrap {
-	background-color: var(--highlight-color);
-	text-align: center;
-}
-
-/* pointsOfInterest in Traveller Area */
-.single-wrap.poi {
-	display: grid;
-	grid-template-columns: 7fr 2fr;
-	background-color: var(--dark-color-alt);
-	color: var(--secondary-color);
-}
-.sight-color {
-	background-color: var(--alternative-color);
-}
-
-.single-text {
-	background: var(--bg-sec-color);
-	/* width: 100%; */
-}
-.single-text.btn {
-	align-self: flex-start;
-}
-.single-text.btn {
-	align-self: flex-start;
-}
-
-.single-headline {
-	background: var(--dark-color);
-	padding: .5rem;
-	font-size: 2rem;
-	/* align-items: center; */
-}
-.single-headline div {
-	display: grid;
-	grid-template-columns: 3fr auto;
-	align-items: center;
-
-	/* align-items: center; */
-}
-/* .single-headline div h2 {
-	text-align: right;
-	align-items: center;
 } */
-
-.single-headline.location a {
-	font-size: 1.2rem;
-}
-/* .single-headline {
-	background: var(--dark-color);
-	padding: 1rem;
-	font-size: 2rem;
-} */
-
-.single-title {
-	text-transform: capitalize;
-	font-size: 1.5rem;
-	text-align: center;
-	/* padding: 0 1rem; */
-	/* margin: 5px 0 0 0; */
-}
-
-.single-title h2 {
-	color: var(--primary-color);
-}
-.single-title a:hover {
-	color: var(--highlight-color);
-	text-shadow: 1px 1px var(--dark-color);
-}
-
-.single-category {
-	text-transform: uppercase;
-	text-align: center;
-	align-self: center;
-	font-size: 3rem;
-	color: var(--primary-color);
-	padding: 1rem;
-}
-
-.single-desc {
-	padding: 1rem;
-	overflow: hidden;
-}
-
-.single-desc a {
-	font-size: 1rem;
-	text-align: left;
-	color: var(--highlight-color);
-	/* padding: 0.2rem 1rem; */
-}
-
-.small {
-	font-size: 1.5rem;
-}
-
-.loc-classification {
-	text-transform: uppercase;
-	padding-right: 3rem;
-}
-
-/* color for different search category */
-.country {
-	background-color: var(--highlight-color);
-}
-.national {
-	background-color: var(--secondary-color-alt);
-}
-.region {
-	background-color: var(--secondary-color);
-}
-.city {
-	background-color: var(--lighter-color);
-}
