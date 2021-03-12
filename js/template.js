@@ -1,3 +1,15 @@
+//GLOBAL VARIABLES
+//Acces Token and Id for API Request
+const api_token = '9j6492j7wd3qjvppyb8hj2og788veo72';
+const account_id = 'BSOO2T1I';
+
+//GLOBAL VARIABLE TO FETCH / SAVE DATA AND SHOW MODAL
+let currentLocation;
+let currentPointofInterest;
+let poiCount;
+let poiRes;
+
+// Instantiate CreateDomElement
 const crEl = new CreateDomElement();
 
 const locationTemplate = (input) => {
@@ -11,7 +23,7 @@ const locationTemplate = (input) => {
 	const singleWrap = crEl.createItem('div', 'single-wrap');
 
 	//#2.1 Catergory Item
-	const singleCategory = crEl.createItem('h1', 'single-category');
+	const singleCategory = crEl.createItem('h1', 'single-category font-l');
 	singleCategory.innerText = `${removeChars(currentLocation.type).toString()}`;
 
 	//#2.2 Headline Text Wrap Item
@@ -33,15 +45,13 @@ const locationTemplate = (input) => {
 	//#2.2.2 Description Info Item
 	const singleDesc = crEl.createItem('div', 'single-desc');
 	singleDesc.innerText = `${input.intro}`;
-	// const singleDL = crEl.createLink(
-	// 	'a',
-	// 	`https://maps.google.com/maps/embed/v1/place?key=AIzaSyA9h2yTUJQGROM9gtphNHPIt-TVXF9a4mg&q=${currentLocation
-	// 		.coordinates.latitude},${currentLocation.coordinates.longitude}`,
-	// 	`${input.intro}`
-	// );
-	// singleDesc.appendChild(singleDL);
+
+	//append Child Elements
 	singleText.appendChild(singleHeadline);
 	singleText.appendChild(singleDesc);
+	singleWrap.appendChild(singleCategory);
+	singleWrap.appendChild(singleText);
+	single.appendChild(singleWrap);
 
 	//2.2.3 Save Location Button (if Traveller logged in)
 	if (crEl.addButton()) {
@@ -56,10 +66,6 @@ const locationTemplate = (input) => {
 		div.appendChild(btn);
 		singleText.appendChild(div);
 	}
-
-	singleWrap.appendChild(singleCategory);
-	singleWrap.appendChild(singleText);
-	single.appendChild(singleWrap);
 
 	//Adds Background Color depending on Result of Category-Type
 	displayLocType(singleCategory, singleWrap);
@@ -114,12 +120,12 @@ const poiTemplate = (value) => {
 	const itemDescInner = document.createElement('div');
 	itemDescInner.innerHTML = `${value.intro}`;
 
+	//append child elements
 	itLinkDiv.appendChild(itLink);
 	itLinkDiv.appendChild(itemMap);
 	itemDesc.appendChild(itLinkDiv);
 	itemDesc.appendChild(itemDescInner);
 
-	//appends child elements
 	itWrap.appendChild(itTitle);
 	itWrap.appendChild(itCategory);
 	itemText.appendChild(itWrap);
@@ -132,7 +138,7 @@ const poiTemplate = (value) => {
 		const div = document.createElement('div');
 		const btn = crEl.createBtn(
 			'button',
-			'btn btn-highlight mx-1',
+			'btn btn-highlight m-1',
 			`poiSubmit${poiCount}`,
 			`poiSubmit${poiCount}`,
 			'Save Point of Interest'
@@ -146,10 +152,10 @@ const poiTemplate = (value) => {
 	if (itCategory.innerText.toLowerCase() === 'person') {
 		itCategory.innerText = 'Sightseeing';
 	}
-
 	return item;
 };
 
+//Checks if Key-Value exists in Request
 function infoLinkValue(currentItem) {
 	let keyValReplacement;
 	if (currentItem) {

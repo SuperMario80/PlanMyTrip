@@ -1,6 +1,6 @@
+/* STYLING FOOTER ALWAYS STAYS AT BOTTOM OF PAGE */
 #page-container {
-	min-height: calc(100vh - 13vh);
-	margin-bottom: 2vh;
+	min-height: calc(100vh - 11vh);
 }
 
 /* NAVBAR */
@@ -47,7 +47,7 @@
 /* SHOWCASE */
 #showcase {
 	background: var(--dark-color) url('../img/showcase.jpg') no-repeat center center/cover;
-	height: 65.5vh;
+	height: 77vh;
 	color: var(--primary-color);
 }
 
@@ -62,6 +62,7 @@
 	background-color: rgba(0, 0, 0, 0.4);
 }
 
+/* FOOTER */
 #footer {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -71,13 +72,12 @@
 #footer-wrapper a {
 	color: var(--lighter-color);
 	padding: 0 .2rem;
-	/* margin: 0 .3rem; */
 }
 
-/* SHOWS LOCATION IN SEARCH AND LOCATIONS + POINTS OF INTEREST IN TRAVELLER AREA */
+/* SINGLE */
+/* SHOWS SINGLE ROW TEMPLATE IN SEARCH RESULTS AND SHOWMYTRIP */
 .single {
 	border-radius: .45rem;
-	/* margin-bottom: 1rem; */
 	box-shadow: 0 2px 8px rgba(0, 0, 0, .38);
 	overflow: hidden;
 }
@@ -88,11 +88,9 @@
 }
 
 .single-category {
-	/* margin-top: 3rem; */
 	text-transform: uppercase;
 	text-align: center;
 	align-self: flex-start;
-	font-size: 3rem;
 	color: var(--primary-color);
 	padding: 1rem;
 }
@@ -105,15 +103,12 @@
 	margin-top: 3rem;
 }
 
-/* pointsOfInterest in Traveller Area */
+/* CLASS FOR PointsOfInterest in SHOWMYTRIP */
 .single-wrap.poi {
 	display: grid;
 	grid-template-columns: 7fr 2fr;
 	background-color: var(--dark-color-alt);
 	color: var(--secondary-color);
-}
-.sight-color {
-	background-color: var(--alternative-color);
 }
 
 .single-headline {
@@ -126,12 +121,44 @@
 	padding: 0 1rem;
 }
 
+/* SHOWMYTRIP */
+.single-headline div {
+	display: grid;
+	grid-template-columns: 3fr auto;
+	align-items: center;
+}
+/* SHOWMYTRIP */
+.alt-color a {
+	color: var(--secondary-color);
+	font-size: 1.3rem;
+}
+
 .single-desc {
 	padding: 1rem;
 	overflow: hidden;
 }
 
-/* color for different search category */
+/* SHOWMYTRIP */
+.saved-data {
+	display: grid;
+	grid-template-rows: 5fr 2fr;
+}
+
+.loc-info {
+	text-align: left;
+	height: auto;
+}
+
+.loc-notes {
+	text-align: left;
+	font-weight: 800;
+	padding: 1rem 0;
+	color: var(--secondary-color-alt);
+	border-top: solid .0625rem var(--secondary-color-alt);
+	height: auto;
+}
+
+/* Color for each Location-Category */
 .country {
 	background-color: var(--highlight-color);
 }
@@ -145,39 +172,9 @@
 	background-color: var(--lighter-color);
 }
 
-.single-text.btn {
-	align-self: flex-start;
-}
-/* location myLocationList */
-.single-headline div {
-	display: grid;
-	grid-template-columns: 3fr auto;
-	align-items: center;
-}
-
-.alt-color a {
-	color: var(--secondary-color);
-	font-size: 1.3rem;
-}
-
-/* Hover Styling for saved Location and POI */
+/* Hover Styling in SHOWMYTRIP*/
 .single-title a:hover {
 	opacity: 0.7;
-}
-
-/* .single-desc a {
-	font-size: 1rem;
-	text-align: left;
-	color: var(--highlight-color);
-} */
-/* displays POI in ShowMyTrip */
-.saved-data {
-	display: grid;
-	grid-template-rows: 5fr 2fr;
-}
-
-.small {
-	font-size: 1.5rem;
 }
 
 .loc-classification {
@@ -185,8 +182,9 @@
 	padding-right: 3rem;
 }
 
-/* POINTS OF INTEREST SEARCH RESULTS */
-/* item properties for Points Of Interest */
+/* ITEMS */
+/* POINT OF INTEREST SEARCH RESULTS */
+/* Item properties for multiple Elements in Row*/
 .items {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -249,7 +247,6 @@
 	font-size: 0.9rem;
 	color: var(--lighter-color);
 	font-weight: bold;
-
 	margin: 0;
 }
 
@@ -285,20 +282,3 @@
 	text-decoration: underline;
 	cursor: pointer;
 }
-
-.loc-info {
-	text-align: left;
-	height: auto;
-}
-.loc-notes {
-	text-align: left;
-	font-weight: 800;
-	padding: 1rem 0;
-	color: var(--secondary-color-alt);
-	border-top: solid .0625rem var(--secondary-color-alt);
-	height: auto;
-}
-
-/* .saved {
-	background-color: var(--secondary-color);
-} */

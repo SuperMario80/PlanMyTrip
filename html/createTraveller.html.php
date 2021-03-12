@@ -1,4 +1,6 @@
-<!-- </div> -->
+<?php
+//    TEMPLATE TO CREATE NEW OR UPDATE EXISTING TRAVELLER
+?>
 
 <div class="headersection">
     <h1><?=htmlSpecialChars($headline)?></h1>
@@ -40,9 +42,4 @@
             <button class="btn btn-dark mx-1" name="save" value="1" >Save</button>
 
         </div>
-        <!-- <button class="btn btn-dark" name="delete" value="2" >Delete without Confirmation</button> -->
     </form>
-    
-
-
- <!-- <input type="text" name="id" placeholder="Id" value="<htmlSpecialChars$traveller->getId" readonly><br> -->

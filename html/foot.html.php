@@ -3,12 +3,12 @@
       </div>
     </div>
   </div>
-    <footer id="footer" class="lead py-2 text-center bg-light">
+    <footer id="footer" class="py-2 text-center bg-light">
       <div></div>
-      <div>PlanMyTrip &copy;</div>
+      <div class="font-s bold">PlanMyTrip &copy;</div>
       <div id="footer-wrapper">
         <a href="https://www.facebook.com" target="_blank">
-            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-facebook-square"></i>
         </a>
         <a href="https://www.instagram.com" target="_blank">
             <i class="fab fa-instagram"></i>
@@ -26,11 +26,11 @@
     </footer>
       
     <script src="js/utils.js?<?php echo time(); ?>"></script>
-    <script src="js/autocomplete.js?<?php echo time(); ?>"></script>
     <script src="js/template.js?<?php echo time(); ?>"></script>
+    <script src="js/autocomplete.js?<?php echo time(); ?>"></script>
     <script src="js/fetchData.js?<?php echo time(); ?>"></script>
-    <script src="js/postData.js?<?php echo time(); ?>"></script>
     <script src="js/myModal.js?<?php echo time(); ?>"></script>
+    <script src="js/postData.js?<?php echo time(); ?>"></script>
     <script src="js/myList.js?<?php echo time(); ?>"></script>
   </body>
 </html>

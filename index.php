@@ -19,7 +19,6 @@ class IndexPage extends Page {
         
     protected function viewContent(): void {
         
-        include 'html/modal.html.php';
         $message = $_SESSION['message'] ?? '';
         include 'html/searchMyTrip.html.php';
      

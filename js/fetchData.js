@@ -1,27 +1,21 @@
-//GLOBAL VARIABLES
-
-const api_token = '9j6492j7wd3qjvppyb8hj2og788veo72';
-const account_id = 'BSOO2T1I';
-
-let currentLocation;
-let currentPointofInterest;
-let poiCount;
-let poiRes;
+//CALLS AUTOCOMPLETE DROPDOWN MENU AND DISPLAYS SEARCH RESULTS VIA DYNAMIC HTML TEMPLATES
 
 createAutoComplete({
 	root: document.querySelector('.autocomplete'),
 	renderOption(location) {
 		return `
-		<div>${location.name}      (${removeChars(location.type.toString())},    ${removeChars(
+		<div>${location.name} (${removeChars(location.type.toString())},  ${removeChars(
 			location.country_id.toString()
 		)})</div>
 		`;
 	},
 	onOptionSelect(location) {
+		//calls Templates and displays Results from Location Id
 		onLocationSelect(location);
 		showModal();
 	},
 	inputValue(location) {
+		//returns Location Id from Dropdown Selection
 		return location.id;
 	},
 
@@ -37,6 +31,9 @@ createAutoComplete({
 
 //STARTS ASYNC HTTP REQUEST WITH FETCH
 let onLocationSelect = async (location) => {
+	const summary = document.querySelector('#summary');
+	const showcase = document.querySelector('#showcase');
+
 	// WAITS FOR LOCATION REQUEST (CHOSEN IN DROPDOWN)
 	let response = await fetch(
 		`https://www.triposo.com/api/20201111/location.json?id=${location.id}&fields=all&account=${account_id}&token=${api_token}`
@@ -44,11 +41,14 @@ let onLocationSelect = async (location) => {
 	let res = await response.json();
 
 	//CLEARS RESULTS TEMPLATE (WHEN NEW REQUEST IS EXECUTED)
-	document.querySelector('#summary').innerHTML = '';
+	summary.innerHTML = '';
 	currentLocation = res.results[0];
 
 	//APPEND HTML TEMPLATE AFTER FETCH RESPONSE
-	document.querySelector('#summary').append(locationTemplate(currentLocation));
+	summary.append(locationTemplate(currentLocation));
+	//Change Style for Search Results
+	summary.classList.add('my-3');
+	showcase.style.height = '43vh';
 
 	// WAITS FOR 20 BEST POINT OF INTEREST REQUEST (FIRST 20 POI's BASED ON CUSTOMER RATING)
 	let poiResponse = await fetch(
@@ -68,50 +68,3 @@ let onLocationSelect = async (location) => {
 		console.log(TypeError(e).message);
 	}
 };
-
-// // #1 save as array in LocalStorage
-// function getLocation() {
-// 	if (localStorage.getItem('places') === null) {
-// 		places = [];
-// 	} else {
-// 		places = JSON.parse(localStorage.getItem('places'));
-// 	}
-
-// 	return places;
-// }
-
-// //#3 display book in UI / HTML
-// function displayLocation() {
-// 	const places = getLocation();
-
-// 	// places.forEach(function(place) {
-// 	onLocationSelect(places);
-// 	// return place;
-// 	// });
-// 	// return places;
-// }
-// //#2 add Book to Local Storage
-// function addPlace(place) {
-// 	const places = getLocation();
-
-// 	places.push(place);
-
-// 	localStorage.setItem('places', JSON.stringify(places));
-// 	// return places;
-// }
-// // #4 remove Book from LocalStorage
-// function removeLocation() {
-// 	const places = getLocation();
-
-// 	places.forEach(function(place) {
-// 		console.log(place);
-
-// 		// if (places != []) {
-// 		// places = [];
-// 		// if (places) {
-// 		places.splice(place, 1);
-// 		// }
-// 	});
-// 	localStorage.setItem('places', JSON.stringify(places));
-// 	// }
-// }

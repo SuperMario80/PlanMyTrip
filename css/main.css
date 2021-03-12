@@ -1,257 +1,200 @@
-:root {
-	--primary-color: #ffff;
-	--secondary-color: #31363f;
-	--secondary-color-alt: #444;
-	--lighter-color: #636c7e;
-	--lighter-color-alt: #555;
-	--dark-color: rgba(0, 0, 0, .87);
-	--dark-color-alt: #666;
-	--highlight-color: #f25621;
-	--bg-sec-color: #fef0ec;
-	--alternative-color: #2767e7;
-	--max-width: 1100px;
-}
-
-/* UTILITY AND UTILITY CLASSES */
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-
-body,
-textarea {
-	font-family: Helvetica, sans-serif;
-}
-
-a {
-	text-decoration: none;
-	color: var(--primary-color);
-}
-
-li {
-	list-style: none;
-}
-
-input,
-textarea {
-	background-color: var(--primary-color);
-	border: 1px solid #bbb;
-	box-shadow: inset 0 1px 2px rgb(0 0 0 / 10%);
-	height: 2.3125rem;
-	margin: 0.3rem 0 1.5rem 0;
-	width: 100%;
-	padding: .5rem;
-	font-size: .8rem;
-	border-radius: 3px !important;
-}
-
-textarea {
-	height: 117px;
-	white-space: pre-wrap;
-	overflow-wrap: break-word;
-	column-count: initial !important;
-}
-
-.container {
-	max-width: 1100px;
-	margin: auto;
-	overflow: hidden;
-}
-
-.bg-primary {
-	background: var(--primary-color) !important;
-	color: var(--secondary-color);
-}
-
-.bg-secondary {
-	background: var(--secondary-color) !important;
-	color: var(--bg-sec-color);
-}
-.bg-light {
-	color: var(--secondary-color) !important;
-	background: var(--bg-sec-color) !important;
-}
-
-.bg-highlight {
-	background: var(--highlight-color) !important;
-	color: var(--primary-color);
-}
-
-.l-heading {
-	font-size: 4rem;
-	margin-bottom: 0.75rem;
-	line-height: 1.1;
-}
-
-.m-heading {
-	font-size: 2rem;
-	margin-bottom: 0.75rem;
-	line-height: 1.1;
-}
-
-/* TODO */
-/* .s-heading {
-	color: var(--highlight-color);
-	font-size: 0.8rem;
-	margin-bottom: -2rem;
-	padding-top: 2rem;
-	line-height: .8;
-} */
-
-.lead {
-	font-size: 1.3rem;
-	/* margin-bottom: 2rem; */
-}
-
-.text-center {
-	text-align: center;
-}
-.text-left {
-	text-align: left;
-}
-.text-right {
-	text-align: right;
-}
-
-.py-0 {
-	padding: 0.5rem 0;
-}
-.py-1 {
-	padding: 1rem 0;
-}
-.py-1-5 {
-	padding: 1.5rem 0;
-}
-.py-2 {
-	padding: 2rem 0;
-}
-.py-3 {
-	padding: 3rem 0;
-}
-
-.p-0 {
-	padding: 0.5rem;
-}
-.p-1 {
-	padding: 1.5rem;
-}
-.p-2 {
-	padding: 2rem;
-}
-.p-3 {
-	padding: 3rem;
-}
-
-/* .px-1 {
-	padding: 0 1rem;
-} */
-
-.my-0 {
-	margin: 0.5rem 0;
-}
-.my-1 {
-	margin: 1.5rem 0;
-}
-.my-2 {
-	margin: 2rem 0;
-}
-.my-3 {
-	margin: 3rem 0;
-}
-.my-4 {
-	margin: 4rem 0;
-}
-
-.mx-0 {
-	margin: 0.2rem .7rem;
-}
-.mx-1 {
-	margin: 1rem .5rem;
-}
-.mx-2 {
-	margin: 1.5rem 1rem;
-}
-/* TODO */
-.mb-1 {
-	margin-bottom: 1rem;
-}
-.mb-2 {
-	margin-bottom: 2rem;
-}
-.mb-3 {
-	margin-bottom: 3rem;
-}
-
-.btn {
-	display: inline-block;
-	font-weight: bold;
-	color: var(--primary-color);
-	background: var(--secondary-color-alt);
-	padding: 0.4rem 1.5rem;
-	/* margin: 1rem .5rem; */
-	border: none;
-	border-radius: .25rem;
-}
-
-.btn:hover {
-	opacity: 0.7;
-}
-
-.btn-block {
-	display: block;
-	font-weight: bold;
-	width: 100%;
-	font-size: 1.2rem;
-	padding: 0.8rem;
-	border: none;
-	border-radius: .25rem;
-}
-
-.btn-block:hover {
-	opacity: 0.5;
-}
-
-.btn-dark {
-	background: var(--dark-color);
-	color: var(--primary-color);
-}
-
-.btn-highlight {
-	background: var(--highlight-color);
-}
-.btn-secondary {
-	background: var(--primary-color);
-	color: var(--dark-color-alt);
-}
-
-.btn.large {
-	font-size: 1rem;
-
-	padding: .7rem 1rem;
-}
-
-.btn.x-large {
-	font-size: 1.7rem;
-	/* letter-spacing: 0.7; */
-	padding: 1rem 3rem;
-}
-
-.button-area {
-	text-align: right;
+/* DROPDOWN MENUE */
+/* property of Dropdown-Menue */
+.input,
+.textarea {
 	align-items: center;
+	border: 1px solid transparent;
+	border-radius: 8px;
+	box-shadow: none;
+	display: inline-flex;
+	font-size: 1rem;
+	height: 2.5em;
+	justify-content: flex-start;
+	opacity: 0.9;
+	padding: 1rem;
+	position: relative;
+	vertical-align: top;
 }
 
-.btn:disabled {
-	background: var(--primary-color);
+.dropdown {
+	display: flex;
+	position: relative;
+}
+
+.dropdown.is-active .dropdown-menu,
+.dropdown.is-hoverable:hover .dropdown-menu {
+	display: block;
+}
+
+.dropdown-menu {
+	display: none;
+	left: 10;
+	min-width: 12rem;
+	padding-top: 4px;
+	position: absolute;
+	top: 100%;
+}
+
+.dropdown-content {
+	background-color: var(--primary-color);
+	border-radius: 4px;
+	box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+	padding-bottom: 0.5rem;
+	padding-top: 0.5rem;
+}
+
+.dropdown-item {
+	color: var(--secondary-color);
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.5;
+	padding: 0.375rem 1rem;
+	position: relative;
+	text-transform: capitalize;
+}
+
+a.dropdown-item,
+button.dropdown-item {
+	padding-right: 3rem;
+	text-align: start;
+	white-space: nowrap;
+	width: 100%;
+}
+
+a.dropdown-item:hover,
+button.dropdown-item:hover {
+	background-color: var(--primary-color);
+	color: var(--dark-color);
+	cursor: pointer;
+}
+
+a.dropdown-item.is-active,
+button.dropdown-item.is-active {
+	background-color: var(--secondary-color);
+	color: var(--primary-color);
+}
+
+.is-hidden {
+	display: none !important;
+}
+
+/* FORM STYLING */
+/* form to Create Update and Delete Traveller / Location / POI*/
+.greybox {
+	border: 1px solid #eaeaea;
+	background-color: #f4f4f4;
+	padding: .5rem;
+	border-radius: 3px;
+	display: block;
+}
+
+.greybox ul {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.greybox ul li {
+	display: grid;
+	grid-template-rows: auto auto;
+	margin: 0 1rem;
+}
+
+/* Header for CRUD items */
+.headersection {
+	align-items: center;
+	background-color: var(--secondary-color-alt);
+	border-top: solid 2rem var(--lighter-color-alt);
+	margin-bottom: 2rem;
+	padding: 1.5rem;
+	color: var(--primary-color);
+	text-align: center;
+	font-weight: 900;
+}
+
+.headersection.myList {
+	display: grid;
+	grid-template-columns: 1fr 4fr 1fr;
+}
+
+/* login form area */
+.loginBox {
+	background-color: #f4f4f4;
+	padding: .5rem;
+	display: block;
+}
+
+.loginBox ul li {
+	margin: 1rem;
+}
+.loginBox ul {
+	display: grid;
+	grid-template-columns: 2fr 2fr 1fr 1fr;
+}
+
+.loginBox input {
+	padding: 0.4rem 1.5rem;
+	margin: 0 .5rem;
+}
+
+/* GOOGLE MAPS MODAL */
+.modal {
+	background-color: rgba(0, 0, 0, 0.4); /* Transparent dimmed overlay */
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: table;
+	z-index: 1;
+}
+
+.modal.hidden,
+.hidden {
+	display: none;
+}
+
+.modal .summary {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	width: 20rem;
+}
+
+.modal .modal-body {
+	box-shadow: 5px 10px #888888;
+	display: inline-block;
+	background-color: white;
+	border: 1px solid black;
+	padding: 10px;
+}
+
+/* STYLING TO EXPAND AND COLAPSE LIST IN SAVEMYTRIP*/
+.collapsible {
+	display: flex;
+	flex-direction: row;
+	gap: 2rem;
+	align-items: center;
+	text-transform: capitalize;
+	background-color: var(--bg-sec-color);
+	color: var(--secondary-color);
+	border-radius: .25rem;
+	word-spacing: .3rem;
+	padding: .8rem 1rem;
+	font-weight: 700;
+	border: none;
+	text-align: left;
+	font-size: 1.4rem;
+}
+
+.open,
+.collapsible:hover {
+	background-color: var(--secondary-color-alt);
 	color: var(--bg-sec-color);
+	cursor: pointer;
 }
 
-.noHover {
-	pointer-events: none;
-}
-
-.border-bottom {
-	margin: 5rem 0 9rem 0;
-	border-bottom: 2px solid #ccc;
+.collapsible:after {
+	border: none;
+	float: left;
+	margin-left: 5px;
 }

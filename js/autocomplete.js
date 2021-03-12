@@ -32,9 +32,12 @@ const createAutoComplete = ({ root, renderOption, onOptionSelect, inputValue, fe
 				const option = document.createElement('a');
 				option.classList.add('dropdown-item');
 				option.innerHTML = renderOption(item);
+				//Click Event for selected Dropdown Result
 				option.addEventListener('click', () => {
 					dropdown.classList.remove('is-active');
+					//gets selected Input Result Value
 					input.value = inputValue(item);
+					//starts new Request and displays Result
 					onOptionSelect(item);
 				});
 

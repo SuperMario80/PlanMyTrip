@@ -52,7 +52,6 @@ class crudLocationPage extends Page {
         
         $message = $this->message;
         $location = $this->location;
-        // include 'html/showcase.html.php';
         include 'html/createLocation.html.php';
 
     }
@@ -60,28 +59,34 @@ class crudLocationPage extends Page {
     
     // SAVES CREATED OR UPDATED LOCATION IN DATABASE
     private function save() {
-        
+
+        //Variable to check for Duplicates
+        $duplicate = $this->locationDao->findDuplicate($this->location->getIdTraveller(), $this->location->getLocation(), $this->location->getClassification());
+
         $this->readFormData();
 
-        $duplicate = $this->locationDao->findDuplicate($this->location->getIdTraveller(), $this->location->getLocation(), $this->location->getClassification());
         
         if($this->location->getLocation() == NULL  || $this->location->getClassification() == NULL){
+
             $this->message = 'Please fill out ALL required Fields'; 
             
         }else {
-     
+            //creates new Location 
             if ($this->location->getId() == 0) {
+
                 if($duplicate == NULL){
+
                     if($this->locationDao->create($this->location)){
-                        printData($this->location->getLocation());
-                        printData($this->location->getClassification());
+
                         $this->message = 'New Location created';
                         header('Refresh:2; url=travellerArea.php');
                     }
                 }else{
+
                     $this->message = 'Location already exists';
                 }
             }else {
+                //updates Location
                 if($this->locationDao->update($this->location)){
                     
                     $this->message = 'Location Updated';
@@ -91,20 +96,22 @@ class crudLocationPage extends Page {
         }
     }
 
-
     // DELETES EXISTING LOCATION
     private function delete() {
         $this->readFormData();
-        //TODO double confirm 'Delete Location'
+    
         if ($this->locationDao->delete($this->location)) {
+
             $this->message = 'Location removed';
             $this->location = new Location();
             header('Refresh:1; url=travellerArea.php');
+
         } else {
+
             $this->message = 'Location NOT Removed';
         }
     }
-    // READS FORM DATA VALUES FROM "html/createLocation.html.php" FILE VIA $_POST['arrayName']  IS SAME NAME LIKE IN  <input name ="arrayName"...>
+    // READS FORM DATA VALUES
     private function readFormData() {
         $this->location->setIdTraveller(intval($_POST['idTraveller']));
         $this->location->setLocation($_POST['location']);

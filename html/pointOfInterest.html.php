@@ -1,12 +1,12 @@
- 
+<?php
+//    TEMPLATE FOR ALL SAVED POINTS OF INTEREST
+?>
 <div class="hidden mb-3">
-  <div class="">
-    <h3 class="my-0 text-center">
-          Points Of Interest
-        </h3>
+  <div>
+    <h3 class="my-0 text-center">Points Of Interest
+    </h3>
     <form method="post">
 
-            
       <?php foreach ($selectedPoi as $poi) : ?>  
       <div class="single mb-1">
             <div class="single-wrap poi">
@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="single-category small">
-              <h4  ><?= htmlSpecialChars($poi->getAttraction()) ?>
+              <h4 class="font-s my-2" ><?= htmlSpecialChars($poi->getAttraction()) ?>
               </h4>
             <button class="btn" name="updatePoi" value="<?= $poi->getId() ?>" >
               <span class="p-0">

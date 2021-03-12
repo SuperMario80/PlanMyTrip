@@ -1,65 +1,69 @@
 //GOOGLE MAPS MODAL FOR ALL POINTS OF INTEREST
 
-//GLOBAL VARIABLE
-const modal = document.querySelector('.modal');
-
 //MODAL FOR SEARCH RESULTS
 function showModal() {
 	const savePoi = document.querySelector('#poi');
 	savePoi.addEventListener('click', function(e) {
+		//Acces Key for Google Maps Request
 		const mapKey = 'AIzaSyA9h2yTUJQGROM9gtphNHPIt-TVXF9a4mg&q';
-		const modalVal = e.target.getAttribute('data-modal');
 
+		const modalVal = e.target.getAttribute('data-modal');
 		currentPointofInterest = poiRes.results[modalVal];
 
 		if (e.target.hasAttribute('data-modal')) {
-			modal.classList.remove('hidden');
-			let iframeMod = document.querySelector('.iframeMod');
-			iframeMod.setAttribute(
-				'src',
+			createModal(
+				'#summary',
 				`https://maps.google.com/maps/embed/v1/place?key=${mapKey}=${currentPointofInterest.coordinates
 					.latitude},${currentPointofInterest.coordinates.longitude}&zoom=14`
 			);
 		}
-		hideModal();
 	});
 }
 
-//MODAL FOR SAVED DATA
+//MODAL FOR SAVED DATA IN SHOWMYTRIP
 function showSavedModal() {
 	const savedItemMap = document.querySelectorAll('.savedItemMap');
 	const myModalLink = document.querySelectorAll('.myModalLink');
 	for (let i = 0; i < savedItemMap.length; i++) {
-		savedItemMap[i].addEventListener(
-			'click',
-			// clickModal('data-poi', `${myModalLink[i].innerText}`));
-			function(e) {
-				if (e.target.hasAttribute('data-poi')) {
-					modal.classList.remove('hidden');
-					let iframeMod = document.querySelector('.iframeMod');
-
-					iframeMod.setAttribute('src', `${myModalLink[i].innerText}`);
-				}
-				hideModal();
-			}
-		);
+		savedItemMap[i].addEventListener('click', function() {
+			createModal('.myList', `${myModalLink[i].innerText}`);
+		});
 	}
 }
 
-// function clickModal(dataAttr, modalLink) {
-// 	if (e.target.hasAttribute(dataAttr)) {
-// 		modal.classList.remove('hidden');
-// 		let iframeMod = document.querySelector('.iframeMod');
+function createModal(appendModal, googleMap) {
+	//TARGETS DOM ELEMENT WHERE MODAL GETS IMPLEMENTED
+	const showModal = document.querySelector(appendModal);
 
-// 		iframeMod.setAttribute('src', modalLink);
-// 	}
-// }
+	//#1 Creates Modal
+	const modal = crEl.createItem('div', 'modal');
+	modal.id = 'myModal';
+	//#1.1
+	const sum = crEl.createItem('div', 'summary');
+	//#1.1.1
+	const modalBody = crEl.createItem('div', 'modal-body');
+	//#1.1.1.1
+	const iframeMod = crEl.createItem('iframe', 'iframeMod');
+	iframeMod.setAttribute('width', '900vw');
+	iframeMod.setAttribute('height', '550vw');
+	iframeMod.setAttribute('frameborder', '2');
+	iframeMod.setAttribute('style', 'border:0');
+	iframeMod.setAttribute('allowfullscreen', '');
+	iframeMod.setAttribute('src', googleMap);
 
-function hideModal() {
-	const sum = modal.querySelector('.summary');
+	//append Child Elements
+	modal.appendChild(sum);
+	sum.appendChild(modalBody);
+	modalBody.appendChild(iframeMod);
+	showModal.append(modal);
+
+	hideModal(modal);
+}
+
+function hideModal(modal) {
+	const modalSum = modal.querySelector('.summary');
 	modal.addEventListener('click', function(e) {
-		if (e.target !== modal && e.target !== sum) return;
-		// modalBody.innerHTML = '';
+		if (e.target !== modal && e.target !== modalSum) return;
 		modal.classList.add('hidden');
 	});
 }

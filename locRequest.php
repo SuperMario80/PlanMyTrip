@@ -26,14 +26,12 @@ class locRequestPage extends Page {
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
-                //RECEIVE THE RAW POST DATA FROM app.js
+                //RECEIVE THE RAW POST DATA FROM postData.js
                 $content = file_get_contents('php://input');
                 //Decode the incoming RAW post data from JSON
                 $locData = json_decode($content, true);
-                // $locData=  preg_replace('/_/', ' ', $locData);
                 //SAVING POST DATA IN VARIABLES
                 $this->location = new Location();
-
 
                 //gets Id from logged in Traveller
                 $this->location->setIdTraveller($this->getTraveller()->getId());
@@ -47,18 +45,22 @@ class locRequestPage extends Page {
 
                 // Variable for LocationKey+IdTraveller
                 $l = $this->locationDao->findLocation($this->location->getLocationKey(),$this->location->getIdTraveller());
-               
+                
+               //checks if Location already exists
                 if($l == NULL){ 
                     if($this->locationDao->create($this->location)){
+
                         echo '{"statusText":"OK"}';
                     }
                 }else{
+
                     $this->location = $l;
                     echo '{"statusText":"Error"}';
                 }
             } 
             
         }catch (Exception $e){
+
             echo '{"statusText":"Server out of reach"}';
             $e->getMessage();
         }

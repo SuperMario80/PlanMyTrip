@@ -9,8 +9,6 @@ class PointOfInterestDao extends GenericDao {
     private $findPoiStatement;
     private $findDuplicateStatement;
 
-    // private $readForKeyStatement;
-
     function __construct() {
         parent::__construct('pointofinterest', 'PointOfInterest');
     }
@@ -35,12 +33,11 @@ class PointOfInterestDao extends GenericDao {
     }
 
     protected function getUpdateSql(): string {
-        return 'UPDATE `' . $this->getTableName() . '` SET `poiName`=:poiName, `city`=:city, `attraction`=:attraction, `intro`=:intro, `infoLink`=:infoLink, `poiMap`=:poiMap, `notes`=:notes WHERE `id`=:id';
+        return 'UPDATE `' . $this->getTableName() . '` SET `city`=:city, `attraction`=:attraction, `intro`=:intro, `infoLink`=:infoLink, `poiMap`=:poiMap, `notes`=:notes WHERE `id`=:id';
     }
 
     protected function getUpdateArray(object $poi): array {
         return [
-            ':poiName' => $poi->getPoiName(),
             ':city' => $poi->getCity(),
             ':attraction' => $poi->getAttraction(),
             ':intro' => $poi->getIntro(),
@@ -51,12 +48,13 @@ class PointOfInterestDao extends GenericDao {
         ];
     }
 
+    //SQL STATEMENT TO GET FOREIGN KEY VALUES
     protected function getForKeySql(): string{
         return 'SELECT * FROM `' . $this->getTableName() . '` WHERE `idLocation`=:idValue ORDER BY  `attraction`, `poiName`';
     }
 
-
-     public function findPoi(string $poiName, int $idLocation, string $locationKey, ): ?object {
+     //CHECK IF POI ALREADY EXISTS (WHEN TRAVELLER SAVES POI SEARCH RESULTS)
+     public function findPoi(string $poiName, int $idLocation, string $locationKey): ?object {
         
 
         if ($this->findPoiStatement == null) {
@@ -78,10 +76,9 @@ class PointOfInterestDao extends GenericDao {
     
     }
 
-
+    //CHECK IF POI ALREADY EXISTS (WHEN TRAVELLER CREATES OWN POI)
     public function findDuplicate(int $idLocation, string $poiName): ?object {
         
-
         if ($this->findDuplicateStatement == null) {
             $sql = 'SELECT * FROM `' . $this->getTableName() . '` WHERE `idLocation`=:idLocation AND `poiName`=:poiName';
             //PREPARES SQL  STATEMENT
@@ -97,7 +94,6 @@ class PointOfInterestDao extends GenericDao {
 
         $dto = $this->findDuplicateStatement->fetchObject($this->getClassName());
         return $dto ? $dto : null;
-
     }
 
 }

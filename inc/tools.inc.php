@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-
+//PRINTS DATA FOR DEBUGGING
 function printData($data, $varDump = false) {
     echo '<pre>';
     if ($varDump) {
@@ -13,11 +13,7 @@ function printData($data, $varDump = false) {
 }
 
 
-// 
-// Zentraler Autoload-Mechanismus für das gesamte Projekt
-// 
-
-
+// CENTRAL AUTOLOADER FOR WHOLE PROJECT
 function myOwnAutoloader($classname) {
     $classfile = "classes/$classname.class.php";
     if (file_exists($classfile)) {

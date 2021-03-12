@@ -24,11 +24,11 @@ class crudPoiPage extends Page {
         $id = intVal($_GET['id'] ?? 0);
         $this->pointOfInterestDao = new PointOfInterestDao();
         $this->poi = $this->pointOfInterestDao->readOne($id);
+
         if ($this->poi == null) {
             $this->poi = new PointOfInterest();
             $this->poi->setIdLocation(intVal($_GET['idLoc']));
         }
-        
         
         if (isSet($_POST['savePoi'])) {
             $this->savePoi();
@@ -43,26 +43,37 @@ class crudPoiPage extends Page {
         $poi = $this->poi;
         include 'html/createPoi.html.php';
     }
-    
+
+    // SAVES CREATED OR UPDATED POI IN DATABASE
     private function savePoi() {
+        //Variable to check for Duplicates
+        $duplicate = $this->pointOfInterestDao->findDuplicate($this->poi->getIdLocation(), $this->poi->getPoiName());
 
         $this->readFormData();
 
         if($this->poi->getPoiName() == NULL){
+
             $this->message = 'Please fill out ALL required Fields';
+
         }else{
-            $duplicate = $this->pointOfInterestDao->findDuplicate($this->poi->getIdLocation(), $this->poi->getPoiName());
+            //creates new POI 
             if ($this->poi->getId() == 0) {
+
                 if($duplicate == NULL){
+
                     if($this->pointOfInterestDao->create($this->poi)){
+
                         $this->message = 'New Point Of Interest created';
                         header('Refresh:2; url=travellerArea.php');
                     }
                 }else {
+
                     $this->message = 'Point Of Interest already exists';
                 }
             }else{
+                //updates POI
                 if($this->pointOfInterestDao->update($this->poi)){
+
                     $this->message = 'PointOfInterest Updated';
                     header('Refresh:2; url=travellerArea.php');
                 }
@@ -71,16 +82,17 @@ class crudPoiPage extends Page {
     }
 
 
-
     private function deletePoi() {
         $this->readFormData();
         
         if ($this->pointOfInterestDao->delete($this->poi)) {
+
             $this->message = 'Point Of Interest Removed';
             $this->poi = new PointOfInterest();
             header('Refresh:1; url=travellerArea.php');
  
         } else {
+
             $this->message = 'Point Of Interest NOT Removed';
         }
     }

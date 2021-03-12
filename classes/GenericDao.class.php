@@ -61,10 +61,9 @@ abstract class GenericDao {
         return $dto ? $dto : null;
     }
 
-    // READS ALL STATEMENTS/ROWS IN TABLE WITH PASSED IN FOREIGN KEY VALUE($idValue) AND INDIVIDUAL COLUMN NAME($foreignId)
+    // READS ALL STATEMENTS/ROWS IN TABLE WITH PASSED IN FOREIGN KEY VALUE($idValue)
     function readForeign(int $idValue): array {
         if ($this->readForKeyStatement == null) {
-            // $sql = 'SELECT * FROM `' . $this->tableName . '` WHERE `' . $foreignId . '`=:idValue ORDER BY  `' . $yourColumn . '`';
             $sql = $this->getForKeySql();
             $this->readForKeyStatement = $this->connection->prepare($sql);
         }
@@ -85,7 +84,7 @@ abstract class GenericDao {
 
 
 
-    //CREATES NEW ARRAY(getCreateArray()) AND SEND IT TO DATABASE AS OBJECT
+    //CREATES NEW ARRAY AND SUBMIT DATABASE AS OBJECT
     function create(object $dto): bool {
 
         if ($this->createStatement == null) {
@@ -96,9 +95,6 @@ abstract class GenericDao {
         //creates new database array from passed in object, declared in subclass
         $array = $this->getCreateArray($dto);
         $this->createStatement->execute($array);
-
-        
-        // $dto->setId(intVal($this->connection->lastInsertId()));
 
         return $this->createStatement->rowCount() == 1;
     }
@@ -158,7 +154,5 @@ abstract class GenericDao {
     function getClassName(): string {
         return $this->className;
     }
-
-
 
 }

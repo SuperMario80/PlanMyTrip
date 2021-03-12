@@ -1,7 +1,3 @@
-<?php
-//    INPUT INTERFACE FOR REST API SEARCH WITH TRIPOSO TRAVEL WEBSITE
-//    
-?>
 <header id="showcase">
 	<div class="showcase-content">
     </div>

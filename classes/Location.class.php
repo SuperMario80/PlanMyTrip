@@ -35,18 +35,25 @@ class Location {
     function getIdTraveller(): int {
         return $this->idTraveller;
     }
+
     function setIdTraveller(int $idTraveller): void {
         $this->idTraveller = $idTraveller;
     }
+
+
     function getlocation(): string {
         return $this->location;
     }
+
     function setlocation(string $location): void {
         $this->location = $location;
     }
+
+
     function getlocationKey(): string {
         return $this->locationKey;
     }
+
     function setlocationKey(string $locationKey): void {
          if (empty($locationKey)){
             $this->locationKey = '';
@@ -55,9 +62,11 @@ class Location {
         }
     }
   
+
     function getClassification(): string {
         return $this->classification;
     }
+
     function setClassification(string $classification): void {
         $this->classification=  preg_replace('/_/', ' ', $classification);
     }
@@ -70,29 +79,33 @@ class Location {
             return $this->country;
         }
     }
+
     function setCountry(string $country): void {
         if (empty($country)){
             $this->country = '';
         }else{
-            // $this->country = $country;
              $this->country=  preg_replace('/_/', ' ', $country);
         }
     }
-      function getRegion(): string {
+
+
+    function getRegion(): string {
         return $this->region;
     }
+
     function setRegion(string $region): void {
         if (empty($region)){
             $this->region = '';
         }else{
             $this->region = $region;
         }
-        printData($this->region);
     }
 
-      function getIntro(): string {
+
+    function getIntro(): string {
         return $this->intro;
     }
+
     function setIntro(string $intro): void {
          if (empty($intro)){
             $this->intro = 'No Info available';
@@ -100,9 +113,12 @@ class Location {
             $this->intro = $intro;
         }
     }
-      function getTravelLink(): string {
+
+
+    function getTravelLink(): string {
         return $this->travelLink;
     }
+
     function setTravelLink(string $travelLink): void {
         if (empty($travelLink)){
             $this->travelLink = '';
@@ -110,15 +126,21 @@ class Location {
             $this->travelLink = $travelLink;
         }
     }
-      function getNotes(): string {
+
+
+    function getNotes(): string {
         return $this->notes;
     }
+
     function setNotes(string $notes): void {
         $this->notes = $notes;
     }
+
+
     function getId(): int {
         return $this->id;
     }
+    
     function setId(int $id): void {
         $this->id = $id;
     }

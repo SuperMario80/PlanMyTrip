@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+
+
 abstract class Page {
     
     private string $title;
@@ -25,15 +27,16 @@ abstract class Page {
         $this->loggedIn = false;
     }
     
+
     public function initAll() : void {
 
         $this->initSession();
         $this->init();
     }
 
+
     public function view() : void {
 
-        
         $this->viewHead();
         $this->viewNavigation();
         $this->viewLogin();
@@ -69,7 +72,7 @@ abstract class Page {
         $password = $_POST['password'] ?? '';
         
         $this->travellerDao = new TravellerDao();
-        //VALIDATION OF THE DATA
+        //VALIDATION
         if ($tr = $this->travellerDao->checkLogin($this->email, $password)) {
             $this->loggedIn = true;
             $_SESSION['email'] = $this->email;
@@ -101,7 +104,6 @@ abstract class Page {
     
 
    private function viewNavigation() : void {
-       
        if($this->loggedIn == true){
            include 'html/navigation.html.php';
        }
@@ -109,7 +111,8 @@ abstract class Page {
 
     // PROVIDES HTML FORMS
     private function viewLogin() {
-        $password = "";   
+
+        $password = "";
         $email = $this->email;
         if ($this->loggedIn) {
             include 'html/logout.html.php';
@@ -117,8 +120,7 @@ abstract class Page {
         } else{
             
             if($_SERVER['PHP_SELF'] === "/php/projects/PlanMyTrip/createTraveller.php"){
-
-                    include 'html/closingDiv.html.php';
+                include 'html/closingDiv.html.php';
                     
             }else{
                 $message = $this->message;
@@ -135,9 +137,12 @@ abstract class Page {
         require_once 'html/foot.html.php';
     }
 
+
     public function getTraveller() :?Traveller{
         return $this->traveller;
     }
+
+
     public function setTraveller(?Traveller $traveller) :void{
         $this->traveller = $traveller;
     }

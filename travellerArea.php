@@ -41,7 +41,6 @@ class travellerAreaPage extends Page {
     
     protected function viewContent(): void {
         include_once 'html/locationList.html.php';
-        include_once 'html/modal.html.php';
         
         $this->showTravLoc();
         $this->showLocPois();
@@ -77,7 +76,7 @@ class travellerAreaPage extends Page {
             
             $selectedPoi = $this->pointOfInterest;
             include 'html/location.html.php';
-            //shows html for PointOfINterst only when data exists
+            //shows html for PointOfInterst only when data exists
             if($selectedPoi != NULL){
             include 'html/pointOfInterest.html.php';
             }

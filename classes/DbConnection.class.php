@@ -13,9 +13,8 @@ class DbConnection {
         }
         return self::$instance;
     }
-    // ENDO OF SINGLETON DECLARATION
     
-    
+
 
     private PDO $connection;
     private int $value;
@@ -28,8 +27,8 @@ class DbConnection {
         $pass = 'planmytrip';             
         $db = 'planmytrip';
 
-        // DATA SET NAME - DB SPECIFIC
-        // //CONNECTION TO MariaDB DATABASE  USING PDO
+        
+        // CONNECTION TO MariaDB DATABASE  USING PDO
         $dsn = "mysql:host=$host;dbname=$db";
         $options = [
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',

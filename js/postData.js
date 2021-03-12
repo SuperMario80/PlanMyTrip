@@ -1,4 +1,4 @@
-//SUBMITS DATA TO PHP / MYSQL-DATABASE
+//IIFE TO SUBMIT DATA INTO PHP / MYSQL-DATABASE
 (function saveData() {
 	const saveLocation = document.querySelector('#summary');
 	const savePoi = document.querySelector('#poi');
@@ -6,7 +6,7 @@
 	if (saveLocation) {
 		saveLocation.addEventListener('click', async (e) => {
 			if (e.target.id == 'phpSubmit') {
-				//KEY-VALUE PAIRS TO SUBMIT
+				//Key-Value Pairs to submit
 				let locationValue = {
 					location: currentLocation.name,
 					locationKey: currentLocation.id,
@@ -23,11 +23,11 @@
 					body: JSON.stringify(locationValue),
 					headers: { 'Content-Type': 'application/json' }
 				};
-				//SENDS DATA TO PHP FILE
+				//Sends data for Validation via PHP
 				const sendPlace = await fetch(`http://localhost/php/projects/PlanMyTrip/locRequest.php`, data)
 					.then((response) => response.json())
 					.then((res) => {
-						//CHECKS RESPONSE STATUS WHEN SUBMITTED
+						//Checks Response Status when submitted
 						if (res.statusText == 'OK') {
 							showSubmitMsg('.btn-save-loc', 'LOCATION SAVED');
 						} else {
@@ -44,12 +44,12 @@
 	if (savePoi) {
 		savePoi.addEventListener('click', async (e) => {
 			let poiVal = e.target.getAttribute('data-count');
-			// const poiBtn = document.querySelector(`#poiSubmit${poiVal}`);
 			currentPointofInterest = poiRes.results[poiVal];
 
 			const infoLinkReplacement = infoLinkValue(currentPointofInterest);
 
 			if (e.target.hasAttribute('data-count')) {
+				//Key-Value Pairs to submit
 				let poiValue = {
 					poiName: currentPointofInterest.name,
 					city: currentPointofInterest.location_ids[0],
@@ -67,19 +67,18 @@
 					body: JSON.stringify(poiValue),
 					headers: { 'Content-Type': 'application/json' }
 				};
-
+				//Sends data for Validation via PHP
 				const sendPoi = await fetch(`http://localhost/php/projects/PlanMyTrip/poiRequest.php`, data)
 					.then((response) => response.json())
+					//Checks Response Status when submitted
 					.then((res) => {
 						if (res.statusText == 'OK') {
-							console.log(res);
 							showSubmitMsg(`#poiSubmit${poiVal}`, 'PointOfInterest SAVED');
 						} else {
 							if (res.statusText == 'Error') {
-								console.log(res);
 								showSubmitMsg(`#poiSubmit${poiVal}`, 'PointOfInterest ALREADY EXISTS');
 							} else {
-								showSubmitMsg(`#poiSubmit${poiVal}`, 'NO LOCATION FOUND');
+								showSubmitMsg(`#poiSubmit${poiVal}`, 'PLEASE SAVE LOCATION FIRST');
 							}
 						}
 					});
@@ -94,9 +93,9 @@
 		btn.innerText = message;
 
 		setTimeout(function() {
-			if (btn.innerText !== 'NO LOCATION FOUND') {
+			if (btn.innerText !== 'PLEASE SAVE LOCATION FIRST') {
 				btn.disabled = true;
-				btn.className += ' noHover';
+				btn.classList.add('noHover');
 			}
 			btn.innerText = originBtn;
 		}, 3000);

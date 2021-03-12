@@ -6,7 +6,6 @@ declare(strict_types=1);
 
 class LocationDao extends GenericDao {
 
-    // private $readForKeyStatement;
     private $findLocationStatement;
     private $findDuplicateStatement;
 
@@ -40,10 +39,6 @@ class LocationDao extends GenericDao {
 
     protected function getUpdateArray(object $location): array {
         return [
-            // ':idTraveller' => $location->getIdTraveller(),
-            // ':classification' => $location->getClassification(),
-            // ':location' => $location->getLocation(),
-            // ':locationKey' => $location->getLocationKey(),
             ':country' => $location->getCountry(),
             ':region' => $location->getRegion(),
             ':intro' => $location->getIntro(),
@@ -53,17 +48,17 @@ class LocationDao extends GenericDao {
         ];
     }
 
-
+    //SQL STATEMENT TO GET FOREIGN KEY VALUES
     protected function getForKeySql(): string{
         return 'SELECT * FROM `' . $this->getTableName() . '` WHERE `idTraveller`=:idValue ORDER BY `classification`, `location`';
     }
 
+    //CHECK IF LOCATION KEY ALREADY EXISTS (WHEN TRAVELLER SAVES SEARCH RESULTS)
     public function findLocation(string $locationKey, int $idTraveller): ?object {
         
-
         if ($this->findLocationStatement == null) {
             $sql = 'SELECT * FROM `' . $this->getTableName() . '` WHERE `locationKey`=:locationKey AND `idTraveller`=:idTraveller ORDER BY `classification`';
-            //PREPARES SQL  STATEMENT
+            //PREPARES SQL STATEMENT
             $this->findLocationStatement = $this->getConnection()->prepare($sql);
         }
 
@@ -79,10 +74,9 @@ class LocationDao extends GenericDao {
     
 
     }
-
+    //CHECK IF LOCATION  ALREADY EXISTS (WHEN TRAVELLER CREATES OWN LOCATION)
     public function findDuplicate(int $idTraveller, string $location, string $classification): ?object {
         
-
         if ($this->findDuplicateStatement == null) {
             $sql = 'SELECT * FROM `' . $this->getTableName() . '` WHERE `idTraveller`=:idTraveller AND `location`=:location AND `classification`=:classification';
             //PREPARES SQL  STATEMENT
@@ -99,8 +93,6 @@ class LocationDao extends GenericDao {
 
         $dto = $this->findDuplicateStatement->fetchObject($this->getClassName());
         return $dto ? $dto : null;
-    
-
     }
 
 }

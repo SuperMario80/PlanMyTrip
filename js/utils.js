@@ -68,9 +68,3 @@ function removeChars(str) {
 	let newStr = str.replace(/^.{2,2}_/g, ' ').replace(/_/g, ' ').replace(/,/g, ' ').replace(/\d{1,2}_/g, ' ');
 	return newStr;
 }
-// .replace(/([^\u0000-\u007F]+)/g, 'u')
-// @"^[a-zA-Z0-9áéíóú@#%&',.\s-]+$"
-// ^\u0000-\u007F]
-// let removeChars = (char) => {
-// 	return char.replace(/_/g, ' ');
-// };

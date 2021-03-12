@@ -37,6 +37,7 @@ class PointOfInterest {
     function getIdLocation(): int {
         return $this->idLocation;
     }
+
     function setIdLocation(int $idLocation): void {
         $this->idLocation = $idLocation;
     }
@@ -49,6 +50,7 @@ class PointOfInterest {
         $this->poiName = $poiName;
     }
 
+
     function getCity(): string {
         return $this->city;
     }
@@ -57,46 +59,46 @@ class PointOfInterest {
             $this->city = 'Unknown';
         }else{
             $this->city=  preg_replace('/_/', ' ', $city);
-            // $this->city = $city;
         }
     }
     
+
     function getLocationKey(): string {
         return $this->locationKey;
     }
+
     function setLocationKey(string $locationKey): void {
         if (empty($locationKey)){
             $this->locationKey = '';
         }else{
             $this->locationKey = $locationKey;
         }
-      
     }
 
 
     function getAttraction(): string {
         return $this->attraction;
     }
+
     function setAttraction(string $attraction): void {
          if (empty($attraction) || $attraction == 'person'){
             $this->attraction = 'Sightseeing';
         }else{
             $this->attraction = $attraction;
         }
-        
     }
 
 
     function getIntro(): string {
         return $this->intro;
     }
+
     function setIntro(string $intro): void {
         if (empty($intro)){
             $this->intro = 'No Info available';
         }else{
             $this->intro = $intro;
         }
-        
     }
     
     
@@ -116,8 +118,9 @@ class PointOfInterest {
     function getPoiMap(): string {
         return $this->poiMap;
     }
+
     function setPoiMap(string $poiMap): void {
-         if (empty($poiMap)){
+        if (empty($poiMap)){
             $this->poiMap = '';
         }else{
             $this->poiMap = $poiMap;
@@ -128,6 +131,7 @@ class PointOfInterest {
     function getNotes(): string {
         return $this->notes;
     }
+
     function setNotes(string $notes): void {
         $this->notes = $notes;
     }
@@ -136,6 +140,7 @@ class PointOfInterest {
     function getId(): int {
         return $this->id;
     }
+    
     function setId(int $id): void {
         $this->id = $id;
     }

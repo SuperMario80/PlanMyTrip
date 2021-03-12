@@ -44,7 +44,6 @@ class CreateTravellerPage extends Page {
         
         if (isSet($_POST['save'])) {
             $this->saveTraveller();
-         
         }
         
         if (isSet($_POST['delete'])) {
@@ -64,9 +63,11 @@ class CreateTravellerPage extends Page {
         //CREATE NEW TRAVELLER
         if ($this->getTraveller()->getId() == 0) {
 
-            if($this->getTraveller()->getFirstName() == NULL ||  $this->getTraveller()->getLastName() == NULL||  $this->getTraveller()->getPassword() == NULL ||  $this->getTraveller()->getEmail() == NULL){
-                    $this->message = 'Please fill out ALL data'; 
-            }else {
+            if($this->getTraveller()->getFirstName() == NULL || $this->getTraveller()->getLastName() == NULL || $this->getTraveller()->getPassword() == NULL || $this->getTraveller()->getEmail() == NULL){
+
+                $this->message = 'Please fill out ALL data'; 
+
+            } else {
                 
                 if(filter_var($this->getTraveller()->getEmail(), FILTER_VALIDATE_EMAIL) == FALSE){
                     $this->message = "Email is not valid!";
@@ -77,28 +78,27 @@ class CreateTravellerPage extends Page {
 
                     if($t == NULL){
                         if ($this->travellerDao->create($this->getTraveller())){
+
                         $this->message =   "New Account created";
                         header('Refresh:2; url=index.php');
                         }
-                    }else{
+                    } else{
         
                         $this->message = "Email already exists!";
                     }
                 }
             }
-              
         //UPDATE EXISTING TRAVELLER
         } else {
             if($this->travellerDao->update($this->getTraveller())){
+
                 $this->message = 'Customer Updated';
                 header('Refresh:2; url=travellerArea.php');
+
             }else{
+
                 $this->message = 'Customer NOT Updated';
             }
-        //    $this->message = $this->travellerDao->update
-        //    ($this->getTraveller())
-        //            ? 'Customer Saved'
-        //            : 'Customer NOT Saved';
        }
     }
 
@@ -106,9 +106,12 @@ class CreateTravellerPage extends Page {
         $this->readFormData();
         
         if ($this->travellerDao->delete($this->getTraveller())) {
+
             $this->message = 'Account Removed';
             $this->setTraveller(new Traveller());
+
         } else {
+
             $this->message = 'Account NOT Removed';
         }
     }
