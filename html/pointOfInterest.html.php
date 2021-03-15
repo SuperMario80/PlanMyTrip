@@ -18,9 +18,8 @@
                   </h3>
                 </div>
                 <div class="single-desc saved-data">
-                <div class="myModalLink hidden"><?= htmlSpecialChars($poi->getPoiMap()) ?></div>
                   <div class="loc-info py-0">
-                    <p class="item-map savedItemMap" data-poi="<?= htmlSpecialChars($poi->getId()) ?>">show on Map
+                    <p class="item-map savedItemMap" data-savedMap="<?= htmlSpecialChars($poi->getPoiMap()) ?>">show on Map
                     </p>
                     <p class="py-0">
                       <?= htmlSpecialChars($poi->getIntro()) ?>

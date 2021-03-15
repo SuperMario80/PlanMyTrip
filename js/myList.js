@@ -102,19 +102,26 @@ function deleteMyData() {
 // SETS INPUT FIELDS TO READONLY
 function modifyUpdateTempl() {
 	//DOM ELEMENTS
-	const id = document.querySelector('input[name=id]');
 	const locName = document.querySelector(`input[name=location`);
 	const poiName = document.querySelector(`input[name=poiName`);
 
-	if (id && id.value !== '0') {
-		if (locName) {
-			const classification = document.querySelector('input[name=classification]');
-			console.log(id.value);
-			classification.setAttribute('readonly', '');
-			locName.setAttribute('readonly', '');
+	if (locName) {
+		const classification = document.querySelector('select[name=classification]');
+		const locVal = document.querySelector('#locVal');
+
+		if (locName.value !== '') {
+			console.log(classification);
+			classification.className = 'read-only';
+			locName.className = 'read-only';
+		} else {
+			locVal.value = 'Please choose:';
+			locVal.innerText = 'Please choose:';
+			console.log(locVal);
 		}
-		if (poiName) {
-			poiName.setAttribute('readonly', '');
+	}
+	if (poiName) {
+		if (poiName.value !== '') {
+			poiName.className = 'read-only';
 		}
 	}
 }

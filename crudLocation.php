@@ -90,7 +90,7 @@ class crudLocationPage extends Page {
                 if($this->locationDao->update($this->location)){
                     
                     $this->message = 'Location Updated';
-                    header('Refresh:2; url=travellerArea.php');
+                    // header('Refresh:2; url=travellerArea.php');
                 }
             }
         }
@@ -113,9 +113,11 @@ class crudLocationPage extends Page {
     }
     // READS FORM DATA VALUES
     private function readFormData() {
-        $this->location->setIdTraveller(intval($_POST['idTraveller']));
+        // $this->location->setIdTraveller(intval($_POST['idTraveller']));
+        $this->location->setIdTraveller($this->location->getIdTraveller());
         $this->location->setLocation($_POST['location']);
-        $this->location->setLocationKey($_POST['locationKey']);
+        // $this->location->setLocationKey($_POST['locationKey']);
+        // $this->location->setLocationKey($this->location->getLocationKey());
         $this->location->setClassification($_POST['classification']);
         $this->location->setCountry($_POST['country']);
         $this->location->setRegion($_POST['region']);

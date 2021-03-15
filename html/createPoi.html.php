@@ -12,9 +12,9 @@
             <?=htmlSpecialChars($message)?>
         </h1>
         <form method="post" >
-            <input type="hidden" name="id" placeholder="id" value="<?= htmlSpecialChars($poi->getId())?>" readonly>
-            <input type="hidden" name="locationKey" placeholder="locationKey" value="<?= htmlSpecialChars($poi->getLocationKey())?>" readonly><br>
-            <input type="hidden" name="idLocation" placeholder="idLocation" value="<?= htmlSpecialChars($poi->getIdLocation())?>" readonly>
+            <!-- <input type="hidden" name="id" placeholder="id" value="<?= htmlSpecialChars($poi->getId())?>" readonly>
+            <input type="hidden" name="locationKey" placeholder="locationKey" value="<?= htmlSpecialChars($poi->getLocationKey())?>" readonly><br> -->
+            <!-- <input type="hidden" name="idLocation" placeholder="idLocation" value="<?= htmlSpecialChars($poi->getIdLocation())?>" readonly> -->
             <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-2">
                 <li>
                     <label for="poiName" class="required">Point Of Interest<span id="required" title="This field is required">*</span></label>

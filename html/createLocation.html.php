@@ -13,31 +13,23 @@
             <?=htmlSpecialChars($message)?>
         </h1>
         <form method="post" >
-            <input type="hidden" name="id" placeholder="id" value="<?= htmlSpecialChars($location->getId()) ?>" readonly>
-            <input type="hidden" name="locationKey" placeholder="locationKey" value="<?= htmlSpecialChars($location->getLocationKey())?>" readonly><br>
-            <input type="hidden" name="idTraveller" placeholder="idTraveller" value="<?= htmlSpecialChars($location->getIdTraveller())?>" readonly>
+         
             <ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-2">
+                
                 <li>
                     <label for="location" class="required">Location Name<span id="required" title="This field is required">*</span></label>
                     <input type="text" name="location" placeholder="Location" value="<?= htmlSpecialChars($location->getLocation())?>" tabindex="1">
                 </li>
-                <!-- <li>
+                <li>
                     <label for="classification" class="required">Type of Location<span id="required" title="This field is required">*</span>
                     </label>
                     <select name="classification" tabindex="2" readonly>
-                        <option value="" label="Please choose:">Please choose:</option>
-                        <option value="<?= htmlSpecialChars($location->getClassification())?>" label="<?= htmlSpecialChars($location->getClassification())?>"><?= htmlSpecialChars($location->getClassification())?></option>
+                        <option id="locVal" value="<?= htmlSpecialChars($location->getClassification())?>" label="<?= htmlSpecialChars(ucfirst($location->getClassification()))?>"><?= htmlSpecialChars($location->getClassification())?></option>
                         <option value="Country" label="Country">Country</option>
                         <option value="City" label="City">City</option>
                         <option value="Region" label="Region">Region</option>
                         <option value="National Park" label="National Park">National Park</option>
                     </select>
-                </li> -->
-
-                <li>
-                    <label for="classification" class="required">Type of Location<span id="required" title="This field is required">*</span>
-                    </label>
-                    <input type="text" name="classification" placeholder="Classification" value="<?= htmlSpecialChars($location->getClassification())?>" tabindex="3">
                 </li>
                 <li>
                     <label for="country" class="optional">Country
