@@ -23,7 +23,8 @@
             <div class="single-text">
               <div class="single-headline py-0 text-left location">
                 <div>
-                <h2 class="single-title">
+                <h2 class="single-title" >
+                
                     <a class="myLocationName" href="<?= htmlSpecialChars($location->getTravelLink()) ?>" target="_blank">
                       <?= htmlSpecialChars($location->getLocation()) ?> <?= htmlSpecialChars($location->getCountry()) ?> 
                       <?= htmlSpecialChars($location->getRegion()) ?>

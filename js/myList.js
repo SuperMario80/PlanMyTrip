@@ -110,7 +110,7 @@ function modifyUpdateTempl() {
 		const locVal = document.querySelector('#locVal');
 
 		if (locName.value !== '') {
-			console.log(classification);
+			console.log(classification.innerText);
 			classification.className = 'read-only';
 			locName.className = 'read-only';
 		} else {

@@ -41,6 +41,7 @@ class crudLocationPage extends Page {
         if (isSet($_POST['save'])) {
             
             $this->save();
+            $this->update();
 
         }
         
@@ -57,43 +58,61 @@ class crudLocationPage extends Page {
     }
 
     
-    // SAVES CREATED OR UPDATED LOCATION IN DATABASE
+    // SAVES CREATED LOCATION IN DATABASE
     private function save() {
 
-        //Variable to check for Duplicates
-        $duplicate = $this->locationDao->findDuplicate($this->location->getIdTraveller(), $this->location->getLocation(), $this->location->getClassification());
-
+        
         $this->readFormData();
-
+        
         
         if($this->location->getLocation() == NULL  || $this->location->getClassification() == NULL){
-
+            
             $this->message = 'Please fill out ALL required Fields'; 
             
-        }else {
+        }
+        else {
             //creates new Location 
             if ($this->location->getId() == 0) {
-
-                if($duplicate == NULL){
-
+                    //Variable to check for Duplicates
+                    $duplicate = $this->locationDao->findDuplicate($this->location->getIdTraveller(), $this->location->getLocation(), $this->location->getClassification());
+                    if($duplicate == NULL){
+                    
+                    
                     if($this->locationDao->create($this->location)){
+                        printData("hello $duplicate");
 
                         $this->message = 'New Location created';
                         header('Refresh:2; url=travellerArea.php');
                     }
                 }else{
 
-                    $this->message = 'Location already exists';
-                }
-            }else {
-                //updates Location
-                if($this->locationDao->update($this->location)){
+                        $this->message = 'Location already exists';
+                    }
+            }
+       
+        }
+    }
+    // SAVES UPDATED LOCATION IN DATABASE
+    private function update() {
+
+         $this->readUpdateData();
+
+         if ($this->location->getId() != 0) {
+         if($this->locationDao->update($this->location)){
+                    printData($this->location);
                     
-                    $this->message = 'Location Updated';
-                    // header('Refresh:2; url=travellerArea.php');
+                    $this->message = 'Location updated';
+                    
+                    header('Refresh:2; url=travellerArea.php');
+                    
+                }else{
+                    printData($this->location);
+                    $this->message = 'Location NOT Updated';
+
                 }
             }
-        }
+
+
     }
 
     // DELETES EXISTING LOCATION
@@ -113,12 +132,20 @@ class crudLocationPage extends Page {
     }
     // READS FORM DATA VALUES
     private function readFormData() {
-        // $this->location->setIdTraveller(intval($_POST['idTraveller']));
+
         $this->location->setIdTraveller($this->location->getIdTraveller());
         $this->location->setLocation($_POST['location']);
-        // $this->location->setLocationKey($_POST['locationKey']);
-        // $this->location->setLocationKey($this->location->getLocationKey());
         $this->location->setClassification($_POST['classification']);
+        $this->location->setCountry($_POST['country']);
+        $this->location->setRegion($_POST['region']);
+        $this->location->setIntro($_POST['intro']);
+        $this->location->setTravelLink($_POST['travelLink']);
+        $this->location->setNotes($_POST['notes']);
+    }
+
+    
+    private function readUpdateData() {
+
         $this->location->setCountry($_POST['country']);
         $this->location->setRegion($_POST['region']);
         $this->location->setIntro($_POST['intro']);

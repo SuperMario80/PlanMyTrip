@@ -99,11 +99,10 @@ class crudPoiPage extends Page {
     
 
     private function readFormData() {
-        // $this->poi->setIdLocation(intval($_POST['idLocation']));
+
         $this->poi->setIdLocation($this->poi->getIdLocation());
         $this->poi->setPoiName($_POST['poiName']);
         $this->poi->setCity($_POST['city']);
-        // $this->poi->setLocationKey($_POST['locationKey']);
         $this->poi->setLocationKey($this->poi->getLocationKey());
         $this->poi->setAttraction($_POST['attraction']);
         $this->poi->setIntro($_POST['intro']);

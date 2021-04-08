@@ -39,6 +39,9 @@ class LocationDao extends GenericDao {
 
     protected function getUpdateArray(object $location): array {
         return [
+            // ':location' => $location->getLocation(),
+            // ':locationKey' => $location->getLocationKey(),
+            // ':classification' => $location->getClassification(),
             ':country' => $location->getCountry(),
             ':region' => $location->getRegion(),
             ':intro' => $location->getIntro(),

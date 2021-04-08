@@ -115,7 +115,7 @@ abstract class GenericDao {
             $this->updateStatement = $this->connection->prepare($this->getUpdateSql());
         }
         $this->updateStatement->execute($this->getUpdateArray($dto));
-
+        printData($this->updateStatement->rowCount());
         return $this->updateStatement->rowCount() == 1;
     }
 
